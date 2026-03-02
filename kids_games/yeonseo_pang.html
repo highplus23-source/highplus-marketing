@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>연서의 동물팡!</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+
+        body {
+            font-family: 'Jua', sans-serif;
+            background-color: #ffebf0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            padding: 20px;
+            touch-action: manipulation;
+            user-select: none;
+            overflow-x: hidden;
+        }
+
+        h1 {
+            color: #ff6b81;
+            font-size: 2.3rem;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 0px #fff;
+            text-align: center;
+        }
+
+        .top-info {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            width: 95vw;
+            max-width: 500px;
+            justify-content: center;
+        }
+
+        .score-board,
+        .timer-board {
+            font-size: 1.5rem;
+            color: #57606f;
+            background: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .score-board span {
+            color: #ff7f50;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .timer-board span {
+            color: #3498db;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        #game-board {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            gap: 2px;
+            background-color: #dcdde1;
+            padding: 5px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            width: 95vw;
+            max-width: 500px;
+            aspect-ratio: 1 / 1;
+            touch-action: none;
+        }
+
+        .cell {
+            background-color: white;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.2s;
+            box-shadow: 0 4px 0px #bdc3c7;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cell:active {
+            transform: translateY(4px);
+            box-shadow: 0 0px 0px #bdc3c7;
+        }
+
+        /* 특수 블록 스타일 (아이들이 쉽게 알아볼 수 있도록 눈에 띄게 보강) */
+        .cell.striped-h {
+            background: repeating-linear-gradient(0deg, #fff, #fff 10px, #ffb8b8 10px, #ffb8b8 20px) !important;
+            border: 3px solid #ff7675 !important;
+            box-shadow: inset 0 0 15px rgba(255, 118, 117, 0.8) !important;
+        }
+
+        .cell.striped-h::after {
+            content: '↔️';
+            position: absolute;
+            bottom: -5px;
+            right: -5px;
+            font-size: 1.5rem;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            padding: 0 2px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            z-index: 5;
+        }
+
+        .cell.striped-v {
+            background: repeating-linear-gradient(90deg, #fff, #fff 10px, #a2c2ff 10px, #a2c2ff 20px) !important;
+            border: 3px solid #74b9ff !important;
+            box-shadow: inset 0 0 15px rgba(116, 185, 255, 0.8) !important;
+        }
+
+        .cell.striped-v::after {
+            content: '↕️';
+            position: absolute;
+            bottom: -5px;
+            right: -5px;
+            font-size: 1.5rem;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            padding: 0 2px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            z-index: 5;
+        }
+
+        .cell.wrapped {
+            background: radial-gradient(circle, #fff 10%, #ffdfba 100%) !important;
+            border: 4px dashed #ff9f43 !important;
+            box-shadow: inset 0 0 20px #ff9f43, 0 0 15px #ff9f43 !important;
+        }
+
+        .cell.wrapped::after {
+            content: '💣';
+            position: absolute;
+            bottom: -5px;
+            right: -5px;
+            font-size: 1.5rem;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            padding: 0 2px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            z-index: 5;
+        }
+
+        .cell.color-bomb {
+            /* 무지개 폭탄: 완전 찐한 무지개 색상 들이붓기 */
+            background: conic-gradient(#ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3, #ff0000) !important;
+            animation: spinBg 1.5s linear infinite;
+            border: 4px solid #fff !important;
+            box-shadow: 0 0 20px #fff, inset 0 0 15px rgba(0, 0, 0, 0.5) !important;
+        }
+
+        @keyframes spinBg {
+            100% {
+                filter: hue-rotate(360deg);
+            }
+        }
+
+        @media (max-width: 500px) {
+            .cell {
+                font-size: 1.8rem;
+                box-shadow: 0 2px 0px #bdc3c7;
+                border-radius: 6px;
+            }
+
+            .cell:active {
+                transform: translateY(2px);
+                box-shadow: 0 0px 0px #bdc3c7;
+            }
+        }
+
+        .cell.selected {
+            background-color: #ffeaa7;
+            transform: scale(1.1) translateY(-2px);
+            z-index: 10;
+            box-shadow: 0 0 15px #fdcb6e;
+            border: 2px solid #fdcb6e;
+        }
+
+        .cell.matched {
+            animation: pop 0.3s forwards;
+        }
+
+        @keyframes pop {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.4);
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: scale(0);
+                opacity: 0;
+            }
+        }
+
+        .time-bonus {
+            position: absolute;
+            color: #e74c3c;
+            font-size: 2.5rem;
+            font-weight: bold;
+            pointer-events: none;
+            text-shadow: 2px 2px 0px #fff;
+            animation: floatUp 1s ease-out forwards;
+            z-index: 50;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-60px) scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            pointer-events: none;
+            animation: fall 1s forwards;
+            border-radius: 50%;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(150px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .message {
+            margin-top: 20px;
+            font-size: 1.1rem;
+            color: #747d8c;
+            text-align: center;
+            background: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        #start-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 235, 240, 0.95);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        #game-over-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 235, 240, 0.95);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            display: none;
+        }
+
+        .btn-style {
+            font-family: inherit;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.1s;
+        }
+
+        .btn-style:active {
+            transform: translateY(6px);
+            box-shadow: 0 0px 0px transparent !important;
+        }
+
+        #start-btn {
+            background: #ff6b81;
+            box-shadow: 0 6px 0px #e0566b;
+        }
+
+        #restart-btn {
+            background: #3498db;
+            box-shadow: 0 6px 0px #2980b9;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="start-overlay">
+        <h1 style="font-size: 3rem; margin-bottom: 30px;">🐰 동물팡 마스터! 🦁</h1>
+        <p style="font-size: 1.2rem; color: #57606f; margin-bottom: 20px;">4마리를 맞추면 가로/세로 폭탄!<br>5마리를 맞추면 무지개 폭탄! 🌈</p>
+        <button id="start-btn" class="btn-style">게임 시작하기 🎵</button>
+    </div>
+
+    <h1>🐰 연서의 동물팡! 🦁</h1>
+
+    <div class="top-info">
+        <div class="score-board">점수: <span id="score">0</span></div>
+        <div class="timer-board">시간: <span id="time-left">120</span>초</div>
+    </div>
+
+    <div id="game-over-overlay">
+        <h1 style="font-size: 3rem; margin-bottom: 5px;">TIME OVER! ⏰</h1>
+        <p style="font-size: 1.5rem; color: #57606f; margin-bottom: 30px;">최종 점수: <span id="final-score"
+                style="color:#ff7f50; font-size:2rem; font-weight:bold;">0</span>점</p>
+        <button id="restart-btn" class="btn-style">다시 하기 🔄</button>
+    </div>
+
+    <div id="game-board"></div>
+    <div class="message">귀여운 동물을 밀어서 자리를 바꿔봐요!<br>특수 동물끼리 미끄러트리면 대폭발이 일어납니다!</div>
+
+    <script>
+        // Web Audio API를 활용한 효과음 합성
+        let audioCtx;
+        function initAudio() {
+            if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+        }
+
+        function playSound(type) {
+            if (!audioCtx) return;
+            const osc = audioCtx.createOscillator();
+            const gainNode = audioCtx.createGain();
+
+            osc.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+            const now = audioCtx.currentTime;
+
+            if (type === 'select') {
+                osc.type = 'sine'; osc.frequency.setValueAtTime(600, now); osc.frequency.exponentialRampToValueAtTime(800, now + 0.1); gainNode.gain.setValueAtTime(0.3, now); gainNode.gain.exponentialRampToValueAtTime(0.01, now + 0.1); osc.start(now); osc.stop(now + 0.1);
+            } else if (type === 'swap') {
+                osc.type = 'triangle'; osc.frequency.setValueAtTime(400, now); osc.frequency.exponentialRampToValueAtTime(200, now + 0.15); gainNode.gain.setValueAtTime(0.2, now); gainNode.gain.linearRampToValueAtTime(0.01, now + 0.15); osc.start(now); osc.stop(now + 0.15);
+            } else if (type === 'pop') {
+                osc.type = 'square'; osc.frequency.setValueAtTime(523.25, now); osc.frequency.setValueAtTime(659.25, now + 0.05); osc.frequency.setValueAtTime(783.99, now + 0.1); osc.frequency.setValueAtTime(1046.50, now + 0.15); gainNode.gain.setValueAtTime(0.15, now); gainNode.gain.linearRampToValueAtTime(0.01, now + 0.3); osc.start(now); osc.stop(now + 0.3);
+            } else if (type === 'error') {
+                osc.type = 'sawtooth'; osc.frequency.setValueAtTime(300, now); osc.frequency.exponentialRampToValueAtTime(150, now + 0.2); gainNode.gain.setValueAtTime(0.15, now); gainNode.gain.linearRampToValueAtTime(0.01, now + 0.2); osc.start(now); osc.stop(now + 0.2);
+            } else if (type === 'boom') {
+                osc.type = 'square'; osc.frequency.setValueAtTime(150, now); osc.frequency.exponentialRampToValueAtTime(40, now + 0.5); gainNode.gain.setValueAtTime(0.5, now); gainNode.gain.exponentialRampToValueAtTime(0.01, now + 0.5); osc.start(now); osc.stop(now + 0.5);
+            }
+        }
+
+        // ===================================
+        // 캔디크러쉬 방식 게임 로직 (특수 블록 포함)
+        // ===================================
+        const ROW = 10;
+        const COL = 10;
+        const boardElement = document.getElementById('game-board');
+        const scoreElement = document.getElementById('score');
+        const timeElement = document.getElementById('time-left');
+
+        const animals = ['🐶', '🐱', '🐰', '🦊', '🐻', '🐼', '🐷'];
+        let board = [];
+        let score = 0;
+        let isAnimating = false;
+
+        let timeLeft = 120;
+        let timerInterval = null;
+        let gameActive = false;
+
+        let startCell = null;
+        let startX = 0, startY = 0;
+        let isDragging = false;
+        let lastSwap = null; // 특수 폭탄 생성 위치를 추적하기 위한 기록
+
+        document.getElementById('start-btn').addEventListener('click', () => {
+            initAudio(); playSound('pop'); document.getElementById('start-overlay').style.display = 'none'; startGame();
+        });
+
+        document.getElementById('restart-btn').addEventListener('click', () => {
+            playSound('pop'); document.getElementById('game-over-overlay').style.display = 'none'; startGame();
+        });
+
+        function startGame() {
+            score = 0; scoreElement.innerText = score;
+            timeLeft = 120; timeElement.innerText = timeLeft;
+            gameActive = true; initBoard();
+            if (timerInterval) clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                if (!gameActive) return;
+                timeLeft--; timeElement.innerText = timeLeft;
+                if (timeLeft <= 0) endGame();
+            }, 1000);
+        }
+
+        function endGame() {
+            gameActive = false; clearInterval(timerInterval); playSound('boom');
+            document.getElementById('final-score').innerText = score; document.getElementById('game-over-overlay').style.display = 'flex';
+        }
+
+        // 초기화 (3개가 안 맞고, 특수 블록 없는 상태로)
+        initBoard();
+
+        function initBoard() {
+            boardElement.innerHTML = '';
+            for (let r = 0; r < ROW; r++) {
+                board[r] = [];
+                for (let c = 0; c < COL; c++) {
+                    let animal;
+                    do {
+                        animal = animals[Math.floor(Math.random() * animals.length)];
+                    } while (
+                        (c >= 2 && board[r][c - 1].type === animal && board[r][c - 2].type === animal) ||
+                        (r >= 2 && board[r - 1][c].type === animal && board[r - 2][c].type === animal)
+                    );
+
+                    board[r][c] = { type: animal, special: null };
+                    let cell = document.createElement('div');
+                    cell.className = 'cell';
+                    cell.dataset.r = r; cell.dataset.c = c;
+                    cell.innerText = animal;
+                    boardElement.appendChild(cell);
+                }
+            }
+        }
+
+        boardElement.addEventListener('pointerdown', handlePointerDown);
+        boardElement.addEventListener('pointermove', handlePointerMove);
+        window.addEventListener('pointerup', handlePointerUp);
+        window.addEventListener('pointercancel', handlePointerUp);
+
+        function handlePointerDown(e) {
+            if (!gameActive || isAnimating) return;
+            initAudio();
+            let cell = e.target.closest('.cell');
+            if (!cell) return;
+            startCell = cell; startX = e.clientX; startY = e.clientY; isDragging = true;
+            playSound('select'); cell.classList.add('selected');
+        }
+
+        function handlePointerMove(e) {
+            if (!isDragging || !startCell || isAnimating || !gameActive) return;
+
+            let diffX = e.clientX - startX;
+            let diffY = e.clientY - startY;
+
+            if (Math.abs(diffX) > 30 || Math.abs(diffY) > 30) {
+                let r1 = parseInt(startCell.dataset.r);
+                let c1 = parseInt(startCell.dataset.c);
+                let r2 = r1, c2 = c1;
+
+                if (Math.abs(diffX) > Math.abs(diffY)) {
+                    if (diffX > 0) c2++; else c2--;
+                } else {
+                    if (diffY > 0) r2++; else r2--;
+                }
+
+                startCell.classList.remove('selected'); isDragging = false; startCell = null;
+
+                if (r2 >= 0 && r2 < ROW && c2 >= 0 && c2 < COL) {
+                    let obj1 = board[r1][c1];
+                    let obj2 = board[r2][c2];
+
+                    // 특수 블록끼리의 교환 체크! (캔디크러쉬 핵심)
+                    let isSpecialSwap = false;
+                    if (obj1.type === '🌈' || obj2.type === '🌈') isSpecialSwap = true;
+                    else if (obj1.special && obj2.special) isSpecialSwap = true;
+
+                    playSound('swap');
+
+                    if (isSpecialSwap) {
+                        swapCells(r1, c1, r2, c2).then(() => {
+                            let toDestroy = [];
+
+                            if (obj1.type === '🌈' || obj2.type === '🌈') {
+                                let reqRainbow = obj1.type === '🌈' ? obj1 : obj2;
+                                let other = obj1.type === '🌈' ? obj2 : obj1;
+
+                                if (obj1.type === '🌈' && obj2.type === '🌈') {
+                                    // 무지개 폭탄 2개 교환 = 전체 화면 싹쓸이
+                                    for (let rr = 0; rr < ROW; rr++) for (let cc = 0; cc < COL; cc++) if (board[rr][cc]) toDestroy.push({ r: rr, c: cc });
+                                } else {
+                                    // 무지개 폭탄 + 일반 또는 특수 (해당 색깔 모두 파괴 or 특수로 변환)
+                                    let targetType = other.type;
+                                    toDestroy.push({ r: r1, c: c1 });
+                                    toDestroy.push({ r: r2, c: c2 });
+                                    for (let rr = 0; rr < ROW; rr++) {
+                                        for (let cc = 0; cc < COL; cc++) {
+                                            if (board[rr][cc] && board[rr][cc].type === targetType) {
+                                                if (other.special) board[rr][cc].special = other.special;
+                                                toDestroy.push({ r: rr, c: cc });
+                                            }
+                                        }
+                                    }
+                                }
+                            } else {
+                                // 특수 폭탄 끼리의 교환 (가로/세로 등)
+                                toDestroy.push({ r: r1, c: c1 });
+                                toDestroy.push({ r: r2, c: c2 });
+                            }
+
+                            let finalDestroy = destroyCells(toDestroy);
+                            processBlast(finalDestroy, []);
+                        });
+                        return;
+                    }
+
+                    // 일반 스와이프
+                    swapCells(r1, c1, r2, c2).then(() => {
+                        lastSwap = [{ r: r1, c: c1 }, { r: r2, c: c2 }];
+                        let clusters = findClusters();
+                        if (clusters.length > 0) {
+                            processClusters(clusters);
+                        } else {
+                            playSound('error');
+                            swapCells(r1, c1, r2, c2); // 안 맞으면 원상복구
+                        }
+                    });
+                } else {
+                    playSound('error');
+                }
+            }
+        }
+
+        function handlePointerUp(e) {
+            if (startCell && gameActive && !isAnimating) {
+                let diffX = e.clientX - startX;
+                let diffY = e.clientY - startY;
+
+                // 만약 움직임이 거의 없다면 (터치/클릭으로 간주)
+                if (Math.abs(diffX) < 10 && Math.abs(diffY) < 10) {
+                    let r = parseInt(startCell.dataset.r);
+                    let c = parseInt(startCell.dataset.c);
+                    let obj = board[r][c];
+
+                    // 터치한 블록이 특수 블록(폭탄)이라면 즉시 폭발!
+                    if (obj && (obj.special || obj.type === '🌈')) {
+                        playSound('swap');
+                        let toDestroy = [];
+                        if (obj.type === '🌈') {
+                            // 무지개 폭탄 단독 터치: 랜덤한 색상 하나 싹쓸이
+                            let targetColor = animals[Math.floor(Math.random() * animals.length)];
+                            toDestroy.push({ r, c });
+                            for (let rr = 0; rr < ROW; rr++) {
+                                for (let cc = 0; cc < COL; cc++) {
+                                    if (board[rr][cc] && board[rr][cc].type === targetColor) {
+                                        toDestroy.push({ r: rr, c: cc });
+                                    }
+                                }
+                            }
+                        } else {
+                            toDestroy.push({ r, c });
+                        }
+
+                        startCell.classList.remove('selected');
+                        startCell = null;
+                        isDragging = false;
+
+                        let finalDestroy = destroyCells(toDestroy);
+                        processBlast(finalDestroy, []);
+                        return; // 스와이프 로직 타지 않고 종료
+                    }
+                }
+
+                startCell.classList.remove('selected');
+            }
+            isDragging = false; startCell = null;
+        }
+
+        function getCellElement(r, c) { return boardElement.querySelector(`.cell[data-r="${r}"][data-c="${c}"]`); }
+
+        async function swapCells(r1, c1, r2, c2) {
+            isAnimating = true;
+            let temp = board[r1][c1]; board[r1][c1] = board[r2][c2]; board[r2][c2] = temp;
+            updateDOM(); // css transition is applied here based on JS rewrite logic.
+            // visual fast swap
+            await new Promise(res => setTimeout(res, 200));
+            isAnimating = false;
+        }
+
+        // 라인과 모양(클러스터)을 찾는 로직
+        function findClusters() {
+            let lines = [];
+
+            for (let r = 0; r < ROW; r++) {
+                let matchLen = 1;
+                for (let c = 0; c < COL; c++) {
+                    let current = board[r][c]; let next = board[r][c + 1];
+                    if (c < COL - 1 && current && next && current.type !== '🌈' && current.type === next.type) {
+                        matchLen++;
+                    } else {
+                        if (matchLen >= 3) {
+                            let line = []; for (let i = 0; i < matchLen; i++) line.push({ r: r, c: c - i });
+                            lines.push({ type: current.type, cells: line, dir: 'h' });
+                        }
+                        matchLen = 1;
+                    }
+                }
+            }
+
+            for (let c = 0; c < COL; c++) {
+                let matchLen = 1;
+                for (let r = 0; r < ROW; r++) {
+                    let current = board[r][c]; let next = r < ROW - 1 ? board[r + 1][c] : null;
+                    if (r < ROW - 1 && current && next && current.type !== '🌈' && current.type === next.type) {
+                        matchLen++;
+                    } else {
+                        if (matchLen >= 3) {
+                            let line = []; for (let i = 0; i < matchLen; i++) line.push({ r: r - i, c: c });
+                            lines.push({ type: current.type, cells: line, dir: 'v' });
+                        }
+                        matchLen = 1;
+                    }
+                }
+            }
+
+            // 라인들을 클러스터 단위(L자, T자, 십자가 등)로 묶기
+            let clusters = [];
+            lines.forEach(line => {
+                let matchedCluster = null;
+                clusters.forEach(cluster => {
+                    if (cluster.type !== line.type) return;
+                    let intersect = line.cells.some(c => cluster.cellStrs.has(`${c.r},${c.c}`));
+                    if (intersect) matchedCluster = cluster;
+                });
+
+                if (matchedCluster) {
+                    line.cells.forEach(c => matchedCluster.cellStrs.add(`${c.r},${c.c}`));
+                    matchedCluster.lines.push(line);
+                } else {
+                    let cellStrs = new Set();
+                    line.cells.forEach(c => cellStrs.add(`${c.r},${c.c}`));
+                    clusters.push({ type: line.type, lines: [line], cellStrs: cellStrs });
+                }
+            });
+            return clusters;
+        }
+
+        async function processClusters(clusters) {
+            let initialDestroy = [];
+            let spawnList = [];
+
+            clusters.forEach(cluster => {
+                let spawnType = null;
+                let maxLen = Math.max(...cluster.lines.map(l => l.cells.length));
+
+                // 5개 뭉치 = 🌈 무지개폭탄
+                if (maxLen >= 5) spawnType = { type: '🌈', special: null };
+                // 2줄 이상 교차 (L자, T자 등) = 봉지폭탄(wrapped)
+                else if (cluster.lines.length > 1) spawnType = { type: cluster.type, special: 'wrapped' };
+                // 4개 매칭 = 가로/세로 줄무늬 폭탄
+                else if (maxLen === 4) {
+                    let dir = cluster.lines[0].dir;
+                    spawnType = { type: cluster.type, special: dir === 'h' ? 'striped-v' : 'striped-h' };
+                }
+
+                // 특수 폭탄이 생겨야 한다면 위치 결정
+                if (spawnType) {
+                    let spawnCoord = null;
+                    if (lastSwap) {
+                        for (let cStr of cluster.cellStrs) {
+                            if (cStr === `${lastSwap[0].r},${lastSwap[0].c}`) spawnCoord = lastSwap[0];
+                            if (cStr === `${lastSwap[1].r},${lastSwap[1].c}`) spawnCoord = lastSwap[1];
+                        }
+                    }
+                    if (!spawnCoord) {
+                        let [r, c] = Array.from(cluster.cellStrs)[0].split(',').map(Number);
+                        spawnCoord = { r, c };
+                    }
+                    spawnList.push({ r: spawnCoord.r, c: spawnCoord.c, obj: spawnType });
+                }
+
+                cluster.cellStrs.forEach(cStr => {
+                    let [r, c] = cStr.split(',').map(Number);
+                    initialDestroy.push({ r, c });
+                });
+            });
+
+            lastSwap = null;
+            let finalDestroy = destroyCells(initialDestroy); // 연쇄 폭발 처리
+            await processBlast(finalDestroy, spawnList);
+        }
+
+        // 연쇄 폭발 로직(폭탄이 폭탄을 터트리는 계산)
+        function destroyCells(initialList) {
+            let queue = [...initialList];
+            let destroyedMap = new Map();
+
+            while (queue.length > 0) {
+                let { r, c } = queue.shift();
+                if (r < 0 || r >= ROW || c < 0 || c >= COL) continue;
+
+                let key = `${r},${c}`;
+                if (destroyedMap.has(key) || !board[r][c]) continue;
+
+                destroyedMap.set(key, { r, c });
+                let cellData = board[r][c];
+
+                if (cellData.special === 'striped-h') {
+                    for (let i = 0; i < COL; i++) queue.push({ r: r, c: i });
+                } else if (cellData.special === 'striped-v') {
+                    for (let i = 0; i < ROW; i++) queue.push({ r: i, c: c });
+                } else if (cellData.special === 'wrapped') {
+                    for (let dr = -1; dr <= 1; dr++) {
+                        for (let dc = -1; dc <= 1; dc++) queue.push({ r: r + dr, c: c + dc });
+                    }
+                } else if (cellData.type === '🌈') {
+                    let targetColor = animals[Math.floor(Math.random() * animals.length)];
+                    for (let rr = 0; rr < ROW; rr++) {
+                        for (let cc = 0; cc < COL; cc++) {
+                            if (board[rr][cc] && board[rr][cc].type === targetColor) queue.push({ r: rr, c: cc });
+                        }
+                    }
+                }
+            }
+            return Array.from(destroyedMap.values());
+        }
+
+        async function processBlast(finalDestroy, spawnList = []) {
+            isAnimating = true;
+            if (finalDestroy.length > 8) playSound('boom'); // 크게 터지면 붐!
+            else playSound('pop');
+
+            score += finalDestroy.length * 10;
+            scoreElement.innerText = score;
+
+            let bonusTime = finalDestroy.length >= 8 ? 5 : (finalDestroy.length >= 5 ? 3 : 0);
+            if (bonusTime > 0) {
+                timeLeft += bonusTime;
+                if (timeLeft > 300) timeLeft = 300;
+                timeElement.innerText = timeLeft;
+            }
+
+            finalDestroy.forEach((m, index) => {
+                let cell = getCellElement(m.r, m.c);
+                cell.classList.add('matched');
+                createConfetti(cell);
+                if (bonusTime > 0 && index === finalDestroy.length - 1) showTimeBonus(cell, bonusTime);
+            });
+
+            await new Promise(res => setTimeout(res, 300));
+
+            // 보드에서 파괴된 것 완전히 null 처리
+            finalDestroy.forEach(m => { board[m.r][m.c] = null; });
+
+            // 특수 블록 생성하기
+            spawnList.forEach(s => { board[s.r][s.c] = s.obj; });
+
+            // 중력으로 위에서 아래로 떨어지기
+            for (let c = 0; c < COL; c++) {
+                let emptySpaces = 0;
+                for (let r = ROW - 1; r >= 0; r--) {
+                    if (board[r][c] === null) emptySpaces++;
+                    else if (emptySpaces > 0) {
+                        board[r + emptySpaces][c] = board[r][c]; board[r][c] = null;
+                    }
+                }
+                for (let r = 0; r < emptySpaces; r++) {
+                    board[r][c] = { type: animals[Math.floor(Math.random() * animals.length)], special: null };
+                }
+            }
+
+            updateDOM();
+
+            setTimeout(async () => {
+                let newClusters = findClusters();
+                if (newClusters.length > 0) await processClusters(newClusters);
+                else isAnimating = false;
+            }, 300);
+        }
+
+        // 전체 화면 UI 동기화 함수
+        function updateDOM() {
+            for (let r = 0; r < ROW; r++) {
+                for (let c = 0; c < COL; c++) {
+                    let cell = getCellElement(r, c);
+                    let data = board[r][c];
+                    // 속성 리셋
+                    cell.className = 'cell';
+                    if (data) {
+                        cell.innerText = data.type;
+                        if (data.special) cell.classList.add(data.special);
+                        if (data.type === '🌈') {
+                            cell.innerText = '🌈';
+                            cell.classList.add('color-bomb');
+                        }
+                    } else {
+                        cell.innerText = '';
+                    }
+                    cell.classList.remove('matched');
+                }
+            }
+        }
+
+        function createConfetti(element) {
+            const rect = element.getBoundingClientRect();
+            const colors = ['#ff7675', '#74b9ff', '#55efc4', '#ffeaa7', '#a29bfe'];
+            for (let i = 0; i < 4; i++) {
+                let conf = document.createElement('div');
+                conf.className = 'confetti'; conf.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                conf.style.left = (rect.left + Math.random() * rect.width) + 'px'; conf.style.top = (rect.top + Math.random() * rect.height) + 'px';
+                document.body.appendChild(conf);
+                setTimeout(() => conf.remove(), 1000);
+            }
+        }
+
+        function showTimeBonus(element, time) {
+            const rect = element.getBoundingClientRect();
+            let text = document.createElement('div');
+            text.className = 'time-bonus'; text.innerText = '+' + time + '초';
+            text.style.left = (rect.left + rect.width / 2 - 30) + 'px'; text.style.top = (rect.top) + 'px';
+            if (time >= 5) text.style.color = '#9b59b6';
+            document.body.appendChild(text);
+            setTimeout(() => text.remove(), 1000);
+        }
+    </script>
+</body>
+
+</html>
