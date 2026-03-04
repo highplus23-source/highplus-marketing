@@ -1,0 +1,5143 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>단순 노출을 넘어 진짜 환자를 부르는 마케팅 - HighPlus</title>
+    <meta
+      name="description"
+      content="병원 운영 9년차 원장이 직접 완성한 병원 전문 마케팅 시스템. 브랜딩 블로그, 네이버 플레이스 최적화로 실제 내원 환자를 300% 증가시킵니다. 위약금 없는 월 단위 계약."
+    />
+    <meta
+      name="keywords"
+      content="병원마케팅, 병원블로그, 네이버플레이스, 의료마케팅, 병원브랜딩, 환자유치"
+    />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="단순 노출을 넘어 진짜 환자를 부르는 마케팅 - HighPlus"
+    />
+    <meta
+      property="og:description"
+      content="병원 운영 9년차 원장이 직접 완성한 병원 전문 마케팅 시스템. 실제 내원 환자 300% 증가."
+    />
+    <meta property="og:locale" content="ko_KR" />
+    <meta name="robots" content="index, follow" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800;900&family=Bebas+Neue&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg-primary: #0a0c14;
+        --bg-secondary: #0f1120;
+        --bg-card: #131628;
+        --bg-card2: #0e1022;
+        --accent1: #7c3aed;
+        --accent2: #3b82f6;
+        --accent3: #06b6d4;
+        --grad-main: linear-gradient(
+          135deg,
+          #7c3aed 0%,
+          #3b82f6 50%,
+          #06b6d4 100%
+        );
+        --grad-text: linear-gradient(90deg, #a78bfa, #60a5fa, #22d3ee);
+        --grad-btn: linear-gradient(135deg, #7c3aed, #3b82f6);
+        --grad-card: linear-gradient(145deg, #1a1f3a 0%, #0f1225 100%);
+        --border: rgba(255, 255, 255, 0.07);
+        --border-accent: rgba(124, 58, 237, 0.4);
+        --text-primary: #f1f5f9;
+        --text-secondary: #94a3b8;
+        --text-muted: #475569;
+        --glow: rgba(124, 58, 237, 0.3);
+        --glow2: rgba(59, 130, 246, 0.3);
+      }
+
+      [data-theme="light"] {
+        --bg-primary: #f8faff;
+        --bg-secondary: #eef2ff;
+        --bg-card: #ffffff;
+        --bg-card2: #f1f5ff;
+        --grad-card: linear-gradient(145deg, #ffffff 0%, #f0f4ff 100%);
+        --border: rgba(0, 0, 0, 0.08);
+        --border-accent: rgba(124, 58, 237, 0.35);
+        --text-primary: #0f172a;
+        --text-secondary: #475569;
+        --text-muted: #94a3b8;
+        --glow: rgba(124, 58, 237, 0.15);
+        --glow2: rgba(59, 130, 246, 0.15);
+      }
+
+      /* Theme toggle button */
+      .theme-toggle {
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        width: 38px;
+        height: 38px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 1.1rem;
+        transition:
+          background 0.2s,
+          border-color 0.2s;
+        flex-shrink: 0;
+      }
+      .theme-toggle:hover {
+        background: rgba(124, 58, 237, 0.15);
+        border-color: rgba(124, 58, 237, 0.4);
+      }
+      [data-theme="light"] .theme-toggle {
+        background: rgba(0, 0, 0, 0.05);
+      }
+
+      /* Light mode overrides */
+      [data-theme="light"] body::before {
+        opacity: 0.15;
+      }
+      [data-theme="light"] .hero-bg {
+        background:
+          radial-gradient(
+            ellipse 80% 60% at 50% 0%,
+            rgba(124, 58, 237, 0.1) 0%,
+            transparent 70%
+          ),
+          radial-gradient(
+            ellipse 60% 40% at 80% 80%,
+            rgba(59, 130, 246, 0.08) 0%,
+            transparent 60%
+          );
+      }
+      [data-theme="light"] .hero-grid {
+        background-image:
+          linear-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+        background-size: 60px 60px;
+      }
+      [data-theme="light"] .orb1 {
+        background: rgba(124, 58, 237, 0.08);
+      }
+      [data-theme="light"] .orb2 {
+        background: rgba(59, 130, 246, 0.06);
+      }
+      [data-theme="light"] .orb3 {
+        background: rgba(6, 182, 212, 0.05);
+      }
+      [data-theme="light"] nav {
+        background: rgba(248, 250, 255, 0.9);
+      }
+      [data-theme="light"] .stats-bar {
+        background: #ffffff;
+      }
+      [data-theme="light"] .pain-card,
+      [data-theme="light"] .phil-card,
+      [data-theme="light"] .service-card,
+      [data-theme="light"] .testimonial,
+      [data-theme="light"] .faq-item {
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.06);
+      }
+      [data-theme="light"] .pain-highlight {
+        background: linear-gradient(
+          135deg,
+          rgba(124, 58, 237, 0.08),
+          rgba(59, 130, 246, 0.06)
+        );
+      }
+      [data-theme="light"] .process-list::before {
+        background: linear-gradient(
+          to bottom,
+          #7c3aed,
+          #3b82f6,
+          #06b6d4,
+          transparent
+        );
+        opacity: 0.5;
+      }
+      [data-theme="light"] footer {
+        background: #ffffff;
+      }
+      [data-theme="light"] .cta-box {
+        background: linear-gradient(145deg, #ffffff 0%, #f0f4ff 100%);
+      }
+      [data-theme="light"] .contact-section {
+        background: #eef2ff;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background: var(--bg-primary);
+        color: var(--text-primary);
+        font-family: "Noto Sans KR", sans-serif;
+        font-weight: 400;
+        line-height: 1.7;
+        overflow-x: hidden;
+      }
+
+      /* ─── NOISE TEXTURE OVERLAY ─── */
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+        pointer-events: none;
+        z-index: 9999;
+        opacity: 0.4;
+      }
+
+      /* ─── NAVBAR ─── */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        padding: 0 5%;
+        height: 68px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: rgba(10, 12, 20, 0.85);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .nav-logo {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 1.8rem;
+        letter-spacing: 2px;
+        background: var(--grad-text);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-decoration: none;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+        list-style: none;
+      }
+
+      .nav-links a {
+        color: var(--text-secondary);
+        text-decoration: none;
+        font-size: 0.875rem;
+        font-weight: 500;
+        transition: color 0.2s;
+      }
+
+      .nav-links a:hover {
+        color: #a78bfa;
+      }
+
+      .nav-links a.active {
+        color: #a78bfa;
+        position: relative;
+      }
+
+      .nav-links a.active::after {
+        content: "";
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: var(--grad-text);
+        border-radius: 2px;
+      }
+
+      .nav-cta {
+        background: var(--grad-btn);
+        color: white !important;
+        padding: 0.5rem 1.25rem;
+        border-radius: 8px;
+        font-weight: 600 !important;
+        font-size: 0.875rem;
+        text-decoration: none;
+        transition:
+          opacity 0.2s,
+          transform 0.2s !important;
+        display: inline-block;
+      }
+
+      .nav-cta:hover {
+        opacity: 0.9;
+        transform: translateY(-1px);
+      }
+
+      /* ─── HERO ─── */
+      #hero {
+        min-height: 60vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 110px 5% 50px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-bg {
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(
+            ellipse 80% 60% at 50% 0%,
+            rgba(124, 58, 237, 0.18) 0%,
+            transparent 70%
+          ),
+          radial-gradient(
+            ellipse 60% 40% at 80% 80%,
+            rgba(59, 130, 246, 0.12) 0%,
+            transparent 60%
+          ),
+          radial-gradient(
+            ellipse 40% 30% at 20% 70%,
+            rgba(6, 182, 212, 0.1) 0%,
+            transparent 50%
+          );
+      }
+
+      /* Animated orbs */
+      .orb {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(80px);
+        animation: float 8s ease-in-out infinite;
+        pointer-events: none;
+      }
+      .orb1 {
+        width: 400px;
+        height: 400px;
+        background: rgba(124, 58, 237, 0.15);
+        top: -100px;
+        left: -100px;
+        animation-delay: 0s;
+      }
+      .orb2 {
+        width: 300px;
+        height: 300px;
+        background: rgba(59, 130, 246, 0.12);
+        bottom: -50px;
+        right: -50px;
+        animation-delay: -3s;
+      }
+      .orb3 {
+        width: 250px;
+        height: 250px;
+        background: rgba(6, 182, 212, 0.1);
+        top: 50%;
+        left: 60%;
+        animation-delay: -6s;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0) translateX(0) scale(1);
+        }
+        33% {
+          transform: translateY(-30px) translateX(15px) scale(1.05);
+        }
+        66% {
+          transform: translateY(15px) translateX(-10px) scale(0.97);
+        }
+      }
+
+      /* Grid lines */
+      .hero-grid {
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+          linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.025) 1px,
+            transparent 1px
+          );
+        background-size: 60px 60px;
+        mask-image: radial-gradient(
+          ellipse 80% 80% at 50% 50%,
+          black 30%,
+          transparent 100%
+        );
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 1;
+        max-width: 700px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin: 0 auto;
+      }
+
+      .hero-title {
+        font-size: clamp(2.4rem, 6vw, 3.8rem);
+        font-weight: 800;
+        line-height: 1.25;
+        margin-bottom: 2rem;
+        word-break: keep-all;
+        color: var(--text-primary);
+      }
+
+      .hero-title .highlight {
+        color: #7c3aed;
+        background: var(--grad-text);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: 900;
+        display: inline-block;
+      }
+
+      .hero-subline {
+        font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+        color: var(--text-secondary);
+        line-height: 1.8;
+        margin-bottom: 3.5rem;
+        word-break: keep-all;
+        opacity: 0.8;
+      }
+
+      .hero-btns {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .btn-primary {
+        background: var(--grad-btn);
+        color: white;
+        padding: 0.875rem 2rem;
+        border-radius: 10px;
+        font-size: 0.95rem;
+        font-weight: 700;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        box-shadow: 0 4px 30px rgba(124, 58, 237, 0.35);
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 40px rgba(124, 58, 237, 0.5);
+      }
+
+      .btn-secondary {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid var(--border);
+        color: var(--text-primary);
+        padding: 0.875rem 2rem;
+        border-radius: 10px;
+        font-size: 0.95rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition:
+          background 0.2s,
+          border-color 0.2s;
+      }
+
+      .btn-secondary:hover {
+        background: rgba(255, 255, 255, 0.08);
+        border-color: rgba(124, 58, 237, 0.5);
+      }
+
+      /* ─── STATS BAR ─── */
+      .stats-bar {
+        background: var(--bg-card);
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+        padding: 2.5rem 5%;
+      }
+
+      .stats-inner {
+        max-width: 900px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+        text-align: center;
+      }
+
+      .stat-item {
+      }
+
+      .stat-num {
+        font-size: 2.5rem;
+        font-weight: 800;
+        background: var(--grad-text);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        line-height: 1;
+        margin-bottom: 0.3rem;
+      }
+
+      .stat-label {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+        font-weight: 500;
+        letter-spacing: 0.03em;
+      }
+
+      /* ─── SECTION COMMON ─── */
+      section {
+        padding: 100px 5%;
+      }
+
+      .section-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+
+      .section-tag {
+        display: inline-block;
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: #a78bfa;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        margin-bottom: 1rem;
+        background: rgba(124, 58, 237, 0.12);
+        border: 1px solid rgba(124, 58, 237, 0.25);
+        padding: 0.3rem 0.8rem;
+        border-radius: 4px;
+      }
+
+      .section-title {
+        font-size: clamp(1.75rem, 3vw, 2.6rem);
+        font-weight: 800;
+        line-height: 1.25;
+        margin-bottom: 1rem;
+        word-break: keep-all;
+      }
+
+      .section-desc {
+        font-size: 1rem;
+        color: var(--text-secondary);
+        max-width: 560px;
+        line-height: 1.8;
+        word-break: keep-all;
+        margin-bottom: 3rem;
+      }
+
+      .section-center {
+        text-align: center;
+      }
+
+      .section-center .section-desc {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      /* ─── PAIN POINT ─── */
+      #pain-point {
+        background: var(--bg-secondary);
+        position: relative;
+      }
+
+      #pain-point::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(124, 58, 237, 0.5),
+          transparent
+        );
+      }
+
+      .pain-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.25rem;
+        margin-bottom: 3rem;
+      }
+
+      .pain-card {
+        background: var(--grad-card);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 1.75rem;
+        position: relative;
+        overflow: hidden;
+        transition:
+          border-color 0.3s,
+          transform 0.3s;
+      }
+
+      .pain-card:hover {
+        border-color: rgba(124, 58, 237, 0.4);
+        transform: translateY(-4px);
+      }
+
+      .pain-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, #7c3aed, #3b82f6);
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+
+      .pain-card:hover::before {
+        opacity: 1;
+      }
+
+      .pain-icon {
+        width: 44px;
+        height: 44px;
+        background: rgba(124, 58, 237, 0.15);
+        border: 1px solid rgba(124, 58, 237, 0.25);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.25rem;
+        margin-bottom: 1rem;
+      }
+
+      .pain-card h3 {
+        font-size: 1rem;
+        font-weight: 700;
+        margin-bottom: 0.6rem;
+        color: var(--text-primary);
+      }
+
+      .pain-card p {
+        font-size: 0.875rem;
+        color: var(--text-secondary);
+        line-height: 1.75;
+        word-break: keep-all;
+      }
+
+      /* Highlight card */
+      .pain-highlight {
+        background: linear-gradient(
+          135deg,
+          rgba(124, 58, 237, 0.2),
+          rgba(59, 130, 246, 0.15)
+        );
+        border-color: rgba(124, 58, 237, 0.4);
+        grid-column: span 3;
+      }
+
+      .pain-highlight h3 {
+        font-size: 1.3rem;
+        background: var(--grad-text);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      /* ─── PHILOSOPHY ─── */
+      #philosophy {
+        position: relative;
+      }
+
+      .phil-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.25rem;
+      }
+
+      .phil-card {
+        background: var(--grad-card);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 2rem;
+        display: flex;
+        gap: 1.25rem;
+        align-items: flex-start;
+        transition:
+          border-color 0.3s,
+          transform 0.3s;
+      }
+
+      .phil-card:hover {
+        border-color: rgba(59, 130, 246, 0.4);
+        transform: translateY(-3px);
+      }
+
+      .phil-num {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 3rem;
+        line-height: 1;
+        color: rgba(124, 58, 237, 0.25);
+        flex-shrink: 0;
+        width: 52px;
+      }
+
+      .phil-body h4 {
+        font-size: 1rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        color: #e2e8f0;
+      }
+
+      .phil-body p {
+        font-size: 0.875rem;
+        color: var(--text-secondary);
+        line-height: 1.75;
+        word-break: keep-all;
+      }
+
+      /* ─── SERVICES ─── */
+      #services {
+        background: var(--bg-secondary);
+        position: relative;
+      }
+
+      #services::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(59, 130, 246, 0.5),
+          transparent
+        );
+      }
+
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+      }
+
+      .service-card {
+        background: var(--grad-card);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 2.5rem;
+        position: relative;
+        overflow: hidden;
+        transition:
+          transform 0.3s,
+          box-shadow 0.3s;
+      }
+
+      .service-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 20px 60px rgba(124, 58, 237, 0.15);
+      }
+
+      .service-card::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: var(--grad-main);
+        transform: scaleX(0);
+        transition: transform 0.3s;
+        transform-origin: left;
+      }
+
+      .service-card:hover::after {
+        transform: scaleX(1);
+      }
+
+      .service-num {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 4rem;
+        line-height: 1;
+        background: var(--grad-text);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        opacity: 0.3;
+        position: absolute;
+        top: 1.5rem;
+        right: 2rem;
+      }
+
+      .service-icon {
+        width: 52px;
+        height: 52px;
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        margin-bottom: 1.25rem;
+      }
+
+      .service-card:nth-child(1) .service-icon {
+        background: rgba(124, 58, 237, 0.15);
+        border: 1px solid rgba(124, 58, 237, 0.3);
+      }
+      .service-card:nth-child(2) .service-icon {
+        background: rgba(59, 130, 246, 0.15);
+        border: 1px solid rgba(59, 130, 246, 0.3);
+      }
+
+      .service-card h3 {
+        font-size: 1.35rem;
+        font-weight: 800;
+        margin-bottom: 0.75rem;
+        color: var(--text-primary);
+      }
+
+      .service-card > p {
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+        margin-bottom: 1.5rem;
+        line-height: 1.8;
+        word-break: keep-all;
+      }
+
+      .service-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+      }
+
+      .service-list li {
+        font-size: 0.875rem;
+        color: var(--text-secondary);
+        display: flex;
+        align-items: flex-start;
+        gap: 0.6rem;
+      }
+
+      .service-list li::before {
+        content: "";
+        width: 5px;
+        height: 5px;
+        background: var(--grad-main);
+        border-radius: 50%;
+        flex-shrink: 0;
+        margin-top: 0.55rem;
+      }
+
+      /* ─── PROCESS ─── */
+      #process {
+        position: relative;
+      }
+
+      .process-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        position: relative;
+      }
+
+      .process-list::before {
+        content: "";
+        position: absolute;
+        left: 28px;
+        top: 28px;
+        bottom: 28px;
+        width: 2px;
+        background: linear-gradient(
+          to bottom,
+          #7c3aed,
+          #3b82f6,
+          #06b6d4,
+          transparent
+        );
+      }
+
+      .process-item {
+        display: grid;
+        grid-template-columns: 56px 1fr;
+        gap: 1.5rem;
+        padding: 2rem 0;
+        border-bottom: 1px solid var(--border);
+        align-items: flex-start;
+        transition: background 0.2s;
+      }
+
+      .process-item:last-child {
+        border-bottom: none;
+      }
+
+      .process-item:hover .proc-body {
+        color: var(--text-primary);
+      }
+
+      .proc-step {
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        background: var(--grad-btn);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 1.3rem;
+        color: white;
+        flex-shrink: 0;
+        box-shadow: 0 0 20px rgba(124, 58, 237, 0.3);
+        position: relative;
+        z-index: 1;
+      }
+
+      .proc-body h3 {
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: 0.4rem;
+      }
+
+      .proc-body p {
+        font-size: 0.875rem;
+        color: var(--text-secondary);
+        line-height: 1.8;
+        word-break: keep-all;
+      }
+
+      /* ─── PORTFOLIO ─── */
+      #portfolio {
+        background: var(--bg-secondary);
+        position: relative;
+      }
+
+      #portfolio::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(6, 182, 212, 0.5),
+          transparent
+        );
+      }
+
+      .portfolio-stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+        margin-bottom: 3rem;
+      }
+
+      .pstat-card {
+        background: var(--grad-card);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 2rem;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .pstat-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: var(--grad-main);
+      }
+
+      .pstat-num {
+        font-size: 3rem;
+        font-weight: 800;
+        background: var(--grad-text);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        line-height: 1;
+        margin-bottom: 0.5rem;
+      }
+
+      .pstat-label {
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+        word-break: keep-all;
+        line-height: 1.5;
+      }
+
+      .testimonials {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.25rem;
+      }
+
+      .testimonial {
+        background: var(--grad-card);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 2rem;
+        position: relative;
+        transition: border-color 0.3s;
+      }
+
+      .testimonial:hover {
+        border-color: rgba(124, 58, 237, 0.4);
+      }
+
+      .testimonial::before {
+        content: '"';
+        position: absolute;
+        top: 1rem;
+        right: 1.5rem;
+        font-size: 4rem;
+        line-height: 1;
+        background: var(--grad-text);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        opacity: 0.3;
+        font-family: Georgia, serif;
+      }
+
+      .testimonial p {
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+        line-height: 1.8;
+        margin-bottom: 1.25rem;
+        word-break: keep-all;
+      }
+
+      .testimonial-author {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .author-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: var(--grad-btn);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.9rem;
+        font-weight: 700;
+        color: white;
+        flex-shrink: 0;
+      }
+
+      .author-info strong {
+        display: block;
+        font-size: 0.875rem;
+        font-weight: 700;
+        color: var(--text-primary);
+      }
+
+      .author-info span {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+      }
+
+      /* ─── FAQ ─── */
+      #faq {
+        position: relative;
+      }
+
+      .faq-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .faq-item {
+        background: var(--grad-card);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        overflow: hidden;
+        transition: border-color 0.3s;
+      }
+
+      .faq-item:hover {
+        border-color: rgba(124, 58, 237, 0.35);
+      }
+
+      .faq-q {
+        width: 100%;
+        background: none;
+        border: none;
+        color: var(--text-primary);
+        font-family: "Noto Sans KR", sans-serif;
+        font-size: 0.95rem;
+        font-weight: 600;
+        padding: 1.25rem 1.5rem;
+        text-align: left;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .faq-q span {
+        word-break: keep-all;
+      }
+
+      .faq-q .arrow {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background: rgba(124, 58, 237, 0.15);
+        border: 1px solid rgba(124, 58, 237, 0.25);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        transition:
+          transform 0.3s,
+          background 0.3s;
+        font-size: 0.75rem;
+        color: #a78bfa;
+      }
+
+      .faq-item.open .faq-q .arrow {
+        transform: rotate(180deg);
+        background: rgba(124, 58, 237, 0.25);
+      }
+
+      .faq-a {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease;
+      }
+
+      .faq-item.open .faq-a {
+        max-height: 300px;
+      }
+
+      .faq-a-inner {
+        padding: 0 1.5rem 1.25rem;
+        font-size: 0.875rem;
+        color: var(--text-secondary);
+        line-height: 1.8;
+        word-break: keep-all;
+        border-top: 1px solid var(--border);
+        padding-top: 1.25rem;
+      }
+
+      /* ─── CTA ─── */
+      #contact {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .cta-bg {
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          ellipse 70% 70% at 50% 50%,
+          rgba(124, 58, 237, 0.15),
+          transparent 70%
+        );
+      }
+
+      .cta-box {
+        position: relative;
+        background: var(--grad-card);
+        border: 1px solid rgba(124, 58, 237, 0.3);
+        border-radius: 24px;
+        padding: 5rem 4rem;
+        text-align: center;
+        max-width: 800px;
+        margin: 0 auto;
+        overflow: hidden;
+      }
+
+      .cta-box::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: var(--grad-main);
+      }
+
+      .cta-box h2 {
+        font-size: clamp(1.75rem, 3vw, 2.5rem);
+        font-weight: 800;
+        margin-bottom: 1rem;
+        word-break: keep-all;
+      }
+
+      .cta-box p {
+        color: var(--text-secondary);
+        margin-bottom: 2.5rem;
+        font-size: 1rem;
+        word-break: keep-all;
+      }
+
+      /* ─── CONTACT FORM ─── */
+      .contact-section {
+        padding: 80px 5% 100px;
+        background: var(--bg-secondary);
+        position: relative;
+      }
+
+      .contact-section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(124, 58, 237, 0.4),
+          transparent
+        );
+      }
+
+      .contact-inner {
+        max-width: 600px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .form-group {
+        margin-bottom: 1rem;
+        text-align: left;
+      }
+
+      .form-group label {
+        display: block;
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: var(--text-secondary);
+        margin-bottom: 0.4rem;
+        letter-spacing: 0.02em;
+      }
+
+      .form-group input,
+      .form-group textarea,
+      .form-group select {
+        width: 100%;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 0.875rem 1rem;
+        font-size: 0.9rem;
+        font-family: "Noto Sans KR", sans-serif;
+        color: var(--text-primary);
+        transition:
+          border-color 0.2s,
+          box-shadow 0.2s;
+        outline: none;
+      }
+
+      .form-group input::placeholder,
+      .form-group textarea::placeholder {
+        color: var(--text-muted);
+      }
+
+      .form-group input:focus,
+      .form-group textarea:focus,
+      .form-group select:focus {
+        border-color: rgba(124, 58, 237, 0.5);
+        box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+      }
+
+      .form-group textarea {
+        resize: vertical;
+        min-height: 100px;
+      }
+
+      .form-group select {
+        cursor: pointer;
+      }
+      .form-group select option {
+        background: #131628;
+      }
+
+      .form-submit {
+        width: 100%;
+        background: var(--grad-btn);
+        color: white;
+        border: none;
+        padding: 1rem;
+        border-radius: 10px;
+        font-size: 1rem;
+        font-weight: 700;
+        font-family: "Noto Sans KR", sans-serif;
+        cursor: pointer;
+        margin-top: 0.5rem;
+        box-shadow: 0 4px 30px rgba(124, 58, 237, 0.3);
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+      }
+
+      .form-submit:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 40px rgba(124, 58, 237, 0.45);
+      }
+
+      .form-note {
+        font-size: 0.78rem;
+        color: var(--text-muted);
+        margin-top: 0.75rem;
+      }
+
+      /* ─── FOOTER ─── */
+      footer {
+        background: var(--bg-card);
+        border-top: 1px solid var(--border);
+        padding: 3rem 5%;
+      }
+
+      .footer-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 2rem;
+        flex-wrap: wrap;
+      }
+
+      .footer-brand .logo {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 1.6rem;
+        letter-spacing: 2px;
+        background: var(--grad-text);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        display: block;
+        margin-bottom: 0.5rem;
+      }
+
+      .footer-brand p {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+        max-width: 280px;
+        line-height: 1.6;
+      }
+
+      .footer-links {
+        display: flex;
+        gap: 1.5rem;
+      }
+
+      .footer-links a {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+
+      .footer-links a:hover {
+        color: #a78bfa;
+      }
+
+      .footer-copy {
+        font-size: 0.78rem;
+        color: var(--text-muted);
+        max-width: 1100px;
+        margin: 2rem auto 0;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--border);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+
+      /* ─── DIVIDER ─── */
+      .section-divider {
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(124, 58, 237, 0.2),
+          rgba(59, 130, 246, 0.2),
+          transparent
+        );
+      }
+
+      /* ─── SCROLL REVEAL ─── */
+      .reveal {
+        opacity: 1;
+        transform: translateY(0);
+        transition:
+          opacity 0.7s ease,
+          transform 0.7s ease;
+      }
+
+      .reveal.hidden {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* ─── SKIN CARDS ─── */
+      .skin-card {
+        background: var(--grad-card);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        overflow: hidden;
+        transition:
+          transform 0.3s,
+          box-shadow 0.3s,
+          border-color 0.3s;
+        cursor: pointer;
+      }
+      .skin-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 20px 50px rgba(124, 58, 237, 0.15);
+        border-color: rgba(124, 58, 237, 0.35);
+      }
+      .skin-thumb {
+        width: 100%;
+        height: 180px;
+        overflow: hidden;
+      }
+      .skin-info {
+        padding: 0.875rem 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+      }
+      .skin-tag {
+        font-size: 0.7rem;
+        font-weight: 700;
+        padding: 0.2rem 0.5rem;
+        border-radius: 4px;
+        border: 1px solid;
+        flex-shrink: 0;
+        letter-spacing: 0.02em;
+      }
+      .skin-info strong {
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: var(--text-primary);
+      }
+
+      /* ─── RESPONSIVE: contact 2col ─── */
+      @media (max-width: 768px) {
+        #contact > div > div {
+          grid-template-columns: 1fr !important;
+          gap: 2rem !important;
+        }
+      }
+      @media (max-width: 768px) {
+        .pain-grid {
+          grid-template-columns: 1fr;
+        }
+        .pain-highlight {
+          grid-column: span 1;
+        }
+        .phil-grid {
+          grid-template-columns: 1fr;
+        }
+        .services-grid {
+          grid-template-columns: 1fr;
+        }
+        .portfolio-stats {
+          grid-template-columns: 1fr;
+        }
+        .testimonials {
+          grid-template-columns: 1fr;
+        }
+        .stats-inner {
+          grid-template-columns: 1fr;
+          gap: 1rem;
+        }
+        .nav-links {
+          display: none;
+        }
+        .cta-box {
+          padding: 3rem 1.5rem;
+        }
+        .footer-inner {
+          flex-direction: column;
+          gap: 1.5rem;
+        }
+        .process-list::before {
+          display: none;
+        }
+        #contact > div > div[style*="grid-template-columns"] {
+          grid-template-columns: 1fr !important;
+          gap: 2.5rem !important;
+        }
+        .skin-card .skin-thumb {
+          height: 140px;
+        }
+      }
+
+      /* ─── 3D PROCESS ─── */
+      .process-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        position: relative;
+      }
+      .process-list::before {
+        content: "";
+        position: absolute;
+        left: 27px;
+        top: 28px;
+        bottom: 28px;
+        width: 2px;
+        background: linear-gradient(
+          to bottom,
+          #7c3aed,
+          #3b82f6,
+          #06b6d4,
+          transparent
+        );
+      }
+      .process-item {
+        display: grid;
+        grid-template-columns: 56px 1fr;
+        gap: 1.5rem;
+        padding: 2rem 0;
+        border-bottom: 1px solid var(--border);
+        align-items: flex-start;
+      }
+      .process-item:last-child {
+        border-bottom: none;
+      }
+      .proc-step {
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #7c3aed, #3b82f6);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 1.3rem;
+        color: white;
+        flex-shrink: 0;
+        position: relative;
+        z-index: 1;
+        box-shadow:
+          0 0 0 4px rgba(124, 58, 237, 0.15),
+          0 0 30px rgba(124, 58, 237, 0.4);
+        transform-style: preserve-3d;
+        transition:
+          transform 0.3s,
+          box-shadow 0.3s;
+      }
+      .process-item:hover .proc-step {
+        transform: scale(1.1) rotateY(15deg);
+        box-shadow:
+          0 0 0 6px rgba(124, 58, 237, 0.2),
+          0 8px 40px rgba(124, 58, 237, 0.5);
+      }
+      .proc-glow {
+        position: absolute;
+        inset: -4px;
+        border-radius: 50%;
+        background: conic-gradient(
+          from 0deg,
+          #7c3aed,
+          #3b82f6,
+          #06b6d4,
+          #7c3aed
+        );
+        z-index: -1;
+        animation: spin 4s linear infinite;
+        opacity: 0.6;
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      .proc-body h3 {
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: 0.4rem;
+      }
+      .proc-body p {
+        font-size: 0.875rem;
+        color: var(--text-secondary);
+        line-height: 1.8;
+        word-break: keep-all;
+      }
+
+      /* ─── TESTIMONIAL SLIDER ─── */
+      .tcard {
+        background: var(--grad-card);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 1.75rem;
+        min-width: 340px;
+        max-width: 340px;
+        position: relative;
+        transition:
+          border-color 0.3s,
+          transform 0.3s;
+        flex-shrink: 0;
+      }
+      .tcard:hover {
+        border-color: rgba(124, 58, 237, 0.4);
+        transform: translateY(-4px);
+      }
+      .tcard-quote {
+        position: absolute;
+        top: 1rem;
+        right: 1.5rem;
+        font-size: 3.5rem;
+        line-height: 1;
+        background: var(--grad-text);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        opacity: 0.25;
+        font-family: Georgia, serif;
+      }
+      .tcard p {
+        font-size: 0.875rem;
+        color: var(--text-secondary);
+        line-height: 1.8;
+        margin-bottom: 1.25rem;
+        word-break: keep-all;
+      }
+      .tcard-author {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+      .tcard-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.9rem;
+        font-weight: 700;
+        color: white;
+        flex-shrink: 0;
+      }
+      .tcard-author strong {
+        display: block;
+        font-size: 0.875rem;
+        font-weight: 700;
+        color: var(--text-primary);
+      }
+      .tcard-author span {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+      }
+
+      .slider-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        color: var(--text-primary);
+        font-size: 1.5rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition:
+          background 0.2s,
+          border-color 0.2s,
+          box-shadow 0.2s;
+        z-index: 10;
+      }
+      .slider-btn:hover {
+        background: rgba(124, 58, 237, 0.15);
+        border-color: rgba(124, 58, 237, 0.4);
+        box-shadow: 0 4px 20px rgba(124, 58, 237, 0.2);
+      }
+      .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--border);
+        cursor: pointer;
+        transition:
+          background 0.2s,
+          transform 0.2s;
+        border: none;
+      }
+      .dot.active {
+        background: var(--grad-btn);
+        transform: scale(1.3);
+        background: #a78bfa;
+      }
+
+      /* ─── PRICING ─── */
+      .price-card {
+        background: var(--grad-card);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 2rem;
+        position: relative;
+        overflow: hidden;
+        transition:
+          transform 0.3s,
+          box-shadow 0.3s,
+          border-color 0.3s;
+      }
+      .price-card:hover {
+        transform: translateY(-6px);
+        border-color: rgba(124, 58, 237, 0.35);
+        box-shadow: 0 20px 50px rgba(124, 58, 237, 0.1);
+      }
+      .price-card-featured {
+        background: linear-gradient(145deg, #1e1545 0%, #0f1225 100%);
+        border: 2px solid rgba(124, 58, 237, 0.6);
+        transform: scale(1.02);
+        box-shadow: 0 20px 60px rgba(124, 58, 237, 0.2);
+      }
+      .price-card-featured:hover {
+        transform: scale(1.02) translateY(-6px);
+      }
+      .price-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+        margin-bottom: 2rem;
+      }
+      .price-list li {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.6rem;
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+      }
+      .price-list li span {
+        flex-shrink: 0;
+        margin-top: 0.1rem;
+      }
+      .price-btn-primary {
+        display: block;
+        text-align: center;
+        background: var(--grad-btn);
+        color: white;
+        padding: 0.875rem;
+        border-radius: 10px;
+        font-weight: 700;
+        font-size: 0.9rem;
+        text-decoration: none;
+        box-shadow: 0 4px 20px rgba(124, 58, 237, 0.4);
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+      }
+      .price-btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 30px rgba(124, 58, 237, 0.5);
+      }
+      .price-btn-outline {
+        display: block;
+        text-align: center;
+        background: transparent;
+        border: 1px solid;
+        padding: 0.875rem;
+        border-radius: 10px;
+        font-weight: 700;
+        font-size: 0.9rem;
+        text-decoration: none;
+        transition: background 0.2s;
+      }
+
+      /* ─── SKIN CARDS ─── */
+      .skin-card {
+        background: var(--grad-card);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        overflow: hidden;
+        transition:
+          transform 0.3s,
+          box-shadow 0.3s,
+          border-color 0.3s;
+        cursor: pointer;
+      }
+      .skin-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 20px 50px rgba(124, 58, 237, 0.15);
+        border-color: rgba(124, 58, 237, 0.35);
+      }
+      .skin-thumb {
+        width: 100%;
+        height: 180px;
+        overflow: hidden;
+      }
+      .skin-info {
+        padding: 0.875rem 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+      }
+      .skin-tag {
+        font-size: 0.7rem;
+        font-weight: 700;
+        padding: 0.2rem 0.5rem;
+        border-radius: 4px;
+        border: 1px solid;
+        flex-shrink: 0;
+      }
+      .skin-info strong {
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: var(--text-primary);
+      }
+
+      @media (max-width: 768px) {
+        .pain-grid,
+        .phil-grid,
+        .services-grid,
+        .portfolio-stats,
+        .stats-inner {
+          grid-template-columns: 1fr;
+        }
+        .pain-highlight {
+          grid-column: span 1;
+        }
+        .testimonials {
+          grid-template-columns: 1fr;
+        }
+        .nav-links {
+          display: none;
+        }
+        .process-list::before {
+          display: none;
+        }
+        #contact > div > div[style*="grid-template-columns"] {
+          grid-template-columns: 1fr !important;
+          gap: 2.5rem !important;
+        }
+        .tcard {
+          min-width: 280px;
+          max-width: 280px;
+        }
+      }
+
+      /* ═══ 3D PROCESS ═══ */
+      .process-list {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+      }
+      .process-list::before {
+        content: "";
+        position: absolute;
+        left: 27px;
+        top: 28px;
+        bottom: 28px;
+        width: 2px;
+        background: linear-gradient(
+          to bottom,
+          #7c3aed,
+          #3b82f6,
+          #06b6d4,
+          transparent
+        );
+      }
+      .process-item {
+        display: grid;
+        grid-template-columns: 56px 1fr;
+        gap: 1.75rem;
+        padding: 2rem 1.5rem 2rem 0;
+        border-bottom: 1px solid var(--border);
+        transition:
+          background 0.35s,
+          transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        border-radius: 0 16px 16px 0;
+        cursor: default;
+        transform-style: preserve-3d;
+        perspective: 800px;
+      }
+      .process-item:hover {
+        background: rgba(124, 58, 237, 0.05);
+        transform: translateX(6px);
+      }
+      .proc-step-wrap {
+        position: relative;
+        z-index: 1;
+        flex-shrink: 0;
+      }
+      .proc-step {
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #7c3aed, #3b82f6);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 1.3rem;
+        color: white;
+        position: relative;
+        z-index: 1;
+        box-shadow:
+          0 0 0 3px rgba(124, 58, 237, 0.18),
+          0 4px 24px rgba(124, 58, 237, 0.35);
+        transition:
+          transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+          box-shadow 0.4s;
+        transform-style: preserve-3d;
+      }
+      .proc-step::before {
+        content: "";
+        position: absolute;
+        inset: -3px;
+        border-radius: 50%;
+        background: conic-gradient(
+          from 0deg,
+          #7c3aed,
+          #3b82f6,
+          #06b6d4,
+          #7c3aed
+        );
+        z-index: -1;
+        animation: conic-spin 3s linear infinite;
+        opacity: 0.65;
+      }
+      .proc-step::after {
+        content: "";
+        position: absolute;
+        inset: 2px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #7c3aed, #3b82f6);
+        z-index: 0;
+      }
+      .proc-step span {
+        position: relative;
+        z-index: 1;
+      }
+      @keyframes conic-spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      .process-item:hover .proc-step {
+        transform: scale(1.22) rotateY(22deg) rotateX(-10deg);
+        box-shadow:
+          0 0 0 5px rgba(124, 58, 237, 0.25),
+          0 16px 50px rgba(124, 58, 237, 0.6),
+          10px 10px 0 rgba(124, 58, 237, 0.12);
+      }
+      .proc-body h3 {
+        font-size: 1.05rem;
+        font-weight: 800;
+        color: var(--text-primary);
+        margin-bottom: 0.45rem;
+        transition: color 0.3s;
+      }
+      .process-item:hover .proc-body h3 {
+        color: #a78bfa;
+      }
+      .proc-body p {
+        font-size: 0.875rem;
+        color: var(--text-secondary);
+        line-height: 1.8;
+        word-break: keep-all;
+      }
+
+      /* ═══ STATS ═══ */
+      .pstat-card {
+        background: var(--grad-card);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 2rem;
+        text-align: left;
+        position: relative;
+        overflow: hidden;
+        transition:
+          transform 0.3s,
+          box-shadow 0.3s,
+          border-color 0.3s;
+      }
+      .pstat-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: var(--grad-main);
+      }
+      .pstat-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 16px 45px rgba(124, 58, 237, 0.15);
+        border-color: rgba(124, 58, 237, 0.35);
+      }
+      .pstat-num {
+        font-size: 3.2rem;
+        font-weight: 900;
+        display: block;
+        line-height: 1;
+        margin-bottom: 0.6rem;
+        background: var(--grad-text);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-variant-numeric: tabular-nums;
+      }
+      .pstat-label {
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+        line-height: 1.55;
+      }
+
+      /* ═══ TESTIMONIAL SLIDER ═══ */
+      .tcard {
+        background: var(--grad-card);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 2rem;
+        min-width: 360px;
+        max-width: 360px;
+        position: relative;
+        overflow: hidden;
+        transition:
+          border-color 0.4s,
+          transform 0.4s,
+          box-shadow 0.4s;
+        flex-shrink: 0;
+      }
+      .tcard::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: var(--grad-main);
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+      .tcard.active-slide {
+        border-color: rgba(124, 58, 237, 0.45);
+        box-shadow: 0 8px 40px rgba(124, 58, 237, 0.15);
+        transform: translateY(-4px);
+      }
+      .tcard.active-slide::before {
+        opacity: 1;
+      }
+      .tcard-quote {
+        position: absolute;
+        top: 1rem;
+        right: 1.5rem;
+        font-size: 3.5rem;
+        line-height: 1;
+        background: var(--grad-text);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        opacity: 0.18;
+        font-family: Georgia, serif;
+        pointer-events: none;
+      }
+      .tcard p {
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+        line-height: 1.85;
+        margin-bottom: 1.5rem;
+        word-break: keep-all;
+      }
+      .tcard-author {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+      .tcard-avatar {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+        font-weight: 700;
+        color: white;
+        flex-shrink: 0;
+        box-shadow: 0 4px 14px rgba(124, 58, 237, 0.3);
+      }
+      .tcard-author strong {
+        display: block;
+        font-size: 0.875rem;
+        font-weight: 700;
+        color: var(--text-primary);
+      }
+      .tcard-author span {
+        font-size: 0.78rem;
+        color: var(--text-muted);
+        margin-top: 2px;
+        display: block;
+      }
+      .slider-btn {
+        position: absolute;
+        top: 40%;
+        transform: translateY(-50%);
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+        background: rgba(124, 58, 237, 0.12);
+        border: 1px solid rgba(124, 58, 237, 0.3);
+        color: #a78bfa;
+        font-size: 1.4rem;
+        cursor: pointer;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition:
+          background 0.2s,
+          transform 0.2s,
+          box-shadow 0.2s;
+      }
+      .slider-btn:hover {
+        background: rgba(124, 58, 237, 0.28);
+        transform: translateY(-50%) scale(1.1);
+        box-shadow: 0 4px 20px rgba(124, 58, 237, 0.3);
+      }
+      .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 100px;
+        background: rgba(255, 255, 255, 0.14);
+        cursor: pointer;
+        transition: all 0.3s;
+        border: none;
+        padding: 0;
+      }
+      .dot.active {
+        background: #a78bfa;
+        width: 24px;
+      }
+
+      /* ═══ PRICING ═══ */
+      .price-card {
+        background: var(--grad-card);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 2rem;
+        position: relative;
+        overflow: hidden;
+        transition:
+          transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+          box-shadow 0.35s,
+          border-color 0.35s;
+      }
+      .price-card:hover {
+        transform: translateY(-8px);
+        border-color: rgba(124, 58, 237, 0.35);
+        box-shadow: 0 24px 60px rgba(124, 58, 237, 0.12);
+      }
+      .price-card-pro {
+        background: linear-gradient(145deg, #1a1545, #0f1225);
+        border: 1px solid rgba(124, 58, 237, 0.4);
+      }
+      .price-card-pro:hover {
+        box-shadow: 0 24px 60px rgba(124, 58, 237, 0.22);
+      }
+      /* Max — THE HERO */
+      .price-card-max {
+        background: linear-gradient(
+          145deg,
+          #071a1f 0%,
+          #0a1a15 50%,
+          #0f1225 100%
+        );
+        border: 2px solid rgba(6, 182, 212, 0.6);
+        box-shadow:
+          0 0 50px rgba(6, 182, 212, 0.14),
+          0 12px 40px rgba(6, 182, 212, 0.1);
+        padding: 2.25rem;
+      }
+      .price-card-max::after {
+        content: "";
+        position: absolute;
+        inset: -2px;
+        border-radius: 22px;
+        background: conic-gradient(
+          from 0deg,
+          #06b6d4,
+          #22d3ee,
+          #7c3aed,
+          #3b82f6,
+          #06b6d4
+        );
+        z-index: -1;
+        animation: conic-spin 5s linear infinite;
+        opacity: 0.45;
+      }
+      .price-card-max:hover {
+        transform: translateY(-10px) scale(1.01);
+        box-shadow:
+          0 0 70px rgba(6, 182, 212, 0.25),
+          0 28px 70px rgba(6, 182, 212, 0.18);
+      }
+      .price-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0.65rem;
+        margin-bottom: 2rem;
+      }
+      .price-list li {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.6rem;
+        font-size: 0.875rem;
+        color: var(--text-secondary);
+        line-height: 1.5;
+      }
+      .price-list li span {
+        flex-shrink: 0;
+        font-weight: 700;
+      }
+      .price-btn-primary {
+        display: block;
+        text-align: center;
+        background: var(--grad-btn);
+        color: white;
+        padding: 0.9rem;
+        border-radius: 10px;
+        font-weight: 700;
+        font-size: 0.95rem;
+        text-decoration: none;
+        box-shadow: 0 4px 20px rgba(124, 58, 237, 0.4);
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+      }
+      .price-btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 30px rgba(124, 58, 237, 0.5);
+      }
+      .price-btn-cyan {
+        display: block;
+        text-align: center;
+        background: linear-gradient(135deg, #06b6d4, #0891b2);
+        color: white;
+        padding: 0.9rem;
+        border-radius: 10px;
+        font-weight: 700;
+        font-size: 0.95rem;
+        text-decoration: none;
+        box-shadow: 0 4px 20px rgba(6, 182, 212, 0.4);
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+      }
+      .price-btn-cyan:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 30px rgba(6, 182, 212, 0.5);
+      }
+      .price-btn-outline {
+        display: block;
+        text-align: center;
+        background: transparent;
+        border: 1px solid;
+        padding: 0.9rem;
+        border-radius: 10px;
+        font-weight: 700;
+        font-size: 0.95rem;
+        text-decoration: none;
+        transition: background 0.2s;
+      }
+
+      /* ═══ SKIN CARDS ═══ */
+      .skin-card {
+        background: var(--grad-card);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        overflow: hidden;
+        transition:
+          transform 0.3s,
+          box-shadow 0.3s,
+          border-color 0.3s;
+        cursor: pointer;
+      }
+      .skin-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 20px 50px rgba(124, 58, 237, 0.15);
+        border-color: rgba(124, 58, 237, 0.35);
+      }
+      .skin-thumb {
+        width: 100%;
+        height: 180px;
+        overflow: hidden;
+      }
+      .skin-info {
+        padding: 0.875rem 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+      }
+      .skin-tag {
+        font-size: 0.7rem;
+        font-weight: 700;
+        padding: 0.2rem 0.5rem;
+        border-radius: 4px;
+        border: 1px solid;
+        flex-shrink: 0;
+      }
+      .skin-info strong {
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: var(--text-primary);
+      }
+
+      @media (max-width: 768px) {
+        .pain-grid,
+        .phil-grid,
+        .services-grid,
+        .portfolio-stats,
+        .stats-inner {
+          grid-template-columns: 1fr;
+        }
+        .pain-highlight {
+          grid-column: span 1;
+        }
+        .nav-links {
+          display: none;
+        }
+        .process-list::before {
+          display: none;
+        }
+        .tcard {
+          min-width: 280px;
+          max-width: 280px;
+        }
+        #contact > div > div[style*="grid-template-columns"] {
+          grid-template-columns: 1fr !important;
+          gap: 2rem !important;
+        }
+      }
+      /* ─── SKIP NAV (접근성) ─── */
+      .skip-nav {
+        position: absolute;
+        top: -100%;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--grad-btn);
+        color: white;
+        padding: 0.75rem 1.5rem;
+        border-radius: 0 0 10px 10px;
+        font-weight: 700;
+        font-size: 0.9rem;
+        z-index: 10000;
+        text-decoration: none;
+        transition: top 0.2s;
+      }
+      .skip-nav:focus {
+        top: 0;
+      }
+
+      /* ─── MOBILE MENU ─── */
+      .hamburger {
+        display: none;
+        background: none;
+        border: none;
+        cursor: pointer;
+        width: 38px;
+        height: 38px;
+        position: relative;
+        z-index: 1001;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+      }
+      .hamburger span {
+        display: block;
+        width: 22px;
+        height: 2px;
+        background: var(--text-primary);
+        border-radius: 2px;
+        transition:
+          transform 0.3s,
+          opacity 0.3s;
+      }
+      .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+      .hamburger.active span:nth-child(2) {
+        opacity: 0;
+      }
+      .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -5px);
+      }
+
+      .mobile-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.6);
+        z-index: 998;
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+      .mobile-overlay.active {
+        display: block;
+        opacity: 1;
+      }
+
+      .mobile-menu {
+        display: none;
+        position: fixed;
+        top: 0;
+        right: -280px;
+        width: 280px;
+        height: 100vh;
+        background: var(--bg-card);
+        z-index: 999;
+        padding: 80px 2rem 2rem;
+        transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        border-left: 1px solid var(--border);
+        overflow-y: auto;
+      }
+      .mobile-menu.active {
+        right: 0;
+      }
+      .mobile-menu a {
+        display: block;
+        color: var(--text-primary);
+        text-decoration: none;
+        font-size: 1rem;
+        font-weight: 600;
+        padding: 1rem 0;
+        border-bottom: 1px solid var(--border);
+        transition: color 0.2s;
+      }
+      .mobile-menu a:hover {
+        color: #a78bfa;
+      }
+      .mobile-menu .nav-cta {
+        display: block;
+        text-align: center;
+        margin-top: 1.5rem;
+        background: var(--grad-btn);
+        color: white !important;
+        padding: 0.875rem;
+        border-radius: 10px;
+        border-bottom: none;
+      }
+
+      @media (max-width: 768px) {
+        .hamburger {
+          display: flex;
+        }
+        .mobile-menu {
+          display: block;
+        }
+      }
+
+      /* ─── SCROLL TO TOP ─── */
+      .scroll-top {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+        background: var(--grad-btn);
+        color: white;
+        border: none;
+        font-size: 1.2rem;
+        cursor: pointer;
+        z-index: 900;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transform: translateY(20px);
+        pointer-events: none;
+        transition:
+          opacity 0.3s,
+          transform 0.3s;
+        box-shadow: 0 4px 20px rgba(124, 58, 237, 0.4);
+      }
+      .scroll-top.visible {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+      }
+      .scroll-top:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 30px rgba(124, 58, 237, 0.5);
+      }
+
+      /* ─── FOCUS VISIBLE (접근성) ─── */
+      :focus-visible {
+        outline: 2px solid #a78bfa;
+        outline-offset: 2px;
+      }
+      button:focus:not(:focus-visible),
+      a:focus:not(:focus-visible) {
+        outline: none;
+      }
+
+      /* ─── REDUCED MOTION (접근성) ─── */
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+        html {
+          scroll-behavior: auto;
+        }
+      }
+
+      /* ─── TABLET BREAKPOINT ─── */
+      @media (min-width: 769px) and (max-width: 1024px) {
+        .pain-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .pain-highlight {
+          grid-column: span 2;
+        }
+        .services-grid {
+          grid-template-columns: 1fr;
+        }
+        .portfolio-stats {
+          grid-template-columns: repeat(3, 1fr);
+        }
+        section {
+          padding: 70px 5%;
+        }
+        #contact > div > div[style*="grid-template-columns"] {
+          grid-template-columns: 1fr !important;
+          gap: 2.5rem !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- SKIP NAVIGATION (접근성) -->
+    <a href="#main-content" class="skip-nav">본문으로 건너뛰기</a>
+
+    <!-- NAV -->
+    <nav role="navigation" aria-label="메인 네비게이션">
+      <a href="#hero" class="nav-logo" aria-label="HighPlus 홈으로"
+        >HighPlus.</a
+      >
+      <ul class="nav-links" role="menubar">
+        <li role="none">
+          <a href="#pain-point" role="menuitem">우리의 차별점</a>
+        </li>
+        <li role="none"><a href="#services" role="menuitem">핵심 서비스</a></li>
+        <li role="none"><a href="#portfolio" role="menuitem">성공 사례</a></li>
+        <li role="none">
+          <a href="#contact" class="nav-cta" role="menuitem">무료 상담 받기</a>
+        </li>
+      </ul>
+      <button
+        class="theme-toggle"
+        onclick="toggleTheme()"
+        title="다크/라이트 모드 전환"
+        id="themeBtn"
+        aria-label="다크/라이트 모드 전환"
+      >
+        🌙
+      </button>
+      <button
+        class="hamburger"
+        id="hamburgerBtn"
+        aria-label="메뉴 열기"
+        aria-expanded="false"
+      >
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+    <div
+      class="mobile-menu"
+      id="mobileMenu"
+      role="navigation"
+      aria-label="모바일 메뉴"
+    >
+      <a href="#pain-point" onclick="closeMobileMenu()">우리의 차별점</a>
+      <a href="#services" onclick="closeMobileMenu()">핵심 서비스</a>
+      <a href="#portfolio" onclick="closeMobileMenu()">성공 사례</a>
+      <a href="#faq" onclick="closeMobileMenu()">자주 묻는 질문</a>
+      <a href="#pricing" onclick="closeMobileMenu()">요금제</a>
+      <a href="#contact" class="nav-cta" onclick="closeMobileMenu()"
+        >무료 상담 받기</a
+      >
+    </div>
+
+    <!-- HERO -->
+    <main id="main-content">
+      <section id="hero">
+        <div class="hero-bg" aria-hidden="true"></div>
+        <div class="hero-grid" aria-hidden="true"></div>
+        <div class="orb orb1" aria-hidden="true"></div>
+        <div class="orb orb2" aria-hidden="true"></div>
+        <div class="orb orb3" aria-hidden="true"></div>
+
+        <div class="hero-content">
+          <h1 class="hero-title">
+            환자는 늘리고<br />
+            마케팅 시간은 <span class="highlight">90%</span> 줄이는
+          </h1>
+          <p class="hero-subline">
+            원장님의 진심을 콘텐츠로 연결하는<br />
+            스마트 환자 유치 시스템
+          </p>
+          <div class="hero-btns">
+            <a href="#contact" class="btn-primary">🚀 무료 컨설팅 신청하기</a>
+            <a href="#services" class="btn-secondary">서비스 자세히 보기 →</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- STATS -->
+      <div class="stats-bar">
+        <div class="stats-inner">
+          <div class="stat-item reveal">
+            <div class="stat-num">300%</div>
+            <div class="stat-label">"블로그 보고 왔습니다" 내원 증가율</div>
+          </div>
+          <div class="stat-item reveal" style="transition-delay: 0.1s">
+            <div class="stat-num">95%</div>
+            <div class="stat-label">계약 연장률</div>
+          </div>
+          <div class="stat-item reveal" style="transition-delay: 0.2s">
+            <div class="stat-num">40+</div>
+            <div class="stat-label">전담 관리 중인 파트너 병원</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PAIN POINT -->
+      <section id="pain-point">
+        <div class="section-inner">
+          <div class="section-center reveal">
+            <span class="section-tag">Why HighPlus</span>
+            <h2 class="section-title">아직도 이런 고민을 하고 계신가요?</h2>
+            <p class="section-desc">
+              단순한 상위 노출은 시작일 뿐입니다. 진짜 문제는 환자의 마음을 얻는
+              것입니다.
+            </p>
+          </div>
+
+          <div class="pain-grid">
+            <div class="pain-card reveal">
+              <div class="pain-icon">🤖</div>
+              <h3>완전 자동화의 맹점</h3>
+              <p>
+                내용도 모른 채 발행되는 100% 자동화 블로그는 오히려 원장님과
+                병원의 신뢰도(Rapport)를 급격히 하락시킵니다.
+              </p>
+            </div>
+            <div class="pain-card reveal" style="transition-delay: 0.1s">
+              <div class="pain-icon">📋</div>
+              <h3>텅 빈 껍데기 템플릿</h3>
+              <p>
+                기계적으로 찍어내는 공장형 정보는 다른 병원들과 똑같을 뿐,
+                환자에게 어떠한 매력이나 전문성도 주지 못합니다.
+              </p>
+            </div>
+            <div class="pain-card reveal" style="transition-delay: 0.2s">
+              <div class="pain-icon">📉</div>
+              <h3>클릭은 되는데 안 오는 환자</h3>
+              <p>
+                상위 노출에는 성공했지만, 환자가 글을 읽고 자연스럽게 병원 문을
+                열게 만드는 '퍼널 설계'가 빠져있습니다.
+              </p>
+            </div>
+            <div
+              class="pain-card pain-highlight reveal"
+              style="transition-delay: 0.3s"
+            >
+              <h3>⚡ HighPlus는 다릅니다.</h3>
+              <p>
+                우리는 단순 '노출수'를 팔지 않습니다.
+                <strong style="color: #a78bfa">의료인의 감수성</strong>이 깃든
+                진정성 있는 글과 고도화된
+                <strong style="color: #60a5fa">하이브리드 시스템</strong>으로
+                실질적인 내원 환자를 폭발시킵니다.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PHILOSOPHY -->
+      <section id="philosophy">
+        <div class="section-inner">
+          <div class="section-center reveal">
+            <span class="section-tag">Our Philosophy</span>
+            <h2 class="section-title">The HighPlus Philosophy</h2>
+            <p class="section-desc">
+              노력은 최소화, 진정성은 극대화하는 하이브리드 전략.
+            </p>
+          </div>
+
+          <div class="phil-grid">
+            <div class="phil-card reveal">
+              <div class="phil-num">01</div>
+              <div class="phil-body">
+                <h4>글의 힘과 퍼널 설계</h4>
+                <p>
+                  단순 노출은 시작일 뿐입니다. 환자가 글을 읽고 자연스럽게 병원
+                  문을 열게 만드는 치밀한 동선(퍼널)을 설계합니다.
+                </p>
+              </div>
+            </div>
+            <div class="phil-card reveal" style="transition-delay: 0.1s">
+              <div class="phil-num">02</div>
+              <div class="phil-body">
+                <h4>의료적 감수성</h4>
+                <p>
+                  일반 마케터는 모를 수밖에 없는 영역입니다. 심평원을 상대하고
+                  환자를 겪어본 현역 의료인만의 전문적인 터치로 글을 씁니다.
+                </p>
+              </div>
+            </div>
+            <div class="phil-card reveal" style="transition-delay: 0.2s">
+              <div class="phil-num">03</div>
+              <div class="phil-body">
+                <h4>하이브리드 시스템</h4>
+                <p>
+                  단순 반복 작업은 AI가 효율적으로 처리하고, 글에 담기는 온기와
+                  통찰력은 파트너의 손끝에서 디테일하게 완성합니다.
+                </p>
+              </div>
+            </div>
+            <div class="phil-card reveal" style="transition-delay: 0.3s">
+              <div class="phil-num">04</div>
+              <div class="phil-body">
+                <h4>동업자 정신</h4>
+                <p>
+                  갑을 관계를 거부합니다. 같은 업을 하며 고민을 겪어본 동료로서,
+                  업장의 지표와 상황을 함께 발전시키는 파트너입니다.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SERVICES -->
+      <section id="services">
+        <div class="section-inner">
+          <div class="section-center reveal">
+            <span class="section-tag">Core Solution</span>
+            <h2 class="section-title">HighPlus Core Solution</h2>
+            <p class="section-desc">
+              단 두 가지 핵심 무기로 지역 상권을 장악합니다.
+            </p>
+          </div>
+
+          <div class="services-grid">
+            <div class="service-card reveal">
+              <div class="service-num">01</div>
+              <div class="service-icon">✍️</div>
+              <h3>브랜딩 기획 블로그</h3>
+              <p>
+                단순한 정보 전달이 아닌, 고객이 당신의 서비스를 '선택해야만 하는
+                이유'를 담은 설득형 콘텐츠를 기획합니다.
+              </p>
+              <ul class="service-list">
+                <li>타겟 고객의 페인포인트 분석</li>
+                <li>전문 카피라이터의 설득형 글쓰기</li>
+                <li>월 단위 성과 및 전환(문의) 데이터 리포트</li>
+              </ul>
+            </div>
+            <div class="service-card reveal" style="transition-delay: 0.15s">
+              <div class="service-num">02</div>
+              <div class="service-icon">📍</div>
+              <h3>네이버 플레이스 최적화</h3>
+              <p>
+                지역명 검색 시 최상단 노출. 트래픽의 70%가 모이는 플레이스를
+                완벽하게 최적화하여 예약과 전화를 폭발시킵니다.
+              </p>
+              <ul class="service-list">
+                <li>검색 엔진(SEO) 기반 세팅 및 키워드 추출</li>
+                <li>합법적인 어뷰징 제로 트래픽 운영진</li>
+                <li>매장 리뷰(영수증/블로그) 선순환 구조 세팅</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROCESS -->
+      <section id="process" style="position: relative">
+        <div class="section-inner">
+          <div class="section-center reveal">
+            <span class="section-tag">Work Process</span>
+            <h2 class="section-title">HighPlus Work Process</h2>
+            <p class="section-desc">
+              투명하고 확실한, 상위 1%를 위한 프리미엄 진행 방식
+            </p>
+          </div>
+          <div class="process-list">
+            <div
+              class="process-item reveal"
+              onmouseenter="proc3d(this, 1)"
+              onmouseleave="proc3d(this, 0)"
+            >
+              <div class="proc-step-wrap">
+                <div class="proc-step"><span>01</span></div>
+              </div>
+              <div class="proc-body">
+                <h3>심층 파악 및 디렉팅 기획</h3>
+                <p>
+                  공장식 복붙이 아닙니다. 원장님의 철학과 병원의 핵심 가치를
+                  파악하는 심층 설문 후, 브랜드의 톤앤매너를 정립하는 메인
+                  소개글부터 정교하게 기획하고 작성합니다.
+                </p>
+              </div>
+            </div>
+            <div
+              class="process-item reveal"
+              onmouseenter="proc3d(this, 1)"
+              onmouseleave="proc3d(this, 0)"
+            >
+              <div class="proc-step-wrap">
+                <div class="proc-step"><span>02</span></div>
+              </div>
+              <div class="proc-body">
+                <h3>1:1 전담 고정 IP 세팅</h3>
+                <p>
+                  수십 곳이 돌려 사용하는 위험한 환경을 배제합니다. 오직
+                  원장님의 홈페이지와 블로그만을 위한 안전한 1 독립 고정 IP를
+                  할당하여 어뷰징 위험 없이 최상의 노출 지수를 유지합니다.
+                </p>
+              </div>
+            </div>
+            <div
+              class="process-item reveal"
+              onmouseenter="proc3d(this, 1)"
+              onmouseleave="proc3d(this, 0)"
+            >
+              <div class="proc-step-wrap">
+                <div class="proc-step"><span>03</span></div>
+              </div>
+              <div class="proc-body">
+                <h3>실력으로 증명, 월 단위 계약</h3>
+                <p>
+                  매몰비용을 강요하는 장기 계약의 덫에 빠지지 마세요. HighPlus는
+                  오프보딩에 위약금이 없습니다. 오직 매월 증명되는 실질적인
+                  데이터와 성과로만 승부하는 월 단위 계약을 고집합니다.
+                </p>
+              </div>
+            </div>
+            <div
+              class="process-item reveal"
+              onmouseenter="proc3d(this, 1)"
+              onmouseleave="proc3d(this, 0)"
+            >
+              <div class="proc-step-wrap">
+                <div class="proc-step"><span>04</span></div>
+              </div>
+              <div class="proc-body">
+                <h3>투명한 월간 성과 리포트</h3>
+                <p>
+                  직감에 의존하지 않습니다. 유입량 추이, 핵심 키워드 점유율,
+                  그리고 블로그를 통한 실제 전환(문의) 데이터를 분석한 인사이트
+                  리포트를 매월 정기적으로 발행합니다.
+                </p>
+              </div>
+            </div>
+            <div
+              class="process-item reveal"
+              style="border-bottom: none"
+              onmouseenter="proc3d(this, 1)"
+              onmouseleave="proc3d(this, 0)"
+            >
+              <div class="proc-step-wrap">
+                <div class="proc-step"><span>05</span></div>
+              </div>
+              <div class="proc-body">
+                <h3>1지역 1병원 독점 계약</h3>
+                <p>
+                  HighPlus는 같은 지역구 내에서 여러 클라이언트를 받아 서로
+                  경쟁하게 만들지 않습니다. 오직 1지역구 1개의 병원만 의뢰받아
+                  해당 상권을 완벽하게 독점할 수 있도록 전담 대행합니다.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PORTFOLIO -->
+      <section
+        id="portfolio"
+        style="background: var(--bg-secondary); position: relative"
+      >
+        <div
+          style="
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(
+              90deg,
+              transparent,
+              rgba(59, 130, 246, 0.5),
+              transparent
+            );
+          "
+        ></div>
+        <div class="section-inner">
+          <div class="section-center reveal">
+            <span class="section-tag">Blog Branding</span>
+            <h2 class="section-title">
+              브랜딩을 위한<br /><span
+                style="
+                  background: var(--grad-text);
+                  -webkit-background-clip: text;
+                  -webkit-text-fill-color: transparent;
+                "
+                >블로그 스킨 제작</span
+              >
+            </h2>
+            <p class="section-desc">
+              블로그 스킨은 방문자에게 신뢰감을 주고 페이지 방문율을 높이는
+              효과가 있습니다.<br />이미지 형식, 슬라이드 형식, 풀스크린 형식 등
+              브랜드에 맞는 스킨 제작이 필요합니다.
+            </p>
+          </div>
+          <div
+            style="
+              display: grid;
+              grid-template-columns: repeat(3, 1fr);
+              gap: 1.25rem;
+            "
+            class="reveal"
+          >
+            <div class="skin-card">
+              <div
+                class="skin-thumb"
+                style="
+                  background: linear-gradient(
+                    135deg,
+                    #1a1a2e,
+                    #16213e,
+                    #0f3460
+                  );
+                "
+              >
+                <div
+                  style="
+                    padding: 1.5rem;
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                  "
+                >
+                  <div>
+                    <div
+                      style="
+                        font-size: 0.6rem;
+                        color: rgba(255, 255, 255, 0.5);
+                        margin-bottom: 0.4rem;
+                      "
+                    >
+                      법무법인 안심
+                    </div>
+                    <div
+                      style="
+                        width: 55%;
+                        height: 2px;
+                        background: rgba(255, 255, 255, 0.15);
+                        border-radius: 2px;
+                        margin-bottom: 0.6rem;
+                      "
+                    ></div>
+                    <div
+                      style="
+                        font-size: 0.8rem;
+                        font-weight: 800;
+                        color: white;
+                        line-height: 1.4;
+                      "
+                    >
+                      법무법인 안심<br /><span
+                        style="
+                          font-size: 0.62rem;
+                          font-weight: 400;
+                          color: rgba(255, 255, 255, 0.55);
+                        "
+                        >남편의 이혼요구, 갑작스럽게 고민하지 마세요</span
+                      >
+                    </div>
+                  </div>
+                  <div
+                    style="
+                      display: grid;
+                      grid-template-columns: repeat(5, 1fr);
+                      gap: 3px;
+                    "
+                  >
+                    <div
+                      style="
+                        height: 18px;
+                        background: rgba(255, 255, 255, 0.08);
+                        border-radius: 3px;
+                      "
+                    ></div>
+                    <div
+                      style="
+                        height: 18px;
+                        background: rgba(255, 255, 255, 0.08);
+                        border-radius: 3px;
+                      "
+                    ></div>
+                    <div
+                      style="
+                        height: 18px;
+                        background: rgba(255, 255, 255, 0.08);
+                        border-radius: 3px;
+                      "
+                    ></div>
+                    <div
+                      style="
+                        height: 18px;
+                        background: rgba(255, 255, 255, 0.08);
+                        border-radius: 3px;
+                      "
+                    ></div>
+                    <div
+                      style="
+                        height: 18px;
+                        background: rgba(255, 255, 255, 0.08);
+                        border-radius: 3px;
+                      "
+                    ></div>
+                  </div>
+                </div>
+              </div>
+              <div class="skin-info">
+                <span
+                  class="skin-tag"
+                  style="
+                    background: rgba(124, 58, 237, 0.15);
+                    color: #a78bfa;
+                    border-color: rgba(124, 58, 237, 0.3);
+                  "
+                  >법률/민결</span
+                ><strong>법무법인 안심</strong>
+              </div>
+            </div>
+            <div class="skin-card">
+              <div
+                class="skin-thumb"
+                style="background: linear-gradient(135deg, #fdf6e3, #fce8c3)"
+              >
+                <div
+                  style="
+                    padding: 1.5rem;
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 0.7rem;
+                  "
+                >
+                  <div
+                    style="
+                      font-size: 1.2rem;
+                      font-weight: 900;
+                      color: #5c3d11;
+                      text-align: center;
+                    "
+                  >
+                    석이네<br />정육점
+                  </div>
+                  <div style="display: flex; gap: 4px">
+                    <div
+                      style="
+                        width: 30px;
+                        height: 30px;
+                        border-radius: 6px;
+                        background: rgba(92, 61, 17, 0.12);
+                      "
+                    ></div>
+                    <div
+                      style="
+                        width: 30px;
+                        height: 30px;
+                        border-radius: 6px;
+                        background: rgba(92, 61, 17, 0.08);
+                      "
+                    ></div>
+                    <div
+                      style="
+                        width: 30px;
+                        height: 30px;
+                        border-radius: 6px;
+                        background: rgba(92, 61, 17, 0.06);
+                      "
+                    ></div>
+                  </div>
+                  <div
+                    style="
+                      font-size: 0.6rem;
+                      color: #a07040;
+                      text-align: center;
+                    "
+                  >
+                    전국 어디서나 맛볼 수 있는 3+등급
+                  </div>
+                </div>
+              </div>
+              <div class="skin-info">
+                <span
+                  class="skin-tag"
+                  style="
+                    background: rgba(245, 158, 11, 0.15);
+                    color: #f59e0b;
+                    border-color: rgba(245, 158, 11, 0.3);
+                  "
+                  >식품/유통</span
+                ><strong>석이네정육점</strong>
+              </div>
+            </div>
+            <div class="skin-card">
+              <div
+                class="skin-thumb"
+                style="
+                  background: linear-gradient(
+                    135deg,
+                    #0a4f8c,
+                    #1a6bb5,
+                    #2980d9
+                  );
+                "
+              >
+                <div
+                  style="
+                    padding: 1.5rem;
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                  "
+                >
+                  <div style="display: flex; align-items: center; gap: 0.5rem">
+                    <div
+                      style="
+                        width: 26px;
+                        height: 26px;
+                        border-radius: 50%;
+                        background: rgba(255, 255, 255, 0.9);
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-size: 0.55rem;
+                        font-weight: 900;
+                        color: #0a4f8c;
+                      "
+                    >
+                      라온
+                    </div>
+                    <span
+                      style="
+                        font-size: 0.7rem;
+                        color: rgba(255, 255, 255, 0.8);
+                        font-weight: 600;
+                      "
+                      >라온요양원</span
+                    >
+                  </div>
+                  <div>
+                    <div
+                      style="
+                        font-size: 0.78rem;
+                        font-weight: 800;
+                        color: white;
+                        margin-bottom: 0.4rem;
+                      "
+                    >
+                      당신의 마음이 힘이 되는 요양원
+                    </div>
+                    <div
+                      style="
+                        background: rgba(255, 255, 255, 0.15);
+                        border-radius: 6px;
+                        padding: 0.3rem 0.55rem;
+                        display: inline-block;
+                      "
+                    >
+                      <span
+                        style="
+                          font-size: 0.68rem;
+                          font-weight: 700;
+                          color: white;
+                        "
+                        >☎ 031-373-2254</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="skin-info">
+                <span
+                  class="skin-tag"
+                  style="
+                    background: rgba(59, 130, 246, 0.15);
+                    color: #60a5fa;
+                    border-color: rgba(59, 130, 246, 0.3);
+                  "
+                  >의료/복지</span
+                ><strong>라온요양원</strong>
+              </div>
+            </div>
+            <div class="skin-card">
+              <div
+                class="skin-thumb"
+                style="background: linear-gradient(135deg, #0d2137, #1a3a5c)"
+              >
+                <div
+                  style="
+                    padding: 1.5rem;
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                  "
+                >
+                  <div>
+                    <div
+                      style="
+                        font-size: 0.58rem;
+                        color: rgba(100, 180, 255, 0.7);
+                        font-weight: 700;
+                        letter-spacing: 0.1em;
+                        margin-bottom: 0.35rem;
+                      "
+                    >
+                      세무법인 재경
+                    </div>
+                    <div
+                      style="
+                        font-size: 0.75rem;
+                        color: white;
+                        font-weight: 700;
+                        line-height: 1.5;
+                      "
+                    >
+                      재[財] 사업자의 자산을 지키고<br />경[經] 안정적인 경영을
+                      함께
+                    </div>
+                  </div>
+                  <div
+                    style="
+                      display: grid;
+                      grid-template-columns: repeat(4, 1fr);
+                      gap: 3px;
+                    "
+                  >
+                    <div
+                      style="
+                        height: 14px;
+                        background: rgba(100, 180, 255, 0.12);
+                        border-radius: 3px;
+                      "
+                    ></div>
+                    <div
+                      style="
+                        height: 14px;
+                        background: rgba(100, 180, 255, 0.12);
+                        border-radius: 3px;
+                      "
+                    ></div>
+                    <div
+                      style="
+                        height: 14px;
+                        background: rgba(100, 180, 255, 0.12);
+                        border-radius: 3px;
+                      "
+                    ></div>
+                    <div
+                      style="
+                        height: 14px;
+                        background: rgba(100, 180, 255, 0.12);
+                        border-radius: 3px;
+                      "
+                    ></div>
+                  </div>
+                </div>
+              </div>
+              <div class="skin-info">
+                <span
+                  class="skin-tag"
+                  style="
+                    background: rgba(6, 182, 212, 0.15);
+                    color: #22d3ee;
+                    border-color: rgba(6, 182, 212, 0.3);
+                  "
+                  >세무/회계</span
+                ><strong>세무법인 재경</strong>
+              </div>
+            </div>
+            <div class="skin-card">
+              <div
+                class="skin-thumb"
+                style="background: linear-gradient(135deg, #fff8f0, #fff0e0)"
+              >
+                <div
+                  style="
+                    padding: 1.5rem;
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 0.6rem;
+                  "
+                >
+                  <div style="display: flex; gap: 3px; align-items: flex-end">
+                    <div
+                      style="
+                        width: 8px;
+                        height: 28px;
+                        background: #ff6b6b;
+                        border-radius: 3px 3px 0 0;
+                      "
+                    ></div>
+                    <div
+                      style="
+                        width: 8px;
+                        height: 20px;
+                        background: #ffb347;
+                        border-radius: 3px 3px 0 0;
+                      "
+                    ></div>
+                    <div
+                      style="
+                        width: 8px;
+                        height: 32px;
+                        background: #88d8b0;
+                        border-radius: 3px 3px 0 0;
+                      "
+                    ></div>
+                    <div
+                      style="
+                        width: 8px;
+                        height: 17px;
+                        background: #7ec8e3;
+                        border-radius: 3px 3px 0 0;
+                      "
+                    ></div>
+                    <div
+                      style="
+                        width: 8px;
+                        height: 25px;
+                        background: #c9a0dc;
+                        border-radius: 3px 3px 0 0;
+                      "
+                    ></div>
+                  </div>
+                  <div
+                    style="
+                      font-size: 0.7rem;
+                      font-weight: 800;
+                      color: #3d2b1f;
+                      text-align: center;
+                      line-height: 1.4;
+                    "
+                  >
+                    소리가 머무는 자리 음악학원<br />통증이 머무는 자리 미술학원
+                  </div>
+                </div>
+              </div>
+              <div class="skin-info">
+                <span
+                  class="skin-tag"
+                  style="
+                    background: rgba(236, 72, 153, 0.12);
+                    color: #f472b6;
+                    border-color: rgba(236, 72, 153, 0.3);
+                  "
+                  >교육/학원</span
+                ><strong>음악학원 미술학원</strong>
+              </div>
+            </div>
+            <div class="skin-card">
+              <div
+                class="skin-thumb"
+                style="background: linear-gradient(135deg, #0a0c14, #1a1f3a)"
+              >
+                <div
+                  style="
+                    padding: 1.5rem;
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                  "
+                >
+                  <div>
+                    <div
+                      style="
+                        font-size: 0.55rem;
+                        color: #a78bfa;
+                        font-weight: 700;
+                        letter-spacing: 0.1em;
+                        margin-bottom: 0.4rem;
+                      "
+                    >
+                      ★ HighPlus 파트너 병원
+                    </div>
+                    <div
+                      style="
+                        font-size: 0.8rem;
+                        font-weight: 800;
+                        color: white;
+                        line-height: 1.4;
+                      "
+                    >
+                      환자가 먼저 찾아오는<br /><span
+                        style="
+                          background: linear-gradient(90deg, #a78bfa, #60a5fa);
+                          -webkit-background-clip: text;
+                          -webkit-text-fill-color: transparent;
+                        "
+                        >병원 브랜딩 블로그</span
+                      >
+                    </div>
+                  </div>
+                  <div style="display: flex; gap: 4px">
+                    <div
+                      style="
+                        flex: 1;
+                        height: 3px;
+                        border-radius: 2px;
+                        background: linear-gradient(90deg, #7c3aed, #3b82f6);
+                      "
+                    ></div>
+                    <div
+                      style="
+                        flex: 1;
+                        height: 3px;
+                        border-radius: 2px;
+                        background: rgba(255, 255, 255, 0.08);
+                      "
+                    ></div>
+                    <div
+                      style="
+                        flex: 1;
+                        height: 3px;
+                        border-radius: 2px;
+                        background: rgba(255, 255, 255, 0.08);
+                      "
+                    ></div>
+                  </div>
+                </div>
+              </div>
+              <div class="skin-info">
+                <span
+                  class="skin-tag"
+                  style="
+                    background: rgba(124, 58, 237, 0.15);
+                    color: #a78bfa;
+                    border-color: rgba(124, 58, 237, 0.3);
+                  "
+                  >의료/병원</span
+                ><strong>병원 브랜딩 블로그</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- GRAPH -->
+      <section id="graph" style="position: relative">
+        <div class="section-inner">
+          <div class="section-center reveal">
+            <span class="section-tag">Why We're Different</span>
+            <h2 class="section-title">
+              HighPlus 파트너 병원만<br /><span
+                style="
+                  background: var(--grad-text);
+                  -webkit-background-clip: text;
+                  -webkit-text-fill-color: transparent;
+                "
+                >내원 환자 수가 급격히 늘어날까요?</span
+              >
+            </h2>
+            <p class="section-desc">
+              계약 후 평균 3개월 이내, 실제 내원 전환 데이터로 증명합니다.
+            </p>
+          </div>
+          <div
+            style="
+              display: grid;
+              grid-template-columns: 1fr 1fr;
+              gap: 1.5rem;
+              margin-bottom: 2.5rem;
+            "
+            class="reveal"
+          >
+            <div
+              style="
+                background: var(--grad-card);
+                border: 1px solid rgba(124, 58, 237, 0.35);
+                border-radius: 20px;
+                padding: 2rem;
+                position: relative;
+                overflow: hidden;
+              "
+            >
+              <div
+                style="
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  right: 0;
+                  height: 3px;
+                  background: var(--grad-main);
+                "
+              ></div>
+              <p
+                style="
+                  font-size: 0.8rem;
+                  color: #a78bfa;
+                  font-weight: 700;
+                  margin-bottom: 0.5rem;
+                "
+              >
+                ▲ 매달 누적 내원 환자 꾸준한 증가
+              </p>
+              <div
+                style="
+                  display: flex;
+                  align-items: flex-end;
+                  gap: 5px;
+                  height: 150px;
+                "
+                id="chart-hp"
+              ></div>
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-between;
+                  margin-top: 0.4rem;
+                "
+              >
+                <span style="font-size: 0.62rem; color: var(--text-muted)"
+                  >1월</span
+                ><span style="font-size: 0.62rem; color: var(--text-muted)"
+                  >6월</span
+                ><span style="font-size: 0.62rem; color: var(--text-muted)"
+                  >12월</span
+                >
+              </div>
+              <div style="margin-top: 0.9rem; text-align: center">
+                <span
+                  style="
+                    display: inline-block;
+                    background: var(--grad-btn);
+                    color: white;
+                    font-size: 0.78rem;
+                    font-weight: 700;
+                    padding: 0.35rem 1rem;
+                    border-radius: 100px;
+                  "
+                  >HighPlus 파트너 병원</span
+                >
+              </div>
+            </div>
+            <div
+              style="
+                background: var(--grad-card);
+                border: 1px solid var(--border);
+                border-radius: 20px;
+                padding: 2rem;
+                position: relative;
+                overflow: hidden;
+              "
+            >
+              <p
+                style="
+                  font-size: 0.8rem;
+                  color: var(--text-muted);
+                  font-weight: 700;
+                  margin-bottom: 0.5rem;
+                "
+              >
+                ▼ 지속적인 내원 환자 감소 추세
+              </p>
+              <div
+                style="
+                  display: flex;
+                  align-items: flex-end;
+                  gap: 5px;
+                  height: 150px;
+                "
+                id="chart-other"
+              ></div>
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-between;
+                  margin-top: 0.4rem;
+                "
+              >
+                <span style="font-size: 0.62rem; color: var(--text-muted)"
+                  >1월</span
+                ><span style="font-size: 0.62rem; color: var(--text-muted)"
+                  >6월</span
+                ><span style="font-size: 0.62rem; color: var(--text-muted)"
+                  >12월</span
+                >
+              </div>
+              <div style="margin-top: 0.9rem; text-align: center">
+                <span
+                  style="
+                    display: inline-block;
+                    background: rgba(100, 116, 139, 0.2);
+                    border: 1px solid rgba(100, 116, 139, 0.3);
+                    color: #64748b;
+                    font-size: 0.78rem;
+                    font-weight: 700;
+                    padding: 0.35rem 1rem;
+                    border-radius: 100px;
+                  "
+                  >일반 자동화 대행사</span
+                >
+              </div>
+            </div>
+          </div>
+          <div
+            class="reveal"
+            style="
+              text-align: center;
+              padding: 1.5rem;
+              background: rgba(124, 58, 237, 0.07);
+              border: 1px solid rgba(124, 58, 237, 0.18);
+              border-radius: 14px;
+              max-width: 700px;
+              margin: 0 auto;
+            "
+          >
+            <p
+              style="
+                font-size: 1rem;
+                color: var(--text-secondary);
+                line-height: 1.8;
+                word-break: keep-all;
+              "
+            >
+              <strong style="color: var(--text-primary)"
+                >원장님들은 바보가 아닙니다.</strong
+              >
+              오히려 누구보다 똑똑합니다.<br />똑똑하기에, 실질적으로
+              <strong
+                style="
+                  background: var(--grad-text);
+                  -webkit-background-clip: text;
+                  -webkit-text-fill-color: transparent;
+                "
+                >더 효과적인 병원 전문 마케팅 파트너를 선택</strong
+              >하는 것입니다.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- TESTIMONIALS SLIDER -->
+      <section
+        id="testimonials"
+        style="
+          background: var(--bg-secondary);
+          position: relative;
+          overflow: hidden;
+        "
+      >
+        <div
+          style="
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(
+              90deg,
+              transparent,
+              rgba(124, 58, 237, 0.5),
+              transparent
+            );
+          "
+        ></div>
+        <div class="section-inner">
+          <div class="section-center reveal">
+            <span class="section-tag">Real Reviews</span>
+            <h2 class="section-title">
+              파트너 원장님들의<br /><span
+                style="
+                  background: var(--grad-text);
+                  -webkit-background-clip: text;
+                  -webkit-text-fill-color: transparent;
+                "
+                >실제 후기</span
+              >
+            </h2>
+            <p class="section-desc">
+              갑을 관계가 아닌 동료로서, 지인 소개로 시작하여 현재 40여개 병원을
+              전담하고 있습니다.
+            </p>
+          </div>
+
+          <!-- Stats -->
+          <div class="portfolio-stats reveal" style="margin-bottom: 3rem">
+            <div class="pstat-card">
+              <div class="pstat-num" id="cnt1">0%</div>
+              <div class="pstat-label">
+                "블로그 보고 왔습니다"<br />내원 증가율
+              </div>
+            </div>
+            <div class="pstat-card">
+              <div class="pstat-num" id="cnt2">0%</div>
+              <div class="pstat-label">계약 연장률</div>
+            </div>
+            <div class="pstat-card">
+              <div class="pstat-num" id="cnt3">0+</div>
+              <div class="pstat-label">전담 관리 중인<br />파트너 병원</div>
+            </div>
+          </div>
+
+          <!-- Slider -->
+          <div style="position: relative" class="reveal">
+            <div
+              id="slider-track"
+              style="
+                display: flex;
+                gap: 1.25rem;
+                overflow: hidden;
+                scroll-behavior: smooth;
+              "
+            >
+              <div class="tcard active-slide">
+                <div class="tcard-quote">"</div>
+                <p>
+                  강남 대형 치과들을 전부 제치고 퍼널이 작동하기 시작했습니다.
+                  원장인 제가 직접 쓴 것 같은 디테일 덕분에 환자의 신뢰도가
+                  완전히 다릅니다.
+                </p>
+                <div class="tcard-author">
+                  <div
+                    class="tcard-avatar"
+                    style="
+                      background: linear-gradient(135deg, #7c3aed, #3b82f6);
+                    "
+                  >
+                    치
+                  </div>
+                  <div>
+                    <strong>강남 OOO 치과 대표원장님</strong
+                    ><span>계약 1년 차</span>
+                  </div>
+                </div>
+              </div>
+              <div class="tcard">
+                <div class="tcard-quote">"</div>
+                <p>
+                  인주한방병원 초기부터 HighPlus와 협업했습니다. 마케팅 실장님의
+                  단순 업무는 줄어들고, 저는 임상 케이스라는 알맹이에만 집중할
+                  수 있어 완벽합니다.
+                </p>
+                <div class="tcard-author">
+                  <div
+                    class="tcard-avatar"
+                    style="
+                      background: linear-gradient(135deg, #3b82f6, #06b6d4);
+                    "
+                  >
+                    한
+                  </div>
+                  <div>
+                    <strong>인주 한방병원 원장님</strong
+                    ><span>개원 세팅부터 함께</span>
+                  </div>
+                </div>
+              </div>
+              <div class="tcard">
+                <div class="tcard-quote">"</div>
+                <p>
+                  블로그를 직접 쓰던 시절보다 오히려 환자들의 반응이 훨씬
+                  좋습니다. "원장님이 직접 쓰신 것 같아요"라는 피드백을 자주
+                  받습니다. 진정성이 느껴진다고 하더라고요.
+                </p>
+                <div class="tcard-author">
+                  <div
+                    class="tcard-avatar"
+                    style="
+                      background: linear-gradient(135deg, #06b6d4, #10b981);
+                    "
+                  >
+                    피
+                  </div>
+                  <div>
+                    <strong>서울 OOO 피부과 원장님</strong
+                    ><span>계약 8개월 차</span>
+                  </div>
+                </div>
+              </div>
+              <div class="tcard">
+                <div class="tcard-quote">"</div>
+                <p>
+                  다른 대행사에서 3개월 했을 때 결과가 없어서 포기했었는데,
+                  HighPlus는 2개월 만에 "블로그 보고 왔어요" 소리를 처음
+                  들었습니다. 지금은 월 10건 이상 유입됩니다.
+                </p>
+                <div class="tcard-author">
+                  <div
+                    class="tcard-avatar"
+                    style="
+                      background: linear-gradient(135deg, #f59e0b, #ef4444);
+                    "
+                  >
+                    정
+                  </div>
+                  <div>
+                    <strong>경기 OOO 정형외과 원장님</strong
+                    ><span>계약 6개월 차</span>
+                  </div>
+                </div>
+              </div>
+              <div class="tcard">
+                <div class="tcard-quote">"</div>
+                <p>
+                  1지역 1병원 독점이라는 말이 처음엔 마케팅 문구인 줄
+                  알았습니다. 실제로 같은 지역 다른 병원 문의가 들어왔을 때
+                  정중히 거절했다는 연락을 받고 신뢰가 생겼습니다.
+                </p>
+                <div class="tcard-author">
+                  <div
+                    class="tcard-avatar"
+                    style="
+                      background: linear-gradient(135deg, #8b5cf6, #ec4899);
+                    "
+                  >
+                    내
+                  </div>
+                  <div>
+                    <strong>부산 OOO 내과 원장님</strong
+                    ><span>계약 1년 2개월 차</span>
+                  </div>
+                </div>
+              </div>
+              <div class="tcard">
+                <div class="tcard-quote">"</div>
+                <p>
+                  월간 리포트를 받을 때마다 어떤 키워드가 올라왔는지, 어떤
+                  글에서 문의가 왔는지 정확하게 알 수 있습니다. 데이터가
+                  명확해서 신뢰가 갑니다.
+                </p>
+                <div class="tcard-author">
+                  <div
+                    class="tcard-avatar"
+                    style="
+                      background: linear-gradient(135deg, #10b981, #3b82f6);
+                    "
+                  >
+                    안
+                  </div>
+                  <div>
+                    <strong>인천 OOO 안과 원장님</strong
+                    ><span>계약 4개월 차</span>
+                  </div>
+                </div>
+              </div>
+              <div class="tcard">
+                <div class="tcard-quote">"</div>
+                <p>
+                  의료인 출신이라는 게 글에서 느껴집니다. 심평원 기준에 맞지
+                  않는 표현을 알아서 걸러주고, 환자 입장에서 설득력 있는
+                  방식으로 풀어줍니다. 일반 마케터는 절대 못합니다.
+                </p>
+                <div class="tcard-author">
+                  <div
+                    class="tcard-avatar"
+                    style="
+                      background: linear-gradient(135deg, #7c3aed, #06b6d4);
+                    "
+                  >
+                    재
+                  </div>
+                  <div>
+                    <strong>대구 OOO 재활의학과 원장님</strong
+                    ><span>계약 9개월 차</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button
+              class="slider-btn"
+              onclick="slideMove(-1)"
+              style="left: -22px"
+            >
+              &#8249;
+            </button>
+            <button
+              class="slider-btn"
+              onclick="slideMove(1)"
+              style="right: -22px"
+            >
+              &#8250;
+            </button>
+            <div
+              id="slider-dots"
+              style="
+                display: flex;
+                justify-content: center;
+                gap: 8px;
+                margin-top: 1.5rem;
+                align-items: center;
+              "
+            ></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section id="faq">
+        <div class="section-inner">
+          <div class="section-center reveal">
+            <span class="section-tag">FAQ</span>
+            <h2 class="section-title">병원 마케팅, 자주 묻는 질문</h2>
+            <p class="section-desc">
+              ChatGPT, Gemini 등 AI가 환자들에게 자주 답변하는 질문들을
+              모았습니다. 2026년 3월 기준
+            </p>
+          </div>
+          <div class="faq-list">
+            <div class="faq-item reveal">
+              <button class="faq-q" onclick="toggleFaq(this)">
+                <span
+                  >병원 블로그 마케팅, 직접 하는 것과 대행사에 맡기는 것의
+                  차이는 무엇인가요?</span
+                ><span class="arrow">▼</span>
+              </button>
+              <div class="faq-a">
+                <div class="faq-a-inner">
+                  직접 운영 시 진정성은 높지만 시간 비용이 큽니다. HighPlus는
+                  병원 운영 9년차 현역 의료인이 직접 기획한 콘텐츠로, 원장님의
+                  진심을 담으면서도 시간은 1/10로 줄여드립니다. 단순 대행이 아닌
+                  퍼널 설계까지 함께하므로, 조회수가 아닌 실제 내원 환자 수가
+                  증가합니다.
+                </div>
+              </div>
+            </div>
+            <div class="faq-item reveal">
+              <button class="faq-q" onclick="toggleFaq(this)">
+                <span>네이버 플레이스 상위 노출은 어떻게 이루어지나요?</span
+                ><span class="arrow">▼</span>
+              </button>
+              <div class="faq-a">
+                <div class="faq-a-inner">
+                  네이버 플레이스 상위 노출은 키워드 적합성, 리뷰 수와 질,
+                  방문자 체류시간 등 복합적 요소로 결정됩니다. HighPlus는 어뷰징
+                  없는 1:1 전담 고정 IP로 안전하게 트래픽을 운영하며, 합법적인
+                  리뷰 선순환 구조를 구축하여 지속 가능한 상위 노출을
+                  만들어드립니다.
+                </div>
+              </div>
+            </div>
+            <div class="faq-item reveal">
+              <button class="faq-q" onclick="toggleFaq(this)">
+                <span
+                  >병원 마케팅 대행사를 선택할 때 가장 중요한 기준은
+                  무엇인가요?</span
+                ><span class="arrow">▼</span>
+              </button>
+              <div class="faq-a">
+                <div class="faq-a-inner">
+                  첫째, 의료 분야에 대한 깊은 이해가 있어야 합니다. 둘째, 단순
+                  노출 수치가 아닌 실제 내원 전환율로 성과를 측정해야 합니다.
+                  셋째, 투명한 성과 보고와 월 단위 유연한 계약으로 상호 신뢰를
+                  쌓는 파트너를 선택해야 합니다.
+                </div>
+              </div>
+            </div>
+            <div class="faq-item reveal">
+              <button class="faq-q" onclick="toggleFaq(this)">
+                <span>브랜딩 블로그가 실제로 환자 유치에 도움이 되나요?</span
+                ><span class="arrow">▼</span>
+              </button>
+              <div class="faq-a">
+                <div class="faq-a-inner">
+                  네, HighPlus 파트너 병원 데이터 기준으로 "블로그 보고
+                  왔습니다"라는 내원 환자가 평균 300% 증가했습니다. 단순 정보
+                  전달이 아닌, 환자가 글을 읽고 자연스럽게 예약 또는 문의로
+                  이어지도록 설계된 퍼널 기획이 핵심입니다.
+                </div>
+              </div>
+            </div>
+            <div class="faq-item reveal">
+              <button class="faq-q" onclick="toggleFaq(this)">
+                <span>HighPlus 서비스 계약 기간과 비용은 어떻게 되나요?</span
+                ><span class="arrow">▼</span>
+              </button>
+              <div class="faq-a">
+                <div class="faq-a-inner">
+                  HighPlus는 위약금 없는 월 단위 계약을 원칙으로 합니다.
+                  구체적인 비용은 병원의 지역, 규모, 서비스 구성에 따라
+                  달라지므로 무료 컨설팅 신청을 통해 맞춤 안내받으실 수
+                  있습니다.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PRICING — Max is HERO -->
+      <section
+        id="pricing"
+        style="background: var(--bg-secondary); position: relative"
+      >
+        <div
+          style="
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(
+              90deg,
+              transparent,
+              rgba(6, 182, 212, 0.4),
+              transparent
+            );
+          "
+        ></div>
+        <div class="section-inner">
+          <div class="section-center reveal">
+            <span class="section-tag">Pricing</span>
+            <h2 class="section-title">투명한 요금제</h2>
+            <p class="section-desc">
+              위약금 없는 월 단위 계약. 성과로만 승부합니다.
+            </p>
+          </div>
+          <div
+            style="
+              display: grid;
+              grid-template-columns: 1fr 1fr 1.15fr;
+              gap: 1.25rem;
+              align-items: start;
+            "
+            class="reveal"
+          >
+            <!-- Basic -->
+            <div class="price-card">
+              <div
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 0.5rem;
+                  margin-bottom: 0.75rem;
+                "
+              >
+                <span
+                  style="
+                    background: rgba(124, 58, 237, 0.15);
+                    border: 1px solid rgba(124, 58, 237, 0.35);
+                    color: #a78bfa;
+                    font-size: 0.75rem;
+                    font-weight: 700;
+                    padding: 0.25rem 0.6rem;
+                    border-radius: 6px;
+                  "
+                  >Basic</span
+                ><span style="color: var(--text-muted); font-size: 0.8rem"
+                  >블로그 스타터</span
+                >
+              </div>
+              <p
+                style="
+                  font-size: 0.875rem;
+                  color: var(--text-secondary);
+                  margin-bottom: 1rem;
+                  line-height: 1.7;
+                  word-break: keep-all;
+                "
+              >
+                처음 시작하는 병원을 위한 기초 블로그 브랜딩 플랜
+              </p>
+              <div
+                style="
+                  background: rgba(255, 255, 255, 0.03);
+                  border: 1px solid var(--border);
+                  border-radius: 10px;
+                  padding: 0.9rem;
+                  margin-bottom: 1rem;
+                "
+              >
+                <p
+                  style="
+                    font-size: 0.83rem;
+                    color: var(--text-secondary);
+                    line-height: 1.6;
+                    word-break: keep-all;
+                  "
+                >
+                  퍼널 설계 기반 브랜딩 블로그로
+                  <strong style="color: var(--text-primary)"
+                    >온라인 신뢰도를 쌓고 싶은 원장님</strong
+                  >께 추천드립니다.
+                </p>
+              </div>
+              <div style="margin-bottom: 1rem">
+                <span
+                  style="
+                    font-size: 1.9rem;
+                    font-weight: 900;
+                    color: var(--text-primary);
+                  "
+                  >상담 후</span
+                ><span
+                  style="
+                    font-size: 0.85rem;
+                    color: var(--text-muted);
+                    margin-left: 0.3rem;
+                  "
+                  >결정</span
+                >
+              </div>
+              <div
+                style="
+                  font-size: 0.78rem;
+                  color: var(--text-secondary);
+                  margin-bottom: 1.25rem;
+                "
+              >
+                <div style="margin-bottom: 0.25rem">
+                  <strong style="color: var(--text-primary)">진행기간:</strong>
+                  월 단위 (위약금 없음)
+                </div>
+                <div>
+                  <strong style="color: var(--text-primary)">진행방식:</strong>
+                  월 4회 · 브랜딩 블로그 발행
+                </div>
+              </div>
+              <ul class="price-list">
+                <li>
+                  <span style="color: #a78bfa">✓</span>심층 설문 및 톤앤매너
+                  기획
+                </li>
+                <li>
+                  <span style="color: #a78bfa">✓</span>퍼널 설계 기반 설득형
+                  글쓰기
+                </li>
+                <li>
+                  <span style="color: #a78bfa">✓</span>1:1 전담 고정 IP 세팅
+                </li>
+                <li><span style="color: #a78bfa">✓</span>월간 성과 리포트</li>
+              </ul>
+              <a
+                href="#contact"
+                class="price-btn-outline"
+                style="border-color: rgba(124, 58, 237, 0.35); color: #a78bfa"
+                >상담 신청하기</a
+              >
+            </div>
+
+            <!-- Pro -->
+            <div class="price-card price-card-pro">
+              <div
+                style="
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  right: 0;
+                  height: 3px;
+                  background: var(--grad-main);
+                "
+              ></div>
+              <div
+                style="
+                  position: absolute;
+                  top: 1rem;
+                  right: 1rem;
+                  background: var(--grad-btn);
+                  color: white;
+                  font-size: 0.65rem;
+                  font-weight: 700;
+                  padding: 0.2rem 0.5rem;
+                  border-radius: 5px;
+                  letter-spacing: 0.04em;
+                "
+              >
+                POPULAR
+              </div>
+              <div
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 0.5rem;
+                  margin-bottom: 0.75rem;
+                "
+              >
+                <span
+                  style="
+                    background: var(--grad-btn);
+                    color: white;
+                    font-size: 0.75rem;
+                    font-weight: 700;
+                    padding: 0.25rem 0.6rem;
+                    border-radius: 6px;
+                  "
+                  >Pro</span
+                ><span style="color: var(--text-muted); font-size: 0.8rem"
+                  >블로그 + 플레이스</span
+                >
+              </div>
+              <p
+                style="
+                  font-size: 0.875rem;
+                  color: var(--text-secondary);
+                  margin-bottom: 1rem;
+                  line-height: 1.7;
+                  word-break: keep-all;
+                "
+              >
+                블로그와 네이버 플레이스를 동시에 최적화하는 통합 성장 플랜
+              </p>
+              <div
+                style="
+                  background: rgba(124, 58, 237, 0.1);
+                  border: 1px solid rgba(124, 58, 237, 0.22);
+                  border-radius: 10px;
+                  padding: 0.9rem;
+                  margin-bottom: 1rem;
+                "
+              >
+                <p
+                  style="
+                    font-size: 0.83rem;
+                    color: #c4b5fd;
+                    line-height: 1.6;
+                    word-break: keep-all;
+                  "
+                >
+                  두 채널을 동시에 키워
+                  <strong style="color: white"
+                    >지역 상권 검색 결과를 완전히 독점</strong
+                  >하고 싶은 원장님께 추천드립니다.
+                </p>
+              </div>
+              <div style="margin-bottom: 1rem">
+                <span
+                  style="
+                    font-size: 1.9rem;
+                    font-weight: 900;
+                    background: var(--grad-text);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                  "
+                  >상담 후</span
+                ><span
+                  style="
+                    font-size: 0.85rem;
+                    color: var(--text-muted);
+                    margin-left: 0.3rem;
+                  "
+                  >결정</span
+                >
+              </div>
+              <div
+                style="
+                  font-size: 0.78rem;
+                  color: var(--text-secondary);
+                  margin-bottom: 1.25rem;
+                "
+              >
+                <div style="margin-bottom: 0.25rem">
+                  <strong style="color: var(--text-primary)">진행기간:</strong>
+                  월 단위 (위약금 없음)
+                </div>
+                <div>
+                  <strong style="color: var(--text-primary)">진행방식:</strong>
+                  월 8회 · 블로그 + 플레이스 통합 대행
+                </div>
+              </div>
+              <ul class="price-list">
+                <li><span style="color: #a78bfa">✓</span>Basic 전체 포함</li>
+                <li>
+                  <span style="color: #a78bfa">✓</span>네이버 플레이스 SEO 세팅
+                  및 키워드 추출
+                </li>
+                <li>
+                  <span style="color: #a78bfa">✓</span>어뷰징 제로 트래픽 운영
+                </li>
+                <li>
+                  <span style="color: #a78bfa">✓</span>리뷰 선순환 구조 세팅
+                </li>
+                <li>
+                  <span style="color: #a78bfa">✓</span>1지역 1병원 독점 계약
+                </li>
+              </ul>
+              <a href="#contact" class="price-btn-primary">상담 신청하기</a>
+            </div>
+
+            <!-- Max — HERO (larger, glowing) -->
+            <div class="price-card price-card-max">
+              <div
+                style="
+                  position: absolute;
+                  top: 1rem;
+                  right: 1rem;
+                  z-index: 3;
+                  background: linear-gradient(135deg, #06b6d4, #0891b2);
+                  color: white;
+                  font-size: 0.65rem;
+                  font-weight: 700;
+                  padding: 0.2rem 0.5rem;
+                  border-radius: 5px;
+                  letter-spacing: 0.04em;
+                "
+              >
+                RECOMMENDED
+              </div>
+              <div style="position: relative; z-index: 2">
+                <div
+                  style="
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                    margin-bottom: 0.75rem;
+                  "
+                >
+                  <span
+                    style="
+                      background: linear-gradient(135deg, #06b6d4, #0891b2);
+                      color: white;
+                      font-size: 0.75rem;
+                      font-weight: 700;
+                      padding: 0.25rem 0.6rem;
+                      border-radius: 6px;
+                    "
+                    >Max</span
+                  ><span style="color: var(--text-muted); font-size: 0.8rem"
+                    >올인원 운영 대행</span
+                  >
+                </div>
+                <p
+                  style="
+                    font-size: 0.875rem;
+                    color: var(--text-secondary);
+                    margin-bottom: 1rem;
+                    line-height: 1.7;
+                    word-break: keep-all;
+                  "
+                >
+                  마케팅부터 콘텐츠 운영까지 전부 맡기는 풀 매니지드 플랜
+                </p>
+                <div
+                  style="
+                    background: rgba(6, 182, 212, 0.1);
+                    border: 1px solid rgba(6, 182, 212, 0.28);
+                    border-radius: 10px;
+                    padding: 0.9rem;
+                    margin-bottom: 1rem;
+                  "
+                >
+                  <p
+                    style="
+                      font-size: 0.83rem;
+                      color: #67e8f9;
+                      line-height: 1.6;
+                      word-break: keep-all;
+                    "
+                  >
+                    <strong style="color: white"
+                      >전문가를 내 직원처럼 고용해</strong
+                    >
+                    필요한 업무를 모두 맡기고 싶은 원장님께 추천드립니다.
+                  </p>
+                </div>
+                <div style="margin-bottom: 1rem">
+                  <span
+                    style="font-size: 1.9rem; font-weight: 900; color: white"
+                    >상담 후</span
+                  ><span
+                    style="
+                      font-size: 0.85rem;
+                      color: var(--text-muted);
+                      margin-left: 0.3rem;
+                    "
+                    >결정</span
+                  >
+                </div>
+                <div
+                  style="
+                    font-size: 0.78rem;
+                    color: var(--text-secondary);
+                    margin-bottom: 1.25rem;
+                  "
+                >
+                  <div style="margin-bottom: 0.25rem">
+                    <strong style="color: white">진행기간:</strong> 월 단위
+                    (위약금 없음)
+                  </div>
+                  <div>
+                    <strong style="color: white">진행방식:</strong> 월 정해진
+                    항목 외 운영 전반 대행
+                  </div>
+                </div>
+                <ul class="price-list">
+                  <li><span style="color: #22d3ee">✓</span>Pro 전체 포함</li>
+                  <li>
+                    <span style="color: #22d3ee">✓</span>전체 콘텐츠 기획 및
+                    운영 대행
+                  </li>
+                  <li>
+                    <span style="color: #22d3ee">✓</span>광고 기획 및 운영 대행
+                  </li>
+                  <li><span style="color: #22d3ee">✓</span>상세페이지 기획</li>
+                  <li>
+                    <span style="color: #22d3ee">✓</span>운영 과정 실무 요청
+                    협의 후 처리
+                  </li>
+                </ul>
+                <a href="#contact" class="price-btn-cyan">대행 문의하기</a>
+              </div>
+            </div>
+          </div>
+          <div class="reveal" style="text-align: center; margin-top: 1.5rem">
+            <p style="font-size: 0.82rem; color: var(--text-muted)">
+              모든 플랜은
+              <strong style="color: var(--text-secondary)"
+                >위약금 없는 월 단위 계약</strong
+              >입니다 · 무료 상담 후 맞춤 플랜을 안내드립니다
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA + CONTACT -->
+      <section
+        id="contact"
+        style="
+          padding: 0;
+          background: var(--bg-primary);
+          position: relative;
+          overflow: hidden;
+        "
+      >
+        <div
+          style="
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(
+              90deg,
+              transparent,
+              rgba(124, 58, 237, 0.5),
+              transparent
+            );
+          "
+        ></div>
+        <div
+          style="
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(
+              rgba(124, 58, 237, 0.09) 1px,
+              transparent 1px
+            );
+            background-size: 28px 28px;
+            pointer-events: none;
+          "
+        ></div>
+        <div
+          style="
+            position: absolute;
+            top: 20%;
+            left: 5%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(
+              circle,
+              rgba(124, 58, 237, 0.09),
+              transparent 70%
+            );
+            filter: blur(80px);
+            pointer-events: none;
+          "
+        ></div>
+        <div
+          style="
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 80px 5%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+            position: relative;
+          "
+        >
+          <div class="reveal">
+            <h2
+              style="
+                font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+                font-weight: 900;
+                line-height: 1.2;
+                margin-bottom: 1.5rem;
+                word-break: keep-all;
+              "
+            >
+              단순한 대행사를 찾으신다면<br /><span
+                style="
+                  background: var(--grad-text);
+                  -webkit-background-clip: text;
+                  -webkit-text-fill-color: transparent;
+                "
+                >다른 곳을 추천합니다.</span
+              >
+            </h2>
+            <p
+              style="
+                font-size: 0.95rem;
+                color: var(--text-secondary);
+                line-height: 1.9;
+                margin-bottom: 2rem;
+                word-break: keep-all;
+              "
+            >
+              전담 매니징 모델부터, 시스템의 도움을 받아 직접 운영을 해보고 싶은
+              원장님을 위한 독립형 솔루션(컨설팅/툴 제공)까지. 함께 병원의
+              성장을 고민할 '파트너'를 찾으신다면 지금 문의하세요.
+            </p>
+            <div style="display: flex; flex-direction: column; gap: 0.75rem">
+              <a
+                href="mailto:highplus23@gmail.com"
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 0.75rem;
+                  text-decoration: none;
+                  color: var(--text-secondary);
+                  font-size: 0.9rem;
+                  transition: color 0.2s;
+                "
+                onmouseenter="this.style.color = '#a78bfa'"
+                onmouseleave="this.style.color = ''"
+                ><span
+                  style="
+                    width: 36px;
+                    height: 36px;
+                    background: rgba(124, 58, 237, 0.15);
+                    border: 1px solid rgba(124, 58, 237, 0.3);
+                    border-radius: 8px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                  "
+                  >📧</span
+                >highplus23@gmail.com</a
+              >
+              <a
+                href="#"
+                style="
+                  display: inline-flex;
+                  align-items: center;
+                  gap: 0.75rem;
+                  background: #fee500;
+                  color: #3c1e1e;
+                  padding: 0.75rem 1.5rem;
+                  border-radius: 10px;
+                  font-weight: 700;
+                  font-size: 0.9rem;
+                  text-decoration: none;
+                  width: fit-content;
+                  transition: transform 0.2s;
+                "
+                onmouseenter="this.style.transform = 'translateY(-2px)'"
+                onmouseleave="this.style.transform = ''"
+                ><span>💬</span>카카오톡 채널로 빠른 문의</a
+              >
+            </div>
+            <div
+              style="
+                display: flex;
+                gap: 0.75rem;
+                margin-top: 2rem;
+                flex-wrap: wrap;
+              "
+            >
+              <span
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 0.4rem;
+                  font-size: 0.75rem;
+                  color: var(--text-muted);
+                  background: rgba(255, 255, 255, 0.04);
+                  border: 1px solid var(--border);
+                  padding: 0.35rem 0.75rem;
+                  border-radius: 100px;
+                "
+                >✅ 위약금 없는 월 단위 계약</span
+              >
+              <span
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 0.4rem;
+                  font-size: 0.75rem;
+                  color: var(--text-muted);
+                  background: rgba(255, 255, 255, 0.04);
+                  border: 1px solid var(--border);
+                  padding: 0.35rem 0.75rem;
+                  border-radius: 100px;
+                "
+                >🏥 병원 운영 9년차 원장</span
+              >
+              <span
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 0.4rem;
+                  font-size: 0.75rem;
+                  color: var(--text-muted);
+                  background: rgba(255, 255, 255, 0.04);
+                  border: 1px solid var(--border);
+                  padding: 0.35rem 0.75rem;
+                  border-radius: 100px;
+                "
+                >🔒 1지역 1병원 독점</span
+              >
+            </div>
+          </div>
+          <div class="reveal" id="contact-form">
+            <div
+              style="
+                background: var(--bg-card);
+                border: 1px solid var(--border);
+                border-radius: 20px;
+                padding: 2.5rem;
+                position: relative;
+                overflow: hidden;
+              "
+            >
+              <div
+                style="
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  right: 0;
+                  height: 3px;
+                  background: var(--grad-main);
+                "
+              ></div>
+              <form id="contactForm" novalidate>
+                <div class="form-group">
+                  <label for="inp-name">성함 / 직책 *</label>
+                  <input
+                    id="inp-name"
+                    type="text"
+                    placeholder="홍길동 대표"
+                    required
+                    aria-required="true"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="inp-tel">연락처 *</label>
+                  <input
+                    id="inp-tel"
+                    type="tel"
+                    placeholder="010-0000-0000"
+                    required
+                    aria-required="true"
+                    pattern="[0-9\-]+"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="inp-company"
+                    >업체명 (또는 플레이스/웹사이트 링크)</label
+                  >
+                  <input
+                    id="inp-company"
+                    type="text"
+                    placeholder="업체명 기재"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="inp-concern"
+                    >현재 가장 큰 고민이 무엇인가요?</label
+                  >
+                  <textarea
+                    id="inp-concern"
+                    placeholder="예: 플레이스 상위 노출이 안됩니다. 블로그 관리가 어렵습니다."
+                  ></textarea>
+                </div>
+                <button
+                  type="submit"
+                  class="form-submit"
+                  style="
+                    background: linear-gradient(135deg, #22c55e, #16a34a);
+                    box-shadow: 0 4px 20px rgba(34, 197, 94, 0.3);
+                  "
+                >
+                  무료 컨설팅 신청하기
+                </button>
+                <p class="form-note" style="text-align: center">
+                  제출 시 개인정보 수집 및 이용에 동의하는 것으로 간주합니다.
+                </p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer
+      role="contentinfo"
+      style="
+        background: var(--bg-card);
+        border-top: 1px solid var(--border);
+        padding: 3rem 5%;
+      "
+    >
+      <div
+        style="
+          max-width: 1100px;
+          margin: 0 auto;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          flex-wrap: wrap;
+          gap: 1.5rem;
+        "
+      >
+        <div>
+          <span
+            style="
+              font-family: &quot;Bebas Neue&quot;, sans-serif;
+              font-size: 1.6rem;
+              letter-spacing: 2px;
+              background: var(--grad-text);
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+              display: block;
+              margin-bottom: 0.4rem;
+            "
+            >HighPlus.</span
+          >
+          <p
+            style="
+              font-size: 0.78rem;
+              color: var(--text-muted);
+              line-height: 1.6;
+            "
+          >
+            © 2026 HighPlus Marketing. All rights reserved.<br />병원 마케팅
+            전문 · 브랜딩 블로그 · 네이버 플레이스 최적화
+          </p>
+        </div>
+        <div style="display: flex; gap: 1.5rem">
+          <a
+            href="#"
+            style="
+              font-size: 0.8rem;
+              color: var(--text-muted);
+              text-decoration: none;
+            "
+            >이용약관</a
+          ><a
+            href="#"
+            style="
+              font-size: 0.8rem;
+              color: var(--text-muted);
+              text-decoration: none;
+            "
+            >개인정보처리방침</a
+          >
+        </div>
+      </div>
+    </footer>
+
+    <!-- SCROLL TO TOP -->
+    <button
+      class="scroll-top"
+      id="scrollTopBtn"
+      aria-label="페이지 상단으로 이동"
+    >
+      ↑
+    </button>
+    <script>
+      // ─── THEME (persisted) ───
+      function toggleTheme() {
+        const html = document.documentElement,
+          btn = document.getElementById("themeBtn");
+        if (html.getAttribute("data-theme") === "light") {
+          html.removeAttribute("data-theme");
+          btn.textContent = "🌙";
+          localStorage.setItem("hp-theme", "dark");
+        } else {
+          html.setAttribute("data-theme", "light");
+          btn.textContent = "☀️";
+          localStorage.setItem("hp-theme", "light");
+        }
+      }
+      (function () {
+        var t = localStorage.getItem("hp-theme");
+        if (t === "light") {
+          document.documentElement.setAttribute("data-theme", "light");
+          document.getElementById("themeBtn").textContent = "☀️";
+        }
+      })();
+
+      // ─── FAQ (accessible) ───
+      function toggleFaq(btn) {
+        const item = btn.closest(".faq-item"),
+          isOpen = item.classList.contains("open");
+        document
+          .querySelectorAll(".faq-item.open")
+          .forEach((el) => el.classList.remove("open"));
+        document
+          .querySelectorAll(".faq-q")
+          .forEach((b) => b.setAttribute("aria-expanded", "false"));
+        if (!isOpen) {
+          item.classList.add("open");
+          btn.setAttribute("aria-expanded", "true");
+        }
+      }
+      document
+        .querySelectorAll(".faq-q")
+        .forEach((b) => b.setAttribute("aria-expanded", "false"));
+
+      // ─── 3D TILT ───
+      function proc3d(el, on) {
+        const step = el.querySelector(".proc-step");
+        if (on) {
+          step.style.transform = "scale(1.22) rotateY(22deg) rotateX(-10deg)";
+          step.style.boxShadow =
+            "0 0 0 5px rgba(124,58,237,0.25), 0 16px 50px rgba(124,58,237,0.6), 10px 10px 0 rgba(124,58,237,0.12)";
+        } else {
+          step.style.transform = "";
+          step.style.boxShadow = "";
+        }
+      }
+
+      // ─── MOBILE MENU ───
+      var hamburgerBtn = document.getElementById("hamburgerBtn"),
+        mobileMenu = document.getElementById("mobileMenu"),
+        mobileOverlay = document.getElementById("mobileOverlay");
+      function openMobileMenu() {
+        hamburgerBtn.classList.add("active");
+        mobileMenu.classList.add("active");
+        mobileOverlay.classList.add("active");
+        hamburgerBtn.setAttribute("aria-expanded", "true");
+        document.body.style.overflow = "hidden";
+      }
+      function closeMobileMenu() {
+        hamburgerBtn.classList.remove("active");
+        mobileMenu.classList.remove("active");
+        mobileOverlay.classList.remove("active");
+        hamburgerBtn.setAttribute("aria-expanded", "false");
+        document.body.style.overflow = "";
+      }
+      if (hamburgerBtn) {
+        hamburgerBtn.addEventListener("click", function () {
+          hamburgerBtn.classList.contains("active")
+            ? closeMobileMenu()
+            : openMobileMenu();
+        });
+      }
+      if (mobileOverlay) {
+        mobileOverlay.addEventListener("click", closeMobileMenu);
+      }
+      document.addEventListener("keydown", function (e) {
+        if (
+          e.key === "Escape" &&
+          mobileMenu &&
+          mobileMenu.classList.contains("active")
+        )
+          closeMobileMenu();
+      });
+
+      // ─── SCROLL TO TOP ───
+      var scrollTopBtn = document.getElementById("scrollTopBtn");
+      window.addEventListener(
+        "scroll",
+        function () {
+          if (scrollTopBtn)
+            scrollTopBtn.classList.toggle("visible", window.scrollY > 600);
+        },
+        { passive: true },
+      );
+      if (scrollTopBtn)
+        scrollTopBtn.addEventListener("click", function () {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+
+      // ─── INTERSECTION OBSERVER REVEAL ───
+      var revealObs = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) {
+              e.target.classList.add("visible");
+              e.target.classList.remove("hidden");
+              revealObs.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.1, rootMargin: "0px 0px -40px 0px" },
+      );
+      document.querySelectorAll(".reveal").forEach(function (el) {
+        el.classList.add("hidden");
+        revealObs.observe(el);
+      });
+
+      // ─── SCROLL SPY (Navigation Highlight) ───
+      const spySections = document.querySelectorAll("section[id]");
+      const spyLinks = document.querySelectorAll(".nav-links a:not(.nav-cta)");
+      const spyObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const id = entry.target.getAttribute("id");
+              spyLinks.forEach((link) => {
+                link.classList.toggle(
+                  "active",
+                  link.getAttribute("href") === "#" + id,
+                );
+              });
+            }
+          });
+        },
+        { threshold: 0.5, rootMargin: "-20% 0px -60% 0px" },
+      );
+      spySections.forEach((section) => spyObserver.observe(section));
+
+      // ─── FORM VALIDATION ───
+      var contactForm = document.getElementById("contactForm");
+      if (contactForm) {
+        contactForm.addEventListener("submit", function (e) {
+          e.preventDefault();
+          var name = document.getElementById("inp-name"),
+            tel = document.getElementById("inp-tel"),
+            valid = true;
+          [name, tel].forEach(function (inp) {
+            if (!inp.value.trim()) {
+              inp.style.borderColor = "#ef4444";
+              inp.style.boxShadow = "0 0 0 3px rgba(239,68,68,0.15)";
+              valid = false;
+            } else {
+              inp.style.borderColor = "";
+              inp.style.boxShadow = "";
+            }
+          });
+          if (valid) {
+            alert(
+              "무료 컨설팅 신청이 완료되었습니다. 빠른 시일 내에 연락드리겠습니다!",
+            );
+            contactForm.reset();
+          }
+        });
+      }
+
+      // ─── BAR CHART ───
+      const hpData = [18, 24, 30, 35, 42, 52, 65, 80, 100, 125, 148, 170];
+      const otData = [160, 148, 150, 135, 120, 108, 95, 88, 78, 68, 55, 45];
+      function buildChart(id, data, isUp) {
+        const c = document.getElementById(id);
+        if (!c) return;
+        c.innerHTML = "";
+        const mx = Math.max(...data);
+        data.forEach((v, i) => {
+          const b = document.createElement("div");
+          b.dataset.h = ((v / mx) * 100).toFixed(1);
+          b.style.cssText =
+            "flex:1;border-radius:4px 4px 0 0;height:0%;min-width:0;transition:height 1.3s cubic-bezier(.4,0,.2,1) " +
+            i * 0.07 +
+            "s;" +
+            (isUp
+              ? "background:linear-gradient(to top,#7c3aed,#3b82f6 60%,#06b6d4);"
+              : "background:rgba(100,116,139," +
+                (0.18 + (i / data.length) * 0.35) +
+                ");");
+          c.appendChild(b);
+        });
+      }
+      buildChart("chart-hp", hpData, true);
+      buildChart("chart-other", otData, false);
+      let charted = false;
+      function checkChart() {
+        if (charted) return;
+        const el = document.getElementById("chart-hp");
+        if (!el) return;
+        if (el.getBoundingClientRect().top < window.innerHeight * 0.93) {
+          charted = true;
+          setTimeout(() => {
+            ["chart-hp", "chart-other"].forEach((id) => {
+              const c = document.getElementById(id);
+              if (c)
+                Array.from(c.children).forEach(
+                  (b) => (b.style.height = b.dataset.h + "%"),
+                );
+            });
+          }, 120);
+        }
+      }
+      window.addEventListener("scroll", checkChart, { passive: true });
+      setTimeout(checkChart, 350);
+
+      // ─── COUNTERS (easeOut cubic) ───
+      function easeOut(t) {
+        return 1 - Math.pow(1 - t, 3);
+      }
+      function animNum(el, to, sfx, dur) {
+        const t0 = performance.now();
+        (function step(now) {
+          const p = Math.min((now - t0) / dur, 1);
+          el.textContent = Math.round(to * easeOut(p)) + sfx;
+          if (p < 1) requestAnimationFrame(step);
+        })(performance.now());
+      }
+      let counted = false;
+      function checkCounters() {
+        if (counted) return;
+        const el = document.getElementById("cnt1");
+        if (!el) return;
+        if (el.getBoundingClientRect().top < window.innerHeight * 0.93) {
+          counted = true;
+          setTimeout(() => {
+            animNum(document.getElementById("cnt1"), 300, "%", 2200);
+            animNum(document.getElementById("cnt2"), 95, "%", 1900);
+            animNum(document.getElementById("cnt3"), 40, "+", 1600);
+            document.querySelectorAll(".stat-num").forEach((el) => {
+              const t = el.textContent,
+                n = parseInt(t),
+                s = t.replace(/[0-9]/g, "");
+              if (n) animNum(el, n, s, 1800);
+            });
+          }, 150);
+        }
+      }
+      window.addEventListener("scroll", checkCounters, { passive: true });
+      setTimeout(checkCounters, 450);
+
+      // ─── AUTO SLIDER ───
+      const track = document.getElementById("slider-track");
+      const dotsEl = document.getElementById("slider-dots");
+      const cards = track ? Array.from(track.children) : [];
+      let cur = 0,
+        timer;
+      if (dotsEl) {
+        cards.forEach((_, i) => {
+          const d = document.createElement("button");
+          d.className = "dot" + (i === 0 ? " active" : "");
+          d.onclick = () => goTo(i);
+          dotsEl.appendChild(d);
+        });
+      }
+      function syncDots() {
+        document
+          .querySelectorAll(".dot")
+          .forEach((d, i) => d.classList.toggle("active", i === cur));
+      }
+      function syncCards() {
+        cards.forEach((c, i) => c.classList.toggle("active-slide", i === cur));
+      }
+      function goTo(n) {
+        cur = (n + cards.length) % cards.length;
+        const w = cards[0] ? cards[0].offsetWidth + 20 : 380;
+        track.scrollLeft = cur * w;
+        syncDots();
+        syncCards();
+        clearInterval(timer);
+        timer = setInterval(() => goTo(cur + 1), 3800);
+      }
+      function slideMove(d) {
+        goTo(cur + d);
+      }
+      timer = setInterval(() => goTo(cur + 1), 3800);
+      // drag
+      if (track) {
+        let sx,
+          sl,
+          drag = false;
+        track.addEventListener("mousedown", (e) => {
+          drag = true;
+          sx = e.pageX - track.offsetLeft;
+          sl = track.scrollLeft;
+          track.style.cursor = "grabbing";
+        });
+        track.addEventListener("mousemove", (e) => {
+          if (!drag) return;
+          e.preventDefault();
+          track.scrollLeft = sl - (e.pageX - track.offsetLeft - sx);
+        });
+        ["mouseup", "mouseleave"].forEach((ev) =>
+          track.addEventListener(ev, () => {
+            drag = false;
+            track.style.cursor = "grab";
+          }),
+        );
+      }
+
+      // ─── MAGNETIC BUTTONS ───
+      document
+        .querySelectorAll(
+          ".btn-primary, .btn-secondary, .nav-cta, .form-submit",
+        )
+        .forEach((btn) => {
+          btn.addEventListener("mousemove", (e) => {
+            const rect = btn.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            btn.style.transform = `translate(${x * 0.15}px, ${y * 0.2}px)`;
+          });
+          btn.addEventListener("mouseleave", () => {
+            btn.style.transform = "";
+          });
+        });
+    </script>
+  </body>
+</html>
