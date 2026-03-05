@@ -311,10 +311,10 @@ header.scrolled {
 }
 
 .hero-content h1 {
-    font-size: 4rem;
+    font-size: clamp(1.8rem, 5vw, 4rem);
     letter-spacing: -1.5px;
     margin-bottom: 24px;
-    white-space: nowrap;
+    word-break: keep-all;
 }
 
 .hero-content p {
@@ -891,12 +891,12 @@ footer {
     transition-delay: 1.0s;
 }
 
-/* Responsive Adjustments */
+/* ═══ Responsive: Tablet (max-width: 900px) ═══ */
 @media (max-width: 900px) {
-
     .pain-points-grid,
     .stats-container,
-    .testimonials {
+    .testimonials,
+    .philosophy-grid {
         grid-template-columns: 1fr;
     }
 
@@ -906,6 +906,7 @@ footer {
 
     .hero-content h1 {
         font-size: 2.8rem;
+        white-space: normal;
     }
 
     .nav-links,
@@ -916,11 +917,59 @@ footer {
     .mobile-menu-btn {
         display: block;
     }
+
+    /* Service split: stack vertically */
+    .service-item {
+        flex-direction: column;
+    }
+
+    .service-content {
+        padding: 40px 30px;
+    }
+
+    .service-content h3 {
+        font-size: 1.5rem;
+    }
+
+    /* CTA */
+    .cta-text h2 {
+        font-size: 2.2rem;
+    }
+
+    /* Solution banner */
+    .solution-banner {
+        padding: 35px 25px;
+    }
+
+    .solution-banner h3 {
+        font-size: 1.5rem;
+    }
+
+    /* Section titles */
+    .section-title h2 {
+        font-size: 2rem;
+    }
+
+    /* Stats */
+    .stat-box h3 {
+        font-size: 3rem;
+    }
+
+    .stat-box span {
+        font-size: 1.5rem;
+    }
 }
 
+/* ═══ Responsive: Mobile (max-width: 600px) ═══ */
 @media (max-width: 600px) {
     .hero-buttons {
         flex-direction: column;
+        align-items: stretch;
+    }
+
+    .hero-buttons .btn {
+        width: 100%;
+        justify-content: center;
     }
 
     .hero-content h1 {
@@ -936,9 +985,171 @@ footer {
         padding: 60px 0;
     }
 
+    .section-title {
+        margin-bottom: 40px;
+    }
+
+    .section-title h2 {
+        font-size: 1.6rem;
+    }
+
+    .section-title p {
+        font-size: 0.95rem;
+    }
+
+    /* Cards: smaller padding */
+    .pain-card,
+    .phi-card,
+    .stat-box,
+    .testimonial-card {
+        padding: 28px 20px;
+    }
+
+    /* Service */
+    .service-content {
+        padding: 28px 20px;
+    }
+
+    .service-content h3 {
+        font-size: 1.3rem;
+    }
+
+    .service-icon {
+        width: 48px;
+        height: 48px;
+        font-size: 1.4rem;
+    }
+
+    /* Process timeline */
+    .process-step {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .timeline-line {
+        left: 30px;
+    }
+
+    .step-number {
+        width: 60px;
+        height: 60px;
+        font-size: 1.4rem;
+    }
+
+    .step-content {
+        padding: 24px 20px;
+    }
+
+    .step-content h3 {
+        font-size: 1.15rem;
+    }
+
+    /* Stats */
+    .stat-box h3 {
+        font-size: 2.5rem;
+    }
+
+    .stat-box span {
+        font-size: 1.2rem;
+    }
+
+    /* Testimonials */
+    .testimonial-card {
+        padding: 28px 20px;
+    }
+
+    .quote {
+        font-size: 0.95rem;
+    }
+
+    /* CTA */
+    .cta-text h2 {
+        font-size: 1.6rem;
+    }
+
+    .cta-text p {
+        font-size: 0.95rem;
+        margin-bottom: 28px;
+    }
+
+    .cta-form-box {
+        padding: 30px 20px;
+    }
+
+    .contact-info-direct p {
+        font-size: 1rem;
+    }
+
+    /* Solution banner */
+    .solution-banner {
+        padding: 30px 20px;
+    }
+
+    .solution-banner h3 {
+        font-size: 1.3rem;
+    }
+
+    .solution-banner p {
+        font-size: 0.95rem;
+    }
+
+    /* Buttons: touch-friendly */
+    .btn {
+        padding: 14px 24px;
+    }
+
+    .btn-large {
+        padding: 16px 28px;
+        font-size: 1rem;
+    }
+
+    /* Footer */
     .footer-content {
         flex-direction: column;
         gap: 20px;
         text-align: center;
+    }
+
+    .footer-links a {
+        margin: 0 10px;
+    }
+
+    /* Header */
+    .header-container {
+        height: 64px;
+    }
+
+    .hero-section {
+        padding-top: 64px;
+    }
+}
+
+/* ═══ Responsive: Small Mobile (max-width: 400px) ═══ */
+@media (max-width: 400px) {
+    .hero-content h1 {
+        font-size: 1.5rem;
+    }
+
+    .badge {
+        font-size: 0.95rem;
+        padding: 8px 18px;
+    }
+
+    .section-title h2 {
+        font-size: 1.4rem;
+    }
+
+    .stat-box h3 {
+        font-size: 2rem;
+    }
+
+    .cta-text h2 {
+        font-size: 1.4rem;
+    }
+
+    .step-number {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
     }
 }
