@@ -1,0 +1,39 @@
+/* =========================================================================
+   HighPlus Theme Override — Purple Premium
+   (Defers to inline <style> block in index.html for primary theming)
+   ========================================================================= */
+
+/* Strip any conflicting CTA gradient from base CSS */
+.cta-container {
+    background: none !important;
+}
+
+/* Dot grid background pattern — subtle purple tint */
+body {
+    background-image:
+        radial-gradient(ellipse 80% 50% at 50% -10%, rgba(124,58,237,0.18) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 40% at 80% 60%, rgba(79,70,229,0.08) 0%, transparent 60%) !important;
+    background-attachment: fixed !important;
+}
+
+/* Glassmorphism header */
+#header {
+    background-color: rgba(8, 12, 26, 0.8) !important;
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+/* Testimonial quote mark */
+.testimonial-card::before {
+    color: rgba(124,58,237,0.06) !important;
+}
+
+/* Footer */
+footer {
+    border-top: 1px solid rgba(255,255,255,0.06) !important;
+}
+.footer-logo { color: #ffffff !important; }
+.footer-copy { color: #475569 !important; }
+.footer-links a { color: #475569 !important; }
+.footer-links a:hover { color: #a78bfa !important; }

@@ -176,9 +176,6 @@
     }
     </script>
 
-    <!-- Spline 3D Viewer -->
-    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.82/build/spline-viewer.js"></script>
-
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -191,22 +188,534 @@
         --bg-secondary: #0f1120;
         --bg-card: #131628;
         --bg-card2: #0e1022;
-        --accent1: #4f6ef7;
+        --accent1: #7c3aed;
         --accent2: #3b82f6;
-        --accent3: #00d4ff;
-        --grad-main: linear-gradient(135deg, #4f6ef7, #00d4ff);
-        --grad-text: linear-gradient(135deg, #4f6ef7, #00d4ff);
-        --grad-btn: linear-gradient(135deg, #4f6ef7, #00d4ff);
+        --accent3: #06b6d4;
+        --grad-main: linear-gradient(
+          135deg,
+          #7c3aed 0%,
+          #3b82f6 50%,
+          #06b6d4 100%
+        );
+        --grad-text: linear-gradient(90deg, #a78bfa, #60a5fa, #22d3ee);
+        --grad-btn: linear-gradient(135deg, #7c3aed, #3b82f6);
         --grad-card: linear-gradient(145deg, #1a1f3a 0%, #0f1225 100%);
         --border: rgba(255, 255, 255, 0.07);
-        --border-accent: rgba(79, 110, 247, 0.4);
-        --border-glow: rgba(79, 110, 247, 0.3);
+        --border-accent: rgba(124, 58, 237, 0.4);
         --text-primary: #f1f5f9;
         --text-secondary: #94a3b8;
         --text-muted: #475569;
-        --glow: rgba(79, 110, 247, 0.3);
-        --glow2: rgba(79, 110, 247, 0.3);
+        --glow: rgba(124, 58, 237, 0.3);
+        --glow2: rgba(59, 130, 246, 0.3);
       }
+
+      [data-theme="light"] {
+        --bg-primary: #f4f7ff;
+        --bg-secondary: #eaf0ff;
+        --bg-card: #ffffff;
+        --bg-card2: #f0f4ff;
+        --accent1: #4a7cff;
+        --accent2: #3b82f6;
+        --accent3: #38bdf8;
+        --grad-main: linear-gradient(135deg, #4a7cff 0%, #38bdf8 50%, #06b6d4 100%);
+        --grad-text: linear-gradient(90deg, #4a7cff, #3b82f6, #38bdf8);
+        --grad-btn: linear-gradient(135deg, #4a7cff, #3b82f6);
+        --grad-card: linear-gradient(145deg, #ffffff 0%, #f5f8ff 100%);
+        --border: rgba(74, 124, 255, 0.1);
+        --border-accent: rgba(59, 130, 246, 0.35);
+        --text-primary: #1a1a2e;
+        --text-secondary: #4a5568;
+        --text-muted: #94a3b8;
+        --glow: rgba(59, 130, 246, 0.15);
+        --glow2: rgba(56, 189, 248, 0.15);
+      }
+
+      /* Theme toggle button */
+      .theme-toggle {
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        width: 38px;
+        height: 38px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 1.1rem;
+        transition:
+          background 0.2s,
+          border-color 0.2s;
+        flex-shrink: 0;
+      }
+      .theme-toggle:hover {
+        background: rgba(124, 58, 237, 0.15);
+        border-color: rgba(124, 58, 237, 0.4);
+      }
+      [data-theme="light"] .theme-toggle {
+        background: rgba(74, 124, 255, 0.08);
+        border-color: rgba(74, 124, 255, 0.15);
+      }
+      [data-theme="light"] .theme-toggle:hover {
+        background: rgba(74, 124, 255, 0.15);
+        border-color: rgba(74, 124, 255, 0.35);
+      }
+
+      /* ─── LIGHT MODE: Full Redesign (Blue Premium) ─── */
+
+      /* Noise overlay — almost invisible in light mode */
+      [data-theme="light"] body::before {
+        opacity: 0.05;
+      }
+
+      /* Hero background — soft blue radials */
+      [data-theme="light"] .hero-bg {
+        background:
+          radial-gradient(
+            ellipse 90% 60% at 50% -5%,
+            rgba(74, 124, 255, 0.12) 0%,
+            transparent 70%
+          ),
+          radial-gradient(
+            ellipse 60% 50% at 85% 80%,
+            rgba(56, 189, 248, 0.08) 0%,
+            transparent 60%
+          );
+      }
+      [data-theme="light"] .hero-grid {
+        background-image:
+          linear-gradient(rgba(74, 124, 255, 0.04) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(74, 124, 255, 0.04) 1px, transparent 1px);
+        background-size: 60px 60px;
+      }
+
+      /* Orbs — blue tones */
+      [data-theme="light"] .orb1 {
+        background: rgba(74, 124, 255, 0.1);
+      }
+      [data-theme="light"] .orb2 {
+        background: rgba(56, 189, 248, 0.08);
+      }
+      [data-theme="light"] .orb3 {
+        background: rgba(6, 182, 212, 0.06);
+      }
+
+      /* Nav */
+      [data-theme="light"] nav {
+        background: rgba(255, 255, 255, 0.85);
+        border-bottom-color: rgba(74, 124, 255, 0.08);
+      }
+      [data-theme="light"] .nav-links a:hover,
+      [data-theme="light"] .nav-links a.active {
+        color: #4a7cff;
+      }
+      [data-theme="light"] .nav-links a.active::after {
+        background: linear-gradient(90deg, #4a7cff, #38bdf8);
+      }
+
+      /* Stats bar */
+      [data-theme="light"] .stats-bar {
+        background: #ffffff;
+        border-color: rgba(74, 124, 255, 0.08);
+      }
+
+      /* Section tags — blue */
+      [data-theme="light"] .section-tag {
+        color: #4a7cff;
+        background: rgba(74, 124, 255, 0.08);
+        border-color: rgba(74, 124, 255, 0.2);
+      }
+
+      /* Cards — clean white + soft blue shadow */
+      [data-theme="light"] .pain-card,
+      [data-theme="light"] .phil-card,
+      [data-theme="light"] .service-card,
+      [data-theme="light"] .testimonial,
+      [data-theme="light"] .faq-item {
+        background: #ffffff;
+        border-color: rgba(74, 124, 255, 0.08);
+        box-shadow: 0 4px 24px rgba(74, 124, 255, 0.07);
+      }
+      [data-theme="light"] .pain-card:hover,
+      [data-theme="light"] .phil-card:hover,
+      [data-theme="light"] .service-card:hover,
+      [data-theme="light"] .testimonial:hover,
+      [data-theme="light"] .faq-item:hover {
+        border-color: rgba(74, 124, 255, 0.2);
+        box-shadow: 0 8px 32px rgba(74, 124, 255, 0.12);
+      }
+
+      /* Pain card accent lines */
+      [data-theme="light"] .pain-card::before {
+        background: linear-gradient(90deg, #4a7cff, #38bdf8);
+      }
+      [data-theme="light"] .pain-card:hover {
+        border-color: rgba(74, 124, 255, 0.25);
+      }
+
+      /* Pain icon — blue */
+      [data-theme="light"] .pain-icon {
+        background: rgba(74, 124, 255, 0.1);
+        border-color: rgba(74, 124, 255, 0.2);
+      }
+
+      /* Pain highlight — soft blue gradient */
+      [data-theme="light"] .pain-highlight {
+        background: linear-gradient(
+          135deg,
+          rgba(74, 124, 255, 0.08),
+          rgba(56, 189, 248, 0.06)
+        );
+        border-color: rgba(74, 124, 255, 0.15);
+      }
+
+      /* Philosophy number — blue tint */
+      [data-theme="light"] .phil-num {
+        color: rgba(74, 124, 255, 0.3);
+      }
+      [data-theme="light"] .phil-body h4 {
+        color: #1a1a2e;
+      }
+
+      /* Service card hover */
+      [data-theme="light"] .service-card:hover {
+        box-shadow: 0 20px 60px rgba(74, 124, 255, 0.1);
+      }
+      [data-theme="light"] .service-card::after {
+        background: linear-gradient(90deg, #4a7cff, #38bdf8);
+      }
+      [data-theme="light"] .service-card:nth-child(1) .service-icon {
+        background: rgba(74, 124, 255, 0.1);
+        border-color: rgba(74, 124, 255, 0.25);
+      }
+      [data-theme="light"] .service-card:nth-child(2) .service-icon {
+        background: rgba(56, 189, 248, 0.1);
+        border-color: rgba(56, 189, 248, 0.25);
+      }
+
+      /* Process timeline — blue */
+      [data-theme="light"] .process-list::before {
+        background: linear-gradient(
+          to bottom,
+          #4a7cff,
+          #3b82f6,
+          #38bdf8,
+          transparent
+        );
+        opacity: 0.5;
+      }
+      [data-theme="light"] .proc-step {
+        box-shadow: 0 0 20px rgba(74, 124, 255, 0.25);
+      }
+
+      /* Section divider lines — blue */
+      [data-theme="light"] #pain-point::before,
+      [data-theme="light"] #services::before,
+      [data-theme="light"] #portfolio::before,
+      [data-theme="light"] .contact-section::before {
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(74, 124, 255, 0.3),
+          transparent
+        );
+      }
+      [data-theme="light"] .section-divider {
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(74, 124, 255, 0.15),
+          rgba(56, 189, 248, 0.15),
+          transparent
+        );
+      }
+
+      /* Portfolio stats */
+      [data-theme="light"] .pstat-card {
+        background: #ffffff;
+        border-color: rgba(74, 124, 255, 0.08);
+        box-shadow: 0 4px 24px rgba(74, 124, 255, 0.07);
+      }
+      [data-theme="light"] .pstat-card::before {
+        background: linear-gradient(90deg, #4a7cff, #38bdf8);
+      }
+
+      /* Testimonials */
+      [data-theme="light"] .testimonial::before {
+        background: linear-gradient(90deg, #4a7cff, #38bdf8);
+        -webkit-background-clip: text;
+      }
+
+      /* Skin cards */
+      [data-theme="light"] .skin-card {
+        background: #ffffff;
+        border-color: rgba(74, 124, 255, 0.08);
+        box-shadow: 0 4px 24px rgba(74, 124, 255, 0.07);
+      }
+      [data-theme="light"] .skin-card:hover {
+        box-shadow: 0 16px 48px rgba(74, 124, 255, 0.12);
+        border-color: rgba(74, 124, 255, 0.2);
+      }
+
+      /* Tcards (slider testimonials) */
+      [data-theme="light"] .tcard {
+        background: #ffffff;
+        border-color: rgba(74, 124, 255, 0.08);
+        box-shadow: 0 4px 24px rgba(74, 124, 255, 0.07);
+      }
+      [data-theme="light"] .tcard.active-slide {
+        border-color: rgba(74, 124, 255, 0.2);
+        box-shadow: 0 8px 32px rgba(74, 124, 255, 0.12);
+      }
+
+      /* FAQ arrow — blue */
+      [data-theme="light"] .faq-q .arrow {
+        background: rgba(74, 124, 255, 0.1);
+        border-color: rgba(74, 124, 255, 0.2);
+        color: #4a7cff;
+      }
+      [data-theme="light"] .faq-item.open .faq-q .arrow {
+        background: rgba(74, 124, 255, 0.2);
+      }
+
+      /* CTA box — blue gradient card style */
+      [data-theme="light"] .cta-box {
+        background: linear-gradient(145deg, #eef4ff 0%, #dbeaff 100%);
+        border-color: rgba(74, 124, 255, 0.15);
+        box-shadow: 0 8px 40px rgba(74, 124, 255, 0.08);
+      }
+      [data-theme="light"] .cta-box::before {
+        background: linear-gradient(90deg, #4a7cff, #38bdf8);
+      }
+      [data-theme="light"] .cta-bg {
+        background: radial-gradient(
+          ellipse 70% 70% at 50% 50%,
+          rgba(74, 124, 255, 0.08),
+          transparent 70%
+        );
+      }
+
+      /* Contact section */
+      [data-theme="light"] .contact-section {
+        background: #eaf0ff;
+      }
+
+      /* Form inputs — blue focus */
+      [data-theme="light"] .form-group input,
+      [data-theme="light"] .form-group textarea,
+      [data-theme="light"] .form-group select {
+        background: #ffffff;
+        border-color: rgba(74, 124, 255, 0.15);
+      }
+      [data-theme="light"] .form-group input:focus,
+      [data-theme="light"] .form-group textarea:focus,
+      [data-theme="light"] .form-group select:focus {
+        border-color: rgba(74, 124, 255, 0.5);
+        box-shadow: 0 0 0 3px rgba(74, 124, 255, 0.1);
+      }
+      [data-theme="light"] .form-group select option {
+        background: #ffffff;
+      }
+      [data-theme="light"] .form-submit {
+        box-shadow: 0 4px 24px rgba(74, 124, 255, 0.25);
+      }
+      [data-theme="light"] .form-submit:hover {
+        box-shadow: 0 8px 36px rgba(74, 124, 255, 0.35);
+      }
+
+      /* Buttons — blue glow */
+      [data-theme="light"] .btn-primary {
+        box-shadow: 0 4px 24px rgba(74, 124, 255, 0.3);
+      }
+      [data-theme="light"] .btn-primary:hover {
+        box-shadow: 0 8px 36px rgba(74, 124, 255, 0.4);
+      }
+      [data-theme="light"] .btn-secondary {
+        background: rgba(74, 124, 255, 0.05);
+        border-color: rgba(74, 124, 255, 0.15);
+      }
+      [data-theme="light"] .btn-secondary:hover {
+        background: rgba(74, 124, 255, 0.1);
+        border-color: rgba(74, 124, 255, 0.3);
+      }
+
+      /* Pricing cards */
+      [data-theme="light"] .price-card {
+        background: #ffffff;
+        border-color: rgba(74, 124, 255, 0.1);
+        box-shadow: 0 4px 24px rgba(74, 124, 255, 0.07);
+      }
+      [data-theme="light"] .price-card:hover {
+        border-color: rgba(74, 124, 255, 0.2);
+        box-shadow: 0 16px 48px rgba(74, 124, 255, 0.1);
+      }
+      [data-theme="light"] .price-card-pro {
+        background: linear-gradient(145deg, #f0f4ff, #e8efff);
+        border-color: rgba(74, 124, 255, 0.25);
+      }
+      [data-theme="light"] .price-card-pro:hover {
+        box-shadow: 0 16px 48px rgba(74, 124, 255, 0.15);
+      }
+      [data-theme="light"] .price-card-max {
+        background: linear-gradient(145deg, #eef8ff, #e4f2ff);
+        border-color: rgba(56, 189, 248, 0.35);
+        box-shadow: 0 4px 30px rgba(56, 189, 248, 0.1);
+      }
+      [data-theme="light"] .price-card-max:hover {
+        box-shadow: 0 16px 48px rgba(56, 189, 248, 0.18);
+      }
+      [data-theme="light"] .price-list li {
+        color: #4a5568;
+      }
+      [data-theme="light"] .price-btn-outline {
+        border-color: rgba(74, 124, 255, 0.25);
+        color: #4a7cff;
+      }
+      [data-theme="light"] .price-btn-outline:hover {
+        background: rgba(74, 124, 255, 0.06);
+      }
+      [data-theme="light"] .price-btn-primary {
+        box-shadow: 0 4px 20px rgba(74, 124, 255, 0.3);
+      }
+      [data-theme="light"] .price-btn-primary:hover {
+        box-shadow: 0 8px 30px rgba(74, 124, 255, 0.4);
+      }
+      [data-theme="light"] .price-btn-cyan {
+        background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+        box-shadow: 0 4px 20px rgba(56, 189, 248, 0.3);
+      }
+      [data-theme="light"] .price-btn-cyan:hover {
+        box-shadow: 0 8px 30px rgba(56, 189, 248, 0.4);
+      }
+
+      /* Footer */
+      [data-theme="light"] footer {
+        background: #ffffff;
+        border-top-color: rgba(74, 124, 255, 0.08);
+      }
+      [data-theme="light"] .footer-brand .logo {
+        background: linear-gradient(90deg, #4a7cff, #38bdf8);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      [data-theme="light"] .footer-links a:hover {
+        color: #4a7cff;
+      }
+
+      /* Slider buttons */
+      [data-theme="light"] .slider-btn {
+        background: rgba(255, 255, 255, 0.9);
+        border-color: rgba(74, 124, 255, 0.15);
+        color: #4a7cff;
+        box-shadow: 0 2px 12px rgba(74, 124, 255, 0.1);
+      }
+      [data-theme="light"] .slider-btn:hover {
+        background: #ffffff;
+        border-color: rgba(74, 124, 255, 0.3);
+        box-shadow: 0 4px 20px rgba(74, 124, 255, 0.15);
+      }
+
+      /* Mobile menu */
+      [data-theme="light"] .mobile-menu {
+        background: rgba(255, 255, 255, 0.98);
+      }
+      [data-theme="light"] .mobile-menu a {
+        color: #1a1a2e;
+      }
+      [data-theme="light"] .mobile-menu a:hover {
+        color: #4a7cff;
+      }
+
+      /* Hamburger */
+      [data-theme="light"] .hamburger span {
+        background: #1a1a2e;
+      }
+
+      /* ─── PRICING CARDS: Light mode text fix + equal height ─── */
+
+      /* Equal height cards */
+      [data-theme="light"] .pricing-grid {
+        align-items: stretch;
+      }
+      [data-theme="light"] .price-card {
+        display: flex;
+        flex-direction: column;
+      }
+      [data-theme="light"] .price-card > div:last-of-type,
+      [data-theme="light"] .price-card > div[style*="position: relative"] {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+      [data-theme="light"] .price-card .price-list {
+        flex: 1;
+      }
+
+      /* Fix invisible white text on white cards */
+      [data-theme="light"] .price-card-pro strong[style*="color: white"],
+      [data-theme="light"] .price-card-pro strong[style*="color:white"] {
+        color: #3454d1 !important;
+      }
+      [data-theme="light"] .price-card-max strong[style*="color: white"],
+      [data-theme="light"] .price-card-max strong[style*="color:white"] {
+        color: #1a6b7a !important;
+      }
+      [data-theme="light"] .price-card-max span[style*="color: white"],
+      [data-theme="light"] .price-card-max span[style*="font-weight: 900"] {
+        color: #1a1a2e !important;
+        -webkit-text-fill-color: #1a1a2e !important;
+      }
+
+      /* Fix Pro card highlight box — readable text */
+      [data-theme="light"] .price-card-pro p[style*="color: #c4b5fd"] {
+        color: #5b6abf !important;
+      }
+      [data-theme="light"] .price-card-pro div[style*="background: rgba(124, 58, 237"] {
+        background: rgba(74, 124, 255, 0.08) !important;
+        border-color: rgba(74, 124, 255, 0.2) !important;
+      }
+
+      /* Fix Max card highlight box — readable text */
+      [data-theme="light"] .price-card-max p[style*="color: #67e8f9"] {
+        color: #2a7f8f !important;
+      }
+      [data-theme="light"] .price-card-max div[style*="background: rgba(6, 182, 212"] {
+        background: rgba(56, 189, 248, 0.08) !important;
+        border-color: rgba(56, 189, 248, 0.2) !important;
+      }
+
+      /* Fix Basic card highlight box */
+      [data-theme="light"] .price-card div[style*="background: rgba(255, 255, 255, 0.03)"] {
+        background: rgba(74, 124, 255, 0.05) !important;
+      }
+
+      /* Fix Basic card tag colors */
+      [data-theme="light"] .price-card span[style*="color: #a78bfa"] {
+        color: #4a7cff !important;
+      }
+      [data-theme="light"] .price-card span[style*="background: rgba(124, 58, 237, 0.15)"] {
+        background: rgba(74, 124, 255, 0.1) !important;
+        border-color: rgba(74, 124, 255, 0.25) !important;
+      }
+
+      /* Fix check mark colors in light mode */
+      [data-theme="light"] .price-list li span[style*="color: #a78bfa"] {
+        color: #4a7cff !important;
+      }
+      [data-theme="light"] .price-list li span[style*="color: #22d3ee"] {
+        color: #0ea5e9 !important;
+      }
+
+      /* Fix Basic card outline button */
+      [data-theme="light"] .price-btn-outline[style*="color: #a78bfa"] {
+        color: #4a7cff !important;
+        border-color: rgba(74, 124, 255, 0.3) !important;
+      }
+
+      /* Fix Max card "진행기간/진행방식" labels */
+      [data-theme="light"] .price-card-max div[style*="color: var(--text-secondary)"] strong[style*="color: white"] {
+        color: #1a1a2e !important;
+      }
+
       * {
         margin: 0;
         padding: 0;
@@ -255,16 +764,19 @@
       }
 
       .nav-logo {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 1.8rem;
+        letter-spacing: 2px;
+        color: #ffffff;
         text-decoration: none;
-        display: flex;
-        align-items: center;
       }
-      .nav-logo-img {
-        height: 50px;
-        width: auto;
-        object-fit: contain;
-        display: block;
+      .nav-logo .logo-dot {
+        color: #22c55e;
       }
+      [data-theme="light"] .nav-logo {
+        color: #0f172a;
+      }
+
       .nav-links {
         display: flex;
         gap: 2rem;
@@ -280,11 +792,11 @@
       }
 
       .nav-links a:hover {
-        color: #6b8aff;
+        color: #a78bfa;
       }
 
       .nav-links a.active {
-        color: #6b8aff;
+        color: #a78bfa;
         position: relative;
       }
 
@@ -318,22 +830,6 @@
         transform: translateY(-1px);
       }
 
-      /* ─── HIDE SPLINE WATERMARK ─── */
-      #hero spline-viewer::part(logo) {
-        display: none !important;
-      }
-      #hero::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        width: 200px;
-        height: 60px;
-        background: var(--bg-primary, #0a0a0f);
-        z-index: 2;
-        pointer-events: none;
-      }
-
       /* ─── HERO ─── */
       #hero {
         min-height: 60vh;
@@ -352,7 +848,7 @@
         background:
           radial-gradient(
             ellipse 80% 60% at 50% 0%,
-            rgba(79, 110, 247, 0.18) 0%,
+            rgba(124, 58, 237, 0.18) 0%,
             transparent 70%
           ),
           radial-gradient(
@@ -376,8 +872,8 @@
         height: 130%;
         background: radial-gradient(
           ellipse at 40% 50%,
-          rgba(79, 110, 247, 0.25) 0%,
-          rgba(79, 110, 247, 0.18) 25%,
+          rgba(124, 58, 237, 0.25) 0%,
+          rgba(99, 102, 241, 0.18) 25%,
           rgba(59, 130, 246, 0.12) 50%,
           transparent 70%
         );
@@ -396,8 +892,8 @@
         height: 70%;
         background: radial-gradient(
           ellipse at 50% 50%,
-          rgba(79, 110, 247, 0.2) 0%,
-          rgba(79, 110, 247, 0.1) 40%,
+          rgba(139, 92, 246, 0.2) 0%,
+          rgba(99, 102, 241, 0.1) 40%,
           transparent 70%
         );
         border-radius: 60% 40% 30% 70% / 50% 60% 40% 50%;
@@ -437,6 +933,34 @@
         }
       }
 
+      /* Light mode — more visible, brighter wave */
+      [data-theme="light"] .hero-wave {
+        background: radial-gradient(
+          ellipse at 40% 50%,
+          rgba(124, 102, 246, 0.3) 0%,
+          rgba(99, 102, 241, 0.2) 25%,
+          rgba(139, 92, 246, 0.12) 50%,
+          transparent 70%
+        );
+        filter: blur(50px);
+      }
+      [data-theme="light"] .hero-wave::before {
+        background: radial-gradient(
+          ellipse at 50% 50%,
+          rgba(139, 92, 246, 0.25) 0%,
+          rgba(124, 58, 237, 0.12) 40%,
+          transparent 70%
+        );
+      }
+      [data-theme="light"] .hero-wave::after {
+        background: radial-gradient(
+          ellipse at 50% 50%,
+          rgba(99, 102, 241, 0.18) 0%,
+          rgba(59, 130, 246, 0.1) 40%,
+          transparent 70%
+        );
+      }
+
       /* Animated orbs */
       .orb {
         position: absolute;
@@ -448,7 +972,7 @@
       .orb1 {
         width: 400px;
         height: 400px;
-        background: rgba(79, 110, 247, 0.15);
+        background: rgba(124, 58, 237, 0.15);
         top: -100px;
         left: -100px;
         animation-delay: 0s;
@@ -523,19 +1047,17 @@
       }
 
       .hero-title .highlight {
-        color: #4f6ef7;
+        color: #7c3aed;
         background: var(--grad-text);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         font-weight: 900;
         display: inline-block;
-        padding-bottom: 0.1em;
-        line-height: 1.4;
       }
 
       .hero-subline {
         font-size: clamp(1.1rem, 2.5vw, 1.4rem);
-        color: #ffffff;
+        color: var(--text-secondary);
         line-height: 1.8;
         margin-bottom: 3.5rem;
         word-break: keep-all;
@@ -550,279 +1072,81 @@
       }
 
       .btn-primary {
-        padding: 16px 36px;
         background: var(--grad-btn);
-        border-radius: 100px;
-        font-size: 16px;
-        font-weight: 700;
         color: white;
+        padding: 0.875rem 2rem;
+        border-radius: 10px;
+        font-size: 0.95rem;
+        font-weight: 700;
         text-decoration: none;
         display: inline-flex;
         align-items: center;
         gap: 0.5rem;
-        transition: all 0.3s ease;
-        position: relative;
-        overflow: hidden;
-      }
-
-      .btn-primary::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(135deg, rgba(255,255,255,0.2), transparent);
-        opacity: 0;
-        transition: opacity 0.3s;
+        box-shadow: 0 4px 30px rgba(124, 58, 237, 0.35);
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
       }
 
       .btn-primary:hover {
         transform: translateY(-2px);
-        box-shadow: 0 12px 40px rgba(79, 110, 247, 0.4);
-      }
-
-      .btn-primary:hover::before {
-        opacity: 1;
+        box-shadow: 0 8px 40px rgba(124, 58, 237, 0.5);
       }
 
       .btn-secondary {
-        padding: 16px 36px;
-        background: transparent;
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        border-radius: 100px;
-        font-size: 16px;
-        font-weight: 600;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid var(--border);
         color: var(--text-primary);
+        padding: 0.875rem 2rem;
+        border-radius: 10px;
+        font-size: 0.95rem;
+        font-weight: 600;
         text-decoration: none;
-        display: inline-flex;
-        align-items: center;
-        transition: all 0.3s ease;
+        transition:
+          background 0.2s,
+          border-color 0.2s;
       }
 
       .btn-secondary:hover {
-        background: rgba(255, 255, 255, 0.05);
-        border-color: rgba(255, 255, 255, 0.2);
-        transform: translateY(-2px);
-      }
-
-      /* ─── LOGO MARQUEE ─── */
-      .logo-marquee-section {
-        padding: 60px 0 10px;
-        overflow: hidden;
-        position: relative;
-      }
-
-      .logo-marquee-section::before,
-      .logo-marquee-section::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        width: 150px;
-        z-index: 2;
-        pointer-events: none;
-      }
-
-      .logo-marquee-section::before {
-        left: 0;
-        background: linear-gradient(90deg, #f0f2f8 0%, transparent 100%);
-      }
-
-      .logo-marquee-section::after {
-        right: 0;
-        background: linear-gradient(270deg, #f0f2f8 0%, transparent 100%);
-      }
-
-      .logo-marquee-label {
-        display: none;
-      }
-
-      .logo-marquee-track {
-        display: flex;
-        width: max-content;
-        gap: 3rem;
-        animation: marqueeScroll 55s linear infinite;
-      }
-
-
-
-      .logo-marquee-row {
-        overflow: hidden;
-        margin-bottom: 1.5rem;
-      }
-
-      .logo-marquee-row:last-child {
-        margin-bottom: 0;
-      }
-
-      .logo-marquee-row.reverse .logo-marquee-track {
-        animation-direction: reverse;
-      }
-
-      .logo-marquee-item {
-        flex-shrink: 0;
-        height: 55px;
-        padding: 0.4rem 1rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        opacity: 0.9;
-        background: white;
-        border-radius: 12px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-      }
-
-      .logo-marquee-item img {
-        max-height: 45px;
-        max-width: 145px;
-        object-fit: contain;
-      }
-
-      @keyframes marqueeScroll {
-        0% { transform: translateX(0); }
-        100% { transform: translateX(-50%); }
+        background: rgba(255, 255, 255, 0.08);
+        border-color: rgba(124, 58, 237, 0.5);
       }
 
       /* ─── STATS BAR ─── */
       .stats-bar {
-        background: #f0f2f8;
-        padding: 80px 5%;
-        overflow: visible;
-      }
-
-      .stats-header {
-        text-align: center;
-        margin-bottom: 2.5rem;
-      }
-
-      .stats-header h2 {
-        font-size: clamp(1.6rem, 4vw, 2.4rem);
-        font-weight: 800;
-        color: #1a1a2e;
-        margin-bottom: 0.8rem;
-        word-break: keep-all;
-      }
-
-      .stats-header h2 .highlight {
-        background: var(--grad-text);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
-
-      .stats-header p {
-        font-size: 1.05rem;
-        color: #64748b;
+        background: var(--bg-card);
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+        padding: 2.5rem 5%;
       }
 
       .stats-inner {
-        max-width: 960px;
+        max-width: 900px;
         margin: 0 auto;
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 1.25rem;
-        overflow: visible;
+        gap: 2rem;
+        text-align: center;
       }
 
       .stat-item {
-        position: relative;
-        text-align: center;
-        border-radius: 18px;
-        padding: 2.5rem 1.5rem;
-        overflow: hidden;
-        border: 1.5px solid rgba(59, 130, 246, 0.25);
-        background: #0c1225;
-        transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-        cursor: default;
-      }
-
-      .stat-item:hover {
-        transform: translateY(-10px) scale(1.06);
-        border-color: rgba(59, 130, 246, 0.9);
-        z-index: 10;
-        box-shadow:
-          0 0 15px rgba(59, 130, 246, 0.5),
-          0 0 40px rgba(59, 130, 246, 0.25),
-          0 0 80px rgba(59, 130, 246, 0.1),
-          inset 0 0 25px rgba(59, 130, 246, 0.06);
-      }
-
-      .stat-item:hover .stat-icon {
-        border-color: rgba(59, 130, 246, 0.8);
-        box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
-        background: rgba(59, 130, 246, 0.25);
-      }
-
-      .stat-item:hover .stat-num {
-        filter: brightness(1.3);
-      }
-
-      .stat-item::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        background-size: cover;
-        background-position: center;
-        opacity: 0.2;
-        z-index: 0;
-      }
-
-      .stat-item:nth-child(1)::before {
-        background-image: url('내원증가율.png');
-      }
-      .stat-item:nth-child(2)::before {
-        background-image: url('계약연장률.png');
-      }
-      .stat-item:nth-child(3)::before {
-        background-image: url('파트너병원.png');
-      }
-
-      .stat-item::after {
-        content: '';
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(180deg, rgba(12, 18, 37, 0.45) 0%, rgba(12, 18, 37, 0.8) 100%);
-        z-index: 0;
-      }
-
-      .stat-item > * {
-        position: relative;
-        z-index: 1;
-      }
-
-      .stat-icon {
-        width: 52px;
-        height: 52px;
-        border-radius: 50%;
-        background: rgba(59, 130, 246, 0.12);
-        border: 1.5px solid rgba(59, 130, 246, 0.3);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 0 auto 1.5rem;
-        font-size: 1.3rem;
-        color: #60a5fa;
-        transition: border-color 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
       }
 
       .stat-num {
-        font-size: clamp(2.8rem, 5vw, 3.8rem);
+        font-size: 3.25rem;
         font-weight: 800;
-        transition: filter 0.4s ease;
-        background: linear-gradient(135deg, #3b82f6, #38bdf8);
+        background: var(--grad-text);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         line-height: 1;
-        margin-bottom: 0.6rem;
-      }
-
-      .stat-label {
-        font-size: 1.26rem;
-        color: #ffffff;
-        font-weight: 600;
         margin-bottom: 0.4rem;
       }
 
-      .stat-sub {
-        font-size: 1.02rem;
-        color: #ffffff;
+      .stat-label {
+        font-size: 1.04rem;
+        color: var(--text-muted);
+        font-weight: 500;
+        letter-spacing: 0.03em;
       }
 
       /* ─── SECTION COMMON ─── */
@@ -835,22 +1159,16 @@
         margin: 0 auto;
       }
 
-      .grad-highlight {
-        background: var(--grad-text);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
-
       .section-tag {
         display: inline-block;
         font-size: 0.75rem;
         font-weight: 700;
-        color: #6b8aff;
+        color: #a78bfa;
         letter-spacing: 0.15em;
         text-transform: uppercase;
         margin-bottom: 1rem;
-        background: rgba(79, 110, 247, 0.12);
-        border: 1px solid rgba(79, 110, 247, 0.25);
+        background: rgba(124, 58, 237, 0.12);
+        border: 1px solid rgba(124, 58, 237, 0.25);
         padding: 0.3rem 0.8rem;
         border-radius: 4px;
       }
@@ -883,60 +1201,47 @@
 
       /* ─── PAIN POINT ─── */
       #pain-point {
-        background: url('1.jpg') center / cover no-repeat fixed;
+        background: var(--bg-secondary);
         position: relative;
-        padding-top: 60px;
-        padding-bottom: 60px;
       }
 
       #pain-point::before {
-        content: '';
+        content: "";
         position: absolute;
-        inset: 0;
-        background: rgba(255, 255, 255, 0.78);
-        z-index: 0;
-      }
-
-      #pain-point > * {
-        position: relative;
-        z-index: 1;
-      }
-
-      #pain-point .section-tag {
-        background: rgba(59, 130, 246, 0.1);
-        color: #3b82f6;
-        border-color: rgba(59, 130, 246, 0.25);
-      }
-
-      #pain-point .section-title {
-        color: #111;
-      }
-
-      #pain-point .section-desc {
-        color: #666;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(124, 58, 237, 0.5),
+          transparent
+        );
       }
 
       .pain-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 2rem;
+        gap: 1.25rem;
         margin-bottom: 3rem;
       }
 
       .pain-card {
-        background: #edf5ff;
-        border: 1px solid rgba(59, 130, 246, 0.12);
+        background: var(--grad-card);
+        border: 1px solid var(--border);
         border-radius: 16px;
         padding: 1.75rem;
         position: relative;
         overflow: hidden;
-        transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+        transition:
+          border-color 0.3s,
+          transform 0.3s;
       }
 
       .pain-card:hover {
-        border-color: rgba(59, 130, 246, 0.4);
-        transform: translateY(-4px) scale(1.05);
-        box-shadow: 0 8px 30px rgba(59, 130, 246, 0.12);
+        border-color: rgba(124, 58, 237, 0.4);
+        transform: translateY(-4px);
       }
 
       .pain-card::before {
@@ -946,7 +1251,7 @@
         left: 0;
         right: 0;
         height: 2px;
-        background: linear-gradient(90deg, #3b82f6, #38bdf8);
+        background: linear-gradient(90deg, #7c3aed, #3b82f6);
         opacity: 0;
         transition: opacity 0.3s;
       }
@@ -958,137 +1263,51 @@
       .pain-icon {
         width: 44px;
         height: 44px;
-        background: rgba(79, 110, 247, 0.12);
-        border: 1.5px solid rgba(79, 110, 247, 0.3);
+        background: rgba(124, 58, 237, 0.15);
+        border: 1px solid rgba(124, 58, 237, 0.25);
         border-radius: 10px;
         display: flex;
         align-items: center;
         justify-content: center;
         font-size: 1.25rem;
         margin-bottom: 1rem;
-        color: #60a5fa;
-        transition: border-color 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
-      }
-
-      .pain-card:hover .pain-icon {
-        border-color: rgba(79, 110, 247, 0.8);
-        box-shadow: 0 0 15px rgba(79, 110, 247, 0.5);
-        background: rgba(79, 110, 247, 0.25);
       }
 
       .pain-card h3 {
         font-size: 1rem;
         font-weight: 700;
         margin-bottom: 0.6rem;
-        color: #1a1a2e;
+        color: var(--text-primary);
       }
 
       .pain-card p {
         font-size: 0.875rem;
-        color: #555;
+        color: var(--text-secondary);
         line-height: 1.75;
         word-break: keep-all;
       }
 
       /* Highlight card */
       .pain-highlight {
-        position: relative;
-        overflow: visible;
-        background: transparent !important;
-        border: none !important;
-        border-radius: 20px;
+        background: linear-gradient(
+          135deg,
+          rgba(124, 58, 237, 0.2),
+          rgba(59, 130, 246, 0.15)
+        );
+        border-color: rgba(124, 58, 237, 0.4);
         grid-column: span 3;
-        text-align: center;
-        padding: 0 !important;
-        cursor: default;
-      }
-
-      .pain-highlight-inner {
-        position: relative;
-        z-index: 1;
-        background: linear-gradient(rgba(12, 18, 37, 0.75), rgba(12, 18, 37, 0.75)), url('2.jpg');
-        background-size: cover;
-        background-position: center;
-        border-radius: 18px;
-        padding: 2.5rem 2rem;
-        overflow: hidden;
-      }
-
-      .pain-highlight-glow {
-        position: absolute;
-        inset: -2px;
-        border-radius: 20px;
-        background: conic-gradient(
-          from 180deg at 50% 50%,
-          rgba(79, 110, 247, 0.6) 0deg,
-          rgba(56, 189, 248, 0.4) 60deg,
-          rgba(79, 110, 247, 0.05) 120deg,
-          rgba(0, 212, 255, 0.3) 200deg,
-          rgba(79, 110, 247, 0.6) 360deg
-        );
-        z-index: 0;
-        transition: opacity 0.4s ease;
-      }
-
-      .pain-highlight:hover .pain-highlight-glow {
-        opacity: 1;
-        filter: brightness(1.4);
-      }
-
-      .pain-highlight-inner::before {
-        content: '';
-        position: absolute;
-        top: -50%;
-        left: -50%;
-        width: 200%;
-        height: 200%;
-        background: radial-gradient(
-          ellipse at 30% 20%,
-          rgba(79, 110, 247, 0.15) 0%,
-          transparent 50%
-        );
-        pointer-events: none;
-      }
-
-      .pain-highlight:hover {
-        transform: translateY(-6px);
       }
 
       .pain-highlight h3 {
         font-size: 1.3rem;
-        background: linear-gradient(135deg, #4f6ef7, #38bdf8);
+        background: var(--grad-text);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        position: relative;
-        z-index: 2;
-      }
-
-      .pain-highlight p,
-      .pain-highlight strong {
-        color: rgba(255, 255, 255, 0.85) !important;
-        -webkit-text-fill-color: rgba(255, 255, 255, 0.85) !important;
-        position: relative;
-        z-index: 2;
       }
 
       /* ─── PHILOSOPHY ─── */
       #philosophy {
-        background: #edf2ff;
         position: relative;
-      }
-
-      #philosophy .section-tag {
-        background: rgba(79, 110, 247, 0.1);
-        color: #4f6ef7;
-        border-color: rgba(79, 110, 247, 0.25);
-      }
-
-      #philosophy .section-title {
-        color: #111;
-      }
-
-      #philosophy .section-desc {
-        color: #666;
       }
 
       .phil-grid {
@@ -1098,8 +1317,8 @@
       }
 
       .phil-card {
-        background: #ffffff;
-        border: 1px solid rgba(79, 110, 247, 0.12);
+        background: var(--grad-card);
+        border: 1px solid var(--border);
         border-radius: 16px;
         padding: 2rem;
         display: flex;
@@ -1107,21 +1326,19 @@
         align-items: flex-start;
         transition:
           border-color 0.3s,
-          transform 0.3s,
-          box-shadow 0.3s;
+          transform 0.3s;
       }
 
       .phil-card:hover {
-        border-color: rgba(79, 110, 247, 0.35);
-        transform: translateY(-3px) scale(1.05);
-        box-shadow: 0 8px 30px rgba(79, 110, 247, 0.1);
+        border-color: rgba(59, 130, 246, 0.4);
+        transform: translateY(-3px);
       }
 
       .phil-num {
         font-family: "Bebas Neue", sans-serif;
         font-size: 3rem;
         line-height: 1;
-        color: rgba(79, 110, 247, 0.3);
+        color: rgba(124, 58, 237, 0.25);
         flex-shrink: 0;
         width: 52px;
       }
@@ -1130,12 +1347,12 @@
         font-size: 1rem;
         font-weight: 700;
         margin-bottom: 0.5rem;
-        color: #1a1a2e;
+        color: #e2e8f0;
       }
 
       .phil-body p {
         font-size: 0.875rem;
-        color: #555;
+        color: var(--text-secondary);
         line-height: 1.75;
         word-break: keep-all;
       }
@@ -1167,109 +1384,6 @@
         gap: 1.5rem;
       }
 
-      /* ─── HSTEP FLOW (Process) ─── */
-      .hstep-flow {
-        position: relative;
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        gap: 0;
-        margin: 3.5rem 0 3rem;
-        padding: 0 2rem;
-      }
-      .hstep-connector {
-        position: absolute;
-        top: 38px;
-        left: calc(2rem + 38px);
-        right: calc(2rem + 38px);
-        height: 2px;
-        background: linear-gradient(90deg, #4f6ef7, #3b82f6, #38bdf8);
-        opacity: 0.4;
-        z-index: 0;
-      }
-      .hstep-item {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        flex: 1;
-        position: relative;
-        z-index: 1;
-      }
-      .hstep-icon {
-        width: 76px;
-        height: 76px;
-        border-radius: 50%;
-        background: rgba(59, 130, 246, 0.12);
-        border: 2px solid rgba(59, 130, 246, 0.35);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #60a5fa;
-        margin-bottom: 1rem;
-        transition: all 0.3s;
-        box-shadow: 0 0 20px rgba(59, 130, 246, 0.1);
-      }
-      .hstep-item:hover .hstep-icon {
-        background: rgba(59, 130, 246, 0.22);
-        border-color: rgba(59, 130, 246, 0.65);
-        box-shadow: 0 0 30px rgba(59, 130, 246, 0.3);
-        transform: translateY(-4px);
-      }
-      .hstep-badge {
-        font-size: 0.7rem;
-        font-weight: 700;
-        letter-spacing: 0.1em;
-        color: #60a5fa;
-        margin-bottom: 0.4rem;
-      }
-      .hstep-title {
-        font-size: 0.95rem;
-        font-weight: 700;
-        color: var(--text-primary);
-        margin-bottom: 0.4rem;
-      }
-      .hstep-desc {
-        font-size: 0.8rem;
-        color: var(--text-muted);
-        line-height: 1.6;
-        word-break: keep-all;
-      }
-      /* 하단 카드 */
-      .hstep-cards {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1.25rem;
-        margin-top: 1rem;
-      }
-      .hstep-card {
-        background: var(--grad-card);
-        border: 1px solid var(--border);
-        border-radius: 16px;
-        padding: 1.75rem;
-        transition: border-color 0.3s, transform 0.3s;
-      }
-      .hstep-card:hover {
-        border-color: rgba(59, 130, 246, 0.4);
-        transform: translateY(-3px) scale(1.05);
-      }
-      .hstep-card-icon {
-        font-size: 1.75rem;
-        margin-bottom: 0.75rem;
-      }
-      .hstep-card h4 {
-        font-size: 1rem;
-        font-weight: 700;
-        color: var(--text-primary);
-        margin-bottom: 0.5rem;
-      }
-      .hstep-card p {
-        font-size: 0.85rem;
-        color: var(--text-secondary);
-        line-height: 1.7;
-        word-break: keep-all;
-      }
-
       .service-card {
         background: var(--grad-card);
         border: 1px solid var(--border);
@@ -1283,8 +1397,8 @@
       }
 
       .service-card:hover {
-        transform: translateY(-6px) scale(1.05);
-        box-shadow: 0 20px 60px rgba(79, 110, 247, 0.15);
+        transform: translateY(-6px);
+        box-shadow: 0 20px 60px rgba(124, 58, 237, 0.15);
       }
 
       .service-card::after {
@@ -1329,8 +1443,8 @@
       }
 
       .service-card:nth-child(1) .service-icon {
-        background: rgba(79, 110, 247, 0.15);
-        border: 1px solid rgba(79, 110, 247, 0.3);
+        background: rgba(124, 58, 237, 0.15);
+        border: 1px solid rgba(124, 58, 237, 0.3);
       }
       .service-card:nth-child(2) .service-icon {
         background: rgba(59, 130, 246, 0.15);
@@ -1398,7 +1512,7 @@
         width: 2px;
         background: linear-gradient(
           to bottom,
-          #4f6ef7,
+          #7c3aed,
           #3b82f6,
           #06b6d4,
           transparent
@@ -1435,7 +1549,7 @@
         font-size: 1.3rem;
         color: white;
         flex-shrink: 0;
-        box-shadow: 0 0 20px rgba(79, 110, 247, 0.3);
+        box-shadow: 0 0 20px rgba(124, 58, 237, 0.3);
         position: relative;
         z-index: 1;
       }
@@ -1535,7 +1649,7 @@
       }
 
       .testimonial:hover {
-        border-color: rgba(79, 110, 247, 0.4);
+        border-color: rgba(124, 58, 237, 0.4);
       }
 
       .testimonial::before {
@@ -1614,7 +1728,7 @@
       }
 
       .faq-item:hover {
-        border-color: rgba(79, 110, 247, 0.35);
+        border-color: rgba(124, 58, 237, 0.35);
       }
 
       .faq-q {
@@ -1642,8 +1756,8 @@
         width: 24px;
         height: 24px;
         border-radius: 50%;
-        background: rgba(79, 110, 247, 0.15);
-        border: 1px solid rgba(79, 110, 247, 0.25);
+        background: rgba(124, 58, 237, 0.15);
+        border: 1px solid rgba(124, 58, 237, 0.25);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -1652,12 +1766,12 @@
           transform 0.3s,
           background 0.3s;
         font-size: 0.75rem;
-        color: #6b8aff;
+        color: #a78bfa;
       }
 
       .faq-item.open .faq-q .arrow {
         transform: rotate(180deg);
-        background: rgba(79, 110, 247, 0.25);
+        background: rgba(124, 58, 237, 0.25);
       }
 
       .faq-a {
@@ -1691,7 +1805,7 @@
         inset: 0;
         background: radial-gradient(
           ellipse 70% 70% at 50% 50%,
-          rgba(79, 110, 247, 0.15),
+          rgba(124, 58, 237, 0.15),
           transparent 70%
         );
       }
@@ -1699,7 +1813,7 @@
       .cta-box {
         position: relative;
         background: var(--grad-card);
-        border: 1px solid rgba(79, 110, 247, 0.3);
+        border: 1px solid rgba(124, 58, 237, 0.3);
         border-radius: 24px;
         padding: 5rem 4rem;
         text-align: center;
@@ -1749,7 +1863,7 @@
         background: linear-gradient(
           90deg,
           transparent,
-          rgba(79, 110, 247, 0.4),
+          rgba(124, 58, 237, 0.4),
           transparent
         );
       }
@@ -1799,8 +1913,8 @@
       .form-group input:focus,
       .form-group textarea:focus,
       .form-group select:focus {
-        border-color: rgba(79, 110, 247, 0.5);
-        box-shadow: 0 0 0 3px rgba(79, 110, 247, 0.1);
+        border-color: rgba(124, 58, 237, 0.5);
+        box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
       }
 
       .form-group textarea {
@@ -1827,7 +1941,7 @@
         font-family: "Noto Sans KR", sans-serif;
         cursor: pointer;
         margin-top: 0.5rem;
-        box-shadow: 0 4px 30px rgba(79, 110, 247, 0.3);
+        box-shadow: 0 4px 30px rgba(124, 58, 237, 0.3);
         transition:
           transform 0.2s,
           box-shadow 0.2s;
@@ -1839,7 +1953,7 @@
 
       .form-submit:hover {
         transform: translateY(-2px);
-        box-shadow: 0 8px 40px rgba(79, 110, 247, 0.45);
+        box-shadow: 0 8px 40px rgba(124, 58, 237, 0.45);
       }
 
       .form-note {
@@ -1896,7 +2010,7 @@
       }
 
       .footer-links a:hover {
-        color: #6b8aff;
+        color: #a78bfa;
       }
 
       .footer-copy {
@@ -1919,7 +2033,7 @@
         background: linear-gradient(
           90deg,
           transparent,
-          rgba(79, 110, 247, 0.2),
+          rgba(124, 58, 237, 0.2),
           rgba(59, 130, 246, 0.2),
           transparent
         );
@@ -1957,9 +2071,9 @@
         cursor: pointer;
       }
       .skin-card:hover {
-        transform: translateY(-6px) scale(1.05);
-        box-shadow: 0 20px 50px rgba(79, 110, 247, 0.15);
-        border-color: rgba(79, 110, 247, 0.35);
+        transform: translateY(-6px);
+        box-shadow: 0 20px 50px rgba(124, 58, 237, 0.15);
+        border-color: rgba(124, 58, 237, 0.35);
       }
       .skin-thumb {
         width: 100%;
@@ -2002,21 +2116,6 @@
           grid-column: span 1;
         }
         .phil-grid {
-          grid-template-columns: 1fr;
-        }
-        .hstep-flow {
-          flex-wrap: wrap;
-          gap: 2rem;
-          padding: 0;
-        }
-        .hstep-connector {
-          display: none;
-        }
-        .hstep-item {
-          flex: 1 1 calc(50% - 1rem);
-          min-width: 120px;
-        }
-        .hstep-cards {
           grid-template-columns: 1fr;
         }
         .services-grid {
@@ -2070,7 +2169,7 @@
         width: 2px;
         background: linear-gradient(
           to bottom,
-          #4f6ef7,
+          #7c3aed,
           #3b82f6,
           #06b6d4,
           transparent
@@ -2091,7 +2190,7 @@
         width: 56px;
         height: 56px;
         border-radius: 50%;
-        background: linear-gradient(135deg, #4f6ef7, #3b82f6);
+        background: linear-gradient(135deg, #7c3aed, #3b82f6);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -2102,8 +2201,8 @@
         position: relative;
         z-index: 1;
         box-shadow:
-          0 0 0 4px rgba(79, 110, 247, 0.15),
-          0 0 30px rgba(79, 110, 247, 0.4);
+          0 0 0 4px rgba(124, 58, 237, 0.15),
+          0 0 30px rgba(124, 58, 237, 0.4);
         transform-style: preserve-3d;
         transition:
           transform 0.3s,
@@ -2112,8 +2211,8 @@
       .process-item:hover .proc-step {
         transform: scale(1.1) rotateY(15deg);
         box-shadow:
-          0 0 0 6px rgba(79, 110, 247, 0.2),
-          0 8px 40px rgba(79, 110, 247, 0.5);
+          0 0 0 6px rgba(124, 58, 237, 0.2),
+          0 8px 40px rgba(124, 58, 237, 0.5);
       }
       .proc-glow {
         position: absolute;
@@ -2121,10 +2220,10 @@
         border-radius: 50%;
         background: conic-gradient(
           from 0deg,
-          #4f6ef7,
+          #7c3aed,
           #3b82f6,
           #06b6d4,
-          #4f6ef7
+          #7c3aed
         );
         z-index: -1;
         animation: spin 4s linear infinite;
@@ -2163,8 +2262,8 @@
         flex-shrink: 0;
       }
       .tcard:hover {
-        border-color: rgba(79, 110, 247, 0.4);
-        transform: translateY(-4px) scale(1.05);
+        border-color: rgba(124, 58, 237, 0.4);
+        transform: translateY(-4px);
       }
       .tcard-quote {
         position: absolute;
@@ -2235,9 +2334,9 @@
         z-index: 10;
       }
       .slider-btn:hover {
-        background: rgba(79, 110, 247, 0.15);
-        border-color: rgba(79, 110, 247, 0.4);
-        box-shadow: 0 4px 20px rgba(79, 110, 247, 0.2);
+        background: rgba(124, 58, 237, 0.15);
+        border-color: rgba(124, 58, 237, 0.4);
+        box-shadow: 0 4px 20px rgba(124, 58, 237, 0.2);
       }
       .dot {
         width: 8px;
@@ -2253,79 +2352,7 @@
       .dot.active {
         background: var(--grad-btn);
         transform: scale(1.3);
-        background: #6b8aff;
-      }
-
-      /* ─── TESTIMONIALS GRID ─── */
-      .testimonials__grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 24px;
-        margin-top: 60px;
-      }
-      .testimonial__card {
-        padding: 36px;
-        background: rgba(20, 20, 30, 0.6);
-        border: 1px solid rgba(255, 255, 255, 0.06);
-        border-radius: 20px;
-        transition: all 0.3s ease;
-        display: flex;
-        flex-direction: column;
-      }
-      .testimonial__card:hover {
-        border-color: rgba(99, 102, 241, 0.3);
-        transform: translateY(-4px);
-      }
-      .testimonial__stars {
-        color: #f59e0b;
-        font-size: 16px;
-        margin-bottom: 20px;
-        letter-spacing: 2px;
-      }
-      .testimonial__text {
-        font-size: 15px;
-        color: #9294a0;
-        line-height: 1.8;
-        margin-bottom: 28px;
-        word-break: keep-all;
-        flex: 1;
-      }
-      .testimonial__author {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-      }
-      .testimonial__avatar {
-        width: 52px;
-        height: 52px;
-        border-radius: 50%;
-        background: linear-gradient(135deg, #4f6ef7, #00d4ff);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: 700;
-        font-size: 18px;
-        color: white;
-        flex-shrink: 0;
-      }
-      .testimonial__name {
-        font-size: 16px;
-        font-weight: 700;
-        color: var(--text-primary);
-        line-height: 1.4;
-      }
-      .testimonial__role {
-        font-size: 13px;
-        color: #6b7280;
-        margin-top: 2px;
-      }
-      @media (max-width: 1024px) {
-        .testimonials__grid {
-          grid-template-columns: 1fr;
-          max-width: 520px;
-          margin-left: auto;
-          margin-right: auto;
-        }
+        background: #a78bfa;
       }
 
       /* ─── PRICING ─── */
@@ -2343,14 +2370,14 @@
       }
       .price-card:hover {
         transform: translateY(-6px);
-        border-color: rgba(79, 110, 247, 0.35);
-        box-shadow: 0 20px 50px rgba(79, 110, 247, 0.1);
+        border-color: rgba(124, 58, 237, 0.35);
+        box-shadow: 0 20px 50px rgba(124, 58, 237, 0.1);
       }
       .price-card-featured {
         background: linear-gradient(145deg, #1e1545 0%, #0f1225 100%);
-        border: 2px solid rgba(79, 110, 247, 0.6);
+        border: 2px solid rgba(124, 58, 237, 0.6);
         transform: scale(1.02);
-        box-shadow: 0 20px 60px rgba(79, 110, 247, 0.2);
+        box-shadow: 0 20px 60px rgba(124, 58, 237, 0.2);
       }
       .price-card-featured:hover {
         transform: scale(1.02) translateY(-6px);
@@ -2383,14 +2410,14 @@
         font-weight: 700;
         font-size: 0.9rem;
         text-decoration: none;
-        box-shadow: 0 4px 20px rgba(79, 110, 247, 0.4);
+        box-shadow: 0 4px 20px rgba(124, 58, 237, 0.4);
         transition:
           transform 0.2s,
           box-shadow 0.2s;
       }
       .price-btn-primary:hover {
         transform: translateY(-2px);
-        box-shadow: 0 8px 30px rgba(79, 110, 247, 0.5);
+        box-shadow: 0 8px 30px rgba(124, 58, 237, 0.5);
       }
       .price-btn-outline {
         display: block;
@@ -2418,9 +2445,9 @@
         cursor: pointer;
       }
       .skin-card:hover {
-        transform: translateY(-6px) scale(1.05);
-        box-shadow: 0 20px 50px rgba(79, 110, 247, 0.15);
-        border-color: rgba(79, 110, 247, 0.35);
+        transform: translateY(-6px);
+        box-shadow: 0 20px 50px rgba(124, 58, 237, 0.15);
+        border-color: rgba(124, 58, 237, 0.35);
       }
       .skin-thumb {
         width: 100%;
@@ -2492,7 +2519,7 @@
         width: 2px;
         background: linear-gradient(
           to bottom,
-          #4f6ef7,
+          #7c3aed,
           #3b82f6,
           #06b6d4,
           transparent
@@ -2513,7 +2540,7 @@
         perspective: 800px;
       }
       .process-item:hover {
-        background: rgba(79, 110, 247, 0.05);
+        background: rgba(124, 58, 237, 0.05);
         transform: translateX(6px);
       }
       .proc-step-wrap {
@@ -2525,7 +2552,7 @@
         width: 56px;
         height: 56px;
         border-radius: 50%;
-        background: linear-gradient(135deg, #4f6ef7, #3b82f6);
+        background: linear-gradient(135deg, #7c3aed, #3b82f6);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -2535,8 +2562,8 @@
         position: relative;
         z-index: 1;
         box-shadow:
-          0 0 0 3px rgba(79, 110, 247, 0.18),
-          0 4px 24px rgba(79, 110, 247, 0.35);
+          0 0 0 3px rgba(124, 58, 237, 0.18),
+          0 4px 24px rgba(124, 58, 237, 0.35);
         transition:
           transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
           box-shadow 0.4s;
@@ -2549,10 +2576,10 @@
         border-radius: 50%;
         background: conic-gradient(
           from 0deg,
-          #4f6ef7,
+          #7c3aed,
           #3b82f6,
           #06b6d4,
-          #4f6ef7
+          #7c3aed
         );
         z-index: -1;
         animation: conic-spin 3s linear infinite;
@@ -2563,7 +2590,7 @@
         position: absolute;
         inset: 2px;
         border-radius: 50%;
-        background: linear-gradient(135deg, #4f6ef7, #3b82f6);
+        background: linear-gradient(135deg, #7c3aed, #3b82f6);
         z-index: 0;
       }
       .proc-step span {
@@ -2578,9 +2605,9 @@
       .process-item:hover .proc-step {
         transform: scale(1.22) rotateY(22deg) rotateX(-10deg);
         box-shadow:
-          0 0 0 5px rgba(79, 110, 247, 0.25),
-          0 16px 50px rgba(79, 110, 247, 0.6),
-          10px 10px 0 rgba(79, 110, 247, 0.12);
+          0 0 0 5px rgba(124, 58, 237, 0.25),
+          0 16px 50px rgba(124, 58, 237, 0.6),
+          10px 10px 0 rgba(124, 58, 237, 0.12);
       }
       .proc-body h3 {
         font-size: 1.05rem;
@@ -2590,7 +2617,7 @@
         transition: color 0.3s;
       }
       .process-item:hover .proc-body h3 {
-        color: #6b8aff;
+        color: #a78bfa;
       }
       .proc-body p {
         font-size: 0.875rem;
@@ -2623,9 +2650,9 @@
         background: var(--grad-main);
       }
       .pstat-card:hover {
-        transform: translateY(-5px) scale(1.05);
-        box-shadow: 0 16px 45px rgba(79, 110, 247, 0.15);
-        border-color: rgba(79, 110, 247, 0.35);
+        transform: translateY(-5px);
+        box-shadow: 0 16px 45px rgba(124, 58, 237, 0.15);
+        border-color: rgba(124, 58, 237, 0.35);
       }
       .pstat-num {
         font-size: 3.2rem;
@@ -2647,7 +2674,7 @@
       /* ═══ TESTIMONIAL SLIDER ═══ */
       .tcard {
         background: rgba(15, 20, 40, 0.85);
-        border: 1px solid rgba(79, 110, 247, 0.2);
+        border: 1px solid rgba(124, 58, 237, 0.2);
         border-radius: 24px;
         padding: 2.5rem 2.25rem 2rem;
         min-width: 380px;
@@ -2682,8 +2709,8 @@
       .tcard.active-slide {
         border-color: transparent;
         box-shadow:
-          0 8px 40px rgba(79, 110, 247, 0.18),
-          0 0 60px rgba(79, 110, 247, 0.06);
+          0 8px 40px rgba(124, 58, 237, 0.18),
+          0 0 60px rgba(124, 58, 237, 0.06);
         transform: translateY(-4px);
       }
       .tcard.active-slide::before {
@@ -2695,7 +2722,7 @@
         right: 1.8rem;
         font-size: 4.5rem;
         line-height: 1;
-        color: rgba(79, 110, 247, 0.15);
+        color: rgba(124, 58, 237, 0.15);
         font-family: Georgia, serif;
         pointer-events: none;
         font-weight: 700;
@@ -2725,7 +2752,7 @@
         font-weight: 700;
         color: white;
         flex-shrink: 0;
-        box-shadow: 0 4px 18px rgba(79, 110, 247, 0.3);
+        box-shadow: 0 4px 18px rgba(124, 58, 237, 0.3);
       }
       .tcard-author strong {
         display: block;
@@ -2746,9 +2773,9 @@
         width: 50px;
         height: 50px;
         border-radius: 50%;
-        background: rgba(79, 110, 247, 0.1);
-        border: 1px solid rgba(79, 110, 247, 0.35);
-        color: #6b8aff;
+        background: rgba(124, 58, 237, 0.1);
+        border: 1px solid rgba(124, 58, 237, 0.35);
+        color: #a78bfa;
         font-size: 1.5rem;
         cursor: pointer;
         z-index: 10;
@@ -2762,9 +2789,9 @@
           box-shadow 0.2s;
       }
       .slider-btn:hover {
-        background: rgba(79, 110, 247, 0.28);
+        background: rgba(124, 58, 237, 0.28);
         transform: translateY(-50%) scale(1.1);
-        box-shadow: 0 4px 24px rgba(79, 110, 247, 0.35);
+        box-shadow: 0 4px 24px rgba(124, 58, 237, 0.35);
       }
       .dot {
         width: 8px;
@@ -2777,7 +2804,7 @@
         padding: 0;
       }
       .dot.active {
-        background: #6b8aff;
+        background: #a78bfa;
         width: 24px;
       }
 
@@ -2796,15 +2823,15 @@
       }
       .price-card:hover {
         transform: translateY(-8px);
-        border-color: rgba(79, 110, 247, 0.35);
-        box-shadow: 0 24px 60px rgba(79, 110, 247, 0.12);
+        border-color: rgba(124, 58, 237, 0.35);
+        box-shadow: 0 24px 60px rgba(124, 58, 237, 0.12);
       }
       .price-card-pro {
         background: linear-gradient(145deg, #1a1545, #0f1225);
-        border: 1px solid rgba(79, 110, 247, 0.4);
+        border: 1px solid rgba(124, 58, 237, 0.4);
       }
       .price-card-pro:hover {
-        box-shadow: 0 24px 60px rgba(79, 110, 247, 0.22);
+        box-shadow: 0 24px 60px rgba(124, 58, 237, 0.22);
       }
       /* Max — THE HERO */
       .price-card-max {
@@ -2858,14 +2885,14 @@
         font-weight: 700;
         font-size: 0.95rem;
         text-decoration: none;
-        box-shadow: 0 4px 20px rgba(79, 110, 247, 0.4);
+        box-shadow: 0 4px 20px rgba(124, 58, 237, 0.4);
         transition:
           transform 0.2s,
           box-shadow 0.2s;
       }
       .price-btn-primary:hover {
         transform: translateY(-2px);
-        box-shadow: 0 8px 30px rgba(79, 110, 247, 0.5);
+        box-shadow: 0 8px 30px rgba(124, 58, 237, 0.5);
       }
       .price-btn-cyan {
         display: block;
@@ -2912,9 +2939,9 @@
         cursor: pointer;
       }
       .skin-card:hover {
-        transform: translateY(-6px) scale(1.05);
-        box-shadow: 0 20px 50px rgba(79, 110, 247, 0.15);
-        border-color: rgba(79, 110, 247, 0.35);
+        transform: translateY(-6px);
+        box-shadow: 0 20px 50px rgba(124, 58, 237, 0.15);
+        border-color: rgba(124, 58, 237, 0.35);
       }
       .skin-thumb {
         width: 100%;
@@ -3064,7 +3091,7 @@
         transition: color 0.2s;
       }
       .mobile-menu a:hover {
-        color: #6b8aff;
+        color: #a78bfa;
       }
       .mobile-menu .nav-cta {
         display: block;
@@ -3109,7 +3136,7 @@
         transition:
           opacity 0.3s,
           transform 0.3s;
-        box-shadow: 0 4px 20px rgba(79, 110, 247, 0.4);
+        box-shadow: 0 4px 20px rgba(124, 58, 237, 0.4);
       }
       .scroll-top.visible {
         opacity: 1;
@@ -3118,43 +3145,17 @@
       }
       .scroll-top:hover {
         transform: translateY(-3px);
-        box-shadow: 0 8px 30px rgba(79, 110, 247, 0.5);
+        box-shadow: 0 8px 30px rgba(124, 58, 237, 0.5);
       }
 
       /* ─── FOCUS VISIBLE (접근성) ─── */
       :focus-visible {
-        outline: 2px solid #6b8aff;
+        outline: 2px solid #a78bfa;
         outline-offset: 2px;
       }
       button:focus:not(:focus-visible),
       a:focus:not(:focus-visible) {
         outline: none;
-      }
-
-      /* ─── CARD HOVER SCALE ─── */
-      .stat-item,
-      .pain-card,
-      .pain-highlight,
-      .phil-card,
-      .service-card,
-      .hstep-card,
-      .tcard,
-      .price-card,
-      .skin-card,
-      .pstat-card {
-        transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
-      }
-      .stat-item:hover,
-      .pain-card:hover,
-      .pain-highlight:hover,
-      .phil-card:hover,
-      .service-card:hover,
-      .hstep-card:hover,
-      .tcard:hover,
-      .price-card:hover,
-      .skin-card:hover,
-      .pstat-card:hover {
-        transform: scale(1.02);
       }
 
       /* ─── REDUCED MOTION (접근성) ─── */
@@ -3304,22 +3305,14 @@
 
         /* Stats bar */
         .stats-bar {
-          padding: 50px 5%;
+          padding: 2rem 5%;
         }
         .stats-inner {
-          grid-template-columns: 1fr;
-          gap: 1rem;
-        }
-        .stat-item {
-          padding: 2rem 1.5rem;
+          grid-template-columns: 1fr !important;
+          gap: 1.25rem;
         }
         .stat-num {
-          font-size: 2.5rem;
-        }
-        .stat-icon {
-          width: 44px;
-          height: 44px;
-          margin-bottom: 0.8rem;
+          font-size: 2rem;
         }
 
         /* All grids → single column */
@@ -3516,17 +3509,27 @@
     <!-- NAV -->
     <nav role="navigation" aria-label="메인 네비게이션">
       <a href="#hero" class="nav-logo" aria-label="HighPlus 홈으로"
-        ><img src="img/logo.png" alt="HighPlus 로고" class="nav-logo-img" /></a
+        >HighPlus<span class="logo-dot">.</span></a
       >
       <ul class="nav-links" role="menubar">
         <li role="none">
           <a href="#pain-point" role="menuitem">우리의 차별점</a>
         </li>
         <li role="none"><a href="#services" role="menuitem">핵심 서비스</a></li>
+        <li role="none"><a href="#portfolio" role="menuitem">성공 사례</a></li>
         <li role="none">
           <a href="#contact" class="nav-cta" role="menuitem">무료 상담 받기</a>
         </li>
       </ul>
+      <button
+        class="theme-toggle"
+        onclick="toggleTheme()"
+        title="다크/라이트 모드 전환"
+        id="themeBtn"
+        aria-label="다크/라이트 모드 전환"
+      >
+        🌙
+      </button>
       <button
         class="hamburger"
         id="hamburgerBtn"
@@ -3547,6 +3550,7 @@
     >
       <a href="#pain-point" onclick="closeMobileMenu()">우리의 차별점</a>
       <a href="#services" onclick="closeMobileMenu()">핵심 서비스</a>
+      <a href="#portfolio" onclick="closeMobileMenu()">성공 사례</a>
       <a href="#faq" onclick="closeMobileMenu()">자주 묻는 질문</a>
       <a href="#pricing" onclick="closeMobileMenu()">요금제</a>
       <a href="#contact" class="nav-cta" onclick="closeMobileMenu()"
@@ -3557,7 +3561,12 @@
     <!-- HERO -->
     <main id="main-content">
       <section id="hero">
-        <spline-viewer url="https://prod.spline.design/96SsKhFWNGBBU-FM/scene.splinecode" style="position:absolute;inset:0;width:100%;height:100%;z-index:0;" events-target="none"></spline-viewer>
+        <div class="hero-bg" aria-hidden="true"></div>
+        <div class="hero-wave" aria-hidden="true"></div>
+        <div class="hero-grid" aria-hidden="true"></div>
+        <div class="orb orb1" aria-hidden="true"></div>
+        <div class="orb orb2" aria-hidden="true"></div>
+        <div class="orb orb3" aria-hidden="true"></div>
 
         <div class="hero-content">
           <h1 class="hero-title">
@@ -3576,94 +3585,18 @@
 
       <!-- STATS -->
       <div class="stats-bar">
-        <div class="stats-header reveal">
-          <h2>파트너 병원과 함께 만들어가는 <span class="highlight">성장의 기록</span></h2>
-          <p>데이터로 증명하는 실질적인 마케팅 성과</p>
-        </div>
         <div class="stats-inner">
           <div class="stat-item reveal">
-            <div class="stat-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
-            </div>
             <div class="stat-num">300%</div>
-            <div class="stat-label">내원 증가율</div>
-            <div class="stat-sub">"블로그 보고 왔습니다"</div>
+            <div class="stat-label">"블로그 보고 왔습니다" 내원 증가율</div>
           </div>
           <div class="stat-item reveal" style="transition-delay: 0.1s">
-            <div class="stat-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/></svg>
-            </div>
             <div class="stat-num">95%</div>
             <div class="stat-label">계약 연장률</div>
-            <div class="stat-sub">꾸준한 성과가 증명합니다</div>
           </div>
           <div class="stat-item reveal" style="transition-delay: 0.2s">
-            <div class="stat-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
-            </div>
             <div class="stat-num">40+</div>
-            <div class="stat-label">파트너 병원</div>
-            <div class="stat-sub">전담 관리 중</div>
-          </div>
-        </div>
-        <!-- LOGO MARQUEE (Stats 섹션 안) -->
-        <div class="logo-marquee-section">
-          <div class="logo-marquee-label">Trusted by 40+ Partner Hospitals</div>
-          <div class="logo-marquee-row">
-            <div class="logo-marquee-track">
-              <div class="logo-marquee-item"><img src="클라이언트 (병원)로고/경희스카이한의원.jpg" alt="경희스카이한의원"></div>
-              <div class="logo-marquee-item"><img src="클라이언트 (병원)로고/고은경희한의원.jpg" alt="고은경희한의원"></div>
-              <div class="logo-marquee-item"><img src="클라이언트 (병원)로고/까치한의원.jpg" alt="까치한의원"></div>
-              <div class="logo-marquee-item"><img src="클라이언트 (병원)로고/난곡허준한의원.jpg" alt="난곡허준한의원"></div>
-              <div class="logo-marquee-item"><img src="클라이언트 (병원)로고/더나은365한의원.jpg" alt="더나은365한의원"></div>
-              <div class="logo-marquee-item"><img src="클라이언트 (병원)로고/동보한의원.jpg" alt="동보한의원"></div>
-              <div class="logo-marquee-item"><img src="클라이언트 (병원)로고/맑은숲한의원.jpg" alt="맑은숲한의원"></div>
-              <div class="logo-marquee-item"><img src="클라이언트 (병원)로고/망포세우린한의원.jpg" alt="망포세우린한의원"></div>
-              <div class="logo-marquee-item"><img src="클라이언트 (병원)로고/미담365한의원.jpg" alt="미담365한의원"></div>
-              <div class="logo-marquee-item"><img src="클라이언트 (병원)로고/미르한방병원.jpg" alt="미르한방병원"></div>
-              <div class="logo-marquee-item"><img src="클라이언트 (병원)로고/부천바른길한방병원.jpg" alt="부천바른길한방병원"></div>
-              <div class="logo-marquee-item"><img src="클라이언트 (병원)로고/세연한의원.jpg" alt="세연한의원"></div>
-              <!-- 복제 -->
-              <div class="logo-marquee-item"><img src="클라이언트 (병원)로고/경희스카이한의원.jpg" alt="경희스카이한의원"></div>
-              <div class="logo-marquee-item"><img src="클라이언트 (병원)로고/고은경희한의원.jpg" alt="고은경희한의원"></div>
-              <div class="logo-marquee-item"><img src="클라이언트 (병원)로고/까치한의원.jpg" alt="까치한의원"></div>
-              <div class="logo-marquee-item"><img src="클라이언트 (병원)로고/난곡허준한의원.jpg" alt="난곡허준한의원"></div>
-              <div class="logo-marquee-item"><img src="클라이언트 (병원)로고/더나은365한의원.jpg" alt="더나은365한의원"></div>
-              <div class="logo-marquee-item"><img src="클라이언트 (병원)로고/동보한의원.jpg" alt="동보한의원"></div>
-              <div class="logo-marquee-item"><img src="클라이언트 (병원)로고/맑은숲한의원.jpg" alt="맑은숲한의원"></div>
-              <div class="logo-marquee-item"><img src="클라이언트 (병원)로고/망포세우린한의원.jpg" alt="망포세우린한의원"></div>
-              <div class="logo-marquee-item"><img src="클라이언트 (병원)로고/미담365한의원.jpg" alt="미담365한의원"></div>
-              <div class="logo-marquee-item"><img src="클라이언트 (병원)로고/미르한방병원.jpg" alt="미르한방병원"></div>
-              <div class="logo-marquee-item"><img src="클라이언트 (병원)로고/부천바른길한방병원.jpg" alt="부천바른길한방병원"></div>
-              <div class="logo-marquee-item"><img src="클라이언트 (병원)로고/세연한의원.jpg" alt="세연한의원"></div>
-            </div>
-          </div>
-          <div class="logo-marquee-row reverse">
-            <div class="logo-marquee-track">
-              <div class="logo-marquee-item"><img src="클라이언트 (병원)로고/송도한방병원.jpg" alt="송도한방병원"></div>
-              <div class="logo-marquee-item"><img src="클라이언트 (병원)로고/양재365한의원.jpg" alt="양재365한의원"></div>
-              <div class="logo-marquee-item"><img src="클라이언트 (병원)로고/온가족미소한의원.jpg" alt="온가족미소한의원"></div>
-              <div class="logo-marquee-item"><img src="클라이언트 (병원)로고/유우석한의원.jpg" alt="유우석한의원"></div>
-              <div class="logo-marquee-item"><img src="클라이언트 (병원)로고/인주한방병원.jpg" alt="인주한방병원"></div>
-              <div class="logo-marquee-item"><img src="클라이언트 (병원)로고/재호한의원.jpg" alt="재호한의원"></div>
-              <div class="logo-marquee-item"><img src="클라이언트 (병원)로고/중곡경희한의원.jpg" alt="중곡경희한의원"></div>
-              <div class="logo-marquee-item"><img src="클라이언트 (병원)로고/청담한의원.jpg" alt="청담한의원"></div>
-              <div class="logo-marquee-item"><img src="클라이언트 (병원)로고/최고한의원.jpg" alt="최고한의원"></div>
-              <div class="logo-marquee-item"><img src="클라이언트 (병원)로고/튼튼몸한의원.jpg" alt="튼튼몸한의원"></div>
-              <div class="logo-marquee-item"><img src="클라이언트 (병원)로고/편작한의원.jpg" alt="편작한의원"></div>
-              <!-- 복제 -->
-              <div class="logo-marquee-item"><img src="클라이언트 (병원)로고/송도한방병원.jpg" alt="송도한방병원"></div>
-              <div class="logo-marquee-item"><img src="클라이언트 (병원)로고/양재365한의원.jpg" alt="양재365한의원"></div>
-              <div class="logo-marquee-item"><img src="클라이언트 (병원)로고/온가족미소한의원.jpg" alt="온가족미소한의원"></div>
-              <div class="logo-marquee-item"><img src="클라이언트 (병원)로고/유우석한의원.jpg" alt="유우석한의원"></div>
-              <div class="logo-marquee-item"><img src="클라이언트 (병원)로고/인주한방병원.jpg" alt="인주한방병원"></div>
-              <div class="logo-marquee-item"><img src="클라이언트 (병원)로고/재호한의원.jpg" alt="재호한의원"></div>
-              <div class="logo-marquee-item"><img src="클라이언트 (병원)로고/중곡경희한의원.jpg" alt="중곡경희한의원"></div>
-              <div class="logo-marquee-item"><img src="클라이언트 (병원)로고/청담한의원.jpg" alt="청담한의원"></div>
-              <div class="logo-marquee-item"><img src="클라이언트 (병원)로고/최고한의원.jpg" alt="최고한의원"></div>
-              <div class="logo-marquee-item"><img src="클라이언트 (병원)로고/튼튼몸한의원.jpg" alt="튼튼몸한의원"></div>
-              <div class="logo-marquee-item"><img src="클라이언트 (병원)로고/편작한의원.jpg" alt="편작한의원"></div>
-            </div>
+            <div class="stat-label">전담 관리 중인 파트너 병원</div>
           </div>
         </div>
       </div>
@@ -3673,7 +3606,7 @@
         <div class="section-inner">
           <div class="section-center reveal">
             <span class="section-tag">Why HighPlus</span>
-            <h2 class="section-title">아직도 이런 <span class="grad-highlight">고민</span>을 하고 계신가요?</h2>
+            <h2 class="section-title">아직도 이런 고민을 하고 계신가요?</h2>
             <p class="section-desc">
               단순한 상위 노출은 시작일 뿐입니다. 진짜 문제는 환자의 마음을 얻는
               것입니다.
@@ -3682,9 +3615,7 @@
 
           <div class="pain-grid">
             <div class="pain-card reveal">
-              <div class="pain-icon">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9z"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></svg>
-              </div>
+              <div class="pain-icon">🤖</div>
               <h3>완전 자동화의 맹점</h3>
               <p>
                 내용도 모른 채 발행되는 100% 자동화 블로그는 오히려 원장님과
@@ -3692,9 +3623,7 @@
               </p>
             </div>
             <div class="pain-card reveal" style="transition-delay: 0.1s">
-              <div class="pain-icon">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-              </div>
+              <div class="pain-icon">📋</div>
               <h3>텅 빈 껍데기 템플릿</h3>
               <p>
                 기계적으로 찍어내는 공장형 정보는 다른 병원들과 똑같을 뿐,
@@ -3702,9 +3631,7 @@
               </p>
             </div>
             <div class="pain-card reveal" style="transition-delay: 0.2s">
-              <div class="pain-icon">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-              </div>
+              <div class="pain-icon">📉</div>
               <h3>클릭은 되는데 안 오는 환자</h3>
               <p>
                 상위 노출에는 성공했지만, 환자가 글을 읽고 자연스럽게 병원 문을
@@ -3715,17 +3642,14 @@
               class="pain-card pain-highlight reveal"
               style="transition-delay: 0.3s"
             >
-              <div class="pain-highlight-glow"></div>
-              <div class="pain-highlight-inner">
-                <h3>⚡ HighPlus는 다릅니다.</h3>
-                <p>
-                  우리는 단순 '노출수'를 팔지 않습니다.
-                  <strong style="color: #3b82f6">의료인의 감수성</strong>이 깃든
-                  진정성 있는 글과 고도화된
-                  <strong style="color: #38bdf8">하이브리드 시스템</strong>으로
-                  실질적인 내원 환자를 폭발시킵니다.
-                </p>
-              </div>
+              <h3>⚡ HighPlus는 다릅니다.</h3>
+              <p>
+                우리는 단순 '노출수'를 팔지 않습니다.
+                <strong style="color: #a78bfa">의료인의 감수성</strong>이 깃든
+                진정성 있는 글과 고도화된
+                <strong style="color: #60a5fa">하이브리드 시스템</strong>으로
+                실질적인 내원 환자를 폭발시킵니다.
+              </p>
             </div>
           </div>
         </div>
@@ -3736,7 +3660,7 @@
         <div class="section-inner">
           <div class="section-center reveal">
             <span class="section-tag">Our Philosophy</span>
-            <h2 class="section-title">The HighPlus <span class="grad-highlight">Philosophy</span></h2>
+            <h2 class="section-title">The HighPlus Philosophy</h2>
             <p class="section-desc">
               노력은 최소화, 진정성은 극대화하는 하이브리드 전략.
             </p>
@@ -3744,7 +3668,7 @@
 
           <div class="phil-grid">
             <div class="phil-card reveal">
-              <div class="phil-num"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
+              <div class="phil-num">01</div>
               <div class="phil-body">
                 <h4>글의 힘과 퍼널 설계</h4>
                 <p>
@@ -3754,7 +3678,7 @@
               </div>
             </div>
             <div class="phil-card reveal" style="transition-delay: 0.1s">
-              <div class="phil-num"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+              <div class="phil-num">02</div>
               <div class="phil-body">
                 <h4>의료적 감수성</h4>
                 <p>
@@ -3764,7 +3688,7 @@
               </div>
             </div>
             <div class="phil-card reveal" style="transition-delay: 0.2s">
-              <div class="phil-num"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9z"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></svg></div>
+              <div class="phil-num">03</div>
               <div class="phil-body">
                 <h4>하이브리드 시스템</h4>
                 <p>
@@ -3774,7 +3698,7 @@
               </div>
             </div>
             <div class="phil-card reveal" style="transition-delay: 0.3s">
-              <div class="phil-num"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+              <div class="phil-num">04</div>
               <div class="phil-body">
                 <h4>동업자 정신</h4>
                 <p>
@@ -3792,7 +3716,7 @@
         <div class="section-inner">
           <div class="section-center reveal">
             <span class="section-tag">Core Solution</span>
-            <h2 class="section-title">HighPlus <span class="grad-highlight">Core Solution</span></h2>
+            <h2 class="section-title">HighPlus Core Solution</h2>
             <p class="section-desc">
               단 두 가지 핵심 무기로 지역 상권을 장악합니다.
             </p>
@@ -3836,70 +3760,371 @@
         <div class="section-inner">
           <div class="section-center reveal">
             <span class="section-tag">Work Process</span>
-            <h2 class="section-title">시작은 <span style="background:var(--grad-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">간단</span>합니다</h2>
-            <p class="section-desc">투명하고 확실한, 상위 1%를 위한 프리미엄 진행 방식</p>
+            <h2 class="section-title">HighPlus Work Process</h2>
+            <p class="section-desc">
+              투명하고 확실한, 상위 1%를 위한 프리미엄 진행 방식
+            </p>
           </div>
-
-          <div class="hstep-flow reveal">
-            <div class="hstep-connector"></div>
-            <div class="hstep-item">
-              <div class="hstep-icon">
-                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          <div class="process-list">
+            <div
+              class="process-item reveal"
+              onmouseenter="proc3d(this, 1)"
+              onmouseleave="proc3d(this, 0)"
+            >
+              <div class="proc-step-wrap">
+                <div class="proc-step"><span>01</span></div>
               </div>
-              <div class="hstep-badge">STEP 1</div>
-              <h4 class="hstep-title">무료 상담</h4>
-              <p class="hstep-desc">병원 현황 분석 후<br>맞춤 전략을 제안합니다</p>
+              <div class="proc-body">
+                <h3>심층 파악 및 디렉팅 기획</h3>
+                <p>
+                  공장식 복붙이 아닙니다. 원장님의 철학과 병원의 핵심 가치를
+                  파악하는 심층 설문 후, 브랜드의 톤앤매너를 정립하는 메인
+                  소개글부터 정교하게 기획하고 작성합니다.
+                </p>
+              </div>
             </div>
-            <div class="hstep-item">
-              <div class="hstep-icon">
-                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <div
+              class="process-item reveal"
+              onmouseenter="proc3d(this, 1)"
+              onmouseleave="proc3d(this, 0)"
+            >
+              <div class="proc-step-wrap">
+                <div class="proc-step"><span>02</span></div>
               </div>
-              <div class="hstep-badge">STEP 2</div>
-              <h4 class="hstep-title">키워드 분석</h4>
-              <p class="hstep-desc">데이터 기반 최적의<br>키워드·콘텐츠 전략 수립</p>
+              <div class="proc-body">
+                <h3>1:1 전담 고정 IP 세팅</h3>
+                <p>
+                  수십 곳이 돌려 사용하는 위험한 환경을 배제합니다. 오직
+                  원장님의 홈페이지와 블로그만을 위한 안전한 1 독립 고정 IP를
+                  할당하여 어뷰징 위험 없이 최상의 노출 지수를 유지합니다.
+                </p>
+              </div>
             </div>
-            <div class="hstep-item">
-              <div class="hstep-icon">
-                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9z"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></svg>
+            <div
+              class="process-item reveal"
+              onmouseenter="proc3d(this, 1)"
+              onmouseleave="proc3d(this, 0)"
+            >
+              <div class="proc-step-wrap">
+                <div class="proc-step"><span>03</span></div>
               </div>
-              <div class="hstep-badge">STEP 3</div>
-              <h4 class="hstep-title">시스템 세팅</h4>
-              <p class="hstep-desc">전담 IP 세팅 후<br>자동 포스팅 시작</p>
+              <div class="proc-body">
+                <h3>실력으로 증명, 월 단위 계약</h3>
+                <p>
+                  매몰비용을 강요하는 장기 계약의 덫에 빠지지 마세요. HighPlus는
+                  오프보딩에 위약금이 없습니다. 오직 매월 증명되는 실질적인
+                  데이터와 성과로만 승부하는 월 단위 계약을 고집합니다.
+                </p>
+              </div>
             </div>
-            <div class="hstep-item">
-              <div class="hstep-icon">
-                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+            <div
+              class="process-item reveal"
+              onmouseenter="proc3d(this, 1)"
+              onmouseleave="proc3d(this, 0)"
+            >
+              <div class="proc-step-wrap">
+                <div class="proc-step"><span>04</span></div>
               </div>
-              <div class="hstep-badge">STEP 4</div>
-              <h4 class="hstep-title">월간 리포트</h4>
-              <p class="hstep-desc">유입·키워드·전환 데이터<br>인사이트 리포트 제공</p>
+              <div class="proc-body">
+                <h3>투명한 월간 성과 리포트</h3>
+                <p>
+                  직감에 의존하지 않습니다. 유입량 추이, 핵심 키워드 점유율,
+                  그리고 블로그를 통한 실제 전환(문의) 데이터를 분석한 인사이트
+                  리포트를 매월 정기적으로 발행합니다.
+                </p>
+              </div>
             </div>
-            <div class="hstep-item">
-              <div class="hstep-icon">
-                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <div
+              class="process-item reveal"
+              style="border-bottom: none"
+              onmouseenter="proc3d(this, 1)"
+              onmouseleave="proc3d(this, 0)"
+            >
+              <div class="proc-step-wrap">
+                <div class="proc-step"><span>05</span></div>
               </div>
-              <div class="hstep-badge">STEP 5</div>
-              <h4 class="hstep-title">독점 계약</h4>
-              <p class="hstep-desc">1지역 1병원 독점으로<br>상권을 완벽 장악</p>
+              <div class="proc-body">
+                <h3>1지역 1병원 독점 계약</h3>
+                <p>
+                  HighPlus는 같은 지역구 내에서 여러 클라이언트를 받아 서로
+                  경쟁하게 만들지 않습니다. 오직 1지역구 1개의 병원만 의뢰받아
+                  해당 상권을 완벽하게 독점할 수 있도록 전담 대행합니다.
+                </p>
+              </div>
             </div>
           </div>
+        </div>
+      </section>
 
-          <!-- 하단 설명 카드 3개 -->
-          <div class="hstep-cards reveal">
-            <div class="hstep-card">
-              <div class="hstep-card-icon">⚡</div>
-              <h4>위약금 0원</h4>
-              <p>월 단위 계약. 오직 매월 증명되는 실질적인 성과로만 승부합니다.</p>
+      <!-- PORTFOLIO -->
+      <section
+        id="portfolio"
+        style="background: var(--bg-secondary); position: relative"
+      >
+        <div
+          style="
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(
+              90deg,
+              transparent,
+              rgba(59, 130, 246, 0.5),
+              transparent
+            );
+          "
+        ></div>
+        <div class="section-inner">
+          <div class="section-center reveal">
+            <span class="section-tag">Blog Branding</span>
+            <h2 class="section-title">
+              브랜딩을 위한<br /><span
+                style="
+                  background: var(--grad-text);
+                  -webkit-background-clip: text;
+                  -webkit-text-fill-color: transparent;
+                "
+                >블로그 스킨 제작</span
+              >
+            </h2>
+            <p class="section-desc" style="max-width: 620px;">
+              블로그 스킨은 방문자에게 신뢰감을 주고 페이지 방문율을 높이는 효과가 있습니다.<br />이미지 형식, 슬라이드 형식, 풀스크린 형식 등 브랜드에 맞는 스킨 제작이 필요합니다.
+            </p>
+          </div>
+          <div class="reveal skin-grid"
+          >
+            <div class="skin-card">
+              <div class="skin-thumb">
+                <img src="skin-kyunghee.png" alt="경희스카이한의원 블로그 스킨" style="width:100%;height:100%;object-fit:cover;">
+              </div>
+              <div class="skin-info">
+                <span
+                  class="skin-tag"
+                  style="
+                    background: rgba(34, 197, 94, 0.15);
+                    color: #22c55e;
+                    border-color: rgba(34, 197, 94, 0.3);
+                  "
+                  >의료/한의원</span
+                ><strong>경희스카이한의원</strong>
+              </div>
             </div>
-            <div class="hstep-card">
-              <div class="hstep-card-icon">🔒</div>
-              <h4>1지역 독점</h4>
-              <p>같은 지역구 내 타 병원 동시 계약 없음. 오직 내 병원만을 위해 전담합니다.</p>
+            <div class="skin-card">
+              <div class="skin-thumb">
+                <img src="skin-dongbo.jpg" alt="동보한의원 블로그 스킨" style="width:100%;height:100%;object-fit:cover;">
+              </div>
+              <div class="skin-info">
+                <span
+                  class="skin-tag"
+                  style="
+                    background: rgba(34, 197, 94, 0.15);
+                    color: #22c55e;
+                    border-color: rgba(34, 197, 94, 0.3);
+                  "
+                  >의료/한의원</span
+                ><strong>동보한의원</strong>
+              </div>
             </div>
-            <div class="hstep-card">
-              <div class="hstep-card-icon">📊</div>
-              <h4>투명한 리포트</h4>
-              <p>직감이 아닌 데이터. 유입량·전환·키워드 점유율 매월 인사이트 리포트 제공.</p>
+            <div class="skin-card">
+              <div class="skin-thumb">
+                <img src="skin-pyunjak.jpg" alt="편작한의원 블로그 대문" style="width:100%;height:100%;object-fit:cover;">
+              </div>
+              <div class="skin-info">
+                <span
+                  class="skin-tag"
+                  style="
+                    background: rgba(34, 197, 94, 0.15);
+                    color: #22c55e;
+                    border-color: rgba(34, 197, 94, 0.3);
+                  "
+                  >의료/한의원</span
+                ><strong>편작한의원</strong>
+              </div>
+            </div>
+            <div class="skin-card">
+              <div class="skin-thumb">
+                <img src="skin-inju.jpg" alt="인주한방병원 블로그 스킨" style="width:100%;height:100%;object-fit:cover;">
+              </div>
+              <div class="skin-info">
+                <span
+                  class="skin-tag"
+                  style="
+                    background: rgba(34, 197, 94, 0.15);
+                    color: #22c55e;
+                    border-color: rgba(34, 197, 94, 0.3);
+                  "
+                  >의료/한방</span
+                ><strong>인주한방병원</strong>
+              </div>
+            </div>
+            <div class="skin-card">
+              <div
+                class="skin-thumb"
+                style="background: linear-gradient(135deg, #fff8f0, #fff0e0)"
+              >
+                <div
+                  style="
+                    padding: 1.5rem;
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 0.6rem;
+                  "
+                >
+                  <div style="display: flex; gap: 3px; align-items: flex-end">
+                    <div
+                      style="
+                        width: 8px;
+                        height: 28px;
+                        background: #ff6b6b;
+                        border-radius: 3px 3px 0 0;
+                      "
+                    ></div>
+                    <div
+                      style="
+                        width: 8px;
+                        height: 20px;
+                        background: #ffb347;
+                        border-radius: 3px 3px 0 0;
+                      "
+                    ></div>
+                    <div
+                      style="
+                        width: 8px;
+                        height: 32px;
+                        background: #88d8b0;
+                        border-radius: 3px 3px 0 0;
+                      "
+                    ></div>
+                    <div
+                      style="
+                        width: 8px;
+                        height: 17px;
+                        background: #7ec8e3;
+                        border-radius: 3px 3px 0 0;
+                      "
+                    ></div>
+                    <div
+                      style="
+                        width: 8px;
+                        height: 25px;
+                        background: #c9a0dc;
+                        border-radius: 3px 3px 0 0;
+                      "
+                    ></div>
+                  </div>
+                  <div
+                    style="
+                      font-size: 0.7rem;
+                      font-weight: 800;
+                      color: #3d2b1f;
+                      text-align: center;
+                      line-height: 1.4;
+                    "
+                  >
+                    소리가 머무는 자리 음악학원<br />통증이 머무는 자리 미술학원
+                  </div>
+                </div>
+              </div>
+              <div class="skin-info">
+                <span
+                  class="skin-tag"
+                  style="
+                    background: rgba(236, 72, 153, 0.12);
+                    color: #f472b6;
+                    border-color: rgba(236, 72, 153, 0.3);
+                  "
+                  >교육/학원</span
+                ><strong>음악학원 미술학원</strong>
+              </div>
+            </div>
+            <div class="skin-card">
+              <div
+                class="skin-thumb"
+                style="background: linear-gradient(135deg, #0a0c14, #1a1f3a)"
+              >
+                <div
+                  style="
+                    padding: 1.5rem;
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                  "
+                >
+                  <div>
+                    <div
+                      style="
+                        font-size: 0.55rem;
+                        color: #a78bfa;
+                        font-weight: 700;
+                        letter-spacing: 0.1em;
+                        margin-bottom: 0.4rem;
+                      "
+                    >
+                      ★ HighPlus 파트너 병원
+                    </div>
+                    <div
+                      style="
+                        font-size: 0.8rem;
+                        font-weight: 800;
+                        color: white;
+                        line-height: 1.4;
+                      "
+                    >
+                      환자가 먼저 찾아오는<br /><span
+                        style="
+                          background: linear-gradient(90deg, #a78bfa, #60a5fa);
+                          -webkit-background-clip: text;
+                          -webkit-text-fill-color: transparent;
+                        "
+                        >병원 브랜딩 블로그</span
+                      >
+                    </div>
+                  </div>
+                  <div style="display: flex; gap: 4px">
+                    <div
+                      style="
+                        flex: 1;
+                        height: 3px;
+                        border-radius: 2px;
+                        background: linear-gradient(90deg, #7c3aed, #3b82f6);
+                      "
+                    ></div>
+                    <div
+                      style="
+                        flex: 1;
+                        height: 3px;
+                        border-radius: 2px;
+                        background: rgba(255, 255, 255, 0.08);
+                      "
+                    ></div>
+                    <div
+                      style="
+                        flex: 1;
+                        height: 3px;
+                        border-radius: 2px;
+                        background: rgba(255, 255, 255, 0.08);
+                      "
+                    ></div>
+                  </div>
+                </div>
+              </div>
+              <div class="skin-info">
+                <span
+                  class="skin-tag"
+                  style="
+                    background: rgba(124, 58, 237, 0.15);
+                    color: #a78bfa;
+                    border-color: rgba(124, 58, 237, 0.3);
+                  "
+                  >의료/병원</span
+                ><strong>병원 브랜딩 블로그</strong>
+              </div>
             </div>
           </div>
         </div>
@@ -3929,7 +4154,7 @@
             <div
               style="
                 background: var(--grad-card);
-                border: 1px solid rgba(79, 110, 247, 0.35);
+                border: 1px solid rgba(124, 58, 237, 0.35);
                 border-radius: 20px;
                 padding: 2rem;
                 position: relative;
@@ -3949,7 +4174,7 @@
               <p
                 style="
                   font-size: 0.8rem;
-                  color: #6b8aff;
+                  color: #a78bfa;
                   font-weight: 700;
                   margin-bottom: 0.5rem;
                 "
@@ -4061,8 +4286,8 @@
             style="
               text-align: center;
               padding: 1.5rem;
-              background: rgba(79, 110, 247, 0.07);
-              border: 1px solid rgba(79, 110, 247, 0.18);
+              background: rgba(124, 58, 237, 0.07);
+              border: 1px solid rgba(124, 58, 237, 0.18);
               border-radius: 14px;
               max-width: 960px;
               margin: 0 auto;
@@ -4112,7 +4337,7 @@
             background: linear-gradient(
               90deg,
               transparent,
-              rgba(79, 110, 247, 0.5),
+              rgba(124, 58, 237, 0.5),
               transparent
             );
           "
@@ -4135,47 +4360,260 @@
             </p>
           </div>
 
-          <!-- Testimonials Grid -->
-          <div class="testimonials__grid reveal">
-            <div class="testimonial__card">
-              <div class="testimonial__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-              <p class="testimonial__text">
-                3개월째 이용 중인데, 기존 대행사 1년 동안 못했던 상위노출을 2주 만에 달성했습니다. 자동화 시스템이 진짜 일을 합니다.
-              </p>
-              <div class="testimonial__author">
-                <div class="testimonial__avatar" style="background: linear-gradient(135deg, #3b82f6, #06b6d4);">K</div>
-                <div>
-                  <div class="testimonial__name">김OO 원장님</div>
-                  <div class="testimonial__role">피부과 / 강남</div>
+          <!-- Stats -->
+          <div class="portfolio-stats reveal" style="margin-bottom: 3rem">
+            <div class="pstat-card">
+              <div class="pstat-num" id="cnt1">0%</div>
+              <div class="pstat-label">
+                "블로그 보고 왔습니다"<br />내원 증가율
+              </div>
+            </div>
+            <div class="pstat-card">
+              <div class="pstat-num" id="cnt2">0%</div>
+              <div class="pstat-label">계약 연장률</div>
+            </div>
+            <div class="pstat-card">
+              <div class="pstat-num" id="cnt3">0+</div>
+              <div class="pstat-label">전담 관리 중인<br />파트너 병원</div>
+            </div>
+          </div>
+
+          <!-- Slider -->
+          <div style="position: relative" class="reveal">
+            <div
+              id="slider-track"
+              style="
+                display: flex;
+                gap: 1.25rem;
+                overflow: hidden;
+                scroll-behavior: smooth;
+              "
+            >
+              <div class="tcard active-slide">
+                <div class="tcard-quote">"</div>
+                <p>
+                  한의사가 직접 쓴 전문적인 글 느낌이 나서 환자가 신뢰를 갖고 내원하게 됩니다.
+                </p>
+                <div class="tcard-author">
+                  <div
+                    class="tcard-avatar"
+                    style="
+                      background: linear-gradient(135deg, #7c3aed, #3b82f6);
+                    "
+                  >
+                    이
+                  </div>
+                  <div>
+                    <strong>고ㅇㅇㅇㅇㅇㅇ원<br>이ㅇ별 원장님</strong
+                    ><span>블로그 마케팅 진행 중</span>
+                  </div>
+                </div>
+              </div>
+              <div class="tcard">
+                <div class="tcard-quote">"</div>
+                <p>
+                  블로그 노출이 꾸준히 늘고 있고, 실제로 블로그를 보고 찾아왔다는 환자분들이 많아졌습니다. 초진 환자 유입에 도움이 되어 만족스럽게 운영하고 있습니다.
+                </p>
+                <div class="tcard-author">
+                  <div
+                    class="tcard-avatar"
+                    style="
+                      background: linear-gradient(135deg, #06b6d4, #10b981);
+                    "
+                  >
+                    강
+                  </div>
+                  <div>
+                    <strong>제주 늘ㅇㅇㅇㅇ원<br>강ㅇ우 원장님</strong
+                    ><span>블로그 마케팅 진행 중</span>
+                  </div>
+                </div>
+              </div>
+              <div class="tcard">
+                <div class="tcard-quote">"</div>
+                <p>
+                  체계적인 분석과 정성이 담긴 블로그를 통해 한의원에 도약을 이끌어주는 마케팅업체! 추천합니다!!
+                </p>
+                <div class="tcard-author">
+                  <div
+                    class="tcard-avatar"
+                    style="
+                      background: linear-gradient(135deg, #f59e0b, #ef4444);
+                    "
+                  >
+                    허
+                  </div>
+                  <div>
+                    <strong>서울 구로구 난ㅇㅇㅇㅇㅇㅇ원<br>허ㅇ이 원장님</strong
+                    ><span>블로그 마케팅 진행 중</span>
+                  </div>
+                </div>
+              </div>
+              <div class="tcard">
+                <div class="tcard-quote">"</div>
+                <p>
+                  양산형 광고 포스팅과 다르게 대표가 직접 작성한 느낌을 주고 퀄리티 또한 좋습니다. 키워드 순위까지 잘 잡아주셔서 노출과 조회수 모두 크게 증가했습니다. 제가 의도한 질환군의 환자들이 직접 내원해주시는게 가장 큰 매력입니다.
+                </p>
+                <div class="tcard-author">
+                  <div
+                    class="tcard-avatar"
+                    style="
+                      background: linear-gradient(135deg, #8b5cf6, #ec4899);
+                    "
+                  >
+                    김
+                  </div>
+                  <div>
+                    <strong>서울 강남구 양ㅇㅇㅇㅇㅇㅇ원<br>김ㅇ언 원장님</strong
+                    ><span>블로그 마케팅 진행 중</span>
+                  </div>
+                </div>
+              </div>
+              <div class="tcard">
+                <div class="tcard-quote">"</div>
+                <p>
+                  단순 홍보가 아니라 데이터를 기반으로 객관적으로 분석해 주는 점이 계속 계약을 유지하는 이유입니다. 또 지금까지 의뢰했던 업체 중 가장 성실하게 운영 및 피드백을 해줘서 좋아요.
+                </p>
+                <div class="tcard-author">
+                  <div
+                    class="tcard-avatar"
+                    style="
+                      background: linear-gradient(135deg, #10b981, #3b82f6);
+                    "
+                  >
+                    진
+                  </div>
+                  <div>
+                    <strong>인천 남동구 맑ㅇㅇㅇㅇ원<br>진ㅇ우 원장님</strong
+                    ><span>블로그 마케팅 진행 중</span>
+                  </div>
+                </div>
+              </div>
+              <div class="tcard">
+                <div class="tcard-quote">"</div>
+                <p>
+                  블로그 광고 하기 전보다 초진 유입이 늘었으며 노출이 잘 되어서 만족합니다. 즉각적인 피드백이 너무나 좋습니다.
+                </p>
+                <div class="tcard-author">
+                  <div
+                    class="tcard-avatar"
+                    style="
+                      background: linear-gradient(135deg, #7c3aed, #ec4899);
+                    "
+                  >
+                    최
+                  </div>
+                  <div>
+                    <strong>서울 강서구 까ㅇㅇㅇ원<br>최ㅇ근 원장님</strong
+                    ><span>블로그 마케팅 진행 중</span>
+                  </div>
+                </div>
+              </div>
+              <div class="tcard">
+                <div class="tcard-quote">"</div>
+                <p>
+                  매달 체계적인 보고서를 통해 진행 상황을 투명하게 공유해 주셔서 신뢰가 갑니다. 특히 피드백 반영이 빠르고 세심하게 관리해 주시는 덕분에 브랜딩이 탄탄해지는 것을 느낍니다.
+                </p>
+                <div class="tcard-author">
+                  <div
+                    class="tcard-avatar"
+                    style="
+                      background: linear-gradient(135deg, #0ea5e9, #6366f1);
+                    "
+                  >
+                    정
+                  </div>
+                  <div>
+                    <strong>서울 중랑구 중ㅇㅇㅇㅇㅇ원<br>정ㅇ학 원장님</strong
+                    ><span>블로그 마케팅 진행 중</span>
+                  </div>
+                </div>
+              </div>
+              <div class="tcard">
+                <div class="tcard-quote">"</div>
+                <p>
+                  블로그 운영을 직접 하려고 하면 생각보다 어려울 때가 많았습니다. 글은 어떤 방향으로 써야할지, 이 글들의 반응은 어떠한지 궁금할 때가 많았는데 하이플러스의 월말 보고 시스템을 보면 이런 궁금증이나 걱정이 해소가 되더라구요. 신뢰가 가는 글들 덕분인지 병원으로의 문의가 늘고 초진 숫자도 따라서 늘더라구요. 블로그만이 아니라 병원 초진도 같이 관리가 되는 것 같은 기분이 들어 만족했습니다~^^
+                </p>
+                <div class="tcard-author">
+                  <div
+                    class="tcard-avatar"
+                    style="
+                      background: linear-gradient(135deg, #f43f5e, #fb923c);
+                    "
+                  >
+                    권
+                  </div>
+                  <div>
+                    <strong>미ㅇㅇㅇㅇ원<br>권ㅇ우 원장님</strong
+                    ><span>블로그 마케팅 진행 중</span>
+                  </div>
+                </div>
+              </div>
+              <div class="tcard">
+                <div class="tcard-quote">"</div>
+                <p>
+                  초진환자 문진시 어떻게 오셨냐고 물어보는데 블로그 보고 왔다는 환자가 늘고있습니다~ 질환명 검색했을때 노출이 잘 되는 것 같습니다. 젊은분들은 내용 읽어보고 내용 좋아서 왔다고 하더라구요^^
+                </p>
+                <div class="tcard-author">
+                  <div
+                    class="tcard-avatar"
+                    style="
+                      background: linear-gradient(135deg, #3b82f6, #06b6d4);
+                    "
+                  >
+                    김
+                  </div>
+                  <div>
+                    <strong>부천 원미구 바ㅇㅇㅇㅇㅇ원<br>김ㅇ민 원장님</strong
+                    ><span>블로그 마케팅 진행 중</span>
+                  </div>
+                </div>
+              </div>
+              <div class="tcard">
+                <div class="tcard-quote">"</div>
+                <p>
+                  브랜딩블로그 대행을 맡기고 나서 "블로그보고 왔어요"나 "ㅇㅇㅇ원장님 계시죠?"를 여쭤보는 환자들이 늘었습니다. 그리고 특정 질환에 대해 글이 발행되고나면 그 질환군 환자가 느는게 느껴졌습니다. 매달 나오는 보고서를 보면서 다음 초진 유입 전략도 세울 수 있고, DM도 만들어주셔서 너무 감사합니다.
+                </p>
+                <div class="tcard-author">
+                  <div
+                    class="tcard-avatar"
+                    style="
+                      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+                    "
+                  >
+                    김
+                  </div>
+                  <div>
+                    <strong>인천 남동구 인ㅇㅇㅇㅇ원<br>김ㅇ헌 원장님</strong
+                    ><span>블로그 마케팅 진행 중</span>
+                  </div>
                 </div>
               </div>
             </div>
-            <div class="testimonial__card">
-              <div class="testimonial__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-              <p class="testimonial__text">
-                매월 대행비 200만원 쓰면서 뭐가 되는지도 몰랐는데, 하이플러스는 대시보드에서 바로 확인돼서 신뢰가 갑니다.
-              </p>
-              <div class="testimonial__author">
-                <div class="testimonial__avatar" style="background: linear-gradient(135deg, #4f6ef7, #00d4ff);">P</div>
-                <div>
-                  <div class="testimonial__name">박OO 대표님</div>
-                  <div class="testimonial__role">인테리어 업체 / 서울</div>
-                </div>
-              </div>
-            </div>
-            <div class="testimonial__card">
-              <div class="testimonial__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-              <p class="testimonial__text">
-                프랜차이즈 12개 지점 블로그를 한번에 관리해주니까 업무 부담이 확 줄었어요. 각 지점별 키워드도 다르게 잡아주더라고요.
-              </p>
-              <div class="testimonial__author">
-                <div class="testimonial__avatar" style="background: linear-gradient(135deg, #10b981, #059669);">L</div>
-                <div>
-                  <div class="testimonial__name">이OO 본부장님</div>
-                  <div class="testimonial__role">프랜차이즈 / 전국</div>
-                </div>
-              </div>
-            </div>
+            <button
+              class="slider-btn"
+              onclick="slideMove(-1)"
+              style="left: -22px"
+            >
+              &#8249;
+            </button>
+            <button
+              class="slider-btn"
+              onclick="slideMove(1)"
+              style="right: -22px"
+            >
+              &#8250;
+            </button>
+            <div
+              id="slider-dots"
+              style="
+                display: flex;
+                justify-content: center;
+                gap: 8px;
+                margin-top: 1.5rem;
+                align-items: center;
+              "
+            ></div>
           </div>
         </div>
       </section>
@@ -4185,7 +4623,7 @@
         <div class="section-inner">
           <div class="section-center reveal">
             <span class="section-tag">FAQ</span>
-            <h2 class="section-title">병원 마케팅, <span class="grad-highlight">자주 묻는 질문</span></h2>
+            <h2 class="section-title">병원 마케팅, 자주 묻는 질문</h2>
             <p class="section-desc" style="max-width: 800px">
               ChatGPT, Gemini 등 AI가 환자들에게 자주 답변하는 질문들을
               모았습니다. 2026년 3월 기준
@@ -4295,7 +4733,7 @@
         <div class="section-inner">
           <div class="section-center reveal">
             <span class="section-tag">Pricing</span>
-            <h2 class="section-title"><span class="grad-highlight">투명한</span> 요금제</h2>
+            <h2 class="section-title">투명한 요금제</h2>
             <p class="section-desc">
               위약금 없는 월 단위 계약. 성과로만 승부합니다.
             </p>
@@ -4314,9 +4752,9 @@
               >
                 <span
                   style="
-                    background: rgba(79, 110, 247, 0.15);
-                    border: 1px solid rgba(79, 110, 247, 0.35);
-                    color: #6b8aff;
+                    background: rgba(124, 58, 237, 0.15);
+                    border: 1px solid rgba(124, 58, 237, 0.35);
+                    color: #a78bfa;
                     font-size: 0.75rem;
                     font-weight: 700;
                     padding: 0.25rem 0.6rem;
@@ -4396,22 +4834,22 @@
               </div>
               <ul class="price-list">
                 <li>
-                  <span style="color: #6b8aff">✓</span>심층 설문 및 톤앤매너
+                  <span style="color: #a78bfa">✓</span>심층 설문 및 톤앤매너
                   기획
                 </li>
                 <li>
-                  <span style="color: #6b8aff">✓</span>퍼널 설계 기반 설득형
+                  <span style="color: #a78bfa">✓</span>퍼널 설계 기반 설득형
                   글쓰기
                 </li>
                 <li>
-                  <span style="color: #6b8aff">✓</span>1:1 전담 고정 IP 세팅
+                  <span style="color: #a78bfa">✓</span>1:1 전담 고정 IP 세팅
                 </li>
-                <li><span style="color: #6b8aff">✓</span>월간 성과 리포트</li>
+                <li><span style="color: #a78bfa">✓</span>월간 성과 리포트</li>
               </ul>
               <a
                 href="#contact"
                 class="price-btn-outline"
-                style="border-color: rgba(79, 110, 247, 0.35); color: #6b8aff"
+                style="border-color: rgba(124, 58, 237, 0.35); color: #a78bfa"
                 >상담 신청하기</a
               >
             </div>
@@ -4479,8 +4917,8 @@
               </p>
               <div
                 style="
-                  background: rgba(79, 110, 247, 0.1);
-                  border: 1px solid rgba(79, 110, 247, 0.22);
+                  background: rgba(124, 58, 237, 0.1);
+                  border: 1px solid rgba(124, 58, 237, 0.22);
                   border-radius: 10px;
                   padding: 0.9rem;
                   margin-bottom: 1rem;
@@ -4536,19 +4974,19 @@
                 </div>
               </div>
               <ul class="price-list">
-                <li><span style="color: #6b8aff">✓</span>Basic 전체 포함</li>
+                <li><span style="color: #a78bfa">✓</span>Basic 전체 포함</li>
                 <li>
-                  <span style="color: #6b8aff">✓</span>네이버 플레이스 SEO 세팅
+                  <span style="color: #a78bfa">✓</span>네이버 플레이스 SEO 세팅
                   및 키워드 추출
                 </li>
                 <li>
-                  <span style="color: #6b8aff">✓</span>어뷰징 제로 트래픽 운영
+                  <span style="color: #a78bfa">✓</span>어뷰징 제로 트래픽 운영
                 </li>
                 <li>
-                  <span style="color: #6b8aff">✓</span>리뷰 선순환 구조 세팅
+                  <span style="color: #a78bfa">✓</span>리뷰 선순환 구조 세팅
                 </li>
                 <li>
-                  <span style="color: #6b8aff">✓</span>1지역 1병원 독점 계약
+                  <span style="color: #a78bfa">✓</span>1지역 1병원 독점 계약
                 </li>
               </ul>
               <a href="#contact" class="price-btn-primary">상담 신청하기</a>
@@ -4709,7 +5147,7 @@
             background: linear-gradient(
               90deg,
               transparent,
-              rgba(79, 110, 247, 0.5),
+              rgba(124, 58, 237, 0.5),
               transparent
             );
           "
@@ -4719,7 +5157,7 @@
             position: absolute;
             inset: 0;
             background-image: radial-gradient(
-              rgba(79, 110, 247, 0.09) 1px,
+              rgba(124, 58, 237, 0.09) 1px,
               transparent 1px
             );
             background-size: 28px 28px;
@@ -4735,7 +5173,7 @@
             height: 400px;
             background: radial-gradient(
               circle,
-              rgba(79, 110, 247, 0.09),
+              rgba(124, 58, 237, 0.09),
               transparent 70%
             );
             filter: blur(80px);
@@ -4789,14 +5227,14 @@
                   font-size: 0.9rem;
                   transition: color 0.2s;
                 "
-                onmouseenter="this.style.color = '#6b8aff'"
+                onmouseenter="this.style.color = '#a78bfa'"
                 onmouseleave="this.style.color = ''"
                 ><span
                   style="
                     width: 36px;
                     height: 36px;
-                    background: rgba(79, 110, 247, 0.15);
-                    border: 1px solid rgba(79, 110, 247, 0.3);
+                    background: rgba(124, 58, 237, 0.15);
+                    border: 1px solid rgba(124, 58, 237, 0.3);
                     border-radius: 8px;
                     display: flex;
                     align-items: center;
@@ -5050,6 +5488,28 @@
       ↑
     </button>
     <script>
+      // ─── THEME (persisted) ───
+      function toggleTheme() {
+        const html = document.documentElement,
+          btn = document.getElementById("themeBtn");
+        if (html.getAttribute("data-theme") === "light") {
+          html.removeAttribute("data-theme");
+          btn.textContent = "🌙";
+          localStorage.setItem("hp-theme", "dark");
+        } else {
+          html.setAttribute("data-theme", "light");
+          btn.textContent = "☀️";
+          localStorage.setItem("hp-theme", "light");
+        }
+      }
+      (function () {
+        var t = localStorage.getItem("hp-theme");
+        if (t === "light") {
+          document.documentElement.setAttribute("data-theme", "light");
+          document.getElementById("themeBtn").textContent = "☀️";
+        }
+      })();
+
       // ─── FAQ (accessible) ───
       function toggleFaq(btn) {
         const item = btn.closest(".faq-item"),
@@ -5250,7 +5710,7 @@
             i * 0.07 +
             "s;" +
             (isUp
-              ? "background:linear-gradient(to top,#4f6ef7,#3b82f6 60%,#06b6d4);"
+              ? "background:linear-gradient(to top,#7c3aed,#3b82f6 60%,#06b6d4);"
               : "background:rgba(100,116,139," +
                 (0.18 + (i / data.length) * 0.35) +
                 ");");
@@ -5374,7 +5834,22 @@
         );
       }
 
-
+      // ─── MAGNETIC BUTTONS ───
+      document
+        .querySelectorAll(
+          ".btn-primary, .btn-secondary, .nav-cta, .form-submit",
+        )
+        .forEach((btn) => {
+          btn.addEventListener("mousemove", (e) => {
+            const rect = btn.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            btn.style.transform = `translate(${x * 0.15}px, ${y * 0.2}px)`;
+          });
+          btn.addEventListener("mouseleave", () => {
+            btn.style.transform = "";
+          });
+        });
     </script>
   </body>
 </html>
