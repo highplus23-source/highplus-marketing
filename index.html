@@ -176,6 +176,9 @@
     }
     </script>
 
+    <!-- Spline 3D Viewer -->
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.82/build/spline-viewer.js"></script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -191,14 +194,9 @@
         --accent1: #7c3aed;
         --accent2: #3b82f6;
         --accent3: #06b6d4;
-        --grad-main: linear-gradient(
-          135deg,
-          #7c3aed 0%,
-          #3b82f6 50%,
-          #06b6d4 100%
-        );
-        --grad-text: linear-gradient(90deg, #a78bfa, #60a5fa, #22d3ee);
-        --grad-btn: linear-gradient(135deg, #7c3aed, #3b82f6);
+        --grad-main: linear-gradient(135deg, #4f6ef7, #00d4ff);
+        --grad-text: linear-gradient(135deg, #4f6ef7, #00d4ff);
+        --grad-btn: linear-gradient(135deg, #4f6ef7, #00d4ff);
         --grad-card: linear-gradient(145deg, #1a1f3a 0%, #0f1225 100%);
         --border: rgba(255, 255, 255, 0.07);
         --border-accent: rgba(124, 58, 237, 0.4);
@@ -208,514 +206,6 @@
         --glow: rgba(124, 58, 237, 0.3);
         --glow2: rgba(59, 130, 246, 0.3);
       }
-
-      [data-theme="light"] {
-        --bg-primary: #f4f7ff;
-        --bg-secondary: #eaf0ff;
-        --bg-card: #ffffff;
-        --bg-card2: #f0f4ff;
-        --accent1: #4a7cff;
-        --accent2: #3b82f6;
-        --accent3: #38bdf8;
-        --grad-main: linear-gradient(135deg, #4a7cff 0%, #38bdf8 50%, #06b6d4 100%);
-        --grad-text: linear-gradient(90deg, #4a7cff, #3b82f6, #38bdf8);
-        --grad-btn: linear-gradient(135deg, #4a7cff, #3b82f6);
-        --grad-card: linear-gradient(145deg, #ffffff 0%, #f5f8ff 100%);
-        --border: rgba(74, 124, 255, 0.1);
-        --border-accent: rgba(59, 130, 246, 0.35);
-        --text-primary: #1a1a2e;
-        --text-secondary: #4a5568;
-        --text-muted: #94a3b8;
-        --glow: rgba(59, 130, 246, 0.15);
-        --glow2: rgba(56, 189, 248, 0.15);
-      }
-
-      /* Theme toggle button */
-      .theme-toggle {
-        background: rgba(255, 255, 255, 0.08);
-        border: 1px solid var(--border);
-        border-radius: 8px;
-        width: 38px;
-        height: 38px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        font-size: 1.1rem;
-        transition:
-          background 0.2s,
-          border-color 0.2s;
-        flex-shrink: 0;
-      }
-      .theme-toggle:hover {
-        background: rgba(124, 58, 237, 0.15);
-        border-color: rgba(124, 58, 237, 0.4);
-      }
-      [data-theme="light"] .theme-toggle {
-        background: rgba(74, 124, 255, 0.08);
-        border-color: rgba(74, 124, 255, 0.15);
-      }
-      [data-theme="light"] .theme-toggle:hover {
-        background: rgba(74, 124, 255, 0.15);
-        border-color: rgba(74, 124, 255, 0.35);
-      }
-
-      /* ─── LIGHT MODE: Full Redesign (Blue Premium) ─── */
-
-      /* Noise overlay — almost invisible in light mode */
-      [data-theme="light"] body::before {
-        opacity: 0.05;
-      }
-
-      /* Hero background — soft blue radials */
-      [data-theme="light"] .hero-bg {
-        background:
-          radial-gradient(
-            ellipse 90% 60% at 50% -5%,
-            rgba(74, 124, 255, 0.12) 0%,
-            transparent 70%
-          ),
-          radial-gradient(
-            ellipse 60% 50% at 85% 80%,
-            rgba(56, 189, 248, 0.08) 0%,
-            transparent 60%
-          );
-      }
-      [data-theme="light"] .hero-grid {
-        background-image:
-          linear-gradient(rgba(74, 124, 255, 0.04) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(74, 124, 255, 0.04) 1px, transparent 1px);
-        background-size: 60px 60px;
-      }
-
-      /* Orbs — blue tones */
-      [data-theme="light"] .orb1 {
-        background: rgba(74, 124, 255, 0.1);
-      }
-      [data-theme="light"] .orb2 {
-        background: rgba(56, 189, 248, 0.08);
-      }
-      [data-theme="light"] .orb3 {
-        background: rgba(6, 182, 212, 0.06);
-      }
-
-      /* Nav */
-      [data-theme="light"] nav {
-        background: rgba(255, 255, 255, 0.85);
-        border-bottom-color: rgba(74, 124, 255, 0.08);
-      }
-      [data-theme="light"] .nav-links a:hover,
-      [data-theme="light"] .nav-links a.active {
-        color: #4a7cff;
-      }
-      [data-theme="light"] .nav-links a.active::after {
-        background: linear-gradient(90deg, #4a7cff, #38bdf8);
-      }
-
-      /* Stats bar */
-      [data-theme="light"] .stats-bar {
-        background: #ffffff;
-        border-color: rgba(74, 124, 255, 0.08);
-      }
-
-      /* Section tags — blue */
-      [data-theme="light"] .section-tag {
-        color: #4a7cff;
-        background: rgba(74, 124, 255, 0.08);
-        border-color: rgba(74, 124, 255, 0.2);
-      }
-
-      /* Cards — clean white + soft blue shadow */
-      [data-theme="light"] .pain-card,
-      [data-theme="light"] .phil-card,
-      [data-theme="light"] .service-card,
-      [data-theme="light"] .testimonial,
-      [data-theme="light"] .faq-item {
-        background: #ffffff;
-        border-color: rgba(74, 124, 255, 0.08);
-        box-shadow: 0 4px 24px rgba(74, 124, 255, 0.07);
-      }
-      [data-theme="light"] .pain-card:hover,
-      [data-theme="light"] .phil-card:hover,
-      [data-theme="light"] .service-card:hover,
-      [data-theme="light"] .testimonial:hover,
-      [data-theme="light"] .faq-item:hover {
-        border-color: rgba(74, 124, 255, 0.2);
-        box-shadow: 0 8px 32px rgba(74, 124, 255, 0.12);
-      }
-
-      /* Pain card accent lines */
-      [data-theme="light"] .pain-card::before {
-        background: linear-gradient(90deg, #4a7cff, #38bdf8);
-      }
-      [data-theme="light"] .pain-card:hover {
-        border-color: rgba(74, 124, 255, 0.25);
-      }
-
-      /* Pain icon — blue */
-      [data-theme="light"] .pain-icon {
-        background: rgba(74, 124, 255, 0.1);
-        border-color: rgba(74, 124, 255, 0.2);
-      }
-
-      /* Pain highlight — soft blue gradient */
-      [data-theme="light"] .pain-highlight {
-        background: linear-gradient(
-          135deg,
-          rgba(74, 124, 255, 0.08),
-          rgba(56, 189, 248, 0.06)
-        );
-        border-color: rgba(74, 124, 255, 0.15);
-      }
-
-      /* Philosophy number — blue tint */
-      [data-theme="light"] .phil-num {
-        color: rgba(74, 124, 255, 0.3);
-      }
-      [data-theme="light"] .phil-body h4 {
-        color: #1a1a2e;
-      }
-
-      /* Service card hover */
-      [data-theme="light"] .service-card:hover {
-        box-shadow: 0 20px 60px rgba(74, 124, 255, 0.1);
-      }
-      [data-theme="light"] .service-card::after {
-        background: linear-gradient(90deg, #4a7cff, #38bdf8);
-      }
-      [data-theme="light"] .service-card:nth-child(1) .service-icon {
-        background: rgba(74, 124, 255, 0.1);
-        border-color: rgba(74, 124, 255, 0.25);
-      }
-      [data-theme="light"] .service-card:nth-child(2) .service-icon {
-        background: rgba(56, 189, 248, 0.1);
-        border-color: rgba(56, 189, 248, 0.25);
-      }
-
-      /* Process timeline — blue */
-      [data-theme="light"] .process-list::before {
-        background: linear-gradient(
-          to bottom,
-          #4a7cff,
-          #3b82f6,
-          #38bdf8,
-          transparent
-        );
-        opacity: 0.5;
-      }
-      [data-theme="light"] .proc-step {
-        box-shadow: 0 0 20px rgba(74, 124, 255, 0.25);
-      }
-
-      /* Section divider lines — blue */
-      [data-theme="light"] #pain-point::before,
-      [data-theme="light"] #services::before,
-      [data-theme="light"] #portfolio::before,
-      [data-theme="light"] .contact-section::before {
-        background: linear-gradient(
-          90deg,
-          transparent,
-          rgba(74, 124, 255, 0.3),
-          transparent
-        );
-      }
-      [data-theme="light"] .section-divider {
-        background: linear-gradient(
-          90deg,
-          transparent,
-          rgba(74, 124, 255, 0.15),
-          rgba(56, 189, 248, 0.15),
-          transparent
-        );
-      }
-
-      /* Portfolio stats */
-      [data-theme="light"] .pstat-card {
-        background: #ffffff;
-        border-color: rgba(74, 124, 255, 0.08);
-        box-shadow: 0 4px 24px rgba(74, 124, 255, 0.07);
-      }
-      [data-theme="light"] .pstat-card::before {
-        background: linear-gradient(90deg, #4a7cff, #38bdf8);
-      }
-
-      /* Testimonials */
-      [data-theme="light"] .testimonial::before {
-        background: linear-gradient(90deg, #4a7cff, #38bdf8);
-        -webkit-background-clip: text;
-      }
-
-      /* Skin cards */
-      [data-theme="light"] .skin-card {
-        background: #ffffff;
-        border-color: rgba(74, 124, 255, 0.08);
-        box-shadow: 0 4px 24px rgba(74, 124, 255, 0.07);
-      }
-      [data-theme="light"] .skin-card:hover {
-        box-shadow: 0 16px 48px rgba(74, 124, 255, 0.12);
-        border-color: rgba(74, 124, 255, 0.2);
-      }
-
-      /* Tcards (slider testimonials) */
-      [data-theme="light"] .tcard {
-        background: #ffffff;
-        border-color: rgba(74, 124, 255, 0.08);
-        box-shadow: 0 4px 24px rgba(74, 124, 255, 0.07);
-      }
-      [data-theme="light"] .tcard.active-slide {
-        border-color: rgba(74, 124, 255, 0.2);
-        box-shadow: 0 8px 32px rgba(74, 124, 255, 0.12);
-      }
-
-      /* FAQ arrow — blue */
-      [data-theme="light"] .faq-q .arrow {
-        background: rgba(74, 124, 255, 0.1);
-        border-color: rgba(74, 124, 255, 0.2);
-        color: #4a7cff;
-      }
-      [data-theme="light"] .faq-item.open .faq-q .arrow {
-        background: rgba(74, 124, 255, 0.2);
-      }
-
-      /* CTA box — blue gradient card style */
-      [data-theme="light"] .cta-box {
-        background: linear-gradient(145deg, #eef4ff 0%, #dbeaff 100%);
-        border-color: rgba(74, 124, 255, 0.15);
-        box-shadow: 0 8px 40px rgba(74, 124, 255, 0.08);
-      }
-      [data-theme="light"] .cta-box::before {
-        background: linear-gradient(90deg, #4a7cff, #38bdf8);
-      }
-      [data-theme="light"] .cta-bg {
-        background: radial-gradient(
-          ellipse 70% 70% at 50% 50%,
-          rgba(74, 124, 255, 0.08),
-          transparent 70%
-        );
-      }
-
-      /* Contact section */
-      [data-theme="light"] .contact-section {
-        background: #eaf0ff;
-      }
-
-      /* Form inputs — blue focus */
-      [data-theme="light"] .form-group input,
-      [data-theme="light"] .form-group textarea,
-      [data-theme="light"] .form-group select {
-        background: #ffffff;
-        border-color: rgba(74, 124, 255, 0.15);
-      }
-      [data-theme="light"] .form-group input:focus,
-      [data-theme="light"] .form-group textarea:focus,
-      [data-theme="light"] .form-group select:focus {
-        border-color: rgba(74, 124, 255, 0.5);
-        box-shadow: 0 0 0 3px rgba(74, 124, 255, 0.1);
-      }
-      [data-theme="light"] .form-group select option {
-        background: #ffffff;
-      }
-      [data-theme="light"] .form-submit {
-        box-shadow: 0 4px 24px rgba(74, 124, 255, 0.25);
-      }
-      [data-theme="light"] .form-submit:hover {
-        box-shadow: 0 8px 36px rgba(74, 124, 255, 0.35);
-      }
-
-      /* Buttons — blue glow */
-      [data-theme="light"] .btn-primary {
-        box-shadow: 0 4px 24px rgba(74, 124, 255, 0.3);
-      }
-      [data-theme="light"] .btn-primary:hover {
-        box-shadow: 0 8px 36px rgba(74, 124, 255, 0.4);
-      }
-      [data-theme="light"] .btn-secondary {
-        background: rgba(74, 124, 255, 0.05);
-        border-color: rgba(74, 124, 255, 0.15);
-      }
-      [data-theme="light"] .btn-secondary:hover {
-        background: rgba(74, 124, 255, 0.1);
-        border-color: rgba(74, 124, 255, 0.3);
-      }
-
-      /* Pricing cards */
-      [data-theme="light"] .price-card {
-        background: #ffffff;
-        border-color: rgba(74, 124, 255, 0.1);
-        box-shadow: 0 4px 24px rgba(74, 124, 255, 0.07);
-      }
-      [data-theme="light"] .price-card:hover {
-        border-color: rgba(74, 124, 255, 0.2);
-        box-shadow: 0 16px 48px rgba(74, 124, 255, 0.1);
-      }
-      [data-theme="light"] .price-card-pro {
-        background: linear-gradient(145deg, #f0f4ff, #e8efff);
-        border-color: rgba(74, 124, 255, 0.25);
-      }
-      [data-theme="light"] .price-card-pro:hover {
-        box-shadow: 0 16px 48px rgba(74, 124, 255, 0.15);
-      }
-      [data-theme="light"] .price-card-max {
-        background: linear-gradient(145deg, #eef8ff, #e4f2ff);
-        border-color: rgba(56, 189, 248, 0.35);
-        box-shadow: 0 4px 30px rgba(56, 189, 248, 0.1);
-      }
-      [data-theme="light"] .price-card-max:hover {
-        box-shadow: 0 16px 48px rgba(56, 189, 248, 0.18);
-      }
-      [data-theme="light"] .price-list li {
-        color: #4a5568;
-      }
-      [data-theme="light"] .price-btn-outline {
-        border-color: rgba(74, 124, 255, 0.25);
-        color: #4a7cff;
-      }
-      [data-theme="light"] .price-btn-outline:hover {
-        background: rgba(74, 124, 255, 0.06);
-      }
-      [data-theme="light"] .price-btn-primary {
-        box-shadow: 0 4px 20px rgba(74, 124, 255, 0.3);
-      }
-      [data-theme="light"] .price-btn-primary:hover {
-        box-shadow: 0 8px 30px rgba(74, 124, 255, 0.4);
-      }
-      [data-theme="light"] .price-btn-cyan {
-        background: linear-gradient(135deg, #38bdf8, #0ea5e9);
-        box-shadow: 0 4px 20px rgba(56, 189, 248, 0.3);
-      }
-      [data-theme="light"] .price-btn-cyan:hover {
-        box-shadow: 0 8px 30px rgba(56, 189, 248, 0.4);
-      }
-
-      /* Footer */
-      [data-theme="light"] footer {
-        background: #ffffff;
-        border-top-color: rgba(74, 124, 255, 0.08);
-      }
-      [data-theme="light"] .footer-brand .logo {
-        background: linear-gradient(90deg, #4a7cff, #38bdf8);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
-      [data-theme="light"] .footer-links a:hover {
-        color: #4a7cff;
-      }
-
-      /* Slider buttons */
-      [data-theme="light"] .slider-btn {
-        background: rgba(255, 255, 255, 0.9);
-        border-color: rgba(74, 124, 255, 0.15);
-        color: #4a7cff;
-        box-shadow: 0 2px 12px rgba(74, 124, 255, 0.1);
-      }
-      [data-theme="light"] .slider-btn:hover {
-        background: #ffffff;
-        border-color: rgba(74, 124, 255, 0.3);
-        box-shadow: 0 4px 20px rgba(74, 124, 255, 0.15);
-      }
-
-      /* Mobile menu */
-      [data-theme="light"] .mobile-menu {
-        background: rgba(255, 255, 255, 0.98);
-      }
-      [data-theme="light"] .mobile-menu a {
-        color: #1a1a2e;
-      }
-      [data-theme="light"] .mobile-menu a:hover {
-        color: #4a7cff;
-      }
-
-      /* Hamburger */
-      [data-theme="light"] .hamburger span {
-        background: #1a1a2e;
-      }
-
-      /* ─── PRICING CARDS: Light mode text fix + equal height ─── */
-
-      /* Equal height cards */
-      [data-theme="light"] .pricing-grid {
-        align-items: stretch;
-      }
-      [data-theme="light"] .price-card {
-        display: flex;
-        flex-direction: column;
-      }
-      [data-theme="light"] .price-card > div:last-of-type,
-      [data-theme="light"] .price-card > div[style*="position: relative"] {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-      }
-      [data-theme="light"] .price-card .price-list {
-        flex: 1;
-      }
-
-      /* Fix invisible white text on white cards */
-      [data-theme="light"] .price-card-pro strong[style*="color: white"],
-      [data-theme="light"] .price-card-pro strong[style*="color:white"] {
-        color: #3454d1 !important;
-      }
-      [data-theme="light"] .price-card-max strong[style*="color: white"],
-      [data-theme="light"] .price-card-max strong[style*="color:white"] {
-        color: #1a6b7a !important;
-      }
-      [data-theme="light"] .price-card-max span[style*="color: white"],
-      [data-theme="light"] .price-card-max span[style*="font-weight: 900"] {
-        color: #1a1a2e !important;
-        -webkit-text-fill-color: #1a1a2e !important;
-      }
-
-      /* Fix Pro card highlight box — readable text */
-      [data-theme="light"] .price-card-pro p[style*="color: #c4b5fd"] {
-        color: #5b6abf !important;
-      }
-      [data-theme="light"] .price-card-pro div[style*="background: rgba(124, 58, 237"] {
-        background: rgba(74, 124, 255, 0.08) !important;
-        border-color: rgba(74, 124, 255, 0.2) !important;
-      }
-
-      /* Fix Max card highlight box — readable text */
-      [data-theme="light"] .price-card-max p[style*="color: #67e8f9"] {
-        color: #2a7f8f !important;
-      }
-      [data-theme="light"] .price-card-max div[style*="background: rgba(6, 182, 212"] {
-        background: rgba(56, 189, 248, 0.08) !important;
-        border-color: rgba(56, 189, 248, 0.2) !important;
-      }
-
-      /* Fix Basic card highlight box */
-      [data-theme="light"] .price-card div[style*="background: rgba(255, 255, 255, 0.03)"] {
-        background: rgba(74, 124, 255, 0.05) !important;
-      }
-
-      /* Fix Basic card tag colors */
-      [data-theme="light"] .price-card span[style*="color: #a78bfa"] {
-        color: #4a7cff !important;
-      }
-      [data-theme="light"] .price-card span[style*="background: rgba(124, 58, 237, 0.15)"] {
-        background: rgba(74, 124, 255, 0.1) !important;
-        border-color: rgba(74, 124, 255, 0.25) !important;
-      }
-
-      /* Fix check mark colors in light mode */
-      [data-theme="light"] .price-list li span[style*="color: #a78bfa"] {
-        color: #4a7cff !important;
-      }
-      [data-theme="light"] .price-list li span[style*="color: #22d3ee"] {
-        color: #0ea5e9 !important;
-      }
-
-      /* Fix Basic card outline button */
-      [data-theme="light"] .price-btn-outline[style*="color: #a78bfa"] {
-        color: #4a7cff !important;
-        border-color: rgba(74, 124, 255, 0.3) !important;
-      }
-
-      /* Fix Max card "진행기간/진행방식" labels */
-      [data-theme="light"] .price-card-max div[style*="color: var(--text-secondary)"] strong[style*="color: white"] {
-        color: #1a1a2e !important;
-      }
-
       * {
         margin: 0;
         padding: 0;
@@ -773,10 +263,6 @@
       .nav-logo .logo-dot {
         color: #22c55e;
       }
-      [data-theme="light"] .nav-logo {
-        color: #0f172a;
-      }
-
       .nav-links {
         display: flex;
         gap: 2rem;
@@ -933,34 +419,6 @@
         }
       }
 
-      /* Light mode — more visible, brighter wave */
-      [data-theme="light"] .hero-wave {
-        background: radial-gradient(
-          ellipse at 40% 50%,
-          rgba(124, 102, 246, 0.3) 0%,
-          rgba(99, 102, 241, 0.2) 25%,
-          rgba(139, 92, 246, 0.12) 50%,
-          transparent 70%
-        );
-        filter: blur(50px);
-      }
-      [data-theme="light"] .hero-wave::before {
-        background: radial-gradient(
-          ellipse at 50% 50%,
-          rgba(139, 92, 246, 0.25) 0%,
-          rgba(124, 58, 237, 0.12) 40%,
-          transparent 70%
-        );
-      }
-      [data-theme="light"] .hero-wave::after {
-        background: radial-gradient(
-          ellipse at 50% 50%,
-          rgba(99, 102, 241, 0.18) 0%,
-          rgba(59, 130, 246, 0.1) 40%,
-          transparent 70%
-        );
-      }
-
       /* Animated orbs */
       .orb {
         position: absolute;
@@ -1057,7 +515,7 @@
 
       .hero-subline {
         font-size: clamp(1.1rem, 2.5vw, 1.4rem);
-        color: var(--text-secondary);
+        color: #ffffff;
         line-height: 1.8;
         margin-bottom: 3.5rem;
         word-break: keep-all;
@@ -1307,6 +765,7 @@
 
       /* ─── PHILOSOPHY ─── */
       #philosophy {
+        background: #ffffff;
         position: relative;
       }
 
@@ -1382,6 +841,109 @@
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 1.5rem;
+      }
+
+      /* ─── HSTEP FLOW (Process) ─── */
+      .hstep-flow {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 0;
+        margin: 3.5rem 0 3rem;
+        padding: 0 2rem;
+      }
+      .hstep-connector {
+        position: absolute;
+        top: 38px;
+        left: calc(2rem + 38px);
+        right: calc(2rem + 38px);
+        height: 2px;
+        background: linear-gradient(90deg, #7c3aed, #3b82f6, #38bdf8);
+        opacity: 0.4;
+        z-index: 0;
+      }
+      .hstep-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        flex: 1;
+        position: relative;
+        z-index: 1;
+      }
+      .hstep-icon {
+        width: 76px;
+        height: 76px;
+        border-radius: 50%;
+        background: rgba(59, 130, 246, 0.12);
+        border: 2px solid rgba(59, 130, 246, 0.35);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #60a5fa;
+        margin-bottom: 1rem;
+        transition: all 0.3s;
+        box-shadow: 0 0 20px rgba(59, 130, 246, 0.1);
+      }
+      .hstep-item:hover .hstep-icon {
+        background: rgba(59, 130, 246, 0.22);
+        border-color: rgba(59, 130, 246, 0.65);
+        box-shadow: 0 0 30px rgba(59, 130, 246, 0.3);
+        transform: translateY(-4px);
+      }
+      .hstep-badge {
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        color: #60a5fa;
+        margin-bottom: 0.4rem;
+      }
+      .hstep-title {
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: 0.4rem;
+      }
+      .hstep-desc {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+        line-height: 1.6;
+        word-break: keep-all;
+      }
+      /* 하단 카드 */
+      .hstep-cards {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.25rem;
+        margin-top: 1rem;
+      }
+      .hstep-card {
+        background: var(--grad-card);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 1.75rem;
+        transition: border-color 0.3s, transform 0.3s;
+      }
+      .hstep-card:hover {
+        border-color: rgba(59, 130, 246, 0.4);
+        transform: translateY(-3px);
+      }
+      .hstep-card-icon {
+        font-size: 1.75rem;
+        margin-bottom: 0.75rem;
+      }
+      .hstep-card h4 {
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: 0.5rem;
+      }
+      .hstep-card p {
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+        line-height: 1.7;
+        word-break: keep-all;
       }
 
       .service-card {
@@ -2116,6 +1678,21 @@
           grid-column: span 1;
         }
         .phil-grid {
+          grid-template-columns: 1fr;
+        }
+        .hstep-flow {
+          flex-wrap: wrap;
+          gap: 2rem;
+          padding: 0;
+        }
+        .hstep-connector {
+          display: none;
+        }
+        .hstep-item {
+          flex: 1 1 calc(50% - 1rem);
+          min-width: 120px;
+        }
+        .hstep-cards {
           grid-template-columns: 1fr;
         }
         .services-grid {
@@ -3516,20 +3093,10 @@
           <a href="#pain-point" role="menuitem">우리의 차별점</a>
         </li>
         <li role="none"><a href="#services" role="menuitem">핵심 서비스</a></li>
-        <li role="none"><a href="#portfolio" role="menuitem">성공 사례</a></li>
         <li role="none">
           <a href="#contact" class="nav-cta" role="menuitem">무료 상담 받기</a>
         </li>
       </ul>
-      <button
-        class="theme-toggle"
-        onclick="toggleTheme()"
-        title="다크/라이트 모드 전환"
-        id="themeBtn"
-        aria-label="다크/라이트 모드 전환"
-      >
-        🌙
-      </button>
       <button
         class="hamburger"
         id="hamburgerBtn"
@@ -3550,7 +3117,6 @@
     >
       <a href="#pain-point" onclick="closeMobileMenu()">우리의 차별점</a>
       <a href="#services" onclick="closeMobileMenu()">핵심 서비스</a>
-      <a href="#portfolio" onclick="closeMobileMenu()">성공 사례</a>
       <a href="#faq" onclick="closeMobileMenu()">자주 묻는 질문</a>
       <a href="#pricing" onclick="closeMobileMenu()">요금제</a>
       <a href="#contact" class="nav-cta" onclick="closeMobileMenu()"
@@ -3561,12 +3127,7 @@
     <!-- HERO -->
     <main id="main-content">
       <section id="hero">
-        <div class="hero-bg" aria-hidden="true"></div>
-        <div class="hero-wave" aria-hidden="true"></div>
-        <div class="hero-grid" aria-hidden="true"></div>
-        <div class="orb orb1" aria-hidden="true"></div>
-        <div class="orb orb2" aria-hidden="true"></div>
-        <div class="orb orb3" aria-hidden="true"></div>
+        <spline-viewer url="https://prod.spline.design/QJizuppW0sBqMVDo/scene.splinecode" style="position:absolute;inset:0;width:100%;height:100%;z-index:0;" events-target="none"></spline-viewer>
 
         <div class="hero-content">
           <h1 class="hero-title">
@@ -3760,103 +3321,77 @@
         <div class="section-inner">
           <div class="section-center reveal">
             <span class="section-tag">Work Process</span>
-            <h2 class="section-title">HighPlus Work Process</h2>
-            <p class="section-desc">
-              투명하고 확실한, 상위 1%를 위한 프리미엄 진행 방식
-            </p>
+            <h2 class="section-title">시작은 <span style="background:var(--grad-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">간단</span>합니다</h2>
+            <p class="section-desc">투명하고 확실한, 상위 1%를 위한 프리미엄 진행 방식</p>
           </div>
-          <div class="process-list">
-            <div
-              class="process-item reveal"
-              onmouseenter="proc3d(this, 1)"
-              onmouseleave="proc3d(this, 0)"
-            >
-              <div class="proc-step-wrap">
-                <div class="proc-step"><span>01</span></div>
+
+          <div class="hstep-flow reveal">
+            <div class="hstep-connector"></div>
+            <div class="hstep-item">
+              <div class="hstep-icon">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
               </div>
-              <div class="proc-body">
-                <h3>심층 파악 및 디렉팅 기획</h3>
-                <p>
-                  공장식 복붙이 아닙니다. 원장님의 철학과 병원의 핵심 가치를
-                  파악하는 심층 설문 후, 브랜드의 톤앤매너를 정립하는 메인
-                  소개글부터 정교하게 기획하고 작성합니다.
-                </p>
-              </div>
+              <div class="hstep-badge">STEP 1</div>
+              <h4 class="hstep-title">무료 상담</h4>
+              <p class="hstep-desc">병원 현황 분석 후<br>맞춤 전략을 제안합니다</p>
             </div>
-            <div
-              class="process-item reveal"
-              onmouseenter="proc3d(this, 1)"
-              onmouseleave="proc3d(this, 0)"
-            >
-              <div class="proc-step-wrap">
-                <div class="proc-step"><span>02</span></div>
+            <div class="hstep-item">
+              <div class="hstep-icon">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
               </div>
-              <div class="proc-body">
-                <h3>1:1 전담 고정 IP 세팅</h3>
-                <p>
-                  수십 곳이 돌려 사용하는 위험한 환경을 배제합니다. 오직
-                  원장님의 홈페이지와 블로그만을 위한 안전한 1 독립 고정 IP를
-                  할당하여 어뷰징 위험 없이 최상의 노출 지수를 유지합니다.
-                </p>
-              </div>
+              <div class="hstep-badge">STEP 2</div>
+              <h4 class="hstep-title">키워드 분석</h4>
+              <p class="hstep-desc">데이터 기반 최적의<br>키워드·콘텐츠 전략 수립</p>
             </div>
-            <div
-              class="process-item reveal"
-              onmouseenter="proc3d(this, 1)"
-              onmouseleave="proc3d(this, 0)"
-            >
-              <div class="proc-step-wrap">
-                <div class="proc-step"><span>03</span></div>
+            <div class="hstep-item">
+              <div class="hstep-icon">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9z"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></svg>
               </div>
-              <div class="proc-body">
-                <h3>실력으로 증명, 월 단위 계약</h3>
-                <p>
-                  매몰비용을 강요하는 장기 계약의 덫에 빠지지 마세요. HighPlus는
-                  오프보딩에 위약금이 없습니다. 오직 매월 증명되는 실질적인
-                  데이터와 성과로만 승부하는 월 단위 계약을 고집합니다.
-                </p>
-              </div>
+              <div class="hstep-badge">STEP 3</div>
+              <h4 class="hstep-title">시스템 세팅</h4>
+              <p class="hstep-desc">전담 IP 세팅 후<br>자동 포스팅 시작</p>
             </div>
-            <div
-              class="process-item reveal"
-              onmouseenter="proc3d(this, 1)"
-              onmouseleave="proc3d(this, 0)"
-            >
-              <div class="proc-step-wrap">
-                <div class="proc-step"><span>04</span></div>
+            <div class="hstep-item">
+              <div class="hstep-icon">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
               </div>
-              <div class="proc-body">
-                <h3>투명한 월간 성과 리포트</h3>
-                <p>
-                  직감에 의존하지 않습니다. 유입량 추이, 핵심 키워드 점유율,
-                  그리고 블로그를 통한 실제 전환(문의) 데이터를 분석한 인사이트
-                  리포트를 매월 정기적으로 발행합니다.
-                </p>
-              </div>
+              <div class="hstep-badge">STEP 4</div>
+              <h4 class="hstep-title">월간 리포트</h4>
+              <p class="hstep-desc">유입·키워드·전환 데이터<br>인사이트 리포트 제공</p>
             </div>
-            <div
-              class="process-item reveal"
-              style="border-bottom: none"
-              onmouseenter="proc3d(this, 1)"
-              onmouseleave="proc3d(this, 0)"
-            >
-              <div class="proc-step-wrap">
-                <div class="proc-step"><span>05</span></div>
+            <div class="hstep-item">
+              <div class="hstep-icon">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
               </div>
-              <div class="proc-body">
-                <h3>1지역 1병원 독점 계약</h3>
-                <p>
-                  HighPlus는 같은 지역구 내에서 여러 클라이언트를 받아 서로
-                  경쟁하게 만들지 않습니다. 오직 1지역구 1개의 병원만 의뢰받아
-                  해당 상권을 완벽하게 독점할 수 있도록 전담 대행합니다.
-                </p>
-              </div>
+              <div class="hstep-badge">STEP 5</div>
+              <h4 class="hstep-title">독점 계약</h4>
+              <p class="hstep-desc">1지역 1병원 독점으로<br>상권을 완벽 장악</p>
+            </div>
+          </div>
+
+          <!-- 하단 설명 카드 3개 -->
+          <div class="hstep-cards reveal">
+            <div class="hstep-card">
+              <div class="hstep-card-icon">⚡</div>
+              <h4>위약금 0원</h4>
+              <p>월 단위 계약. 오직 매월 증명되는 실질적인 성과로만 승부합니다.</p>
+            </div>
+            <div class="hstep-card">
+              <div class="hstep-card-icon">🔒</div>
+              <h4>1지역 독점</h4>
+              <p>같은 지역구 내 타 병원 동시 계약 없음. 오직 내 병원만을 위해 전담합니다.</p>
+            </div>
+            <div class="hstep-card">
+              <div class="hstep-card-icon">📊</div>
+              <h4>투명한 리포트</h4>
+              <p>직감이 아닌 데이터. 유입량·전환·키워드 점유율 매월 인사이트 리포트 제공.</p>
             </div>
           </div>
         </div>
       </section>
 
       <!-- PORTFOLIO -->
+
       <section
         id="portfolio"
         style="background: var(--bg-secondary); position: relative"
@@ -5488,28 +5023,6 @@
       ↑
     </button>
     <script>
-      // ─── THEME (persisted) ───
-      function toggleTheme() {
-        const html = document.documentElement,
-          btn = document.getElementById("themeBtn");
-        if (html.getAttribute("data-theme") === "light") {
-          html.removeAttribute("data-theme");
-          btn.textContent = "🌙";
-          localStorage.setItem("hp-theme", "dark");
-        } else {
-          html.setAttribute("data-theme", "light");
-          btn.textContent = "☀️";
-          localStorage.setItem("hp-theme", "light");
-        }
-      }
-      (function () {
-        var t = localStorage.getItem("hp-theme");
-        if (t === "light") {
-          document.documentElement.setAttribute("data-theme", "light");
-          document.getElementById("themeBtn").textContent = "☀️";
-        }
-      })();
-
       // ─── FAQ (accessible) ───
       function toggleFaq(btn) {
         const item = btn.closest(".faq-item"),
