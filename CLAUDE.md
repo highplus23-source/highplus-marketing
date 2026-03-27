@@ -14,59 +14,126 @@ python3 -m http.server 8080
 
 브라우저에서 `http://localhost:8080` 접속. 빌드/패키지 매니저 없음. 파일 직접 수정 후 git push → Netlify 자동 배포.
 
+---
+
+## ⚠️ 작업 파일 규칙
+
+> **`디벨롭.html`이 메인 작업 파일입니다. index.html이 아닙니다!**
+
+| 파일 | 용도 |
+|------|------|
+| `디벨롭.html` | ✅ **현재 개발 중인 리뉴얼 버전** — 모든 수정은 여기에! |
+| `index.html` | 현재 라이브 배포 버전 (건드리지 않기) |
+
+---
+
+## 📞 대표님 통화 내용 (2027.03.27 기준)
+
+### 타겟 고객
+- 병의원 원장님. 보통 작은 병원엔 마케팅 직원 없음
+- 실장(간호사/직원)이 블로그 포스팅 담당
+
+### 핵심 전략 (PASONA 기법)
+메타 광고에서 "블로그 자동화 30만원"으로 유입 → 홈페이지에서 전환
+
+#### 사용자 심리 흐름:
+```
+메타 광고 "블로그 자동화 30만원" 클릭
+    ↓
+[히어로] 버튼: "Ai실장" | "블로그 대행 알아보기"
+    ↓ Ai실장 클릭
+[공감 섹션] "실장이 블로그 쓰는데 왜 돈을 더 써? 실장 월급도 나가는데"
+    → 원장님 현실 공감, 하지만 실장이 쓴 글로 환자가 오나? 반전
+    ↓
+[Ai실장 섹션] 기능 + ₩300,000/월 가격
+    ↓
+[Pain Point] "대행사에 맡겼는데 이런 경험?" → 대행 불만 공감
+    ↓
+[Trust/Stats] "우리도 같은 경험" + 40+ 파트너 실적
+    ↓
+[서비스 상세] 대행 서비스 내용 → "차라리 대행이 낫지?" 생각 유발
+    ↓
+★ 핵심: 대행을 맡기면 BEST지만, 못 맡기더라도 30만원이 싸게 느껴짐
+    ↓
+[CTA] 무료 컨설팅 / 시작하기
+```
+
+### 네비게이션 변경 지시
+- ❌ `Ai실장` 링크 제거
+- ❌ `광고 대행` 링크 제거
+- ❌ `날씬예약` 링크 제거
+- 남길 것: `우리의 차별점` | `핵심 서비스` | `무료 컨설팅 받기`
+
+### 비즈니스 목표
+- **Ai실장 20군데 이상 확보 = 회사 생존 조건**
+- 대행 내용은 현재 OK, Ai실장 내용을 명확하게 만드는 게 핵심
+- Ai실장은 자동화 프로그램 → "이런 상황이면 우리 프로그램이 훨씬 이득"
+
+---
+
+## 현재 진행 상황 (2027.03.27)
+
+### ✅ 완료
+- [x] 히어로 버튼 앵커 링크 설정 (`#ai-manager`, `#pain-point`)
+- [x] Ai실장 섹션 재구성 (좌우 분할: 기능 리스트 + ₩300,000 가격 + 설득 문구)
+
+### 🔲 예정 작업
+- [x] 네비게이션 간소화 (Ai실장/광고대행/날씬예약 제거)
+- [x] 공감 섹션 신규 추가 (히어로 ↔ Ai실장 사이)
+  - "실장이 블로그 쓰는데 왜 돈 더 써?" 공감형 콘텐츠
+- [x] 히어로 "Ai실장" 버튼 → `#empathy` (공감 섹션)로 변경
+- [x] PASONA 흐름에 맞춰 섹션 순서 재배치
+- [x] 폴더 정리 (백업 파일, 루트 이미지, 문서 파일 정리)
+
+---
+
+## 디벨롭.html 섹션 순서 (현재)
+
+1. `#hero` — 히어로 (Spline 3D 배경)
+2. `#ai-manager` — Ai실장 (₩300,000 + 기능 + 설득 문구)
+3. `#pain-point` — 대행사 페인포인트 ("혹시 이런 경험?")
+4. `#trust` — 신뢰 ("우리도 같은 경험")
+5. `.stats-bar` — 실적 (40+, 98%, 로고 마키)
+6. `#services` — 핵심 서비스 4가지
+7. `#compare` — 하이플러스 vs 일반 대행사 비교표
+8. `#growth-story` — 블로그 복리 성장
+9. Testimonials — 리뷰 슬라이더
+10. `#faq` — FAQ
+11. `#scarcity` — 희소성
+12. `#contact` — CTA + 무료 컨설팅 폼
+
+---
+
 ## 파일 구조
 
-- **`index.html`** (~5400줄): HTML + CSS(`<style>`) + JS(`<script>`) 모두 포함된 메인 파일
-- **`css/style.css`**: 보조 스타일시트 (대부분의 활성 스타일은 index.html 내부)
-- **`js/main.js`**: 보조 JS (헤더 스크롤, 카운터, 폼, 다크모드)
-- **`img/`**: 정적 에셋 (logo.png, favicon.svg, 2.jpg 등)
-- **`클라이언트 (병원)로고/`**: 마키 섹션용 병원 로고 이미지
+```
+highplus-marketing-main/
+├── 디벨롭.html          ← ✅ 메인 작업 파일
+├── index.html           ← 라이브 버전 (수정 X)
+├── 404.html
+├── css/style.css        ← 보조 스타일시트
+├── js/main.js           ← 보조 JS
+├── img/                 ← 이미지 에셋
+│   ├── logo.png         ← 사용 중인 로고
+│   ├── backgrounds/     ← 배경 이미지
+│   ├── icons/           ← 아이콘
+│   ├── portfolio/       ← 포트폴리오 이미지
+│   └── stats/           ← 통계 이미지
+├── 클라이언트 (병원)로고/ ← 마키 섹션용
+├── backups/             ← 백업 파일
+├── docs/                ← 문서/가이드
+├── robots.txt
+├── sitemap.xml
+└── _headers             ← Netlify 보안 헤더
+```
 
-## 주요 변경 이력
-
-### 네비게이션 로고
-- 텍스트 로고(`HighPlus.`) → 이미지 로고(`img/logo.png`)로 변경
-- 한글 파일명(`하이플러스 로고.png`)은 URL 문제 발생 → 영문(`logo.png`)으로 복사하여 사용
-- `.nav-logo-img` 클래스: height 50px, object-fit: contain
-
-### 버튼 스타일 (btn-primary / btn-secondary)
-- `border-radius: 100px` (pill 형태)
-- btn-primary: `::before` 빛나는 오버레이 효과 (hover 시 opacity 1)
-- btn-secondary: 투명 배경 + 얇은 테두리, hover 시 밝아짐
-- MAGNETIC BUTTONS 효과 (커서 따라 움직이는 기능) 삭제됨
-
-### Stats 섹션 (성장의 기록)
-- 배경: `#eef1f6` (밝은 회색) — 다크 테마로 변경 시도 후 원래대로 복원
-- stat-label / stat-sub: 흰색(#ffffff), 글씨 크기 20% 확대 (1.26rem / 1.02rem)
-- stat-item: `overflow: hidden` 추가 (모서리 잘림 방지)
-- 로고 마키: 흰색 배경 카드, `#eef1f6` fade 그라데이션
-
-### Pain Point 섹션
-- `#pain-point`: padding-top/bottom 60px (기본 100px에서 축소)
-- `.pain-grid`: gap 2rem (1.25rem에서 확대)
-- `.pain-highlight` 카드:
-  - 배경: `url('img/2.jpg')` 직접 배경 + `::before` 오버레이 (`rgba(12,18,37,0.9)`)
-  - `text-align: center` (가운데 정렬)
-  - hover: translateY(-10px) scale(1.03) + 블루 글로우 효과
-
-### Philosophy 섹션
-- 숫자(01~04) → SVG 아이콘으로 변경:
-  - 글의 힘과 퍼널 설계 → 펜(편집) 아이콘
-  - 의료적 감수성 → 심박수(의료) 아이콘
-  - 하이브리드 시스템 → CPU(기술) 아이콘
-  - 동업자 정신 → 사람들(파트너) 아이콘
-
-## CSS 변수 (index.html :root)
+## CSS 변수 (디벨롭.html :root)
 
 `--bg-primary`, `--bg-secondary` (#0f1120), `--bg-card`, `--text-primary`, `--text-muted`, `--border`, `--grad-btn`, `--grad-text`
-
-## 페이지 섹션 순서
-
-`nav` → `#hero` (Spline 3D) → `.stats-bar` (밝은 배경) → `#pain-point` (흰 배경) → `#philosophy` → `#services` (다크 배경) → `#process` → `#graph` → testimonials → `#faq` → `#contact` (Formspree) → `footer`
 
 ## 주의사항
 
 - 한글 파일명은 URL 인코딩 문제 발생 가능 → `img/` 디렉토리에 영문 파일명으로 복사하여 사용
 - 반응형 브레이크포인트: 1024px, 768px, 480px
-- 폼 제출: Web3Forms API (access_key가 index.html에 포함)
+- 폼 제출: Web3Forms API (access_key가 HTML에 포함)
 - `_headers`: Netlify 보안 헤더 설정 파일
