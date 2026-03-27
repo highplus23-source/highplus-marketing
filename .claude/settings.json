@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(stats)",
+      "Bash(pain)",
+      "Bash(philosophy)",
+      "Bash(services)",
+      "Bash(testimonials)",
+      "Bash(faq)"
+    ]
+  }
+}
