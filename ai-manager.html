@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ai실장 — 블로그 자동화 솔루션 | 하이플러스</title>
+    <meta name="description" content="월 330,000원(VAT 포함)으로 키워드 분석, AI 원고 작성, 이미지 생성, 순위 추적까지. 블로그에 업로드만 하면 끝나는 Ai실장." />
+    <meta property="og:title" content="Ai실장 — 블로그 자동화 솔루션 | 하이플러스" />
+    <meta property="og:description" content="주 2회 키워드 분석 + AI 원고 + 이미지 5장 자동 생성. 업로드만 하면 끝." />
+    <meta property="og:locale" content="ko_KR" />
+    <link rel="icon" href="img/favicon.svg" type="image/svg+xml" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800;900&family=Bebas+Neue&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
+    <style>
+      /* ─── Ai실장 페이지 전용 스타일 ─── */
+      .subpage-hero {
+        min-height: 50vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 140px 5% 80px;
+        position: relative;
+        overflow: hidden;
+        background: var(--bg-primary);
+      }
+      .subpage-hero::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(79,110,247,0.15) 0%, transparent 70%);
+      }
+      .subpage-hero .hero-content { position: relative; z-index: 1; max-width: 800px; }
+      .subpage-hero .price-badge {
+        display: inline-flex;
+        align-items: baseline;
+        gap: 0.5rem;
+        background: rgba(79,110,247,0.12);
+        border: 1px solid rgba(79,110,247,0.3);
+        border-radius: 100px;
+        padding: 0.8rem 2rem;
+        margin-bottom: 2rem;
+      }
+      .subpage-hero .price-badge .amount {
+        font-size: 2rem;
+        font-weight: 800;
+        color: #6b8aff;
+      }
+      .subpage-hero .price-badge .unit {
+        font-size: 0.95rem;
+        color: #8e95a5;
+      }
+
+      /* 기능 카드 */
+      .feature-section { padding: 80px 5%; }
+      .feature-section:nth-child(even) { background: var(--bg-secondary); }
+      .feature-section:nth-child(odd) { background: var(--bg-primary); }
+
+      .feature-row {
+        max-width: 1100px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+      }
+      .feature-row.reversed { direction: rtl; }
+      .feature-row.reversed > * { direction: ltr; }
+
+      .feature-text { display: flex; flex-direction: column; gap: 1rem; }
+      .feature-text .step-num {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px; height: 40px;
+        border-radius: 12px;
+        background: rgba(79,110,247,0.12);
+        border: 1px solid rgba(79,110,247,0.3);
+        color: #6b8aff;
+        font-weight: 800;
+        font-size: 1.1rem;
+      }
+      .feature-text h3 {
+        font-size: 1.6rem;
+        font-weight: 800;
+        color: #fff;
+        line-height: 1.3;
+      }
+      .feature-text p {
+        font-size: 1.05rem;
+        color: rgba(255,255,255,0.7);
+        line-height: 1.8;
+        word-break: keep-all;
+      }
+      .feature-text ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+      }
+      .feature-text ul li {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        font-size: 0.95rem;
+        color: rgba(255,255,255,0.8);
+      }
+      .feature-text ul li::before {
+        content: '✓';
+        color: #6b8aff;
+        font-weight: 700;
+        flex-shrink: 0;
+      }
+
+      /* 스크린샷 플레이스홀더 */
+      .screenshot-placeholder {
+        background: rgba(255,255,255,0.03);
+        border: 2px dashed rgba(255,255,255,0.12);
+        border-radius: 16px;
+        min-height: 320px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        color: rgba(255,255,255,0.3);
+        font-size: 0.95rem;
+        transition: border-color 0.3s;
+      }
+      .screenshot-placeholder:hover { border-color: rgba(79,110,247,0.4); }
+      .screenshot-placeholder .placeholder-icon {
+        width: 60px; height: 60px;
+        border-radius: 16px;
+        background: rgba(79,110,247,0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+      }
+
+      /* 사용 흐름 */
+      .flow-section { padding: 80px 5%; background: #0f1120; }
+      .flow-grid {
+        max-width: 1000px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.5rem;
+      }
+      .flow-card {
+        background: rgba(255,255,255,0.03);
+        border: 1px solid rgba(255,255,255,0.06);
+        border-radius: 20px;
+        padding: 2rem 1.5rem;
+        text-align: center;
+        position: relative;
+        transition: transform 0.3s, border-color 0.3s;
+      }
+      .flow-card:hover {
+        transform: translateY(-6px);
+        border-color: rgba(79,110,247,0.3);
+      }
+      .flow-card .flow-num {
+        width: 44px; height: 44px;
+        border-radius: 50%;
+        background: var(--grad-btn);
+        color: #fff;
+        font-weight: 800;
+        font-size: 1.1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1.2rem;
+      }
+      .flow-card h4 {
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 0.5rem;
+      }
+      .flow-card p {
+        font-size: 0.88rem;
+        color: rgba(255,255,255,0.55);
+        line-height: 1.6;
+      }
+
+      /* CTA */
+      .cta-bottom {
+        padding: 80px 5%;
+        text-align: center;
+        background: var(--bg-primary);
+        position: relative;
+      }
+      .cta-bottom::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(ellipse at 50% 50%, rgba(79,110,247,0.08), transparent 70%);
+      }
+      .cta-bottom > * { position: relative; z-index: 1; }
+
+      /* 반응형 */
+      @media (max-width: 768px) {
+        .feature-row {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+        .feature-row.reversed { direction: ltr; }
+        .flow-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .subpage-hero { min-height: 40vh; padding-top: 120px; }
+      }
+      @media (max-width: 480px) {
+        .flow-grid { grid-template-columns: 1fr; }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAV -->
+    <nav role="navigation" aria-label="메인 네비게이션">
+      <a href="디벨롭.html#hero" class="nav-logo" aria-label="HighPlus 홈으로"><img src="img/logo.png" alt="HighPlus 로고" class="nav-logo-img" /></a>
+      <ul class="nav-links" role="menubar" style="align-items: center;">
+        <li role="none"><a href="디벨롭.html#services" role="menuitem">핵심 서비스</a></li>
+        <li role="none"><a href="ai-manager.html" role="menuitem" class="active">Ai실장</a></li>
+        <li role="none"><a href="ad-agency.html" role="menuitem">광고 대행</a></li>
+        <li role="none">
+          <a href="디벨롭.html#contact" class="nav-cta" role="menuitem">무료 컨설팅 받기</a>
+        </li>
+      </ul>
+      <button class="hamburger" id="hamburgerBtn" aria-label="메뉴 열기" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+    <div class="mobile-menu" id="mobileMenu" role="navigation" aria-label="모바일 메뉴">
+      <a href="디벨롭.html" onclick="closeMobileMenu()">홈</a>
+      <a href="ai-manager.html" onclick="closeMobileMenu()" style="color: #6b8aff; font-weight: 700;">Ai실장</a>
+      <a href="ad-agency.html" onclick="closeMobileMenu()">광고 대행</a>
+      <a href="디벨롭.html#contact" class="nav-cta" onclick="closeMobileMenu()">무료 컨설팅 받기</a>
+    </div>
+
+    <main>
+      <!-- HERO -->
+      <section class="subpage-hero">
+        <div class="hero-content">
+          <span class="section-tag" style="background: rgba(79,110,247,0.15); color: #6b8aff; border: none; border-radius: 100px; padding: 0.4rem 1rem; margin-bottom: 1.5rem;">Ai실장</span>
+          <h1 class="hero-title" style="font-size: clamp(2rem, 5vw, 3.2rem);">
+            키워드 분석부터 원고 작성까지,<br />
+            <span class="highlight">업로드만 하면 끝.</span>
+          </h1>
+          <p class="hero-subline" style="margin-bottom: 2rem;">
+            대행사 없이 직접 운영하고 싶은 원장님·대표님을 위한<br />
+            블로그 자동화 솔루션
+          </p>
+          <div class="price-badge">
+            <span class="amount">₩330,000</span>
+            <span class="unit">/ 월 (VAT 포함)</span>
+          </div>
+          <div class="hero-btns">
+            <a href="디벨롭.html#contact" class="btn-primary">무료 컨설팅 신청하기</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- FEATURE 1: 키워드 분석 + 원고 작성 -->
+      <section class="feature-section">
+        <div class="feature-row">
+          <div class="feature-text">
+            <span class="step-num">01</span>
+            <h3>AI가 키워드를 분석하고<br />원고를 자동으로 작성합니다</h3>
+            <p>
+              지역 + 질환/서비스 키워드를 자동으로 추출하고,
+              검색량 데이터를 바탕으로 최적의 원고를 생성합니다.
+            </p>
+            <ul>
+              <li>주 2회 (월 8회) 원고 자동 작성</li>
+              <li>유입용 / 전환용 원고 유형 선택 가능</li>
+              <li>제목 3개 자동 추천</li>
+              <li>원고 .txt 다운로드 지원</li>
+            </ul>
+          </div>
+          <div class="screenshot-placeholder" id="placeholder-keyword">
+            <div class="placeholder-icon">📝</div>
+            <span>키워드 분석 + 원고 작성 화면</span>
+            <span style="font-size: 0.8rem; color: rgba(255,255,255,0.2);">스크린샷 자리</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- FEATURE 2: AI 이미지 생성 -->
+      <section class="feature-section">
+        <div class="feature-row reversed">
+          <div class="feature-text">
+            <span class="step-num">02</span>
+            <h3>포스팅에 필요한 이미지도<br />AI가 5장 자동 생성</h3>
+            <p>
+              블로그에 필요한 고퀄리티 이미지를 자동 생성합니다.
+              스타일, 성별, 연령대까지 세밀하게 설정 가능합니다.
+            </p>
+            <ul>
+              <li>실사 / 일러스트 스타일 선택</li>
+              <li>성별 (남/여) · 연령대 (20대/40대/60대) 설정</li>
+              <li>포스팅당 5장 자동 생성</li>
+              <li>추가 지시사항 입력 가능</li>
+            </ul>
+          </div>
+          <div class="screenshot-placeholder" id="placeholder-image">
+            <div class="placeholder-icon">🖼️</div>
+            <span>AI 이미지 생성 결과 화면</span>
+            <span style="font-size: 0.8rem; color: rgba(255,255,255,0.2);">스크린샷 자리</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- FEATURE 3: 순위 추적 -->
+      <section class="feature-section">
+        <div class="feature-row">
+          <div class="feature-text">
+            <span class="step-num">03</span>
+            <h3>내 블로그 키워드 순위를<br />실시간으로 추적합니다</h3>
+            <p>
+              블로그 URL을 등록하면, 발행된 글의 키워드별 순위를
+              자동으로 크롤링하여 보여드립니다.
+            </p>
+            <ul>
+              <li>블로그 URL 등록 → 자동 크롤링</li>
+              <li>글별 검색 키워드 + 현재 순위 확인</li>
+              <li>순위 변동 히스토리 추적</li>
+              <li>수동 순위 갱신 지원</li>
+            </ul>
+          </div>
+          <div class="screenshot-placeholder" id="placeholder-ranking">
+            <div class="placeholder-icon">📊</div>
+            <span>순위 추적 시스템 화면</span>
+            <span style="font-size: 0.8rem; color: rgba(255,255,255,0.2);">스크린샷 자리</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 사용 흐름 -->
+      <section class="flow-section">
+        <div style="text-align: center; margin-bottom: 3rem;">
+          <span class="section-tag" style="background: rgba(79,110,247,0.15); color: #6b8aff; border: none; border-radius: 100px; padding: 0.4rem 1rem;">How It Works</span>
+          <h2 class="section-title" style="color: #fff;">이렇게 사용하시면 됩니다</h2>
+        </div>
+        <div class="flow-grid">
+          <div class="flow-card">
+            <div class="flow-num">1</div>
+            <h4>병원 정보 입력</h4>
+            <p>지역, 질환, 진료과목 등<br />기본 정보를 설정합니다</p>
+          </div>
+          <div class="flow-card">
+            <div class="flow-num">2</div>
+            <h4>원고 유형 선택</h4>
+            <p>유입용 / 전환용 원고와<br />이미지 스타일을 선택합니다</p>
+          </div>
+          <div class="flow-card">
+            <div class="flow-num">3</div>
+            <h4>원고 + 이미지 생성</h4>
+            <p>AI가 키워드 분석 후<br />원고와 이미지를 생성합니다</p>
+          </div>
+          <div class="flow-card">
+            <div class="flow-num">4</div>
+            <h4>업로드만 하면 끝</h4>
+            <p>다운로드한 원고를<br />블로그에 올리기만 하면 됩니다</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="cta-bottom">
+        <span class="section-tag" style="background: rgba(79,110,247,0.15); color: #6b8aff; border: none; border-radius: 100px; padding: 0.4rem 1rem; margin-bottom: 1rem;">시작하기</span>
+        <h2 class="section-title" style="color: #fff; margin-bottom: 1rem;">
+          월 33만원으로 블로그 마케팅을<br /><span class="grad-highlight">자동화</span>하세요
+        </h2>
+        <p style="color: rgba(255,255,255,0.6); font-size: 1.05rem; margin-bottom: 2.5rem; line-height: 1.8;">
+          대행사에 맡기기 전, 직접 경험해 보세요.<br />
+          한 달 단위 계약, 부담 없이 시작할 수 있습니다.
+        </p>
+        <div class="hero-btns">
+          <a href="디벨롭.html#contact" class="btn-primary" style="font-size: 1.05rem; padding: 1rem 2.5rem;">무료 컨설팅 신청하기</a>
+          <a href="ad-agency.html" class="btn-secondary" style="font-size: 1.05rem; padding: 1rem 2.5rem;">광고 대행 알아보기 →</a>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer style="background: #080a14; padding: 3rem 5%; text-align: center; border-top: 1px solid rgba(255,255,255,0.05);">
+      <img src="img/logo.png" alt="HighPlus 로고" style="height: 36px; margin-bottom: 1rem; opacity: 0.7;" />
+      <p style="color: rgba(255,255,255,0.4); font-size: 0.85rem;">© 2026 HighPlus. All rights reserved.</p>
+    </footer>
+
+    <script>
+      // 모바일 메뉴
+      const hamburger = document.getElementById('hamburgerBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+      const overlay = document.getElementById('mobileOverlay');
+      function closeMobileMenu() {
+        mobileMenu.classList.remove('open');
+        overlay.classList.remove('open');
+        hamburger.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+      }
+      hamburger.addEventListener('click', () => {
+        const isOpen = mobileMenu.classList.toggle('open');
+        overlay.classList.toggle('open');
+        hamburger.classList.toggle('open');
+        hamburger.setAttribute('aria-expanded', isOpen);
+      });
+      overlay.addEventListener('click', closeMobileMenu);
+
+      // Reveal animation
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }});
+      }, { threshold: 0.15 });
+      document.querySelectorAll('.feature-row, .flow-card, .screenshot-placeholder').forEach(el => {
+        el.classList.add('reveal');
+        obs.observe(el);
+      });
+    </script>
+  </body>
+</html>
