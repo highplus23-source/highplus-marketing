@@ -130,9 +130,15 @@
         transform: translateY(-1px);
       }
 
-      /* ─── HIDE SPLINE WATERMARK ─── */
+      /* ─── HIDE SPLINE WATERMARK & FIX BACKGROUND ─── */
+      #hero spline-viewer {
+        background: transparent !important;
+      }
       #hero spline-viewer::part(logo) {
         display: none !important;
+      }
+      #hero spline-viewer canvas {
+        background: transparent !important;
       }
       #hero::after {
         content: '';
