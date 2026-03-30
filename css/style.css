@@ -2198,9 +2198,14 @@
       .testimonial-marquee-track {
         display: flex;
         gap: 20px;
-        overflow: hidden;
+        overflow-x: auto;
         scroll-behavior: smooth;
         padding: 0 60px;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+      .testimonial-marquee-track::-webkit-scrollbar {
+        display: none;
       }
       .testimonial-slider-wrap::before,
       .testimonial-slider-wrap::after {

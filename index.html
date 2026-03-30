@@ -1486,27 +1486,29 @@
     <script>
       // Testimonial Slider
       (function(){
-        const track = document.querySelector('.testimonial-marquee-track');
+        var track = document.querySelector('.testimonial-marquee-track');
         if(!track) return;
-        const cards = track.querySelectorAll('.testimonial__card');
+        var cards = track.querySelectorAll('.testimonial__card');
         if(!cards.length) return;
-        let pos = 0;
-        let autoTimer;
+        var autoTimer;
+
+        function getStep(){
+          return cards[0].offsetWidth + 20;
+        }
 
         function slide(dir){
-          pos += dir;
-          if(pos >= cards.length) pos = 0;
-          if(pos < 0) pos = cards.length - 1;
-          var offset = cards[pos].offsetLeft - track.offsetLeft;
-          track.style.transition = 'transform 0.5s ease';
-          track.style.transform = 'translateX(-' + offset + 'px)';
+          var step = getStep();
+          var maxScroll = track.scrollWidth - track.clientWidth;
+          var target = track.scrollLeft + (step * dir);
+          if(target > maxScroll) { track.scrollLeft = 0; return; }
+          if(target < 0) { track.scrollLeft = maxScroll; return; }
+          track.scrollLeft = target;
         }
 
         function startAuto(){
           stopAuto();
           autoTimer = setInterval(function(){ slide(1); }, 4000);
         }
-
         function stopAuto(){ clearInterval(autoTimer); }
 
         window.testimonialSlide = function(dir){
@@ -1517,7 +1519,6 @@
 
         track.addEventListener('mouseenter', stopAuto);
         track.addEventListener('mouseleave', startAuto);
-
         startAuto();
       })();
     </script>
