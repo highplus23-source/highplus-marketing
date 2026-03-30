@@ -130,25 +130,23 @@
         transform: translateY(-1px);
       }
 
-      /* ─── HIDE SPLINE WATERMARK & FIX BACKGROUND ─── */
-      #hero spline-viewer {
-        background: transparent !important;
-      }
-      #hero spline-viewer::part(logo) {
-        display: none !important;
-      }
-      #hero spline-viewer canvas {
-        background: transparent !important;
-      }
+      /* ─── HERO DECORATIVE PARTICLES ─── */
       #hero::after {
         content: '';
         position: absolute;
-        bottom: 0;
-        right: 0;
-        width: 200px;
-        height: 60px;
-        background: var(--bg-primary, #0a0a0f);
-        z-index: 2;
+        top: 15%;
+        left: 8%;
+        width: 6px;
+        height: 6px;
+        background: rgba(79, 110, 247, 0.5);
+        border-radius: 50%;
+        box-shadow:
+          0 0 20px 4px rgba(79, 110, 247, 0.3),
+          80vw 20vh 0 2px rgba(56, 189, 248, 0.4),
+          60vw -5vh 0 1px rgba(107, 138, 255, 0.35),
+          25vw 30vh 0 3px rgba(59, 130, 246, 0.3),
+          70vw 35vh 0 1px rgba(79, 110, 247, 0.25);
+        z-index: 0;
         pointer-events: none;
       }
 
