@@ -1493,22 +1493,13 @@
         let pos = 0;
         let autoTimer;
 
-        function getCardWidth(){
-          return cards[0].offsetWidth + 20;
-        }
-
-        function getMaxPos(){
-          var visible = Math.floor(track.parentElement.offsetWidth / getCardWidth());
-          return Math.max(cards.length - visible, 0);
-        }
-
         function slide(dir){
           pos += dir;
-          var maxPos = getMaxPos();
-          if(pos > maxPos) pos = 0;
-          if(pos < 0) pos = maxPos;
+          if(pos >= cards.length) pos = 0;
+          if(pos < 0) pos = cards.length - 1;
+          var offset = cards[pos].offsetLeft - track.offsetLeft;
           track.style.transition = 'transform 0.5s ease';
-          track.style.transform = 'translateX(-' + (pos * getCardWidth()) + 'px)';
+          track.style.transform = 'translateX(-' + offset + 'px)';
         }
 
         function startAuto(){
