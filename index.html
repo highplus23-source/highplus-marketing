@@ -688,22 +688,26 @@
 
       <!-- 간편 신청 폼 -->
       <section style="background: #0b0d17; padding: 5rem 5%; border-top: 1px solid rgba(255,255,255,0.05);">
-        <div class="reveal" style="max-width: 560px; margin: 0 auto;">
-          <form id="quickForm" novalidate style="display: flex; flex-direction: column; gap: 1.2rem;">
+        <div class="reveal" style="max-width: 640px; margin: 0 auto; background: var(--bg-card); border: 1px solid var(--border); border-radius: 24px; padding: 3rem;">
+          <form id="quickForm" novalidate>
             <div class="form-group">
-              <label style="color: rgba(255,255,255,0.8); font-size: 0.95rem; font-weight: 600; margin-bottom: 0.4rem; display: block;">성함 *</label>
-              <input type="text" name="name" placeholder="홍길동 원장" required style="width: 100%; padding: 1rem 1.2rem; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; color: #fff; font-size: 1rem; font-family: 'Noto Sans KR', sans-serif; outline: none; transition: border-color 0.3s;" onfocus="this.style.borderColor='rgba(107,138,255,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'" />
+              <label>성함 / 직책 *</label>
+              <input type="text" name="name" placeholder="홍길동 대표" required aria-required="true" />
             </div>
             <div class="form-group">
-              <label style="color: rgba(255,255,255,0.8); font-size: 0.95rem; font-weight: 600; margin-bottom: 0.4rem; display: block;">연락처 *</label>
-              <input type="tel" name="phone" placeholder="010-0000-0000" required pattern="[0-9\-]+" style="width: 100%; padding: 1rem 1.2rem; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; color: #fff; font-size: 1rem; font-family: 'Noto Sans KR', sans-serif; outline: none; transition: border-color 0.3s;" onfocus="this.style.borderColor='rgba(107,138,255,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'" />
+              <label>연락처 *</label>
+              <input type="tel" name="phone" placeholder="010-0000-0000" required aria-required="true" pattern="[0-9\-]+" />
             </div>
             <div class="form-group">
-              <label style="color: rgba(255,255,255,0.8); font-size: 0.95rem; font-weight: 600; margin-bottom: 0.4rem; display: block;">병원명</label>
-              <input type="text" name="hospital" placeholder="병원명 입력" style="width: 100%; padding: 1rem 1.2rem; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; color: #fff; font-size: 1rem; font-family: 'Noto Sans KR', sans-serif; outline: none; transition: border-color 0.3s;" onfocus="this.style.borderColor='rgba(107,138,255,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'" />
+              <label>업체명 (또는 플레이스/웹사이트 링크)</label>
+              <input type="text" name="hospital" placeholder="업체명 기재" />
             </div>
-            <button type="submit" style="width: 100%; padding: 1.1rem; background: linear-gradient(135deg, #22c55e, #16a34a); color: #fff; font-size: 1.05rem; font-weight: 700; font-family: 'Noto Sans KR', sans-serif; border: none; border-radius: 12px; cursor: pointer; box-shadow: 0 4px 20px rgba(34,197,94,0.3); transition: transform 0.2s, box-shadow 0.2s; margin-top: 0.5rem;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 30px rgba(34,197,94,0.4)'" onmouseout="this.style.transform='none'; this.style.boxShadow='0 4px 20px rgba(34,197,94,0.3)'">신청하기</button>
-            <p style="text-align: center; color: rgba(255,255,255,0.4); font-size: 0.85rem;">제출 시 개인정보 수집 및 이용에 동의하는 것으로 간주합니다.</p>
+            <div class="form-group">
+              <label>현재 가장 큰 고민이 무엇인가요?</label>
+              <textarea name="concern" placeholder="예: 플레이스 상위 노출이 안됩니다. 블로그 관리가 어렵습니다."></textarea>
+            </div>
+            <button type="submit" class="form-submit" style="background: linear-gradient(135deg, #22c55e, #16a34a); box-shadow: 0 4px 20px rgba(34,197,94,0.3);">Ai실장 시작하기</button>
+            <p class="form-note" style="text-align: center;">제출 시 개인정보 수집 및 이용에 동의하는 것으로 간주합니다.</p>
           </form>
         </div>
       </section>
