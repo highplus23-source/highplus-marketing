@@ -1490,33 +1490,40 @@
         if(!track) return;
         const cards = track.querySelectorAll('.testimonial__card');
         if(!cards.length) return;
-        const cardWidth = cards[0].offsetWidth + 20; // card width + gap
         let pos = 0;
         let autoTimer;
 
-        function testimonialSlide(dir){
+        function getCardWidth(){
+          return cards[0].offsetWidth + 20;
+        }
+
+        function getMaxPos(){
+          var visible = Math.floor(track.parentElement.offsetWidth / getCardWidth());
+          return Math.max(cards.length - visible, 0);
+        }
+
+        function slide(dir){
           pos += dir;
-          const maxPos = cards.length - 4;
-          if(pos < 0) pos = 0;
+          var maxPos = getMaxPos();
           if(pos > maxPos) pos = 0;
+          if(pos < 0) pos = maxPos;
           track.style.transition = 'transform 0.5s ease';
-          track.style.transform = 'translateX(-' + (pos * cardWidth) + 'px)';
+          track.style.transform = 'translateX(-' + (pos * getCardWidth()) + 'px)';
         }
 
         function startAuto(){
-          autoTimer = setInterval(function(){ testimonialSlide(1); }, 4000);
+          stopAuto();
+          autoTimer = setInterval(function(){ slide(1); }, 4000);
         }
 
         function stopAuto(){ clearInterval(autoTimer); }
 
-        // 버튼 연결
         window.testimonialSlide = function(dir){
           stopAuto();
-          testimonialSlide(dir);
+          slide(dir);
           startAuto();
         };
 
-        // hover 시 멈춤
         track.addEventListener('mouseenter', stopAuto);
         track.addEventListener('mouseleave', startAuto);
 
