@@ -1483,6 +1483,46 @@
       }
       window.scrollTo(0, 0);
     </script>
+    <script>
+      // Testimonial Slider
+      (function(){
+        const track = document.querySelector('.testimonial-marquee-track');
+        if(!track) return;
+        const cards = track.querySelectorAll('.testimonial__card');
+        if(!cards.length) return;
+        const cardWidth = cards[0].offsetWidth + 20; // card width + gap
+        let pos = 0;
+        let autoTimer;
+
+        function testimonialSlide(dir){
+          pos += dir;
+          const maxPos = cards.length - 4;
+          if(pos < 0) pos = 0;
+          if(pos > maxPos) pos = 0;
+          track.style.transition = 'transform 0.5s ease';
+          track.style.transform = 'translateX(-' + (pos * cardWidth) + 'px)';
+        }
+
+        function startAuto(){
+          autoTimer = setInterval(function(){ testimonialSlide(1); }, 4000);
+        }
+
+        function stopAuto(){ clearInterval(autoTimer); }
+
+        // 버튼 연결
+        window.testimonialSlide = function(dir){
+          stopAuto();
+          testimonialSlide(dir);
+          startAuto();
+        };
+
+        // hover 시 멈춤
+        track.addEventListener('mouseenter', stopAuto);
+        track.addEventListener('mouseleave', startAuto);
+
+        startAuto();
+      })();
+    </script>
     <script src="js/main.js"></script>
   </body>
 </html>
