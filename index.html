@@ -312,7 +312,7 @@
           </div>
 
           <!-- 좌우 분할 레이아웃 -->
-          <div class="reveal" style="display: grid; grid-template-columns: 3fr 2fr; gap: 2.5rem; max-width: 1400px; margin: 0 auto; align-items: start;">
+          <div class="reveal" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; max-width: 1400px; margin: 0 auto; align-items: start;">
 
             <!-- 왼쪽: 공감 + 설득 -->
             <div style="display: flex; flex-direction: column; gap: 2rem;">
@@ -376,23 +376,23 @@
             <!-- 오른쪽: 가격 + 기능 상세 -->
             <div style="display: flex; flex-direction: column; gap: 1.5rem;">
 
-              <!-- 가격 카드 -->
-              <div style="background: linear-gradient(135deg, #161b2c 0%, #11131e 100%); border: 1px solid rgba(107,138,255,0.3); border-radius: 24px; padding: 2.5rem 2.5rem; text-align: center; position: relative; overflow: hidden;">
+              <!-- 가격 + 기능 상세 통합 카드 -->
+              <div style="background: linear-gradient(135deg, #161b2c 0%, #11131e 100%); border: 1px solid rgba(107,138,255,0.3); border-radius: 24px; padding: 2.5rem 2.5rem; position: relative; overflow: hidden;">
                 <div style="position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--grad-btn);"></div>
 
-                <div style="margin-bottom: 1rem;">
-                  <span style="font-size: 3.2rem; font-weight: 800; color: #fff; letter-spacing: -2px;">₩300,000</span>
-                  <span style="font-size: 1rem; color: #8e95a5; margin-left: 0.3rem;">/ 월</span>
+                <!-- 가격 영역 -->
+                <div style="text-align: center; margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,0.08);">
+                  <div style="margin-bottom: 0.8rem;">
+                    <span style="font-size: 3.2rem; font-weight: 800; color: #fff; letter-spacing: -2px;">₩300,000</span>
+                    <span style="font-size: 1rem; color: #8e95a5; margin-left: 0.3rem;">/ 월</span>
+                  </div>
+                  <p style="color: rgba(255,255,255,0.5); font-size: 0.9rem; margin-bottom: 1.5rem;">VAT 별도 · 위약금 없는 월 단위 계약</p>
+                  <a href="#contact" style="display: block; width: 100%; padding: 1.1rem; text-align: center; background: var(--grad-btn); color: #fff; font-weight: 700; font-size: 1.05rem; border-radius: 14px; text-decoration: none; transition: all 0.3s; box-shadow: 0 8px 24px rgba(79,110,247,0.35);" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 12px 32px rgba(79,110,247,0.5)'" onmouseout="this.style.transform='none'; this.style.boxShadow='0 8px 24px rgba(79,110,247,0.35)'">
+                    시작하기
+                  </a>
                 </div>
-                <p style="color: rgba(255,255,255,0.5); font-size: 0.9rem; margin-bottom: 2rem;">VAT 별도 · 위약금 없는 월 단위 계약</p>
 
-                <a href="#contact" style="display: block; width: 100%; padding: 1.1rem; text-align: center; background: var(--grad-btn); color: #fff; font-weight: 700; font-size: 1.05rem; border-radius: 14px; text-decoration: none; transition: all 0.3s; box-shadow: 0 8px 24px rgba(79,110,247,0.35);" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 12px 32px rgba(79,110,247,0.5)'" onmouseout="this.style.transform='none'; this.style.boxShadow='0 8px 24px rgba(79,110,247,0.35)'">
-                  시작하기
-                </a>
-              </div>
-
-              <!-- 기능 상세 카드 -->
-              <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 24px; padding: 2.5rem 2rem;">
+                <!-- 기능 상세 영역 -->
                 <h3 style="font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 1.8rem;">다른 자동화 툴과는 다릅니다.</h3>
 
                 <div style="display: flex; flex-direction: column; gap: 1.3rem;">
@@ -453,27 +453,27 @@
                     </div>
                   </div>
                 </div>
-              </div>
 
-              <!-- 기본 내장 기능 -->
-              <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; padding: 1.8rem 2rem;">
-                <p style="color: rgba(255,255,255,0.35); font-size: 0.8rem; font-weight: 600; letter-spacing: 0.08em; margin-bottom: 1rem;">기본 내장</p>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem;">
-                  <div style="display: flex; align-items: center; gap: 0.5rem;">
-                    <span style="width: 6px; height: 6px; background: #6b8aff; border-radius: 50%; flex-shrink: 0;"></span>
-                    <span style="color: rgba(255,255,255,0.6); font-size: 0.83rem;">SEO 최적화</span>
-                  </div>
-                  <div style="display: flex; align-items: center; gap: 0.5rem;">
-                    <span style="width: 6px; height: 6px; background: #6b8aff; border-radius: 50%; flex-shrink: 0;"></span>
-                    <span style="color: rgba(255,255,255,0.6); font-size: 0.83rem;">의료법 자동 준수</span>
-                  </div>
-                  <div style="display: flex; align-items: center; gap: 0.5rem;">
-                    <span style="width: 6px; height: 6px; background: #6b8aff; border-radius: 50%; flex-shrink: 0;"></span>
-                    <span style="color: rgba(255,255,255,0.6); font-size: 0.83rem;">진료과별 특화</span>
-                  </div>
-                  <div style="display: flex; align-items: center; gap: 0.5rem;">
-                    <span style="width: 6px; height: 6px; background: #6b8aff; border-radius: 50%; flex-shrink: 0;"></span>
-                    <span style="color: rgba(255,255,255,0.6); font-size: 0.83rem;">작성 시간 90% 단축</span>
+                <!-- 기본 내장 기능 -->
+                <div style="margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.08);">
+                  <p style="color: rgba(255,255,255,0.35); font-size: 0.8rem; font-weight: 600; letter-spacing: 0.08em; margin-bottom: 1rem;">기본 내장</p>
+                  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem;">
+                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                      <span style="width: 6px; height: 6px; background: #6b8aff; border-radius: 50%; flex-shrink: 0;"></span>
+                      <span style="color: rgba(255,255,255,0.6); font-size: 0.83rem;">SEO 최적화</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                      <span style="width: 6px; height: 6px; background: #6b8aff; border-radius: 50%; flex-shrink: 0;"></span>
+                      <span style="color: rgba(255,255,255,0.6); font-size: 0.83rem;">의료법 자동 준수</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                      <span style="width: 6px; height: 6px; background: #6b8aff; border-radius: 50%; flex-shrink: 0;"></span>
+                      <span style="color: rgba(255,255,255,0.6); font-size: 0.83rem;">진료과별 특화</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                      <span style="width: 6px; height: 6px; background: #6b8aff; border-radius: 50%; flex-shrink: 0;"></span>
+                      <span style="color: rgba(255,255,255,0.6); font-size: 0.83rem;">작성 시간 90% 단축</span>
+                    </div>
                   </div>
                 </div>
               </div>
