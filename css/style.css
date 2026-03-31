@@ -3186,6 +3186,13 @@
 
       /* ─── MOBILE (max-width: 768px) ─── */
       @media (max-width: 768px) {
+        /* 모바일: reveal 애니메이션 비활성화 (빈 공간 방지) */
+        .reveal {
+          opacity: 1 !important;
+          transform: none !important;
+          transition: none !important;
+        }
+
         /* Global section spacing */
         section {
           padding: 60px 5%;

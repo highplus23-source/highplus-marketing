@@ -13,8 +13,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // 2. Intersection Observer for Fade-Up Animations
     const observerOptions = {
         root: null,
-        rootMargin: '-100px',
-        threshold: 0.3
+        rootMargin: '0px',
+        threshold: 0.05
     };
 
     const observer = new IntersectionObserver((entries, observer) => {
