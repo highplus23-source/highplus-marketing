@@ -36,6 +36,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const fadeElements = document.querySelectorAll('.fade-up');
     fadeElements.forEach(el => observer.observe(el));
 
+    // Reveal 애니메이션
+    const revealElements = document.querySelectorAll('.reveal');
+    revealElements.forEach(el => observer.observe(el));
+
     // Stats Observer logic
     const statsContainer = document.querySelector('.stats-container');
     if (statsContainer) observer.observe(statsContainer);
