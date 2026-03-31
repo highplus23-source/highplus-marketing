@@ -573,6 +573,9 @@
         max-width: 1100px;
         margin: 0 auto;
       }
+      #ai-manager .section-inner {
+        max-width: 1500px;
+      }
 
       .grad-highlight {
         background: var(--grad-text);
