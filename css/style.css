@@ -3223,6 +3223,11 @@
         #hero {
           min-height: auto;
           padding: 100px 5% 40px;
+          background:
+            radial-gradient(ellipse at 20% 80%, rgba(52,120,246,0.15) 0%, transparent 50%),
+            radial-gradient(ellipse at 80% 20%, rgba(91,155,247,0.12) 0%, transparent 50%),
+            radial-gradient(ellipse at 50% 50%, rgba(56,189,248,0.08) 0%, transparent 60%),
+            linear-gradient(180deg, #e8f0fe 0%, #f0f6ff 40%, #f5f8fc 100%) !important;
         }
         .hero-content {
           max-width: 100%;
