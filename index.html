@@ -255,14 +255,30 @@
         #growth-story [style*="grid-template-columns: 1fr 1fr"] {
           grid-template-columns: 1fr !important;
         }
-        /* 비교표 최소 폭 오버라이드 */
+        /* 비교표 모바일 카드형 */
+        #compare .reveal[style*="overflow-x"] {
+          border-radius: 16px !important;
+          padding: 0 !important;
+        }
         #compare table {
           min-width: auto !important;
-          font-size: 0.8rem;
+          font-size: 0.78rem;
         }
-        #compare td, #compare th {
-          padding: 0.55rem 0.5rem !important;
+        #compare th {
+          padding: 0.9rem 0.7rem !important;
+          font-size: 0.7rem !important;
+        }
+        #compare td {
+          padding: 0.85rem 0.7rem !important;
           word-break: keep-all;
+          line-height: 1.5;
+        }
+        #compare td:first-child {
+          font-size: 0.75rem !important;
+          white-space: nowrap;
+        }
+        #compare td:last-child {
+          font-size: 0.78rem !important;
         }
         /* 문의 폼 2컬럼 → 모바일 1컬럼 */
         #contact .section-inner {
