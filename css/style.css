@@ -3273,14 +3273,15 @@
         }
         .hero-btns {
           flex-direction: column;
+          align-items: center;
           width: 100%;
           gap: 0.6rem;
         }
         .hero-btns .btn-primary,
         .hero-btns .btn-secondary {
-          width: 100%;
+          width: auto;
           justify-content: center;
-          padding: 0.8rem 1.5rem !important;
+          padding: 0.75rem 2rem !important;
           font-size: 0.85rem !important;
           border-radius: 14px;
         }
