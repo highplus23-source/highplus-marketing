@@ -190,7 +190,7 @@
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800;900&family=Bebas+Neue&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="css/style.css?v=20260331g" />
+    <link rel="stylesheet" href="css/style.css?v=20260331h" />
     <style>
       /* ─── 호버 애니메이션 수정: reveal 완료 후 빠른 전환 ─── */
       .pain-card:hover { transform: translateY(-6px) !important; }
@@ -258,15 +258,67 @@
         /* 비교표 최소 폭 오버라이드 */
         #compare table {
           min-width: auto !important;
-          font-size: 0.85rem;
+          font-size: 0.8rem;
         }
         #compare td, #compare th {
-          padding: 0.6rem 0.6rem !important;
+          padding: 0.55rem 0.5rem !important;
+          word-break: keep-all;
         }
         /* 문의 폼 2컬럼 → 모바일 1컬럼 */
         #contact .section-inner {
           grid-template-columns: 1fr !important;
-          gap: 2.5rem !important;
+          gap: 2rem !important;
+        }
+        #contact .section-inner > div {
+          padding: 1.5rem !important;
+          border-radius: 18px !important;
+        }
+        /* 강점 배너 모바일 */
+        #trust .reveal[style*="linear-gradient(135deg, #3478F6"] {
+          padding: 1.5rem 1.2rem !important;
+          border-radius: 16px !important;
+        }
+        #trust .reveal[style*="linear-gradient(135deg, #3478F6"] > div {
+          flex-direction: column !important;
+          gap: 1.2rem !important;
+        }
+        #trust .reveal[style*="linear-gradient(135deg, #3478F6"] > div > div {
+          width: 100%;
+        }
+        #trust .reveal[style*="linear-gradient(135deg, #3478F6"] p:first-child {
+          font-size: 1rem !important;
+        }
+        #trust .reveal[style*="linear-gradient(135deg, #3478F6"] p:last-child {
+          font-size: 0.8rem !important;
+        }
+        /* Ai실장 기능 카드 모바일 */
+        #ai-manager [style*="display: grid"][style*="1fr 1fr"] > div {
+          padding: 1rem !important;
+          border-radius: 12px !important;
+        }
+        #ai-manager [style*="display: grid"][style*="1fr 1fr"] > div span:first-child {
+          font-size: 1.2rem !important;
+        }
+        #ai-manager [style*="display: grid"][style*="1fr 1fr"] span[style*="font-weight: 800"] {
+          font-size: 0.88rem !important;
+        }
+        #ai-manager [style*="display: grid"][style*="1fr 1fr"] p {
+          font-size: 0.78rem !important;
+        }
+        /* 프리미엄 스펙 pill */
+        #ai-manager [style*="grid-template-columns: 1fr 1fr"][style*="gap: 0.6rem"] > div {
+          padding: 0.5rem 0.8rem !important;
+        }
+        #ai-manager [style*="grid-template-columns: 1fr 1fr"][style*="gap: 0.6rem"] span {
+          font-size: 0.78rem !important;
+        }
+        /* 희소성 섹션 */
+        #scarcity {
+          padding: 48px 20px !important;
+        }
+        /* 블루밴드 섹션 모바일 패딩 */
+        #growth-story, #compare {
+          padding: 48px 20px !important;
         }
       }
     </style>

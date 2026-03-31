@@ -161,12 +161,21 @@
         padding: 110px 5% 50px;
         position: relative;
         overflow: hidden;
-        background: url('../img/backgrounds/3.jpg') center / cover no-repeat;
+        background: url('../img/backgrounds/hero-bg.jpg') center center / cover no-repeat;
         isolation: isolate;
       }
-      /* 히어로 배경 - 오버레이 없음 */
+      /* 히어로 배경 오버레이 없음 */
       #hero::before {
         content: '';
+        display: none;
+      }
+
+      /* 히어로 배경 장식 요소 숨김 */
+      .hero-wave-layer,
+      .hero-swirl-1,
+      .hero-swirl-2,
+      .hero-swirl-3,
+      .hero-light-streak {
         display: none;
       }
 
@@ -3198,31 +3207,51 @@
 
         /* Global section spacing */
         section {
-          padding: 60px 5%;
+          padding: 48px 20px;
         }
 
-        /* Typography scaling for mobile */
+        /* Typography scaling for mobile — 통일된 시스템 */
         .hero-title {
-          font-size: clamp(1.8rem, 7vw, 2.4rem);
-          margin-bottom: 1.5rem;
+          font-size: 1.75rem;
+          margin-bottom: 1.2rem;
+          line-height: 1.35;
+          letter-spacing: -0.5px;
         }
         .hero-subline {
-          font-size: 1rem;
-          margin-bottom: 2.5rem;
-          line-height: 1.75;
+          font-size: 0.95rem;
+          margin-bottom: 2rem;
+          line-height: 1.7;
+          color: #5a6a7d;
+        }
+        .section-tag {
+          font-size: 0.75rem !important;
+          padding: 0.35rem 0.9rem !important;
+          margin-bottom: 0.8rem !important;
         }
         .section-title {
-          font-size: clamp(1.4rem, 5vw, 1.85rem);
+          font-size: 1.5rem;
+          line-height: 1.4;
+          letter-spacing: -0.3px;
+          margin-bottom: 0.8rem;
         }
         .section-desc {
           font-size: 0.9rem;
-          margin-bottom: 2rem;
+          margin-bottom: 1.5rem;
+          line-height: 1.7;
+        }
+        .section-center {
+          margin-bottom: 2rem !important;
+        }
+        .grad-highlight {
+          font-size: inherit;
         }
 
         /* Hero */
         #hero {
           min-height: auto;
-          padding: 100px 5% 40px;
+          padding: 90px 20px 36px;
+          background-position: 35% center;
+          background-size: cover;
         }
         .hero-content {
           max-width: 100%;
@@ -3230,13 +3259,15 @@
         .hero-btns {
           flex-direction: column;
           width: 100%;
+          gap: 0.6rem;
         }
         .hero-btns .btn-primary,
         .hero-btns .btn-secondary {
           width: 100%;
           justify-content: center;
-          padding: 1rem 1.5rem;
-          font-size: 1rem;
+          padding: 0.95rem 1.5rem;
+          font-size: 0.95rem;
+          border-radius: 14px;
         }
         .orb1 { width: 200px; height: 200px; }
         .orb2 { width: 150px; height: 150px; }
@@ -3307,13 +3338,42 @@
 
         /* Pain cards */
         .pain-card {
-          padding: 1.5rem;
+          padding: 1.25rem;
+          border-radius: 16px;
         }
 
         /* Philosophy cards */
         .phil-card {
-          padding: 1.5rem;
-          gap: 1rem;
+          padding: 1.25rem;
+          gap: 0.8rem;
+          border-radius: 16px;
+        }
+        .phil-card-wrapper {
+          gap: 0.6rem !important;
+        }
+        .phil-card-wrapper > div:first-child {
+          padding: 1rem !important;
+          min-height: auto !important;
+          border-radius: 12px !important;
+        }
+        .phil-card-wrapper > div:first-child p {
+          font-size: 0.85rem !important;
+        }
+        .phil-card-wrapper > div:last-child {
+          padding: 1.5rem 1.25rem !important;
+          border-radius: 16px !important;
+        }
+        .phil-card-wrapper > div:last-child h4 {
+          font-size: 1.15rem !important;
+          margin-bottom: 0.6rem !important;
+        }
+        .phil-card-wrapper > div:last-child p {
+          font-size: 0.88rem !important;
+        }
+        .phil-card-wrapper > div:last-child img {
+          width: 80px !important;
+          height: 80px !important;
+          margin-bottom: 1rem !important;
         }
         .phil-num {
           font-size: 2.2rem;
@@ -3322,13 +3382,17 @@
 
         /* Service cards */
         .service-card {
-          padding: 1.75rem;
+          padding: 1.5rem;
+          border-radius: 16px;
         }
         .service-card h3 {
-          font-size: 1.15rem;
+          font-size: 1.05rem;
+        }
+        .service-card p {
+          font-size: 0.88rem;
         }
         .service-num {
-          font-size: 3rem;
+          font-size: 2.5rem;
           top: 1rem;
           right: 1.25rem;
         }
@@ -3379,13 +3443,21 @@
         }
 
         /* FAQ */
+        .faq-item {
+          border-radius: 14px !important;
+        }
         .faq-q {
-          padding: 1rem 1.25rem;
+          padding: 1rem 1.1rem;
+          font-size: 0.9rem;
+        }
+        .faq-q span:first-child {
           font-size: 0.9rem;
         }
         .faq-a-inner {
-          padding: 0 1.25rem 1rem;
-          padding-top: 1rem;
+          padding: 1rem 1.1rem;
+          margin: 0 0.6rem 0.6rem;
+          border-radius: 10px;
+          font-size: 0.85rem;
         }
 
         /* Pricing cards */
@@ -3403,17 +3475,22 @@
 
         /* Contact form */
         .contact-section {
-          padding: 50px 5% 60px;
+          padding: 48px 20px 60px;
+        }
+        .form-group label {
+          font-size: 0.85rem;
         }
         .form-group input,
         .form-group textarea,
         .form-group select {
-          padding: 0.9rem 1rem;
-          font-size: 1rem;
+          padding: 0.85rem 1rem;
+          font-size: 0.95rem;
+          border-radius: 12px;
         }
         .form-submit {
-          padding: 1rem;
-          font-size: 1rem;
+          padding: 0.95rem;
+          font-size: 0.95rem;
+          border-radius: 14px;
         }
 
         /* Footer */
@@ -3440,10 +3517,13 @@
       /* ─── SMALL MOBILE (max-width: 400px) ─── */
       @media (max-width: 400px) {
         .hero-title {
-          font-size: 1.6rem;
+          font-size: 1.5rem;
         }
         .section-title {
           font-size: 1.3rem;
+        }
+        .section-desc {
+          font-size: 0.85rem;
         }
         .tcard {
           min-width: 260px !important;
