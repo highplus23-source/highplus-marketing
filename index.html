@@ -443,45 +443,46 @@
             <!-- 왼쪽: 공감 + 설득 -->
             <div style="display: flex; flex-direction: column; gap: 2rem;">
 
-              <!-- 공감 카드 -->
-              <div style="background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 24px; padding: 3rem 2.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.06); transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;" onmouseover="this.style.transform='translateY(-6px)'; this.style.borderColor='rgba(52,120,246,0.3)'; this.style.boxShadow='0 16px 40px rgba(52,120,246,0.12)'" onmouseout="this.style.transform='none'; this.style.borderColor='rgba(0,0,0,0.08)'; this.style.boxShadow='0 4px 20px rgba(0,0,0,0.06)'">
-                <h3 style="font-size: 1.3rem; font-weight: 800; color: #1a1a2e; margin-bottom: 0.6rem;">원장님, 이런 상황 아닌가요?</h3>
-                <p style="font-size: 0.9rem; color: #6b7b8d; margin-bottom: 2rem; line-height: 1.6; word-break: keep-all;">저희도 병원을 운영해봤기 때문에 압니다.<br>블로그를 해야 하는 건 아는데, 현실적으로 쉽지 않다는 것입니다.</p>
+              <!-- 공감 카드 (다크) -->
+              <div style="background: linear-gradient(180deg, #1e3a5f 0%, #1a2744 100%); border: 1px solid rgba(91,155,247,0.15); border-radius: 24px; padding: 2.5rem 2rem; box-shadow: 0 8px 32px rgba(0,0,0,0.2);">
+                <span style="display: inline-block; background: #3478F6; color: #fff; font-size: 0.75rem; font-weight: 700; padding: 0.35rem 1rem; border-radius: 100px; margin-bottom: 1.2rem; letter-spacing: 0.03em;">PAIN POINT</span>
+                <h3 style="font-size: 1.3rem; font-weight: 800; color: #fff; margin-bottom: 0.5rem;">원장님, 이런 상황 아닌가요?</h3>
+                <p style="font-size: 0.88rem; color: rgba(255,255,255,0.55); margin-bottom: 1.8rem; line-height: 1.6; word-break: keep-all;">저희도 병원을 운영해봤기 때문에 압니다.<br>블로그를 해야 하는 건 아는데, 현실적으로 쉽지 않다는 것입니다.</p>
 
-                <ul style="list-style: none; display: flex; flex-direction: column; gap: 1rem;">
-                  <li style="display: flex; gap: 0.7rem; align-items: flex-start; color: #4a5568; font-size: 0.92rem; line-height: 1.55;">
-                    <span style="color: #3478F6; flex-shrink: 0; margin-top: 2px;">
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                <ul style="list-style: none; display: flex; flex-direction: column; gap: 1.1rem;">
+                  <li style="display: flex; gap: 0.8rem; align-items: flex-start; color: rgba(255,255,255,0.8); font-size: 0.88rem; line-height: 1.55;">
+                    <span style="flex-shrink: 0; margin-top: 1px; width: 22px; height: 22px; background: rgba(52,120,246,0.25); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#5B9BF7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
                     </span>
                     매달 대행비 100만 원 넘게 나가는데, 초진 체감이 없을 때
                   </li>
-                  <li style="display: flex; gap: 0.7rem; align-items: flex-start; color: #4a5568; font-size: 0.92rem; line-height: 1.55;">
-                    <span style="color: #3478F6; flex-shrink: 0; margin-top: 2px;">
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                  <li style="display: flex; gap: 0.8rem; align-items: flex-start; color: rgba(255,255,255,0.8); font-size: 0.88rem; line-height: 1.55;">
+                    <span style="flex-shrink: 0; margin-top: 1px; width: 22px; height: 22px; background: rgba(52,120,246,0.25); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#5B9BF7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
                     </span>
                     정보성을 써야 하는지, 후기를 써야 하는지 모르겠을 때
                   </li>
-                  <li style="display: flex; gap: 0.7rem; align-items: flex-start; color: #4a5568; font-size: 0.92rem; line-height: 1.55;">
-                    <span style="color: #3478F6; flex-shrink: 0; margin-top: 2px;">
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                  <li style="display: flex; gap: 0.8rem; align-items: flex-start; color: rgba(255,255,255,0.8); font-size: 0.88rem; line-height: 1.55;">
+                    <span style="flex-shrink: 0; margin-top: 1px; width: 22px; height: 22px; background: rgba(52,120,246,0.25); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#5B9BF7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
                     </span>
                     블로그가 환자 유입에 도움이 되는지 측정이 안 될 때
                   </li>
-                  <li style="display: flex; gap: 0.7rem; align-items: flex-start; color: #4a5568; font-size: 0.92rem; line-height: 1.55;">
-                    <span style="color: #3478F6; flex-shrink: 0; margin-top: 2px;">
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                  <li style="display: flex; gap: 0.8rem; align-items: flex-start; color: rgba(255,255,255,0.8); font-size: 0.88rem; line-height: 1.55;">
+                    <span style="flex-shrink: 0; margin-top: 1px; width: 22px; height: 22px; background: rgba(52,120,246,0.25); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#5B9BF7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
                     </span>
                     내 진료 철학과 색깔을 블로그에 담고 싶을 때
                   </li>
-                  <li style="display: flex; gap: 0.7rem; align-items: flex-start; color: #4a5568; font-size: 0.92rem; line-height: 1.55;">
-                    <span style="color: #3478F6; flex-shrink: 0; margin-top: 2px;">
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                  <li style="display: flex; gap: 0.8rem; align-items: flex-start; color: rgba(255,255,255,0.8); font-size: 0.88rem; line-height: 1.55;">
+                    <span style="flex-shrink: 0; margin-top: 1px; width: 22px; height: 22px; background: rgba(52,120,246,0.25); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#5B9BF7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
                     </span>
                     뭘 써야 하는지, 어떻게 써야 하는지, 기준이 없을 때
                   </li>
-                  <li style="display: flex; gap: 0.7rem; align-items: flex-start; color: #4a5568; font-size: 0.92rem; line-height: 1.55;">
-                    <span style="color: #3478F6; flex-shrink: 0; margin-top: 2px;">
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                  <li style="display: flex; gap: 0.8rem; align-items: flex-start; color: rgba(255,255,255,0.8); font-size: 0.88rem; line-height: 1.55;">
+                    <span style="flex-shrink: 0; margin-top: 1px; width: 22px; height: 22px; background: rgba(52,120,246,0.25); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#5B9BF7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
                     </span>
                     마케팅에 끌려다니지 않고 주도권을 갖고 싶을 때
                   </li>
