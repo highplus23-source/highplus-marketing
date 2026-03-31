@@ -190,7 +190,7 @@
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800;900&family=Bebas+Neue&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="css/style.css?v=20260331d" />
+    <link rel="stylesheet" href="css/style.css?v=20260331f" />
     <style>
       /* ─── 호버 애니메이션 수정: reveal 완료 후 빠른 전환 ─── */
       .pain-card:hover { transform: translateY(-6px) !important; }
@@ -230,9 +230,13 @@
         .ai-price {
           font-size: 2rem !important;
         }
-        /* 성장 타임라인: 모바일 1열 */
+        /* 성장 타임라인: 모바일 2열 */
         #growth-story [style*="grid-template-columns: repeat(4"] {
-          grid-template-columns: 1fr !important;
+          grid-template-columns: repeat(2, 1fr) !important;
+          gap: 0.8rem !important;
+        }
+        #growth-story [style*="grid-template-columns: repeat(4"] > div {
+          padding: 1.5rem 1rem !important;
         }
         /* 인사이트 카드: 모바일 1열 */
         #growth-story [style*="grid-template-columns: 1fr 1fr"] {
@@ -299,6 +303,13 @@
     <!-- HERO -->
     <main id="main-content">
       <section id="hero">
+        <!-- 배경 장식 요소 (CSS로 렌더링) -->
+        <div class="hero-swirl hero-swirl-1"></div>
+        <div class="hero-swirl hero-swirl-2"></div>
+        <div class="hero-swirl hero-swirl-3"></div>
+        <div class="hero-wave-layer"></div>
+        <div class="hero-light-streak"></div>
+
         <div class="hero-content" style="max-width: 1000px; width: 100%;">
           <!-- ⚠️ TODO: 대표님 지시 — 이 Hero 문구 추후 변경 예정 -->
           <h1 class="hero-title">
