@@ -203,9 +203,28 @@
       .service-card:hover { transform: translateY(-6px) !important; }
       .phil-card:hover { transform: translateY(-4px) !important; }
       /* 모바일 메뉴 - 요금제→Ai실장 링크 */
+      /* ─── 한국어 줄바꿈 전역 적용 ─── */
+      #ai-manager, #growth-story, #trust, #pain-point, #services {
+        word-break: keep-all;
+        overflow-wrap: break-word;
+      }
       /* ─── 플랜 카드 그리드 반응형 ─── */
       @media (max-width: 768px) {
         #ai-manager .section-inner > .reveal[style*="grid-template-columns"] {
+          grid-template-columns: 1fr !important;
+        }
+        /* Ai실장 카드 모바일 패딩 축소 */
+        #ai-manager [style*="padding: 2.5rem 3rem"] {
+          padding: 2rem 1.5rem !important;
+        }
+        #ai-manager [style*="padding: 3rem 2.5rem"] {
+          padding: 2rem 1.5rem !important;
+        }
+        #ai-manager [style*="padding: 3rem 3.5rem"] {
+          padding: 2rem 1.5rem !important;
+        }
+        /* 기능 상세 2열 → 1열 */
+        #ai-manager [style*="grid-template-columns: 1fr 1fr"] {
           grid-template-columns: 1fr !important;
         }
         /* 성장 타임라인: 모바일 2열 */
@@ -318,7 +337,7 @@
               <!-- 공감 카드 -->
               <div style="background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 24px; padding: 3rem 2.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.06); transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;" onmouseover="this.style.transform='translateY(-6px)'; this.style.borderColor='rgba(52,120,246,0.3)'; this.style.boxShadow='0 16px 40px rgba(52,120,246,0.12)'" onmouseout="this.style.transform='none'; this.style.borderColor='rgba(0,0,0,0.08)'; this.style.boxShadow='0 4px 20px rgba(0,0,0,0.06)'">
                 <h3 style="font-size: 1.3rem; font-weight: 800; color: #1a1a2e; margin-bottom: 0.6rem;">원장님, 이런 상황 아닌가요?</h3>
-                <p style="font-size: 0.9rem; color: #6b7b8d; margin-bottom: 2rem; line-height: 1.6;">저희도 병원을 운영해봤기 때문에 압니다.<br>블로그를 해야 하는 건 아는데, 현실적으로 쉽지 않다는 것입니다.</p>
+                <p style="font-size: 0.9rem; color: #6b7b8d; margin-bottom: 2rem; line-height: 1.6; word-break: keep-all;">저희도 병원을 운영해봤기 때문에 압니다.<br>블로그를 해야 하는 건 아는데, 현실적으로 쉽지 않다는 것입니다.</p>
 
                 <ul style="list-style: none; display: flex; flex-direction: column; gap: 1rem;">
                   <li style="display: flex; gap: 0.7rem; align-items: flex-start; color: #4a5568; font-size: 0.92rem; line-height: 1.55;">
@@ -363,7 +382,7 @@
               <!-- 그래서 만들었습니다 카드 (강조) -->
               <div style="background: linear-gradient(135deg, #3478F6 0%, #2563eb 100%); border-radius: 24px; padding: 2.5rem 3rem; box-shadow: 0 8px 32px rgba(52,120,246,0.35); transition: transform 0.3s, box-shadow 0.3s;" onmouseover="this.style.transform='translateY(-6px)'; this.style.boxShadow='0 16px 48px rgba(52,120,246,0.45)'" onmouseout="this.style.transform='none'; this.style.boxShadow='0 8px 32px rgba(52,120,246,0.35)'">
                 <h4 style="font-size: 1.5rem; font-weight: 900; margin-bottom: 1rem; color: #fff;">그래서 만들었습니다.</h4>
-                <p style="color: rgba(255,255,255,0.9); font-size: 1rem; line-height: 1.8;">
+                <p style="color: rgba(255,255,255,0.9); font-size: 1rem; line-height: 1.8; word-break: keep-all;">
                   Ai실장이 키워드를 찾고, 글을 쓰고, 이미지까지 만듭니다.<br>
                   원장님은 원고 확인하고 업로드만 하시면 됩니다.<br>
                   병원 현장에서 쌓아온 경험이, 이 시스템의 기반입니다.
