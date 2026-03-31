@@ -239,7 +239,7 @@
     <!-- NAV -->
     <nav role="navigation" aria-label="메인 네비게이션">
       <a href="#hero" class="nav-logo" aria-label="HighPlus 홈으로"
-        ><img src="img/logo.png" alt="HighPlus 로고" class="nav-logo-img" /></a
+        ><img src="img/logo-black.png" alt="HighPlus 로고" class="nav-logo-img" /></a
       >
       <ul class="nav-links" role="menubar" style="align-items: center;">
         <li role="none">
@@ -247,7 +247,7 @@
         </li>
         <li role="none"><a href="#services" role="menuitem">핵심 서비스</a></li>
         <li role="none">
-          <a href="#contact" class="nav-cta" role="menuitem">Ai실장 시작하기</a>
+          <a href="#contact" class="nav-cta" role="menuitem">바로 연결하기</a>
         </li>
       </ul>
       <button
@@ -271,7 +271,7 @@
       <a href="#compare" onclick="closeMobileMenu()">우리의 차별점</a>
       <a href="#services" onclick="closeMobileMenu()">핵심 서비스</a>
       <a href="#faq" onclick="closeMobileMenu()">자주 묻는 질문</a>
-      <a href="#contact" class="nav-cta" onclick="closeMobileMenu()">Ai실장 시작하기</a>
+      <a href="#contact" class="nav-cta" onclick="closeMobileMenu()">바로 연결하기</a>
     </div>
 
     <!-- HERO -->
@@ -361,11 +361,9 @@
               </div>
 
               <!-- 그래서 만들었습니다 카드 (강조) -->
-              <div style="background: linear-gradient(135deg, rgba(52,120,246,0.06) 0%, rgba(52,120,246,0.03) 100%); border: 2px solid rgba(52,120,246,0.2); border-radius: 24px; padding: 2.5rem 3rem; position: relative; overflow: hidden; box-shadow: 0 4px 20px rgba(52,120,246,0.08); transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;" onmouseover="this.style.transform='translateY(-6px)'; this.style.borderColor='rgba(52,120,246,0.4)'; this.style.boxShadow='0 20px 50px rgba(52,120,246,0.15)'" onmouseout="this.style.transform='none'; this.style.borderColor='rgba(52,120,246,0.2)'; this.style.boxShadow='0 4px 20px rgba(52,120,246,0.08)'">
-                <!-- 상단 그라데이션 라인 -->
-                <div style="position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #3478F6, #5B9BF7);"></div>
-                <h4 style="font-size: 1.5rem; font-weight: 900; margin-bottom: 1rem;"><span style="background: linear-gradient(135deg, #3478F6, #2563eb); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">그래서 만들었습니다.</span></h4>
-                <p style="color: #5a6a7d; font-size: 1rem; line-height: 1.8;">
+              <div style="background: linear-gradient(135deg, #3478F6 0%, #2563eb 100%); border-radius: 24px; padding: 2.5rem 3rem; box-shadow: 0 8px 32px rgba(52,120,246,0.35); transition: transform 0.3s, box-shadow 0.3s;" onmouseover="this.style.transform='translateY(-6px)'; this.style.boxShadow='0 16px 48px rgba(52,120,246,0.45)'" onmouseout="this.style.transform='none'; this.style.boxShadow='0 8px 32px rgba(52,120,246,0.35)'">
+                <h4 style="font-size: 1.5rem; font-weight: 900; margin-bottom: 1rem; color: #fff;">그래서 만들었습니다.</h4>
+                <p style="color: rgba(255,255,255,0.9); font-size: 1rem; line-height: 1.8;">
                   Ai실장이 키워드를 찾고, 글을 쓰고, 이미지까지 만듭니다.<br>
                   원장님은 원고 확인하고 업로드만 하시면 됩니다.<br>
                   병원 현장에서 쌓아온 경험이, 이 시스템의 기반입니다.
@@ -404,7 +402,7 @@
                     <span style="color: #3478F6; font-size: 1.1rem; flex-shrink: 0; margin-top: 1px;">✍️</span>
                     <div>
                       <span style="color: #1a1a2e; font-size: 0.93rem; font-weight: 700;">원클릭 원고 생성</span>
-                      <p style="color: #8896a6; font-size: 0.83rem; margin-top: 0.25rem; line-height: 1.5;">키워드 선택 → 유형 선택 → 버튼 한 번. 데이터 기반 퍼널 구조의 원고 완성</p>
+                      <p style="color: #8896a6; font-size: 0.83rem; margin-top: 0.25rem; line-height: 1.5;">키워드 선택 → 유형 선택 → 버튼 한 번.<br>데이터 기반 유입 구조의 원고 완성</p>
                     </div>
                   </div>
                   <div style="display: flex; gap: 0.7rem; align-items: flex-start;">
@@ -490,49 +488,38 @@
             </p>
           </div>
 
-          <!-- 성장 타임라인 -->
-          <div class="reveal" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-bottom: 4rem;">
-            <div style="background: rgba(255,255,255,0.12); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 1.8rem; text-align: center; position: relative;">
-              <div style="font-size: 0.8rem; color: rgba(255,255,255,0.6); margin-bottom: 0.5rem; font-weight: 600;">MONTH 1–3</div>
-              <div style="font-size: 1.3rem; font-weight: 800; color: #fff; margin-bottom: 0.5rem;">기반 구축</div>
-              <p style="font-size: 0.85rem; color: rgba(255,255,255,0.75); line-height: 1.6; word-break: keep-all;">키워드 분석, SEO 세팅, 콘텐츠 발행 시작. 네이버가 블로그를 인식하기 시작합니다.</p>
-              <div style="position: absolute; right: -0.8rem; top: 50%; width: 1.2rem; height: 2px; background: rgba(255,255,255,0.3);"></div>
+          <!-- 성장 타임라인 — 남색 카드 4개 -->
+          <div class="reveal" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem; margin-bottom: 1.2rem;">
+            <div style="background: #1a2744; border-radius: 20px; padding: 2rem 1.5rem; text-align: center;">
+              <div style="display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.15); color: #fff; font-size: 0.85rem; font-weight: 700; margin-bottom: 1rem;">1</div>
+              <div style="font-size: 0.75rem; color: rgba(255,255,255,0.5); margin-bottom: 0.4rem; font-weight: 600; letter-spacing: 0.5px;">MONTH 1–3</div>
+              <div style="font-size: 1.15rem; font-weight: 800; color: #fff; margin-bottom: 0.6rem;">기반 구축</div>
+              <p style="font-size: 0.83rem; color: rgba(255,255,255,0.65); line-height: 1.6; word-break: keep-all;">키워드 분석, SEO 세팅,<br>콘텐츠 발행 시작</p>
             </div>
-            <div style="background: rgba(255,255,255,0.12); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 1.8rem; text-align: center; position: relative;">
-              <div style="font-size: 0.8rem; color: rgba(255,255,255,0.6); margin-bottom: 0.5rem; font-weight: 600;">MONTH 3–6</div>
-              <div style="font-size: 1.3rem; font-weight: 800; color: #fff; margin-bottom: 0.5rem;">효과 체감</div>
-              <p style="font-size: 0.85rem; color: rgba(255,255,255,0.75); line-height: 1.6; word-break: keep-all;">키워드 노출이 늘고, "블로그 보고 왔습니다"라는 환자가 나타나기 시작합니다.</p>
-              <div style="position: absolute; right: -0.8rem; top: 50%; width: 1.2rem; height: 2px; background: rgba(255,255,255,0.3);"></div>
+            <div style="background: #1a2744; border-radius: 20px; padding: 2rem 1.5rem; text-align: center;">
+              <div style="display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.15); color: #fff; font-size: 0.85rem; font-weight: 700; margin-bottom: 1rem;">2</div>
+              <div style="font-size: 0.75rem; color: rgba(255,255,255,0.5); margin-bottom: 0.4rem; font-weight: 600; letter-spacing: 0.5px;">MONTH 3–6</div>
+              <div style="font-size: 1.15rem; font-weight: 800; color: #fff; margin-bottom: 0.6rem;">효과 체감</div>
+              <p style="font-size: 0.83rem; color: rgba(255,255,255,0.65); line-height: 1.6; word-break: keep-all;">"블로그 보고 왔습니다"<br>환자가 나타나기 시작</p>
             </div>
-            <div style="background: rgba(255,255,255,0.18); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.25); border-radius: 20px; padding: 1.8rem; text-align: center; position: relative;">
-              <div style="font-size: 0.8rem; color: rgba(255,255,255,0.6); margin-bottom: 0.5rem; font-weight: 600;">MONTH 6–12</div>
-              <div style="font-size: 1.3rem; font-weight: 800; color: #fff; margin-bottom: 0.5rem;">임계점 돌파</div>
-              <p style="font-size: 0.85rem; color: rgba(255,255,255,0.75); line-height: 1.6; word-break: keep-all;">콘텐츠가 쌓여 복리 효과 시작. 같은 노력으로 2~3배 노출이 발생합니다.</p>
-              <div style="position: absolute; right: -0.8rem; top: 50%; width: 1.2rem; height: 2px; background: rgba(255,255,255,0.3);"></div>
+            <div style="background: #1a2744; border-radius: 20px; padding: 2rem 1.5rem; text-align: center;">
+              <div style="display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.15); color: #fff; font-size: 0.85rem; font-weight: 700; margin-bottom: 1rem;">3</div>
+              <div style="font-size: 0.75rem; color: rgba(255,255,255,0.5); margin-bottom: 0.4rem; font-weight: 600; letter-spacing: 0.5px;">MONTH 6–12</div>
+              <div style="font-size: 1.15rem; font-weight: 800; color: #fff; margin-bottom: 0.6rem;">임계점 돌파</div>
+              <p style="font-size: 0.83rem; color: rgba(255,255,255,0.65); line-height: 1.6; word-break: keep-all;">같은 노력으로<br>2~3배 노출 발생</p>
             </div>
-            <div style="background: rgba(255,255,255,0.22); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.3); border-radius: 20px; padding: 1.8rem; text-align: center;">
-              <div style="font-size: 0.8rem; color: rgba(255,255,255,0.6); margin-bottom: 0.5rem; font-weight: 600;">12개월+</div>
-              <div style="font-size: 1.3rem; font-weight: 800; color: #fff; margin-bottom: 0.5rem;">자산화 완성</div>
-              <p style="font-size: 0.85rem; color: rgba(255,255,255,0.75); line-height: 1.6; word-break: keep-all;">1년 전 글이 오늘도 환자를 데려옵니다. 블로그가 24시간 일하는 영업사원이 됩니다.</p>
+            <div style="background: #1a2744; border-radius: 20px; padding: 2rem 1.5rem; text-align: center;">
+              <div style="display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.15); color: #fff; font-size: 0.85rem; font-weight: 700; margin-bottom: 1rem;">4</div>
+              <div style="font-size: 0.75rem; color: rgba(255,255,255,0.5); margin-bottom: 0.4rem; font-weight: 600; letter-spacing: 0.5px;">12개월+</div>
+              <div style="font-size: 1.15rem; font-weight: 800; color: #fff; margin-bottom: 0.6rem;">자산화 완성</div>
+              <p style="font-size: 0.83rem; color: rgba(255,255,255,0.65); line-height: 1.6; word-break: keep-all;">블로그가 24시간 일하는<br>영업사원이 됩니다</p>
             </div>
           </div>
 
-          <!-- 핵심 인사이트 카드 -->
-          <div class="reveal" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
-            <div style="background: rgba(255,255,255,0.12); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 2rem; display: flex; align-items: flex-start; gap: 1rem;">
-              <div style="flex-shrink: 0; width: 44px; height: 44px; border-radius: 12px; background: rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: center; font-size: 1.3rem;">📈</div>
-              <div>
-                <h4 style="color: #fff; font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem;">임계점 (Critical Mass)</h4>
-                <p style="font-size: 0.9rem; color: rgba(255,255,255,0.75); line-height: 1.6; word-break: keep-all;">콘텐츠가 일정량 이상 쌓이면, 네이버는 그 블로그를 <strong style="color: #fff;">신뢰할 수 있는 정보원</strong>으로 인식합니다. 같은 노력으로 2~3배 노출이 발생하는 구간입니다.</p>
-              </div>
-            </div>
-            <div style="background: rgba(255,255,255,0.12); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 2rem; display: flex; align-items: flex-start; gap: 1rem;">
-              <div style="flex-shrink: 0; width: 44px; height: 44px; border-radius: 12px; background: rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: center; font-size: 1.3rem;">💎</div>
-              <div>
-                <h4 style="color: #fff; font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem;">복리 효과 (Compound)</h4>
-                <p style="font-size: 0.9rem; color: rgba(255,255,255,0.75); line-height: 1.6; word-break: keep-all;">1년 전 글이 오늘도 환자를 데려옵니다. <strong style="color: #fff;">광고비는 끄면 끝이지만, 블로그는 자산으로 남습니다.</strong> 쌓인 콘텐츠가 서로 신뢰도를 높여주는 선순환 구조를 만듭니다.</p>
-              </div>
-            </div>
+          <!-- 핵심 인사이트 — 파란색 넓은 카드 -->
+          <div class="reveal" style="background: #2563eb; border-radius: 20px; padding: 2.2rem 2.5rem; display: flex; align-items: center; justify-content: center; gap: 0.8rem;">
+            <span style="font-size: 1.4rem;">📈</span>
+            <p style="color: #fff; font-size: 1.1rem; font-weight: 600; word-break: keep-all; line-height: 1.5;">광고비는 끄면 끝이지만, 블로그는 쌓이면 자산이 됩니다 — 꾸준함을 시스템이 대신합니다</p>
           </div>
 
           <!-- 하단 메시지 -->
@@ -685,7 +672,8 @@
       </section>
 
       <!-- 간편 신청 폼 (2컬럼: 서비스 요약 + 폼) -->
-      <section id="contact" style="background: #e8f0fe; padding: 6rem 5%; position: relative; overflow: hidden;">
+      <section id="contact" style="background: url('img/backgrounds/2.jpg') center / cover no-repeat fixed; padding: 6rem 5%; position: relative; overflow: hidden;">
+        <div style="position: absolute; inset: 0; background: rgba(232, 240, 254, 0.88); z-index: 0;"></div>
         <!-- 배경 효과 -->
         <div style="position: absolute; top: -20%; right: -10%; width: 50vw; height: 50vw; background: radial-gradient(circle, rgba(52,120,246,0.05) 0%, transparent 55%); filter: blur(80px); z-index: 0;"></div>
 
@@ -743,7 +731,11 @@
 
           <!-- 오른쪽: 문의 폼 -->
           <div style="background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 24px; padding: 2.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.06);">
-            <form id="quickForm" novalidate>
+            <form id="quickForm" action="https://api.web3forms.com/submit" method="POST">
+              <input type="hidden" name="access_key" value="231adf68-dd19-4943-9415-a481c8086a85">
+              <input type="hidden" name="subject" value="하이플러스 홈페이지 문의">
+              <input type="hidden" name="from_name" value="HighPlus 홈페이지">
+              <input type="hidden" name="redirect" value="https://highplus.work/#contact">
               <div class="form-group">
                 <label>성함 / 직책 *</label>
                 <input type="text" name="name" placeholder="홍길동 대표" required aria-required="true" />
@@ -760,31 +752,27 @@
                 <label>현재 가장 큰 고민이 무엇인가요?</label>
                 <textarea name="concern" placeholder="예: 블로그 관리가 어렵습니다."></textarea>
               </div>
-              <button type="submit" class="form-submit" style="background: linear-gradient(135deg, #22c55e, #16a34a); box-shadow: 0 4px 20px rgba(34,197,94,0.3);">Ai실장 시작하기</button>
+              <button type="submit" class="form-submit" style="background: linear-gradient(135deg, #22c55e, #16a34a); box-shadow: 0 4px 20px rgba(34,197,94,0.3);">바로 연결하기</button>
               <p class="form-note" style="text-align: center;">제출 시 개인정보 수집 및 이용에 동의합니다.</p>
             </form>
           </div>
 
         </div>
 
-        <!-- 스크롤 다운 인디케이터 -->
-        <div style="margin-top: 4rem;">
-          <!-- 가로 구분선 -->
-          <div style="width: 100%; height: 1px; background: linear-gradient(90deg, transparent 0%, rgba(52,120,246,0.15) 20%, rgba(52,120,246,0.3) 50%, rgba(52,120,246,0.15) 80%, transparent 100%);"></div>
-          <!-- 텍스트 + 화살표 -->
-          <a href="#services" style="display: flex; flex-direction: column; align-items: center; gap: 0.4rem; text-decoration: none; padding-top: 1.8rem; opacity: 0.6; transition: opacity 0.3s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.6'">
-            <span style="color: #4a5568; font-size: 20pt; font-weight: 600; letter-spacing: 0.05em;">하이플러스 광고대행 서비스 알아보기</span>
-            <span style="color: #8896a6; font-size: 1rem; animation: scrollBounce 2s ease-in-out infinite;">↓</span>
-          </a>
-        </div>
-
-        <style>
-          @keyframes scrollBounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(5px); }
-          }
-        </style>
       </section>
+
+      <!-- 광고대행 서비스 알아보기 — 블루 밴드 브릿지 -->
+      <a href="#services" style="display: block; background: linear-gradient(135deg, #3478F6 0%, #5B9BF7 100%); padding: 3rem 5%; text-align: center; text-decoration: none; transition: opacity 0.3s;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
+        <span style="color: #fff; font-size: 1.6rem; font-weight: 800; letter-spacing: 0.03em;">광고대행은 어떻게 하나요?</span>
+        <div style="color: rgba(255,255,255,0.6); font-size: 1.2rem; margin-top: 0.6rem; animation: scrollBounce 2s ease-in-out infinite;">↓</div>
+      </a>
+
+      <style>
+        @keyframes scrollBounce {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(5px); }
+        }
+      </style>
 
       <!-- SERVICES -->
       <section id="services">
@@ -1343,5 +1331,21 @@
       })();
     </script>
     <script src="js/main.js"></script>
+    <script>
+      document.getElementById('quickForm').addEventListener('submit', function(e) {
+        var form = e.target;
+        if (!form.name.value.trim() || !form.phone.value.trim()) {
+          e.preventDefault();
+          alert('성함과 연락처는 필수 항목입니다.');
+          return;
+        }
+        var btn = form.querySelector('.form-submit');
+        btn.disabled = true;
+        btn.textContent = '전송 중...';
+      });
+      if (window.location.hash === '#contact' && document.referrer.includes('web3forms')) {
+        alert('접수가 완료되었습니다!\n빠른 시일 내에 연락드리겠습니다.');
+      }
+    </script>
   </body>
 </html>
