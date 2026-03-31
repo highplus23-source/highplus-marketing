@@ -161,18 +161,15 @@
         padding: 110px 5% 50px;
         position: relative;
         overflow: hidden;
-        background: linear-gradient(180deg, #dce8fb 0%, #e8f0fe 40%, #f5f8fc 100%);
+        background: url('../img/backgrounds/3.jpg') center / cover no-repeat;
         isolation: isolate;
       }
-      /* 은은한 그라데이션 배경 */
+      /* 배경 이미지 오버레이 */
       #hero::before {
         content: '';
         position: absolute;
         inset: 0;
-        background:
-          radial-gradient(ellipse 80% 50% at 50% 0%, rgba(79,110,247,0.08) 0%, transparent 70%),
-          radial-gradient(ellipse 60% 40% at 80% 90%, rgba(59,130,246,0.04) 0%, transparent 60%),
-          radial-gradient(ellipse 50% 40% at 15% 80%, rgba(6,182,212,0.03) 0%, transparent 50%);
+        background: rgba(237, 243, 255, 0.85);
         z-index: 0;
         pointer-events: none;
       }
