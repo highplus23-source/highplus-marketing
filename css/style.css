@@ -164,14 +164,10 @@
         background: url('../img/backgrounds/3.jpg') center / cover no-repeat;
         isolation: isolate;
       }
-      /* 배경 이미지 오버레이 */
+      /* 히어로 배경 - 오버레이 없음 */
       #hero::before {
         content: '';
-        position: absolute;
-        inset: 0;
-        background: rgba(237, 243, 255, 0.85);
-        z-index: 0;
-        pointer-events: none;
+        display: none;
       }
 
       @keyframes morphBlob {
