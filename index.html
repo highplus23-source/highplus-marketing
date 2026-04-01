@@ -255,18 +255,48 @@
         #growth-story [style*="grid-template-columns: 1fr 1fr"] {
           grid-template-columns: 1fr !important;
         }
-        /* 비교표 모바일 */
-        .compare-table .compare-row {
-          grid-template-columns: 1fr 1fr 1fr !important;
-          font-size: 0.78rem;
+        /* 비교표 모바일 — 카드형 */
+        .compare-table > div:first-child {
+          display: none !important;
         }
-        .compare-table .compare-row > div {
-          padding: 1rem 0.5rem !important;
-          word-break: keep-all;
-          line-height: 1.5;
+        .compare-table .compare-row {
+          grid-template-columns: 1fr 1fr !important;
+          grid-template-rows: auto auto;
+          gap: 0 !important;
+          padding: 1rem 1.2rem !important;
         }
         .compare-table .compare-row > div:first-child {
-          font-size: 0.8rem !important;
+          grid-column: 1 / -1;
+          padding: 0 0 0.6rem 0 !important;
+          font-size: 0.95rem !important;
+          border-bottom: 1px solid #e8e8e8;
+          margin-bottom: 0.6rem;
+        }
+        .compare-table .compare-row > div:nth-child(2) {
+          padding: 0.4rem 0.3rem !important;
+          font-size: 0.82rem !important;
+          text-align: center !important;
+          color: #999 !important;
+        }
+        .compare-table .compare-row > div:nth-child(2)::before {
+          content: '일반 대행사';
+          display: block;
+          font-size: 0.7rem;
+          color: #bbb;
+          margin-bottom: 0.2rem;
+        }
+        .compare-table .compare-row > div:nth-child(3) {
+          padding: 0.4rem 0.3rem !important;
+          font-size: 0.85rem !important;
+          text-align: center !important;
+        }
+        .compare-table .compare-row > div:nth-child(3)::before {
+          content: 'HighPlus';
+          display: block;
+          font-size: 0.7rem;
+          color: #3478F6;
+          font-weight: 600;
+          margin-bottom: 0.2rem;
         }
         /* 문의 폼 2컬럼 → 모바일 1컬럼 */
         #contact .section-inner {
