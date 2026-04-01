@@ -705,21 +705,6 @@
         box-shadow: 0 8px 24px rgba(52, 120, 246, 0.1);
       }
 
-      .pain-card::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 2px;
-        background: linear-gradient(90deg, #3b82f6, #5B9BF7);
-        opacity: 0;
-        transition: opacity 0.3s;
-      }
-
-      .pain-card:hover::before {
-        opacity: 1;
-      }
 
       .pain-icon {
         position: absolute;
@@ -769,7 +754,7 @@
         position: relative;
         z-index: 1;
         background: linear-gradient(145deg, #ffffff 0%, #f4f7fb 100%);
-        border: 1px solid rgba(52, 120, 246, 0.2);
+        border: 1px solid rgba(52, 120, 246, 0.08);
         box-shadow: 0 10px 40px rgba(52, 120, 246, 0.08);
         border-radius: 20px;
         padding: 3.5rem 2rem;
@@ -3115,8 +3100,6 @@
 
       /* ─── CARD HOVER SCALE ─── */
       .stat-item,
-      .pain-card,
-      .pain-highlight,
       .phil-card,
       .service-card,
       .hstep-card,
@@ -3127,8 +3110,6 @@
         transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
       }
       .stat-item:hover,
-      .pain-card:hover,
-      .pain-highlight:hover,
       .phil-card:hover,
       .service-card:hover,
       .hstep-card:hover,
