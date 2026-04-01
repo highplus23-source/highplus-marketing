@@ -255,30 +255,18 @@
         #growth-story [style*="grid-template-columns: 1fr 1fr"] {
           grid-template-columns: 1fr !important;
         }
-        /* 비교표 모바일 카드형 */
-        #compare .reveal[style*="overflow-x"] {
-          border-radius: 16px !important;
-          padding: 0 !important;
-        }
-        #compare table {
-          min-width: auto !important;
+        /* 비교표 모바일 */
+        .compare-table .compare-row {
+          grid-template-columns: 1fr 1fr 1fr !important;
           font-size: 0.78rem;
         }
-        #compare th {
-          padding: 0.9rem 0.7rem !important;
-          font-size: 0.7rem !important;
-        }
-        #compare td {
-          padding: 0.85rem 0.7rem !important;
+        .compare-table .compare-row > div {
+          padding: 1rem 0.5rem !important;
           word-break: keep-all;
           line-height: 1.5;
         }
-        #compare td:first-child {
-          font-size: 0.75rem !important;
-          white-space: nowrap;
-        }
-        #compare td:last-child {
-          font-size: 0.78rem !important;
+        .compare-table .compare-row > div:first-child {
+          font-size: 0.8rem !important;
         }
         /* 문의 폼 2컬럼 → 모바일 1컬럼 */
         #contact .section-inner {
@@ -1133,53 +1121,49 @@
             </p>
           </div>
 
-          <div class="reveal" style="overflow-x: auto; background: rgba(255,255,255,0.95); border-radius: 20px; box-shadow: 0 8px 32px rgba(0,0,0,0.1);">
-            <table style="width: 100%; border-collapse: collapse; min-width: 600px;">
-              <thead>
-                <tr>
-                  <th style="padding: 1.2rem 1.5rem; text-align: left; color: #7a8a9e; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid rgba(0,0,0,0.08);"></th>
-                  <th style="padding: 1.2rem 1.5rem; text-align: center; color: #7a8a9e; font-size: 0.85rem; font-weight: 600; border-bottom: 1px solid rgba(0,0,0,0.08);">일반 대행사</th>
-                  <th style="padding: 1.2rem 1.5rem; text-align: center; color: #3478F6; font-size: 0.85rem; font-weight: 700; border-bottom: 2px solid #3478F6;">HighPlus</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td style="padding: 1rem 1.5rem; color: #1a1a2e; font-weight: 600; border-bottom: 1px solid rgba(0,0,0,0.06);">원고 작성</td>
-                  <td style="padding: 1rem 1.5rem; text-align: center; color: #7a8a9e; border-bottom: 1px solid rgba(0,0,0,0.06);">복붙 템플릿, 병원명만 변경</td>
-                  <td style="padding: 1rem 1.5rem; text-align: center; color: #3478F6; font-weight: 600; border-bottom: 1px solid rgba(0,0,0,0.06);">의료인 감수 맞춤 원고 직접 작성</td>
-                </tr>
-                <tr>
-                  <td style="padding: 1rem 1.5rem; color: #1a1a2e; font-weight: 600; border-bottom: 1px solid rgba(0,0,0,0.06);">보고서</td>
-                  <td style="padding: 1rem 1.5rem; text-align: center; color: #7a8a9e; border-bottom: 1px solid rgba(0,0,0,0.06);">요청해야 겨우, 또는 안 옴</td>
-                  <td style="padding: 1rem 1.5rem; text-align: center; color: #3478F6; font-weight: 600; border-bottom: 1px solid rgba(0,0,0,0.06);">매월 자동 발송 + 전략 제안</td>
-                </tr>
-                <tr>
-                  <td style="padding: 1rem 1.5rem; color: #1a1a2e; font-weight: 600; border-bottom: 1px solid rgba(0,0,0,0.06);">담당자</td>
-                  <td style="padding: 1rem 1.5rem; text-align: center; color: #7a8a9e; border-bottom: 1px solid rgba(0,0,0,0.06);">자주 바뀜, 재설명 반복</td>
-                  <td style="padding: 1rem 1.5rem; text-align: center; color: #3478F6; font-weight: 600; border-bottom: 1px solid rgba(0,0,0,0.06);">전담 고정, 병원 히스토리 축적</td>
-                </tr>
-                <tr>
-                  <td style="padding: 1rem 1.5rem; color: #1a1a2e; font-weight: 600; border-bottom: 1px solid rgba(0,0,0,0.06);">계약 방식</td>
-                  <td style="padding: 1rem 1.5rem; text-align: center; color: #7a8a9e; border-bottom: 1px solid rgba(0,0,0,0.06);">6개월~1년 묶음 계약</td>
-                  <td style="padding: 1rem 1.5rem; text-align: center; color: #3478F6; font-weight: 600; border-bottom: 1px solid rgba(0,0,0,0.06);">한 달 단위, 언제든 해지 가능</td>
-                </tr>
-                <tr>
-                  <td style="padding: 1rem 1.5rem; color: #1a1a2e; font-weight: 600; border-bottom: 1px solid rgba(0,0,0,0.06);">의료 이해도</td>
-                  <td style="padding: 1rem 1.5rem; text-align: center; color: #7a8a9e; border-bottom: 1px solid rgba(0,0,0,0.06);">비의료인 외주 라이터</td>
-                  <td style="padding: 1rem 1.5rem; text-align: center; color: #3478F6; font-weight: 600; border-bottom: 1px solid rgba(0,0,0,0.06);">5년+ 병원 운영 경험자</td>
-                </tr>
-                <tr>
-                  <td style="padding: 1rem 1.5rem; color: #1a1a2e; font-weight: 600; border-bottom: 1px solid rgba(0,0,0,0.06);">키워드 전략</td>
-                  <td style="padding: 1rem 1.5rem; text-align: center; color: #7a8a9e; border-bottom: 1px solid rgba(0,0,0,0.06);">키워드 없이 양산형 발행</td>
-                  <td style="padding: 1rem 1.5rem; text-align: center; color: #3478F6; font-weight: 600; border-bottom: 1px solid rgba(0,0,0,0.06);">지역·질환 맞춤 퍼널 기획</td>
-                </tr>
-                <tr>
-                  <td style="padding: 1rem 1.5rem; color: #1a1a2e; font-weight: 600;">콘텐츠 자산화</td>
-                  <td style="padding: 1rem 1.5rem; text-align: center; color: #7a8a9e;">계약 끝나면 관리 중단</td>
-                  <td style="padding: 1rem 1.5rem; text-align: center; color: #3478F6; font-weight: 600;">블로그 자산은 100% 병원 귀속</td>
-                </tr>
-              </tbody>
-            </table>
+          <div class="reveal compare-table" style="background: #fff; border-radius: 24px; box-shadow: 0 8px 40px rgba(0,0,0,0.1); overflow: hidden;">
+            <!-- 헤더 -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; border-bottom: 1px solid #e8e8e8;">
+              <div style="padding: 1.5rem; display: flex; align-items: center; justify-content: center;"></div>
+              <div style="padding: 1.5rem; text-align: center; color: #7a8a9e; font-size: 0.95rem; font-weight: 600;">일반 대행사</div>
+              <div style="padding: 1.5rem; text-align: center; color: #3478F6; font-size: 0.95rem; font-weight: 800; border-bottom: 3px solid #3478F6;">HighPlus</div>
+            </div>
+            <!-- 행들 -->
+            <div class="compare-row" style="display: grid; grid-template-columns: 1fr 1fr 1fr; border-bottom: 1px solid #f0f0f0;">
+              <div style="padding: 1.3rem 1.5rem; font-weight: 700; color: #1a1a2e; display: flex; align-items: center;">원고 작성</div>
+              <div style="padding: 1.3rem 1rem; text-align: center; color: #888; display: flex; align-items: center; justify-content: center;">복붙 템플릿, 병원명만 변경</div>
+              <div style="padding: 1.3rem 1rem; text-align: center; color: #3478F6; font-weight: 700; display: flex; align-items: center; justify-content: center;">의료인 감수 맞춤 원고 직접 작성</div>
+            </div>
+            <div class="compare-row" style="display: grid; grid-template-columns: 1fr 1fr 1fr; border-bottom: 1px solid #f0f0f0; background: #fafbff;">
+              <div style="padding: 1.3rem 1.5rem; font-weight: 700; color: #1a1a2e; display: flex; align-items: center;">보고서</div>
+              <div style="padding: 1.3rem 1rem; text-align: center; color: #888; display: flex; align-items: center; justify-content: center;">요청해야 겨우, 또는 안 옴</div>
+              <div style="padding: 1.3rem 1rem; text-align: center; color: #3478F6; font-weight: 700; display: flex; align-items: center; justify-content: center;">매월 자동 발송 + 전략 제안</div>
+            </div>
+            <div class="compare-row" style="display: grid; grid-template-columns: 1fr 1fr 1fr; border-bottom: 1px solid #f0f0f0;">
+              <div style="padding: 1.3rem 1.5rem; font-weight: 700; color: #1a1a2e; display: flex; align-items: center;">담당자</div>
+              <div style="padding: 1.3rem 1rem; text-align: center; color: #888; display: flex; align-items: center; justify-content: center;">자주 바뀜, 재설명 반복</div>
+              <div style="padding: 1.3rem 1rem; text-align: center; color: #3478F6; font-weight: 700; display: flex; align-items: center; justify-content: center;">전담 고정, 병원 히스토리 축적</div>
+            </div>
+            <div class="compare-row" style="display: grid; grid-template-columns: 1fr 1fr 1fr; border-bottom: 1px solid #f0f0f0; background: #fafbff;">
+              <div style="padding: 1.3rem 1.5rem; font-weight: 700; color: #1a1a2e; display: flex; align-items: center;">계약 방식</div>
+              <div style="padding: 1.3rem 1rem; text-align: center; color: #888; display: flex; align-items: center; justify-content: center;">6개월~1년 묶음 계약</div>
+              <div style="padding: 1.3rem 1rem; text-align: center; color: #3478F6; font-weight: 700; display: flex; align-items: center; justify-content: center;">한 달 단위, 언제든 해지 가능</div>
+            </div>
+            <div class="compare-row" style="display: grid; grid-template-columns: 1fr 1fr 1fr; border-bottom: 1px solid #f0f0f0;">
+              <div style="padding: 1.3rem 1.5rem; font-weight: 700; color: #1a1a2e; display: flex; align-items: center;">의료 이해도</div>
+              <div style="padding: 1.3rem 1rem; text-align: center; color: #888; display: flex; align-items: center; justify-content: center;">비의료인 외주 라이터</div>
+              <div style="padding: 1.3rem 1rem; text-align: center; color: #3478F6; font-weight: 700; display: flex; align-items: center; justify-content: center;">5년+ 병원 운영 경험자</div>
+            </div>
+            <div class="compare-row" style="display: grid; grid-template-columns: 1fr 1fr 1fr; border-bottom: 1px solid #f0f0f0; background: #fafbff;">
+              <div style="padding: 1.3rem 1.5rem; font-weight: 700; color: #1a1a2e; display: flex; align-items: center;">키워드 전략</div>
+              <div style="padding: 1.3rem 1rem; text-align: center; color: #888; display: flex; align-items: center; justify-content: center;">키워드 없이 양산형 발행</div>
+              <div style="padding: 1.3rem 1rem; text-align: center; color: #3478F6; font-weight: 700; display: flex; align-items: center; justify-content: center;">지역·질환 맞춤 퍼널 기획</div>
+            </div>
+            <div class="compare-row" style="display: grid; grid-template-columns: 1fr 1fr 1fr;">
+              <div style="padding: 1.3rem 1.5rem; font-weight: 700; color: #1a1a2e; display: flex; align-items: center;">콘텐츠 자산화</div>
+              <div style="padding: 1.3rem 1rem; text-align: center; color: #888; display: flex; align-items: center; justify-content: center;">계약 끝나면 관리 중단</div>
+              <div style="padding: 1.3rem 1rem; text-align: center; color: #3478F6; font-weight: 700; display: flex; align-items: center; justify-content: center;">블로그 자산은 100% 병원 귀속</div>
+            </div>
           </div>
         </div>
       </section>
