@@ -3247,6 +3247,9 @@
         .grad-highlight {
           font-size: 2.04rem;
         }
+        .empathy-title {
+          font-size: 1.56rem !important;
+        }
         /* 전체 인라인 텍스트 모바일 축소 */
         section p, section li {
           font-size: 0.82rem;
