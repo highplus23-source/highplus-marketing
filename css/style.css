@@ -3410,8 +3410,29 @@
 
         /* Pain cards */
         .pain-card {
-          padding: 1.25rem;
+          padding: 1.2rem 1.2rem 1.2rem 1.2rem;
           border-radius: 16px;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          gap: 1rem;
+        }
+        .pain-icon {
+          position: static !important;
+          transform: none !important;
+          font-size: 2rem !important;
+          filter: none !important;
+          flex-shrink: 0;
+        }
+        .pain-card:hover .pain-icon {
+          transform: none !important;
+        }
+        .pain-card h3 {
+          font-size: 0.95rem !important;
+          margin-bottom: 0.3rem !important;
+        }
+        .pain-card p {
+          font-size: 0.82rem !important;
         }
 
         /* Philosophy cards */
