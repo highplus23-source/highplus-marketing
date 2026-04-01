@@ -771,9 +771,11 @@
       .pain-highlight-inner {
         position: relative;
         z-index: 1;
-        background: linear-gradient(135deg, #3478F6 0%, #5B9BF7 100%);
-        border-radius: 18px;
-        padding: 2.5rem 2rem;
+        background: linear-gradient(145deg, #ffffff 0%, #f4f7fb 100%);
+        border: 1px solid rgba(52, 120, 246, 0.2);
+        box-shadow: 0 10px 40px rgba(52, 120, 246, 0.08);
+        border-radius: 20px;
+        padding: 3.5rem 2rem;
         overflow: hidden;
       }
 
@@ -805,17 +807,29 @@
       }
 
       .pain-highlight h3 {
-        font-size: 1.3rem;
-        color: #ffffff;
-        -webkit-text-fill-color: #ffffff;
+        font-size: 1.4rem;
+        color: #3478F6;
+        -webkit-text-fill-color: #3478F6;
+        position: relative;
+        z-index: 2;
+        font-weight: 800;
+        margin-bottom: 0.8rem;
+      }
+
+      .pain-highlight p {
+        color: #1a1a2e !important;
+        -webkit-text-fill-color: #1a1a2e !important;
+        font-size: 1.05rem;
+        line-height: 1.7;
+        font-weight: 500;
         position: relative;
         z-index: 2;
       }
 
-      .pain-highlight p,
       .pain-highlight strong {
-        color: rgba(255, 255, 255, 0.85) !important;
-        -webkit-text-fill-color: rgba(255, 255, 255, 0.85) !important;
+        color: #3478F6 !important;
+        -webkit-text-fill-color: #3478F6 !important;
+        font-weight: 800;
         position: relative;
         z-index: 2;
       }
