@@ -3561,7 +3561,8 @@
         }
         .footer-copy {
           flex-direction: column;
-          text-align: center;
+          text-align: left;
+          align-items: flex-start;
         }
         .footer-links {
           flex-wrap: wrap;
