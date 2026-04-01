@@ -3495,6 +3495,11 @@
           font-size: 2.5rem;
         }
 
+        /* Growth bottom message */
+        .growth-bottom-msg {
+          font-size: 0.96rem !important;
+        }
+
         /* FAQ */
         .faq-item {
           border-radius: 14px !important;
