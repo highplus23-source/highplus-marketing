@@ -689,12 +689,13 @@
       }
 
       .pain-card {
-        background: #edf3ff;
-        border: 1px solid rgba(59, 130, 246, 0.12);
+        background: #ffffff;
+        border: 1px solid rgba(59, 130, 246, 0.15);
         border-radius: 16px;
-        padding: 1.75rem;
+        padding: 3.5rem 1.75rem 2rem;
         position: relative;
-        overflow: hidden;
+        overflow: visible;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.04);
         transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
       }
 
@@ -721,24 +722,20 @@
       }
 
       .pain-icon {
-        width: 44px;
-        height: 44px;
-        background: rgba(52, 120, 246, 0.12);
-        border: 1.5px solid rgba(52, 120, 246, 0.3);
-        border-radius: 10px;
+        position: absolute;
+        top: -35px;
+        left: 50%;
+        transform: translateX(-50%);
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 1.25rem;
-        margin-bottom: 1rem;
-        color: #5B9BF7;
-        transition: border-color 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
+        font-size: 3.5rem;
+        filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1));
+        transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       }
 
       .pain-card:hover .pain-icon {
-        border-color: rgba(52, 120, 246, 0.8);
-        box-shadow: 0 0 15px rgba(52, 120, 246, 0.5);
-        background: rgba(52, 120, 246, 0.25);
+        transform: translate(-50%, -10px) scale(1.1);
       }
 
       .pain-card h3 {
