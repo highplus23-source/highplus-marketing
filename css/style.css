@@ -3262,6 +3262,9 @@
         .empathy-title {
           font-size: 1.56rem !important;
         }
+        .testimonial-desc {
+          font-size: 1.18rem !important;
+        }
         .insight-card {
           flex-direction: column !important;
           text-align: center;
