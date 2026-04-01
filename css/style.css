@@ -161,7 +161,11 @@
         padding: 110px 5% 50px;
         position: relative;
         overflow: hidden;
-        background: url('../img/backgrounds/hero-bg.jpg') center center / cover no-repeat;
+        background:
+          radial-gradient(ellipse 120% 80% at 15% 20%, rgba(14, 70, 255, 0.10) 0%, transparent 55%),
+          radial-gradient(ellipse 80% 60% at 85% 80%, rgba(91, 155, 247, 0.08) 0%, transparent 50%),
+          radial-gradient(ellipse 60% 50% at 60% 10%, rgba(124, 91, 245, 0.05) 0%, transparent 45%),
+          linear-gradient(160deg, #eef4ff 0%, #f0f5ff 40%, #e8f0fe 70%, #eef2ff 100%);
         isolation: isolate;
       }
       /* 히어로 배경 오버레이 없음 */
@@ -170,8 +174,18 @@
         display: none;
       }
 
-      /* 히어로 배경 장식 요소 숨김 */
-      .hero-wave-layer,
+      /* 히어로 배경 장식 요소 — 격자 패턴 */
+      .hero-wave-layer {
+        display: block;
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(14, 70, 255, 0.04) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(14, 70, 255, 0.04) 1px, transparent 1px);
+        background-size: 60px 60px;
+        pointer-events: none;
+        z-index: 0;
+      }
       .hero-swirl-1,
       .hero-swirl-2,
       .hero-swirl-3,
