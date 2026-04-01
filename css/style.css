@@ -3250,6 +3250,17 @@
         .empathy-title {
           font-size: 1.56rem !important;
         }
+        .insight-card {
+          flex-direction: column !important;
+          text-align: center;
+          padding: 2rem 1.5rem !important;
+        }
+        .insight-card span {
+          font-size: 2rem !important;
+        }
+        .insight-card p {
+          font-size: 1.05rem !important;
+        }
         /* 전체 인라인 텍스트 모바일 축소 */
         section p, section li {
           font-size: 0.82rem;
