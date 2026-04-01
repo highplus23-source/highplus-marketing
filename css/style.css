@@ -3221,7 +3221,7 @@
         }
         .hero-subline {
           font-size: 0.98rem;
-          margin-bottom: 1.8rem;
+          margin-bottom: 1rem;
           line-height: 1.7;
           color: #5a6a7d;
         }
@@ -3287,10 +3287,6 @@
           padding: 0.75rem 2rem !important;
           font-size: 0.85rem !important;
           border-radius: 14px;
-        }
-        .hero-btns .btn-secondary {
-          background: linear-gradient(135deg, #5B9BF7, #3478F6);
-          box-shadow: 0 4px 20px rgba(52, 120, 246, 0.3);
         }
         .orb1 { width: 200px; height: 200px; }
         .orb2 { width: 150px; height: 150px; }
