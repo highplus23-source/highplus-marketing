@@ -3221,7 +3221,7 @@
         }
         .hero-subline {
           font-size: 0.98rem;
-          margin-bottom: 1rem;
+          margin-bottom: 1rem !important;
           line-height: 1.7;
           color: #5a6a7d;
         }
