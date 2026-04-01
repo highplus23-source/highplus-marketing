@@ -240,6 +240,18 @@
         }
       }
 
+      @keyframes neonPulse {
+        0%, 100% {
+          box-shadow: 0 0 8px rgba(52,120,246,0.3), 0 0 20px rgba(52,120,246,0.15), 0 0 40px rgba(52,120,246,0.08);
+        }
+        50% {
+          box-shadow: 0 0 12px rgba(52,120,246,0.5), 0 0 30px rgba(52,120,246,0.25), 0 0 60px rgba(52,120,246,0.12);
+        }
+      }
+      .neon-card {
+        animation: neonPulse 2.5s ease-in-out infinite;
+      }
+
       /* Grid lines */
       .hero-grid {
         position: absolute;
