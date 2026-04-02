@@ -295,9 +295,13 @@
         #ai-manager h4[style*="font-size: 1.5rem"] {
           font-size: 1.1rem !important;
         }
-        #ai-manager p[style*="font-size: 1rem"],
-        #ai-manager p[style*="font-size: 0.9rem"] {
+        #ai-manager p[style*="font-size: 1rem"]:not(.empathy-sub),
+        #ai-manager p[style*="font-size: 0.9rem"]:not(.empathy-sub) {
           font-size: 0.82rem !important;
+        }
+        /* empathy-bar 카드 텍스트 모바일 확대 */
+        #ai-manager .empathy-bar p {
+          font-size: 1.15rem !important;
         }
         #ai-manager ul li {
           font-size: 0.8rem !important;
@@ -351,12 +355,11 @@
       .empathy-tag { font-size: 0.79rem; padding: 0.35rem 0.9rem; }
       .empathy-title { font-size: 1.72rem; }
       .empathy-sub { font-size: 1.16rem; }
-      /* PAIN POINT 헤더 — 모바일 조정 */
+      /* PAIN POINT 헤더 — 모바일 조정 (여기서 최종 덮어쓰기) */
       @media (max-width: 768px) {
         #ai-manager .empathy-tag { font-size: 0.50rem !important; padding: 0.22rem 0.6rem !important; }
         #ai-manager .empathy-title { font-size: 1.55rem !important; }
         #ai-manager .empathy-sub { font-size: 1.1rem !important; font-weight: 600 !important; color: #555 !important; }
-        #ai-manager .empathy-list .empathy-bar p[style] { font-size: 1.15rem !important; }
       }
     </style>
   </head>
