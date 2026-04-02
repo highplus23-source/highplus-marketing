@@ -226,17 +226,11 @@
         #ai-manager [style*="grid-template-columns: 1fr 1fr"] {
           grid-template-columns: 1fr !important;
         }
-        /* 가격 폰트 모바일 축소 + 잘림 방지 */
+        /* 가격 폰트 모바일 잘림 방지 */
         .ai-price {
           font-size: 1.8rem !important;
           letter-spacing: -1px !important;
-        }
-        /* 가격 영역 세로 배치 */
-        .ai-price + span {
-          display: block !important;
-          margin-left: 0 !important;
-          margin-top: 0.3rem;
-          font-size: 0.9rem !important;
+          padding-left: 2px;
         }
         /* 성장 타임라인: 모바일 가로형 1열 */
         .growth-grid {
@@ -516,7 +510,7 @@
                     <span class="ai-price" style="font-size: 2.4rem; font-weight: 800; letter-spacing: -2px; background: linear-gradient(135deg, #0e46ff, #3d6fff); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">₩300,000</span>
                     <span style="font-size: 1rem; color: #8896a6; margin-left: 0.3rem;">/ (월 최대 30건)</span>
                   </div>
-                  <p style="color: #8896a6; font-size: 0.9rem;">VAT 별도 · 위약금 없는 월 단위 계약</p>
+                  <p style="color: #8896a6; font-size: 1.08rem;">VAT 별도 · 위약금 없는 월 단위 계약</p>
                 </div>
 
                 <!-- 기능 상세 영역 -->
