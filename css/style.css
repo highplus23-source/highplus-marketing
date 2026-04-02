@@ -3292,18 +3292,16 @@
         .grad-highlight {
           font-size: 2.04rem;
         }
+        /* PAIN POINT 헤더 모바일 조정 */
+        .empathy-tag {
+          font-size: 0.63rem !important;
+          padding: 0.28rem 0.7rem !important;
+        }
         .empathy-title {
-          font-size: 1.56rem !important;
+          font-size: 1.55rem !important;
         }
-        /* PAIN POINT 태그 모바일 30% 축소 */
-        .ai-two-col > div:first-child > div:first-child span {
-          font-size: 0.55rem !important;
-          padding: 0.25rem 0.65rem !important;
-          margin-bottom: 0.5rem !important;
-        }
-        /* Ai실장 헤더 부제 텍스트 20% 키움 */
-        .ai-two-col > div:first-child > div:first-child p {
-          font-size: 1.25rem !important;
+        .empathy-sub {
+          font-size: 1.4rem !important;
         }
         /* 공감 바 모바일 */
         .empathy-bar {
