@@ -3280,29 +3280,33 @@
         .empathy-title {
           font-size: 1.56rem !important;
         }
-        /* Ai실장 공감 카드 — 모바일 글씨 키움 */
+        /* Ai실장 공감 카드 — 레퍼런스 기준 큰 텍스트 */
         .ai-two-col > div:first-child > div:last-child > div {
-          padding: 1.2rem 1.4rem !important;
-          gap: 1.1rem !important;
+          padding: 1.3rem 1.5rem !important;
+          gap: 1rem !important;
         }
         .ai-two-col > div:first-child > div:last-child > div > div:first-child {
-          width: 52px !important;
-          height: 52px !important;
-          font-size: 1.7rem !important;
-          border-radius: 14px !important;
+          width: 48px !important;
+          height: 48px !important;
+          font-size: 1.5rem !important;
+          border-radius: 12px !important;
         }
         .ai-two-col > div:first-child > div:last-child > div h4 {
-          font-size: 1.18rem !important;
-          line-height: 1.45 !important;
-          margin-bottom: 0.35rem !important;
+          font-size: 1.3rem !important;
+          font-weight: 800 !important;
+          line-height: 1.4 !important;
+          margin-bottom: 0.3rem !important;
+          word-break: keep-all !important;
         }
         .ai-two-col > div:first-child > div:last-child > div p {
-          font-size: 1.02rem !important;
-          line-height: 1.55 !important;
+          font-size: 1.08rem !important;
+          line-height: 1.5 !important;
+          font-weight: 500 !important;
+          color: #4a5568 !important;
         }
         /* Ai실장 부제(설명) 텍스트 키움 */
         .ai-two-col > div:first-child > div:first-child p {
-          font-size: 1.02rem !important;
+          font-size: 1.05rem !important;
         }
         .testimonial-desc {
           font-size: 1.18rem !important;
