@@ -522,7 +522,7 @@
                 </div>
 
                 <!-- 기능 상세 영역 -->
-                <h3 style="font-size: 1.58rem; font-weight: 700; color: #1a1a2e; margin-bottom: 1.8rem; text-align: center;">Ai실장은 다른 자동화 툴과는 다릅니다.</h3>
+                <h3 class="ai-feature-title" style="font-size: 1.58rem; font-weight: 700; color: #1a1a2e; margin-bottom: 1.8rem; text-align: center;">Ai실장은 다른 자동화 툴과는 다릅니다.</h3>
 
                 <div class="ai-feature-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
                   <!-- 1. 비용 1/15 -->
@@ -1524,10 +1524,8 @@
             p.style.setProperty('font-size', '0.84rem', 'important');
           });
           // "Ai실장은 다른 자동화 툴과는 다릅니다" 한 줄 표시
-          var featureTitle = document.querySelector('.ai-feature-grid')?.previousElementSibling;
-          if (featureTitle && featureTitle.tagName === 'H3') {
-            featureTitle.style.setProperty('font-size', '1.15rem', 'important');
-          }
+          var featureTitle = document.querySelector('.ai-feature-title');
+          if (featureTitle) featureTitle.style.setProperty('font-size', '1.15rem', 'important');
         }
       })();
     </script>
