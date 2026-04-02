@@ -2259,7 +2259,7 @@
         flex-shrink: 0;
       }
       .testimonial__card::before {
-        content: '\275E\275E';
+        content: '\275E';
         position: absolute;
         top: 1.2rem;
         right: 1.5rem;
