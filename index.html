@@ -226,9 +226,17 @@
         #ai-manager [style*="grid-template-columns: 1fr 1fr"] {
           grid-template-columns: 1fr !important;
         }
-        /* 가격 폰트 모바일 축소 */
+        /* 가격 폰트 모바일 축소 + 잘림 방지 */
         .ai-price {
-          font-size: 2rem !important;
+          font-size: 1.8rem !important;
+          letter-spacing: -1px !important;
+        }
+        /* 가격 영역 세로 배치 */
+        .ai-price + span {
+          display: block !important;
+          margin-left: 0 !important;
+          margin-top: 0.3rem;
+          font-size: 0.9rem !important;
         }
         /* 성장 타임라인: 모바일 가로형 1열 */
         .growth-grid {
