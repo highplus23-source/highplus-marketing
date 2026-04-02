@@ -3222,6 +3222,14 @@
         }
       }
 
+      /* 공감 바 — PC 큰 텍스트 */
+      .empathy-bar p {
+        font-size: clamp(1.05rem, 1.3vw, 1.25rem) !important;
+      }
+      .empathy-bar--highlight p {
+        font-size: clamp(1.1rem, 1.4vw, 1.3rem) !important;
+      }
+
       /* ─── MOBILE (max-width: 768px) ─── */
       @media (max-width: 1024px) {
         .ai-two-col {
@@ -3280,8 +3288,15 @@
         .empathy-title {
           font-size: 1.56rem !important;
         }
-        /* Ai실장 부제(설명) 텍스트 키움 */
+        /* Ai실장 헤더 부제 텍스트 */
         .ai-two-col > div:first-child > div:first-child p {
+          font-size: 1.05rem !important;
+        }
+        /* 공감 바 모바일 */
+        .empathy-bar {
+          padding: 1rem 1.2rem !important;
+        }
+        .empathy-bar p {
           font-size: 1.05rem !important;
         }
         .testimonial-desc {
