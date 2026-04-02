@@ -3465,6 +3465,12 @@
           text-align: center;
           gap: 0;
         }
+        .pain-highlight {
+          background: transparent !important;
+          border: none !important;
+          box-shadow: none !important;
+          padding: 0 !important;
+        }
         .pain-icon {
           position: static !important;
           transform: none !important;
