@@ -1523,6 +1523,11 @@
           bars.forEach(function(p) {
             p.style.setProperty('font-size', '0.84rem', 'important');
           });
+          // "Ai실장은 다른 자동화 툴과는 다릅니다" 한 줄 표시
+          var featureTitle = document.querySelector('.ai-feature-grid')?.previousElementSibling;
+          if (featureTitle && featureTitle.tagName === 'H3') {
+            featureTitle.style.setProperty('font-size', '1.15rem', 'important');
+          }
         }
       })();
     </script>
