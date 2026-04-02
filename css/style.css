@@ -3222,12 +3222,19 @@
         }
       }
 
-      /* 공감 바 — PC 큰 텍스트 */
+      /* 공감 바 — PC 텍스트 */
       .empathy-bar p {
-        font-size: clamp(1.05rem, 1.3vw, 1.25rem) !important;
+        font-size: clamp(0.95rem, 1.15vw, 1.12rem) !important;
       }
-      .empathy-bar--highlight p {
-        font-size: clamp(1.1rem, 1.4vw, 1.3rem) !important;
+      .empathy-bar {
+        transition: background 0.25s ease, outline-color 0.25s ease;
+        cursor: pointer;
+        outline: 2.5px solid transparent;
+        outline-offset: -2.5px;
+      }
+      .empathy-bar:hover {
+        background: #eef3ff !important;
+        outline-color: #3478F6;
       }
 
       /* ─── MOBILE (max-width: 768px) ─── */
