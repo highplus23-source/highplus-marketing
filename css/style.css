@@ -772,6 +772,7 @@
       .pain-highlight-inner {
         position: relative;
         z-index: 1;
+        width: 100%;
         background: linear-gradient(145deg, #ffffff 0%, #f4f7fb 100%);
         border: 1px solid rgba(14, 70, 255, 0.08);
         box-shadow: 0 10px 40px rgba(14, 70, 255, 0.08);
