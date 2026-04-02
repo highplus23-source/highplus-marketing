@@ -3280,6 +3280,30 @@
         .empathy-title {
           font-size: 1.56rem !important;
         }
+        /* Ai실장 공감 카드 — 모바일 글씨 키움 */
+        .ai-two-col > div:first-child > div:last-child > div {
+          padding: 1.2rem 1.4rem !important;
+          gap: 1.1rem !important;
+        }
+        .ai-two-col > div:first-child > div:last-child > div > div:first-child {
+          width: 52px !important;
+          height: 52px !important;
+          font-size: 1.7rem !important;
+          border-radius: 14px !important;
+        }
+        .ai-two-col > div:first-child > div:last-child > div h4 {
+          font-size: 1.18rem !important;
+          line-height: 1.45 !important;
+          margin-bottom: 0.35rem !important;
+        }
+        .ai-two-col > div:first-child > div:last-child > div p {
+          font-size: 1.02rem !important;
+          line-height: 1.55 !important;
+        }
+        /* Ai실장 부제(설명) 텍스트 키움 */
+        .ai-two-col > div:first-child > div:first-child p {
+          font-size: 1.02rem !important;
+        }
         .testimonial-desc {
           font-size: 1.18rem !important;
         }
@@ -3306,20 +3330,20 @@
         .neon-card p[style*="font-size: 1.2rem"] {
           font-size: 1rem !important;
         }
-        /* 전체 인라인 텍스트 모바일 축소 */
+        /* 전체 인라인 텍스트 모바일 — 가독성 확보 */
         section p, section li {
-          font-size: 0.82rem;
+          font-size: 0.95rem;
         }
         section h3 {
-          font-size: 1.05rem !important;
+          font-size: 1.15rem !important;
         }
         section h4 {
-          font-size: 0.95rem !important;
+          font-size: 1.08rem !important;
         }
-        /* 버튼 전체 모바일 축소 */
+        /* 버튼 전체 모바일 */
         .btn-primary, .btn-secondary {
-          font-size: 0.85rem !important;
-          padding: 0.8rem 1.5rem !important;
+          font-size: 0.93rem !important;
+          padding: 0.85rem 1.6rem !important;
         }
 
         /* Hero */
@@ -3343,8 +3367,8 @@
         .hero-btns .btn-secondary {
           width: 80%;
           justify-content: center;
-          padding: 0.75rem 2rem !important;
-          font-size: 0.85rem !important;
+          padding: 0.85rem 2rem !important;
+          font-size: 0.95rem !important;
           border-radius: 14px;
         }
         .orb1 { width: 200px; height: 200px; }
@@ -3442,11 +3466,11 @@
           transform: none !important;
         }
         .pain-card h3 {
-          font-size: 1.05rem !important;
+          font-size: 1.15rem !important;
           margin-bottom: 0.5rem !important;
         }
         .pain-card p {
-          font-size: 0.88rem !important;
+          font-size: 0.98rem !important;
           line-height: 1.6 !important;
         }
 
@@ -3465,7 +3489,7 @@
           border-radius: 12px !important;
         }
         .phil-card-wrapper > div:first-child p {
-          font-size: 0.85rem !important;
+          font-size: 0.95rem !important;
         }
         .phil-card-wrapper > div:last-child {
           padding: 1.5rem 1.25rem !important;
@@ -3476,7 +3500,7 @@
           margin-bottom: 0.6rem !important;
         }
         .phil-card-wrapper > div:last-child p {
-          font-size: 0.88rem !important;
+          font-size: 0.95rem !important;
         }
         .phil-card-wrapper > div:last-child img {
           width: 80px !important;
@@ -3494,10 +3518,10 @@
           border-radius: 16px;
         }
         .service-card h3 {
-          font-size: 1.05rem;
+          font-size: 1.15rem;
         }
         .service-card p {
-          font-size: 0.88rem;
+          font-size: 0.95rem;
         }
         .service-num {
           font-size: 2.5rem;
