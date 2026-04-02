@@ -3280,26 +3280,6 @@
         .empathy-title {
           font-size: 1.56rem !important;
         }
-        /* Ai실장 공감 카드 — 레퍼런스 기준 큰 텍스트 */
-        .ai-two-col > div:first-child > div:last-child > div {
-          padding: 1.3rem 1.5rem !important;
-          gap: 1rem !important;
-        }
-        .ai-two-col > div:first-child > div:last-child > div > div:first-child {
-          width: 48px !important;
-          height: 48px !important;
-          font-size: 1.5rem !important;
-          border-radius: 12px !important;
-        }
-        .ai-two-col > div:first-child > div:last-child > div h4,
-        .ai-two-col > div:first-child > div:last-child > div p {
-          font-size: 1.18rem !important;
-          font-weight: 700 !important;
-          line-height: 1.45 !important;
-          color: #1a1a2e !important;
-          margin-bottom: 0 !important;
-          word-break: keep-all !important;
-        }
         /* Ai실장 부제(설명) 텍스트 키움 */
         .ai-two-col > div:first-child > div:first-child p {
           font-size: 1.05rem !important;
