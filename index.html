@@ -1511,6 +1511,11 @@
           // "Ai실장은 다른 자동화 툴과는 다릅니다" 한 줄 표시
           var featureTitle = document.querySelector('.ai-feature-title');
           if (featureTitle) featureTitle.style.setProperty('font-size', '1.15rem', 'important');
+          // 기능카드: 파란 헤드라인 10% 확대, 설명 텍스트 20% 확대
+          var featureHeads = document.querySelectorAll('.ai-feature-grid > div > span[style*="font-weight: 700"]');
+          featureHeads.forEach(function(s) { s.style.setProperty('font-size', '1.16rem', 'important'); });
+          var featureDescs = document.querySelectorAll('.ai-feature-grid > div > p');
+          featureDescs.forEach(function(p) { p.style.setProperty('font-size', '1.02rem', 'important'); });
         }
       })();
     </script>
