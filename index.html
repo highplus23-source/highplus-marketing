@@ -1512,6 +1512,9 @@
             tag.style.setProperty('font-size', '0.75rem', 'important');
             tag.style.setProperty('padding', '0.35rem 1rem', 'important');
           }
+          // 타이틀 — 한 줄에 들어가도록
+          var title = document.querySelector('.empathy-title');
+          if (title) title.style.setProperty('font-size', '1.35rem', 'important');
           // "저희도 병원을..." 텍스트
           var sub = document.querySelector('.empathy-sub');
           if (sub) sub.style.setProperty('font-size', '0.88rem', 'important');
