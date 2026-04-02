@@ -3295,9 +3295,15 @@
         .empathy-title {
           font-size: 1.56rem !important;
         }
-        /* Ai실장 헤더 부제 텍스트 */
+        /* PAIN POINT 태그 모바일 30% 축소 */
+        .ai-two-col > div:first-child > div:first-child span {
+          font-size: 0.55rem !important;
+          padding: 0.25rem 0.65rem !important;
+          margin-bottom: 0.5rem !important;
+        }
+        /* Ai실장 헤더 부제 텍스트 20% 키움 */
         .ai-two-col > div:first-child > div:first-child p {
-          font-size: 1.05rem !important;
+          font-size: 1.25rem !important;
         }
         /* 공감 바 모바일 */
         .empathy-bar {
