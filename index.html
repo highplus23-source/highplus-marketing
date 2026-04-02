@@ -1506,16 +1506,19 @@
     <script>
       (function() {
         if (window.innerWidth <= 768) {
-          // PAIN POINT 태그 축소
+          // PAIN POINT 태그 — 레퍼런스 이미지 수준으로
           var tag = document.querySelector('.empathy-tag');
-          if (tag) tag.style.setProperty('font-size', '0.50rem', 'important');
-          // "저희도 병원을..." 텍스트 확대
+          if (tag) {
+            tag.style.setProperty('font-size', '0.75rem', 'important');
+            tag.style.setProperty('padding', '0.35rem 1rem', 'important');
+          }
+          // "저희도 병원을..." 텍스트
           var sub = document.querySelector('.empathy-sub');
-          if (sub) sub.style.setProperty('font-size', '1.1rem', 'important');
-          // 카드 텍스트들 확대
+          if (sub) sub.style.setProperty('font-size', '0.88rem', 'important');
+          // 카드 텍스트들 — 줄바꿈 깨지지 않는 적절한 크기
           var bars = document.querySelectorAll('.empathy-bar p');
           bars.forEach(function(p) {
-            p.style.setProperty('font-size', '1.15rem', 'important');
+            p.style.setProperty('font-size', '0.95rem', 'important');
           });
         }
       })();
