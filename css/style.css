@@ -3313,6 +3313,17 @@
         .testimonial-desc {
           font-size: 1.18rem !important;
         }
+        /* 후기 카드 모바일 — 하나씩 전체 폭 */
+        .testimonial__card {
+          min-width: calc(100vw - 80px) !important;
+          max-width: calc(100vw - 80px) !important;
+        }
+        .testimonial-marquee-track {
+          scroll-snap-type: x mandatory;
+        }
+        .testimonial__card {
+          scroll-snap-align: center;
+        }
         .insight-card {
           flex-direction: column !important;
           text-align: center;
