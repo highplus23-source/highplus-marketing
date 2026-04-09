@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>회사소개 | 하이플러스</title>
+    <meta name="description" content="병원을 직접 운영해 본 사람들이 만든 병원 전문 마케팅 시스템, 하이플러스를 소개합니다." />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="회사소개 | 하이플러스" />
+    <meta property="og:description" content="병원을 직접 운영해 본 사람들이 만든 병원 전문 마케팅 시스템, 하이플러스를 소개합니다." />
+    <meta property="og:locale" content="ko_KR" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://highplus.work/page-about.html" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800;900&family=Bebas+Neue&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css?v=20260402i" />
+  </head>
+  <body>
+    <!-- SKIP NAVIGATION (접근성) -->
+    <a href="#main-content" class="skip-nav">본문으로 건너뛰기</a>
+
+    <!-- NAV -->
+    <nav role="navigation" aria-label="메인 네비게이션">
+      <a href="index.html" class="nav-logo" aria-label="HighPlus 홈으로"
+        ><img src="img/logo-black.png" alt="HighPlus 로고" class="nav-logo-img" /></a
+      >
+      <ul class="nav-links" role="menubar" style="align-items: center;">
+        <li role="none">
+          <a href="index.html#compare" role="menuitem">우리의 차별점</a>
+        </li>
+        <li role="none"><a href="index.html#services" role="menuitem">핵심 서비스</a></li>
+        <li role="none">
+          <a href="index.html#contact" class="nav-cta" role="menuitem">바로 연결하기</a>
+        </li>
+      </ul>
+      <button
+        class="hamburger"
+        id="hamburgerBtn"
+        aria-label="메뉴 열기"
+        aria-expanded="false"
+      >
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+    <div
+      class="mobile-menu"
+      id="mobileMenu"
+      role="navigation"
+      aria-label="모바일 메뉴"
+    >
+      <a href="index.html#compare" onclick="closeMobileMenu()">우리의 차별점</a>
+      <a href="index.html#services" onclick="closeMobileMenu()">핵심 서비스</a>
+      <a href="index.html#faq" onclick="closeMobileMenu()">자주 묻는 질문</a>
+      <a href="index.html#contact" class="nav-cta" onclick="closeMobileMenu()">바로 연결하기</a>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <main id="main-content">
+
+      <!-- ★ 여기부터 서브페이지 콘텐츠 작업 영역 ★ -->
+      <!-- TODO: PG 결제 시스템, 카운팅 UI 등 추가 예정 -->
+
+    </main>
+
+    <footer
+      role="contentinfo"
+      style="
+        background: var(--bg-card);
+        border-top: 1px solid var(--border);
+        padding: 3rem 5%;
+      "
+    >
+      <div
+        style="
+          max-width: 1100px;
+          margin: 0 auto;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          flex-wrap: wrap;
+          gap: 1.5rem;
+        "
+      >
+        <div>
+          <img src="img/logo-black.png" alt="HighPlus 로고" style="height: 36px; display: block; margin-bottom: 0.5rem;">
+          <p
+            style="
+              font-size: 0.78rem;
+              color: var(--text-muted);
+              line-height: 1.6;
+              margin-bottom: 0.3rem;
+            "
+          >
+            병원 마케팅 전문 · 브랜딩 블로그 · 네이버 플레이스 최적화
+          </p>
+        </div>
+        <div style="display: flex; gap: 1.5rem">
+          <a
+            href="javascript:void(0)"
+            onclick="document.getElementById('terms-modal').style.display='flex'"
+            style="
+              font-size: 0.8rem;
+              color: var(--text-muted);
+              text-decoration: none;
+              cursor: pointer;
+            "
+            >이용약관</a
+          ><a
+            href="javascript:void(0)"
+            onclick="document.getElementById('privacy-modal').style.display='flex'"
+            style="
+              font-size: 0.8rem;
+              color: var(--text-muted);
+              text-decoration: none;
+              cursor: pointer;
+            "
+            >개인정보처리방침</a
+          >
+        </div>
+      </div>
+      <div
+        style="
+          max-width: 1100px;
+          margin: 1.5rem auto 0;
+          padding-top: 1.5rem;
+          border-top: 1px solid var(--border);
+          display: flex;
+          justify-content: flex-start;
+          align-items: flex-start;
+          flex-wrap: wrap;
+          gap: 0.5rem;
+          font-size: 0.73rem;
+          color: var(--text-muted);
+          line-height: 1.7;
+        "
+      >
+        <div style="display: flex; flex-direction: column; gap: 0.25rem; text-align: left;">
+          <span>상호명 : 주식회사 하이플러스컴퍼니</span>
+          <span>대표자 : 김태헌</span>
+          <span>사업자등록번호 : 339-88-02845</span>
+          <span>주소 : 인천광역시 연수구 송도문화로 28번길, 28</span>
+          <span>이메일 : <a href="mailto:highplus23@gmail.com" style="color: var(--text-muted); text-decoration: none;">highplus23@gmail.com</a></span>
+        </div>
+      </div>
+      <div
+        style="
+          max-width: 1100px;
+          margin: 1rem auto 0;
+          font-size: 0.7rem;
+          color: var(--text-muted);
+          text-align: center;
+        "
+      >
+        © 2026 HighPlus Marketing. All rights reserved.
+      </div>
+    </footer>
+
+    <!-- SCROLL TO TOP -->
+    <button
+      class="scroll-top"
+      id="scrollTopBtn"
+      aria-label="페이지 상단으로 이동"
+    >
+      ↑
+    </button>
+
+    <!-- 이용약관 모달 -->
+    <div id="terms-modal" style="display:none; position:fixed; inset:0; z-index:9999; background:rgba(0,0,0,0.5); align-items:center; justify-content:center; padding:2rem;" onclick="if(event.target===this)this.style.display='none'">
+      <div style="background:#fff; border-radius:16px; max-width:720px; width:100%; max-height:80vh; overflow-y:auto; padding:2.5rem; position:relative;">
+        <button onclick="document.getElementById('terms-modal').style.display='none'" style="position:absolute; top:1rem; right:1rem; background:none; border:none; font-size:1.5rem; cursor:pointer; color:#666;">&times;</button>
+        <h2 style="font-size:1.5rem; font-weight:800; color:#1a1a2e; margin-bottom:1.5rem;">하이플러스 이용약관</h2>
+        <div style="font-size:0.9rem; color:#333; line-height:1.8; word-break:keep-all;">
+          <h3 style="font-size:1rem; font-weight:700; margin:1.2rem 0 0.5rem;">제1조 (목적)</h3>
+          <p>본 약관은 주식회사 하이플러스컴퍼니(이하 "회사")가 운영하는 웹사이트(highplus.work) 및 관련 서비스(이하 "서비스")의 이용과 관련하여 회사와 이용자 간의 권리, 의무 및 책임사항을 규정함을 목적으로 합니다.</p>
+          <h3 style="font-size:1rem; font-weight:700; margin:1.2rem 0 0.5rem;">제2조 (정의)</h3>
+          <p>① "서비스"란 회사가 제공하는 병원 마케팅 대행, 블로그 자동화 프로그램(Ai실장), 네이버 플레이스 최적화, 유튜브 콘텐츠 제작 등 일체의 온·오프라인 서비스를 말합니다.<br>② "이용자"란 본 약관에 따라 회사가 제공하는 서비스를 이용하는 자를 말합니다.<br>③ "회원"이란 회사에 개인정보를 제공하고 서비스 이용 계약을 체결한 자를 말합니다.</p>
+          <h3 style="font-size:1rem; font-weight:700; margin:1.2rem 0 0.5rem;">제3조 (약관의 효력 및 변경)</h3>
+          <p>① 본 약관은 서비스 화면에 게시하거나 기타 방법으로 이용자에게 공지함으로써 효력을 발생합니다.<br>② 회사는 관련 법령에 위배되지 않는 범위 내에서 본 약관을 변경할 수 있으며, 변경 시 적용일자 및 변경 사유를 명시하여 최소 7일 전 공지합니다.<br>③ 변경된 약관에 동의하지 않는 이용자는 서비스 이용을 중단하고 계약을 해지할 수 있습니다.</p>
+          <h3 style="font-size:1rem; font-weight:700; margin:1.2rem 0 0.5rem;">제4조 (서비스의 제공 및 변경)</h3>
+          <p>① 회사는 다음의 서비스를 제공합니다.</p>
+          <ul style="padding-left:1.5rem; margin:0.5rem 0;">
+            <li>브랜딩 기획 블로그 대행</li>
+            <li>블로그 자동화 프로그램(Ai실장)</li>
+            <li>네이버 플레이스 최적화</li>
+            <li>유튜브 콘텐츠 제작</li>
+            <li>업무진행 보고서 제공</li>
+            <li>기타 회사가 정하는 서비스</li>
+          </ul>
+          <p>② 회사는 서비스의 내용을 변경할 수 있으며, 이 경우 변경 내용을 사전에 공지합니다.</p>
+          <h3 style="font-size:1rem; font-weight:700; margin:1.2rem 0 0.5rem;">제5조 (서비스 이용 계약)</h3>
+          <p>① 서비스 이용 계약은 이용자가 본 약관에 동의하고, 회사가 이를 승낙함으로써 성립합니다.<br>② 회사는 월 단위 계약을 원칙으로 하며, 별도 위약금 없이 해지가 가능합니다. 단, 개별 서비스별 계약 조건이 다를 수 있습니다.</p>
+          <h3 style="font-size:1rem; font-weight:700; margin:1.2rem 0 0.5rem;">제6조 (이용자의 의무)</h3>
+          <p>① 이용자는 서비스 이용 시 관계 법령, 본 약관, 이용안내 등을 준수하여야 합니다.<br>② 이용자는 다음 행위를 하여서는 안 됩니다.</p>
+          <ul style="padding-left:1.5rem; margin:0.5rem 0;">
+            <li>허위 정보 기재</li>
+            <li>타인의 정보 도용</li>
+            <li>회사가 제공하는 콘텐츠의 무단 복제, 배포, 전송</li>
+            <li>회사 및 제3자의 지식재산권 침해</li>
+            <li>기타 불법적이거나 부당한 행위</li>
+          </ul>
+          <h3 style="font-size:1rem; font-weight:700; margin:1.2rem 0 0.5rem;">제7조 (회사의 의무)</h3>
+          <p>① 회사는 관련 법령과 본 약관이 금지하는 행위를 하지 않으며, 지속적이고 안정적인 서비스 제공을 위해 노력합니다.<br>② 회사는 이용자의 개인정보를 보호하며, 개인정보처리방침을 별도로 공시합니다.</p>
+          <h3 style="font-size:1rem; font-weight:700; margin:1.2rem 0 0.5rem;">제8조 (지식재산권)</h3>
+          <p>① 회사가 이용자를 위해 제작한 블로그 콘텐츠(원고, 이미지 등)는 발행 시점부터 이용자에게 귀속되며, 계약 종료 후에도 이용자의 블로그에 유지됩니다.<br>② 단, 회사는 포트폴리오·사례 소개 목적으로 해당 콘텐츠를 비식별화하여 활용할 수 있습니다.<br>③ Ai실장 프로그램의 소프트웨어, 기술, 알고리즘 및 프롬프트에 대한 지식재산권은 회사에 귀속됩니다.</p>
+          <h3 style="font-size:1rem; font-weight:700; margin:1.2rem 0 0.5rem;">제9조 (서비스 이용의 제한 및 중지)</h3>
+          <p>① 회사는 다음 각 호에 해당하는 경우 서비스 이용을 제한하거나 중지할 수 있습니다.</p>
+          <ul style="padding-left:1.5rem; margin:0.5rem 0;">
+            <li>서비스용 설비의 보수, 점검, 교체 등</li>
+            <li>천재지변, 국가비상사태 등 불가항력적 사유</li>
+            <li>이용자가 본 약관을 위반한 경우</li>
+          </ul>
+          <h3 style="font-size:1rem; font-weight:700; margin:1.2rem 0 0.5rem;">제10조 (면책)</h3>
+          <p>① 회사는 천재지변, 불가항력적 사유로 서비스를 제공할 수 없는 경우 책임을 지지 않습니다.<br>② 회사는 이용자의 귀책사유로 인한 서비스 이용 장애에 대해 책임을 지지 않습니다.<br>③ 회사는 검색엔진(네이버, 구글 등) 정책 변경에 따른 노출 순위 변동에 대해 보장하지 않습니다.</p>
+          <h3 style="font-size:1rem; font-weight:700; margin:1.2rem 0 0.5rem;">제11조 (분쟁 해결)</h3>
+          <p>① 본 약관과 관련한 분쟁은 대한민국 법률을 준거법으로 합니다.<br>② 서비스 이용과 관련하여 분쟁이 발생한 경우 회사 소재지 관할 법원을 전속 관할 법원으로 합니다.</p>
+          <h3 style="font-size:1rem; font-weight:700; margin:1.2rem 0 0.5rem;">부칙</h3>
+          <p>본 약관은 2026년 4월 2일부터 시행합니다.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 개인정보처리방침 모달 -->
+    <div id="privacy-modal" style="display:none; position:fixed; inset:0; z-index:9999; background:rgba(0,0,0,0.5); align-items:center; justify-content:center; padding:2rem;" onclick="if(event.target===this)this.style.display='none'">
+      <div style="background:#fff; border-radius:16px; max-width:720px; width:100%; max-height:80vh; overflow-y:auto; padding:2.5rem; position:relative;">
+        <button onclick="document.getElementById('privacy-modal').style.display='none'" style="position:absolute; top:1rem; right:1rem; background:none; border:none; font-size:1.5rem; cursor:pointer; color:#666;">&times;</button>
+        <h2 style="font-size:1.5rem; font-weight:800; color:#1a1a2e; margin-bottom:1.5rem;">개인정보처리방침</h2>
+        <div style="font-size:0.9rem; color:#333; line-height:1.8; word-break:keep-all;">
+          <p>주식회사 하이플러스컴퍼니(이하 "회사")는 「개인정보 보호법」에 따라 이용자의 개인정보를 보호하고 이와 관련한 고충을 신속하고 원활하게 처리할 수 있도록 다음과 같이 개인정보처리방침을 수립하여 공개합니다.</p>
+          <h3 style="font-size:1rem; font-weight:700; margin:1.2rem 0 0.5rem;">제1조 (개인정보의 수집 항목)</h3>
+          <p>회사는 상담 접수 및 서비스 제공을 위해 다음의 개인정보를 수집합니다.</p>
+          <p><strong>[필수 항목]</strong> 성명, 직책, 연락처(휴대폰 번호)<br><strong>[선택 항목]</strong> 업체명(병·의원명), 지역<br><strong>[자동 수집 항목]</strong> 접속 IP, 방문 일시, 서비스 이용 기록, 기기 정보</p>
+          <h3 style="font-size:1rem; font-weight:700; margin:1.2rem 0 0.5rem;">제2조 (개인정보의 수집 및 이용 목적)</h3>
+          <p>회사는 수집한 개인정보를 다음의 목적을 위해 이용합니다.</p>
+          <p>① 병원 마케팅 서비스 상담 접수 및 진행<br>② 이용자 본인 확인 및 연락<br>③ 서비스 계약 체결 및 이행<br>④ 서비스 관련 공지사항 및 일정 안내<br>⑤ 서비스 개선 및 통계 분석<br>⑥ 마케팅 및 이벤트 정보 제공(별도 동의 시)</p>
+          <h3 style="font-size:1rem; font-weight:700; margin:1.2rem 0 0.5rem;">제3조 (개인정보의 보유 및 이용 기간)</h3>
+          <p>회사는 개인정보 수집 및 이용 목적이 달성된 후에는 해당 정보를 지체 없이 파기합니다. 단, 관계 법령에 따라 보존할 필요가 있는 경우 아래와 같이 보관합니다.</p>
+          <p>① 계약 또는 청약철회 등에 관한 기록: 5년(전자상거래법)<br>② 대금결제 및 재화 등의 공급에 관한 기록: 5년(전자상거래법)<br>③ 소비자 불만 또는 분쟁처리에 관한 기록: 3년(전자상거래법)<br>④ 표시·광고에 관한 기록: 6개월(전자상거래법)<br>⑤ 웹사이트 방문 기록: 3개월(통신비밀보호법)</p>
+          <h3 style="font-size:1rem; font-weight:700; margin:1.2rem 0 0.5rem;">제4조 (개인정보의 제3자 제공)</h3>
+          <p>회사는 이용자의 개인정보를 원칙적으로 외부에 제공하지 않습니다. 다만, 아래의 경우에는 예외로 합니다.<br>① 이용자가 사전에 동의한 경우<br>② 법령의 규정에 의거하거나, 수사 목적으로 법령에 정해진 절차와 방법에 따라 수사기관의 요구가 있는 경우</p>
+          <h3 style="font-size:1rem; font-weight:700; margin:1.2rem 0 0.5rem;">제5조 (개인정보 처리의 위탁)</h3>
+          <p>회사는 원활한 서비스 제공을 위해 다음과 같이 개인정보 처리 업무를 위탁하고 있습니다.</p>
+          <ul style="padding-left:1.5rem; margin:0.5rem 0;">
+            <li>웹사이트 호스팅 업체: 웹사이트 호스팅 및 운영</li>
+            <li>문자 발송 업체: 상담 일정 안내 문자 발송</li>
+          </ul>
+          <p>※ 위탁 업체가 변경될 경우 본 방침을 통해 공지합니다.</p>
+          <h3 style="font-size:1rem; font-weight:700; margin:1.2rem 0 0.5rem;">제6조 (이용자의 권리 및 행사 방법)</h3>
+          <p>이용자는 언제든지 다음의 권리를 행사할 수 있습니다.<br>① 개인정보 열람 요구<br>② 오류 등이 있을 경우 정정 요구<br>③ 삭제 요구<br>④ 처리 정지 요구</p>
+          <p>권리 행사는 회사에 전화, 이메일 등으로 요청하실 수 있으며, 회사는 이에 대해 지체 없이 조치하겠습니다.</p>
+          <h3 style="font-size:1rem; font-weight:700; margin:1.2rem 0 0.5rem;">제7조 (개인정보의 파기)</h3>
+          <p>회사는 개인정보 보유 기간의 경과, 처리 목적 달성 등 개인정보가 불필요하게 되었을 때에는 지체 없이 해당 개인정보를 파기합니다.<br>① 전자적 파일 형태: 복구 및 재생이 불가능한 방법으로 영구 삭제<br>② 종이 문서: 분쇄기로 분쇄하거나 소각</p>
+          <h3 style="font-size:1rem; font-weight:700; margin:1.2rem 0 0.5rem;">제8조 (개인정보의 안전성 확보 조치)</h3>
+          <p>회사는 개인정보의 안전성 확보를 위해 다음과 같은 조치를 취하고 있습니다.<br>① 개인정보 취급 직원의 최소화 및 교육<br>② 개인정보에 대한 접근 제한<br>③ 개인정보의 암호화<br>④ 보안프로그램 설치 및 주기적 점검</p>
+          <h3 style="font-size:1rem; font-weight:700; margin:1.2rem 0 0.5rem;">제9조 (쿠키의 사용)</h3>
+          <p>① 쿠키란 웹사이트 방문 시 이용자의 브라우저에 저장되는 작은 텍스트 파일입니다.<br>② 이용자는 브라우저 설정을 통해 쿠키 저장을 거부할 수 있습니다. 단, 거부 시 일부 서비스 이용에 제한이 있을 수 있습니다.</p>
+          <h3 style="font-size:1rem; font-weight:700; margin:1.2rem 0 0.5rem;">제10조 (개인정보 보호책임자)</h3>
+          <p><strong>[개인정보 보호책임자]</strong><br>성명: 강태은<br>연락처: 0504-2533-4856<br>이메일: highplus23@gmail.com</p>
+          <h3 style="font-size:1rem; font-weight:700; margin:1.2rem 0 0.5rem;">제11조 (권익침해 구제방법)</h3>
+          <p>이용자는 개인정보 침해로 인한 구제를 받기 위하여 아래의 기관에 분쟁 해결이나 상담 등을 신청할 수 있습니다.<br>① 개인정보분쟁조정위원회: 1833-6972 (www.kopico.go.kr)<br>② 개인정보침해신고센터: 118 (privacy.kisa.or.kr)<br>③ 대검찰청 사이버수사과: 1301 (www.spo.go.kr)<br>④ 경찰청 사이버수사국: 182 (ecrm.police.go.kr)</p>
+          <h3 style="font-size:1rem; font-weight:700; margin:1.2rem 0 0.5rem;">제12조 (개인정보처리방침의 변경)</h3>
+          <p>본 개인정보처리방침은 법령, 정책 또는 보안기술의 변경에 따라 내용이 추가, 삭제 및 수정될 수 있으며, 변경 시 시행 최소 7일 전에 사이트를 통해 공지합니다.</p>
+          <h3 style="font-size:1rem; font-weight:700; margin:1.2rem 0 0.5rem;">부칙</h3>
+          <p>본 개인정보처리방침은 2026년 4월 2일부터 시행합니다.</p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // 새로고침 시 항상 최상단 스크롤 유지
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+      }
+      window.scrollTo(0, 0);
+    </script>
+    <script src="js/main.js?v=20260331"></script>
+  </body>
+</html>

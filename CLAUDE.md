@@ -18,11 +18,16 @@ python3 -m http.server 8080
 
 ## ⚠️ 작업 파일 규칙
 
-> **`index.html`이 메인 작업 파일입니다.**
+두 개의 HTML 페이지가 공존합니다. **작업 요청 시 어느 파일인지 먼저 확인할 것.**
 
-| 파일 | 용도 |
-|------|------|
-| `index.html` | ✅ **현재 라이브 + 개발 파일** — 모든 수정은 여기에! |
+| 파일 | 상태 | 용도 |
+|------|------|------|
+| `index.html` | 🔵 **라이브 (완료)** | 운영 중인 메인 랜딩. 버그 수정/콘텐츠 미세 조정만. 구조 변경은 지양 |
+| `page-about.html` | 🟢 **작업 중 (WIP)** | 회사소개 서브페이지. `<main>` 안에 콘텐츠 디벨롭. PG 결제 시스템·카운팅 UI 등 추가 예정 |
+
+- 두 파일은 `css/style.css`, `js/main.js`, `img/` 에셋을 **공유**합니다.
+- `page-about.html` 작업 시 `index.html`에 영향 가는 전역 CSS 수정은 주의 (가능하면 `page-about.html` 전용 스코프로).
+- 공통 nav/footer/모달은 두 파일 모두에 있으므로 변경 시 양쪽 싱크 필요.
 
 ---
 
@@ -127,15 +132,13 @@ highplus-marketing/
 ├── 404.html
 ├── css/style.css        ← 메인 스타일시트
 ├── js/main.js           ← 메인 JS
+├── page-about.html      ← 🟢 작업 중 (회사소개 서브페이지)
 ├── img/                 ← 이미지 에셋
-│   ├── logo.png         ← 사용 중인 로고
-│   ├── backgrounds/     ← 배경 이미지
-│   ├── icons/           ← 아이콘
-│   ├── portfolio/       ← 포트폴리오 이미지
+│   ├── logo-black.png   ← 사용 중인 로고
+│   ├── favicon.svg
+│   ├── backgrounds/     ← 배경 이미지 (1.jpg, contact-bg.png)
+│   ├── icons/           ← 서비스/특징 아이콘
 │   └── stats/           ← 통계 이미지
-├── 클라이언트 (병원)로고/ ← 마키 섹션용
-├── backups/             ← 백업 파일
-├── _archive/            ← 아카이브
 ├── docs/                ← 문서/가이드
 ├── robots.txt
 ├── sitemap.xml
