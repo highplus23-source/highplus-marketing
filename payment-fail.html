@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>결제 실패 | HighPlus</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:'Noto Sans KR',sans-serif; background:#f5f8fc; min-height:100vh; display:flex; align-items:center; justify-content:center; padding:2rem; }
+    .card { background:#fff; border-radius:24px; padding:3rem; max-width:480px; width:100%; text-align:center; box-shadow:0 4px 24px rgba(0,0,0,0.08); }
+    .icon { width:72px; height:72px; background:linear-gradient(135deg,#ef4444,#dc2626); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 1.5rem; font-size:36px; color:#fff; }
+    h1 { font-size:1.5rem; font-weight:900; color:#1a1a2e; margin-bottom:0.5rem; }
+    .sub { color:#5a6a7d; font-size:0.95rem; margin-bottom:1.5rem; line-height:1.6; }
+    .error-box { background:#fef2f2; border:1px solid #fecaca; border-radius:12px; padding:1rem; margin-bottom:2rem; font-size:0.85rem; color:#991b1b; text-align:left; }
+    .btn { display:inline-block; background:linear-gradient(135deg,#3478F6,#5B9BF7); color:#fff; padding:0.9rem 2.5rem; border-radius:12px; text-decoration:none; font-weight:700; font-size:1rem; margin:0 0.5rem; transition:transform 0.2s; }
+    .btn.secondary { background:#e5e7eb; color:#374151; }
+    .btn:hover { transform:translateY(-2px); }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="icon">&#10007;</div>
+    <h1>결제에 실패했습니다</h1>
+    <p class="sub">다시 시도하시거나, 문제가 지속되면 문의해주세요.</p>
+    <div class="error-box" id="error-info"></div>
+    <div>
+      <a href="/#contact" class="btn">다시 시도하기</a>
+      <a href="/" class="btn secondary">홈으로</a>
+    </div>
+  </div>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const box = document.getElementById('error-info');
+    const code = params.get('code') || 'UNKNOWN';
+    const message = params.get('message') || '알 수 없는 오류가 발생했습니다.';
+    box.innerHTML = `<strong>오류 코드:</strong> ${code}<br><strong>상세:</strong> ${message}`;
+  </script>
+</body>
+</html>

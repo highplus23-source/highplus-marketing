@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>결제 완료 | HighPlus</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:'Noto Sans KR',sans-serif; background:#f5f8fc; min-height:100vh; display:flex; align-items:center; justify-content:center; padding:2rem; }
+    .card { background:#fff; border-radius:24px; padding:3rem; max-width:480px; width:100%; text-align:center; box-shadow:0 4px 24px rgba(0,0,0,0.08); }
+    .icon { width:72px; height:72px; background:linear-gradient(135deg,#22c55e,#16a34a); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 1.5rem; font-size:36px; color:#fff; }
+    h1 { font-size:1.5rem; font-weight:900; color:#1a1a2e; margin-bottom:0.5rem; }
+    .sub { color:#5a6a7d; font-size:0.95rem; margin-bottom:2rem; line-height:1.6; }
+    .info { background:#f0f7ff; border-radius:12px; padding:1.2rem; margin-bottom:2rem; text-align:left; }
+    .info-row { display:flex; justify-content:space-between; padding:0.4rem 0; font-size:0.9rem; }
+    .info-row .label { color:#7a8a9e; }
+    .info-row .value { font-weight:700; color:#1a1a2e; }
+    .btn { display:inline-block; background:linear-gradient(135deg,#3478F6,#5B9BF7); color:#fff; padding:0.9rem 2.5rem; border-radius:12px; text-decoration:none; font-weight:700; font-size:1rem; transition:transform 0.2s; }
+    .btn:hover { transform:translateY(-2px); }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="icon">&#10003;</div>
+    <h1>결제가 완료되었습니다!</h1>
+    <p class="sub">Ai실장 서비스가 활성화되었습니다.<br>감사합니다.</p>
+    <div class="info" id="payment-info"></div>
+    <a href="/" class="btn">홈으로 돌아가기</a>
+  </div>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const info = document.getElementById('payment-info');
+    const rows = [];
+    if (params.get('orderId')) rows.push(['주문번호', params.get('orderId')]);
+    if (params.get('amount')) rows.push(['결제 금액', Number(params.get('amount')).toLocaleString() + '원']);
+    if (params.get('method')) rows.push(['결제 수단', params.get('method')]);
+    if (params.get('type') === 'subscription') rows.push(['구독 상태', '월 자동결제 등록 완료']);
+    rows.push(['결제 일시', new Date().toLocaleString('ko-KR')]);
+    info.innerHTML = rows.map(([l,v]) => `<div class="info-row"><span class="label">${l}</span><span class="value">${v}</span></div>`).join('');
+  </script>
+</body>
+</html>
