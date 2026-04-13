@@ -4,7 +4,7 @@
 
 ---
 
-## 2026-04-13
+## 2026-04-13 (월) - 탱
 
 ### 완료한 작업
 
@@ -15,9 +15,10 @@
 - **Firebase 승인 도메인 추가**: Firebase Console → Authentication → 승인된 도메인에 `sparkling-bublanina-2554e4.netlify.app` 추가 → Netlify에서도 소셜 로그인 가능
 - **카카오 콘솔 Netlify 도메인 확인**: Firebase OIDC 방식이므로 리다이렉트가 항상 Firebase 도메인으로 처리됨 → 카카오 쪽에 Netlify 도메인 별도 추가 불필요 확인
 
-### 현재 진행 중
+### 미완료 (수요일 이어서 진행)
 
-- **Netlify 환경변수 설정**: `TOSS_SECRET_KEY` = `test_sk_6bJXmgo28eEppLYGd1pj8LAnGKWx` (토스페이먼츠 결제 확인용, 클로드 코드 또는 Netlify 대시보드에서 설정 필요)
+- 카카오 개발자 콘솔 Redirect URI 설정
+- 결제 플로우 테스트
 
 ### 다음 할 일
 
