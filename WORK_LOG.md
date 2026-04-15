@@ -36,6 +36,39 @@
 
 ---
 
+## 2026-04-15 (수) - 탱
+
+### 완료한 작업
+
+- **로그인 모달 안 뜨는 이슈 디버깅**: 회사에서 `index.html`을 file://로 직접 열었을 때 로그인 버튼을 눌러도 모달이 안 뜨고, 모달이 떠도 카카오/구글 버튼이 무반응이던 문제 원인 파악
+  - 원인 1: `js/firebase-auth.js`가 `type="module"`로 로드 → 모듈은 deferred 실행이라 `window.openLoginModal` 할당이 늦음
+  - 원인 2: file:// 프로토콜에선 ES module의 import가 CORS로 차단 → 모듈 자체가 아예 실행되지 않음 → `window.loginWithKakao` 등이 영원히 undefined
+- **폴백 스크립트 보강** (`index.html`):
+  - `window.openLoginModal`/`closeLoginModal` 폴백을 `<head>` 최상단으로 이동 → 파싱 즉시 사용 가능
+  - `loginWithKakao`/`loginWithGoogle`/`loginWithNaver`에 가드 함수 추가 → 모듈 미로드 시 조용히 실패하지 않고 file:// 여부에 따라 명확한 안내 alert
+- **`firebase-auth.js` 수정**: 모듈 로드 성공 시 `_real_loginWithXxx`에 진짜 핸들러 등록하도록 변경 (가드 함수가 이를 호출)
+- **커밋 완료** (푸시는 대기 중): `fix: 로그인 모달/소셜 로그인 버튼 동작 안정화`
+
+### 미완료
+
+- `git push origin main` (샌드박스 인증 안 돼서 탱이 직접 푸시 필요)
+- Netlify 배포본에서 최종 동작 확인
+
+### 다음 할 일 (월요일 WORK_LOG 이월 + 오늘 추가)
+
+- Netlify Functions로 토스페이먼츠 결제 확인 API 연동 테스트
+- 네이버 로그인 서버사이드 구현 (Netlify Functions → Naver OAuth → Firebase Custom Token)
+- 홈페이지 하단 수정: 카운팅 50개, 대행 90만원, 이메일 연동
+- 폼 → 카카오톡 연결 + 결제시스템 삽입
+- `page-about.html` 회사소개 서브페이지 콘텐츠 개발
+
+### 주요 결정사항 / 배운 점
+
+- **file://로 index.html 직접 열지 말 것**: ES module + Firebase 소셜 로그인은 file://에서 구조적으로 불가능. 로컬 테스트는 반드시 `python3 -m http.server 8080` 띄우고 `http://localhost:8080`로 접속하거나 Netlify 배포본 사용
+- 가드 함수를 남겨둬서 나중에 누가 실수로 file://로 열어도 원인을 바로 알 수 있게 함
+
+---
+
 <!-- 다음 작업일에 아래 형식으로 추가:
 
 ## YYYY-MM-DD
