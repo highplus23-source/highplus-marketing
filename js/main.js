@@ -224,6 +224,36 @@ document.addEventListener('DOMContentLoaded', () => {
             list.appendChild(createRow(initialDays[i], false));
         }
 
+        // ─── 오늘 접수/완료 카운터 ───
+        // 자연스러운 수치로 시작 (접수 12~18, 완료 = 접수의 55~70%)
+        var todayReceived = 12 + Math.floor(Math.random() * 7);
+        var todayDone = Math.floor(todayReceived * (0.55 + Math.random() * 0.15));
+        var elReceived = document.getElementById('stat-today-received');
+        var elDone = document.getElementById('stat-today-done');
+
+        function renderStats() {
+            if (elReceived) elReceived.textContent = todayReceived;
+            if (elDone) elDone.textContent = todayDone;
+        }
+        function bump(el) {
+            if (!el) return;
+            el.style.transition = 'transform 0.3s ease';
+            el.style.transform = 'scale(1.25)';
+            setTimeout(function() { el.style.transform = 'scale(1)'; }, 300);
+        }
+        renderStats();
+
+        // 완료 건수는 가끔 자동 증가 (12~25초 간격)
+        function bumpDone() {
+            if (todayDone < todayReceived) {
+                todayDone += 1;
+                renderStats();
+                bump(elDone);
+            }
+            setTimeout(bumpDone, 12000 + Math.random() * 13000);
+        }
+        setTimeout(bumpDone, 10000);
+
         // 주기적으로 오늘 날짜의 새 항목이 맨 위에 추가 (8~15초 간격)
         function addNewEntry() {
             var row = createRow(0, true);
@@ -231,6 +261,9 @@ document.addEventListener('DOMContentLoaded', () => {
             if (list.children.length > 8) {
                 list.removeChild(list.lastChild);
             }
+            todayReceived += 1;
+            renderStats();
+            bump(elReceived);
             setTimeout(addNewEntry, 8000 + Math.random() * 7000);
         }
         setTimeout(addNewEntry, 6000);
