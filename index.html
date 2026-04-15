@@ -1,6 +1,33 @@
 <!doctype html>
 <html lang="ko">
   <head>
+  <!-- 로그인 모달 여닫기 폴백 (모듈 로드 여부·file:// 여부와 무관하게 즉시 동작) -->
+  <script>
+    window.openLoginModal = function () {
+      var m = document.getElementById('login-modal');
+      if (m) { m.style.display = 'flex'; console.log('[auth] openLoginModal (fallback)'); }
+      else { console.warn('[auth] #login-modal not found'); }
+    };
+    window.closeLoginModal = function () {
+      var m = document.getElementById('login-modal');
+      if (m) m.style.display = 'none';
+    };
+    // file:// 또는 모듈 로드 실패 시 로그인 버튼 눌러도 조용히 실패하지 않도록 가드
+    (function(){
+      function guard(name){
+        return function(){
+          if (typeof window['_real_'+name] === 'function') return window['_real_'+name]();
+          var isFile = location.protocol === 'file:';
+          alert(isFile
+            ? 'file://에서는 소셜 로그인이 동작하지 않습니다.\n로컬에서는 http://localhost 로 서버를 띄우거나, Netlify 배포본에서 테스트해주세요.\n\n터미널: python3 -m http.server 8080'
+            : '로그인 모듈이 아직 로드되지 않았습니다. 잠시 후 다시 시도해주세요. (네트워크 확인)');
+        };
+      }
+      window.loginWithKakao = guard('loginWithKakao');
+      window.loginWithGoogle = guard('loginWithGoogle');
+      window.loginWithNaver = guard('loginWithNaver');
+    })();
+  </script>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-479KK1VH3X"></script>
   <script>

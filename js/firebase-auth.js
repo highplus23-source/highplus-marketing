@@ -187,12 +187,16 @@ function handleAuthError(error) {
 }
 
 // ─── 전역 노출 (HTML onclick에서 접근 가능하도록) ───
+// head의 가드 스크립트가 window.loginWithXxx를 선점해두었으므로,
+// 진짜 함수는 _real_loginWithXxx 로 넣어두면 가드가 이를 호출해줌
+window._real_loginWithGoogle = loginWithGoogle;
+window._real_loginWithKakao  = loginWithKakao;
+window._real_loginWithNaver  = loginWithNaver;
+// 모달 토글과 로그아웃은 그냥 덮어써도 안전
 window.openLoginModal = openLoginModal;
 window.closeLoginModal = closeLoginModal;
-window.loginWithGoogle = loginWithGoogle;
-window.loginWithKakao = loginWithKakao;
-window.loginWithNaver = loginWithNaver;
 window.logout = logout;
+console.log('[auth] firebase-auth module loaded, real handlers registered');
 
 // ─── 초기화 ───
 document.addEventListener('DOMContentLoaded', () => {
