@@ -1843,18 +1843,31 @@
         );
       }
 
-      /* ─── SCROLL REVEAL ─── */
-      .reveal {
+      /* ─── SCROLL REVEAL (통일 애니메이션) ─── */
+      .reveal,
+      .fade-up {
         opacity: 0;
-        transform: translateY(30px);
+        transform: translateY(32px);
         transition-property: opacity, transform;
-        transition-duration: 0.8s;
-        transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+        transition-duration: 0.9s;
+        transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+        will-change: opacity, transform;
       }
 
-      .reveal.visible {
+      .reveal.visible,
+      .fade-up.visible {
         opacity: 1;
         transform: translateY(0);
+      }
+
+      /* 모션 최소화 설정 존중 */
+      @media (prefers-reduced-motion: reduce) {
+        .reveal,
+        .fade-up {
+          opacity: 1 !important;
+          transform: none !important;
+          transition: none !important;
+        }
       }
 
       /* ─── SKIN CARDS ─── */
