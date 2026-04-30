@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html lang="ko">
+<!-- 시안 3: 7.png (Talynx FAQ+CTA) 자연감성 오가닉 웜톤 메인 기준 -->
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HighPlus Marketing — 시안 3 (자연감성 오가닉 웜톤)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --white: #ffffff;
+      --bg-alt: #f8faf5;
+      --green: #22c55e;
+      --green-dark: #15803d;
+      --green-light: #f0f7ec;
+      --green-container: #f0f7ec;
+      --black-head: #0d0d0d;
+      --body-text: #5a6a7d;
+      --border: #e2e8f0;
+      --card-shadow: 0 2px 16px rgba(0,0,0,0.06);
+      --radius-card: 20px;
+      --radius-pill: 100px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      background: var(--white);
+      color: var(--body-text);
+      line-height: 1.8;
+      word-break: keep-all;
+      font-size: 1rem;
+    }
+
+    /* ─── UTILITIES ─── */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    .section-tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em;
+      color: var(--green-dark); border: 1.5px solid var(--green);
+      background: transparent; border-radius: var(--radius-pill);
+      padding: 4px 14px; text-transform: uppercase;
+    }
+    .green { color: var(--green); }
+    .green-dark { color: var(--green-dark); }
+    h2 { font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 800; color: var(--black-head); line-height: 1.25; word-break: keep-all; }
+    h3 { font-size: 1.15rem; font-weight: 700; color: var(--black-head); }
+
+    /* ─── BUTTONS ─── */
+    .btn-primary {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      background: var(--black-head); color: #fff; border: none; cursor: pointer;
+      border-radius: var(--radius-pill); padding: 14px 28px; font-size: 0.95rem; font-weight: 700;
+      font-family: 'Noto Sans KR', sans-serif; text-decoration: none; transition: opacity 0.2s;
+    }
+    .btn-primary:hover { opacity: 0.85; }
+    .btn-secondary {
+      display: inline-flex; align-items: center; justify-content: center;
+      background: #f0f0f0; color: var(--black-head); border: none; cursor: pointer;
+      border-radius: var(--radius-pill); padding: 14px 28px; font-size: 0.95rem; font-weight: 600;
+      font-family: 'Noto Sans KR', sans-serif; text-decoration: none; transition: background 0.2s;
+    }
+    .btn-secondary:hover { background: #e0e0e0; }
+    .btn-green {
+      display: inline-flex; align-items: center; justify-content: center;
+      background: var(--green); color: #fff; border: none; cursor: pointer;
+      border-radius: var(--radius-pill); padding: 14px 28px; font-size: 0.95rem; font-weight: 700;
+      font-family: 'Noto Sans KR', sans-serif; text-decoration: none; transition: background 0.2s;
+    }
+    .btn-green:hover { background: var(--green-dark); }
+    .btn-outline-white {
+      display: inline-flex; align-items: center; justify-content: center;
+      background: transparent; color: var(--black-head); border: 2px solid rgba(0,0,0,0.3); cursor: pointer;
+      border-radius: var(--radius-pill); padding: 14px 28px; font-size: 0.95rem; font-weight: 600;
+      font-family: 'Noto Sans KR', sans-serif; text-decoration: none; transition: border-color 0.2s;
+    }
+    .btn-outline-white:hover { border-color: var(--black-head); }
+
+    /* ─── NAV ─── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.97); backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      max-width: 1100px; margin: 0 auto; padding: 0 24px; height: 64px;
+    }
+    .nav-logo { font-size: 1.25rem; font-weight: 900; color: var(--black-head); text-decoration: none; letter-spacing: -0.02em; }
+    .nav-logo span { color: var(--green); }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--body-text); font-size: 0.92rem; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--black-head); }
+    .nav-cta { padding: 10px 22px; font-size: 0.88rem; }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-cta { padding: 9px 18px; font-size: 0.82rem; }
+    }
+
+    /* ─── HERO ─── */
+    #hero {
+      background: var(--bg-alt);
+      padding: 96px 24px 80px;
+      text-align: center;
+    }
+    .hero-tag { margin-bottom: 24px; }
+    .hero-h1 {
+      font-size: clamp(2.8rem, 7vw, 5rem); font-weight: 900; color: var(--black-head);
+      line-height: 1.15; word-break: keep-all; margin-bottom: 28px;
+    }
+    .hero-badges {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 24px;
+    }
+    .trust-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: var(--radius-pill); padding: 8px 18px; font-size: 0.88rem; font-weight: 600;
+      color: var(--black-head); box-shadow: var(--card-shadow);
+    }
+    .trust-badge .check { color: var(--green); font-weight: 900; }
+    .hero-sub {
+      max-width: 620px; margin: 0 auto 36px; font-size: 1.05rem; color: var(--body-text); line-height: 1.85;
+    }
+    .hero-buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-bottom: 32px; }
+    .stat-pills { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+    .stat-pill {
+      background: var(--green); color: #fff; border-radius: var(--radius-pill);
+      padding: 7px 18px; font-size: 0.82rem; font-weight: 700;
+    }
+
+    @media (max-width: 480px) {
+      #hero { padding: 72px 20px 64px; }
+      .hero-h1 { font-size: 2.4rem; }
+    }
+
+    /* ─── AI MANAGER ─── */
+    #ai-manager {
+      background: var(--white);
+      padding: 96px 24px;
+    }
+    .ai-header { text-align: center; margin-bottom: 56px; }
+    .ai-header h2 { margin: 16px 0 12px; }
+    .ai-sub { font-size: 1.05rem; color: var(--body-text); }
+    .ai-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+
+    .ai-card {
+      background: var(--white); border: 1px solid var(--border); border-radius: 24px; padding: 36px;
+    }
+    .ai-card-label {
+      font-size: 0.72rem; font-weight: 800; letter-spacing: 0.1em;
+      color: var(--green-dark); text-transform: uppercase; margin-bottom: 14px;
+    }
+    .ai-card h3 { font-size: 1.25rem; margin-bottom: 8px; }
+    .ai-card .sub-note { font-size: 0.88rem; color: var(--body-text); margin-bottom: 20px; }
+    .pain-rows { display: flex; flex-direction: column; gap: 8px; }
+    .pain-row {
+      background: var(--bg-alt); border-radius: 12px; padding: 12px 16px;
+      font-size: 0.9rem; color: var(--black-head); font-weight: 500; display: flex; align-items: flex-start; gap: 10px;
+    }
+    .pain-row .emoji { font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
+
+    .price-tag {
+      font-size: 2rem; font-weight: 900; color: var(--black-head); margin-bottom: 4px;
+    }
+    .price-note { font-size: 0.82rem; color: var(--body-text); margin-bottom: 20px; }
+    .feat-tagline { font-size: 0.9rem; font-weight: 600; color: var(--black-head); margin-bottom: 16px; }
+    .feat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .feat-item {
+      background: var(--green-light); border-radius: 14px; padding: 14px 16px;
+      font-size: 0.84rem;
+    }
+    .feat-item .fi-title { font-weight: 700; color: var(--black-head); margin-bottom: 2px; }
+    .feat-item .fi-desc { font-size: 0.78rem; color: var(--body-text); }
+
+    @media (max-width: 768px) {
+      .ai-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ─── WHY ─── */
+    #why-ai-manager {
+      background: var(--bg-alt);
+      padding: 96px 24px;
+    }
+    .why-wrap { max-width: 800px; margin: 0 auto; }
+    .why-card {
+      background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-card);
+      overflow: hidden; box-shadow: var(--card-shadow);
+    }
+    .why-top { padding: 40px 44px; }
+    .why-top-title {
+      display: inline-block; border: 2px solid var(--black-head); border-radius: 10px;
+      padding: 6px 18px; font-size: 1.1rem; font-weight: 800; color: var(--black-head); margin-bottom: 20px;
+    }
+    .why-top p { font-size: 1rem; color: var(--body-text); line-height: 1.9; margin-bottom: 12px; }
+    .why-bottom {
+      background: #1a2e1a; padding: 36px 44px;
+    }
+    .why-bottom .main-line {
+      font-size: 1.2rem; font-weight: 800; color: #fff; margin-bottom: 10px;
+    }
+    .why-bottom p { color: rgba(255,255,255,0.75); font-size: 0.95rem; line-height: 1.8; }
+
+    @media (max-width: 480px) {
+      .why-top, .why-bottom { padding: 28px 24px; }
+    }
+
+    /* ─── GROWTH ─── */
+    #growth-story {
+      background: var(--white);
+      padding: 96px 24px;
+    }
+    .growth-header { text-align: center; margin-bottom: 48px; }
+    .growth-header h2 { margin: 16px 0 14px; }
+    .growth-header p { max-width: 580px; margin: 0 auto; font-size: 1rem; }
+    .growth-container {
+      background: var(--green-container); border-radius: 28px; padding: 36px; margin-bottom: 32px;
+    }
+    .growth-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .growth-card {
+      background: var(--white); border-radius: 16px; padding: 24px 20px;
+      box-shadow: var(--card-shadow);
+    }
+    .month-label {
+      font-size: 0.7rem; font-weight: 800; color: var(--green-dark); letter-spacing: 0.08em;
+      text-transform: uppercase; margin-bottom: 8px;
+    }
+    .growth-card h4 { font-size: 1rem; font-weight: 800; color: var(--black-head); margin-bottom: 8px; }
+    .growth-card p { font-size: 0.82rem; color: var(--body-text); line-height: 1.7; }
+
+    .growth-insight {
+      background: var(--green); border-radius: 14px; padding: 20px 28px;
+      font-size: 0.95rem; font-weight: 700; color: #fff; text-align: center; margin-bottom: 20px;
+    }
+    .growth-note { font-size: 0.92rem; color: var(--body-text); text-align: center; max-width: 680px; margin: 0 auto; }
+
+    @media (max-width: 768px) {
+      .growth-cards { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 480px) {
+      .growth-cards { grid-template-columns: 1fr; }
+      .growth-container { padding: 24px 18px; }
+    }
+
+    /* ─── TESTIMONIALS ─── */
+    #testimonials {
+      background: var(--bg-alt);
+      padding: 96px 24px;
+    }
+    .test-header { text-align: center; margin-bottom: 48px; }
+    .test-header h2 { margin: 16px 0 12px; }
+    .test-header p { font-size: 0.98rem; }
+    .test-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .test-card {
+      background: var(--white); border-radius: var(--radius-card);
+      padding: 28px 26px; box-shadow: var(--card-shadow); position: relative; overflow: hidden;
+    }
+    .test-card .quote-mark {
+      position: absolute; top: 14px; right: 20px;
+      font-size: 3.5rem; font-weight: 900; color: #d4eed8; line-height: 1;
+      font-family: Georgia, serif; pointer-events: none;
+    }
+    .test-card .test-title { font-size: 0.88rem; font-weight: 800; color: var(--black-head); margin-bottom: 8px; line-height: 1.4; }
+    .test-card .test-body { font-size: 0.82rem; color: var(--body-text); line-height: 1.75; margin-bottom: 16px; }
+    .test-card .test-meta { display: flex; flex-direction: column; gap: 2px; }
+    .test-card .test-name { font-size: 0.8rem; font-weight: 700; color: var(--black-head); }
+    .test-card .test-clinic { font-size: 0.75rem; color: var(--body-text); }
+    .test-card .test-region {
+      display: inline-block; background: var(--green-light); color: var(--green-dark);
+      border-radius: 6px; padding: 2px 8px; font-size: 0.72rem; font-weight: 700; margin-bottom: 8px;
+    }
+
+    @media (max-width: 1024px) { .test-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 480px) { .test-grid { grid-template-columns: 1fr; } }
+
+    /* ─── CONTACT ─── */
+    #contact {
+      background: var(--white);
+      padding: 96px 24px;
+    }
+    .contact-header { text-align: center; margin-bottom: 52px; }
+    .contact-header h2 { margin: 16px 0 12px; }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; align-items: start; }
+    .contact-form-card {
+      background: var(--white); border: 1px solid var(--border); border-radius: 24px; padding: 36px;
+      box-shadow: var(--card-shadow);
+    }
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; font-size: 0.85rem; font-weight: 600; color: var(--black-head); margin-bottom: 6px; }
+    .form-group input, .form-group select {
+      width: 100%; border: 1px solid var(--border); border-radius: 10px;
+      padding: 12px 16px; font-size: 0.92rem; font-family: 'Noto Sans KR', sans-serif;
+      color: var(--black-head); background: var(--white); outline: none; transition: border-color 0.2s;
+    }
+    .form-group input:focus, .form-group select:focus { border-color: var(--green); }
+    .form-submit { width: 100%; padding: 16px; font-size: 1rem; margin-top: 8px; }
+
+    .contact-info { display: flex; flex-direction: column; gap: 20px; }
+    .countdown-card {
+      background: var(--green); border-radius: 16px; padding: 24px 28px; color: #fff;
+    }
+    .countdown-card h4 { font-size: 1rem; font-weight: 800; margin-bottom: 12px; }
+    .countdown-num { font-size: 2.2rem; font-weight: 900; line-height: 1; margin-bottom: 6px; }
+    .countdown-card p { font-size: 0.82rem; opacity: 0.85; }
+    .realtime-card {
+      background: var(--white); border: 1px solid var(--border); border-radius: 16px; padding: 24px 28px;
+      box-shadow: var(--card-shadow);
+    }
+    .realtime-card h4 { font-size: 0.95rem; font-weight: 700; color: var(--black-head); margin-bottom: 12px; }
+    .realtime-item {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 10px 0; border-bottom: 1px solid #f0f0f0; font-size: 0.85rem;
+    }
+    .realtime-item:last-child { border-bottom: none; }
+    .realtime-dot { width: 8px; height: 8px; background: var(--green); border-radius: 50%; margin-right: 8px; flex-shrink: 0; }
+    .realtime-name { display: flex; align-items: center; color: var(--black-head); font-weight: 500; }
+    .realtime-time { color: var(--body-text); font-size: 0.78rem; }
+
+    @media (max-width: 768px) { .contact-grid { grid-template-columns: 1fr; } }
+
+    /* ─── BRIDGE ─── */
+    .bridge-banner {
+      background: var(--green-light); padding: 24px;
+      display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap;
+    }
+    .bridge-banner p { font-size: 0.95rem; font-weight: 600; color: var(--black-head); }
+    .bridge-banner a {
+      color: var(--green-dark); font-weight: 700; font-size: 0.95rem;
+      text-decoration: none; border-bottom: 2px solid var(--green);
+      padding-bottom: 1px; transition: color 0.2s;
+    }
+    .bridge-banner a:hover { color: var(--green); }
+
+    /* ─── SERVICES ─── */
+    #services {
+      background: var(--bg-alt);
+      padding: 96px 24px;
+    }
+    .services-header { text-align: center; margin-bottom: 48px; }
+    .services-header h2 { margin: 16px 0 14px; }
+    .services-header p { font-size: 0.98rem; max-width: 560px; margin: 0 auto; }
+    .services-container {
+      background: var(--green-container); border-radius: 28px; padding: 36px;
+    }
+    .services-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .service-card {
+      background: var(--white); border-radius: var(--radius-card); padding: 32px 28px;
+      box-shadow: var(--card-shadow);
+    }
+    .service-num { font-size: 0.72rem; font-weight: 800; color: var(--green-dark); letter-spacing: 0.1em; margin-bottom: 12px; }
+    .service-card h3 { font-size: 1.1rem; font-weight: 800; color: var(--black-head); margin-bottom: 10px; }
+    .service-card p { font-size: 0.88rem; color: var(--body-text); line-height: 1.75; margin-bottom: 16px; }
+    .service-bullets { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+    .service-bullets li { font-size: 0.84rem; color: var(--black-head); display: flex; align-items: flex-start; gap: 8px; }
+    .service-bullets li::before { content: "✓"; color: var(--green); font-weight: 800; flex-shrink: 0; }
+
+    @media (max-width: 768px) {
+      .services-grid { grid-template-columns: 1fr; }
+      .services-container { padding: 24px 18px; }
+    }
+
+    /* ─── PAIN POINT ─── */
+    #pain-point {
+      background: var(--white);
+      padding: 96px 24px;
+    }
+    .pain-header { text-align: center; margin-bottom: 48px; }
+    .pain-header h2 { margin: 16px 0 12px; }
+    .pain-header p { font-size: 0.98rem; }
+    .pain-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .pain-card {
+      background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-card);
+      padding: 28px 24px; box-shadow: var(--card-shadow);
+    }
+    .pain-card .pain-icon { font-size: 1.8rem; margin-bottom: 14px; }
+    .pain-card h4 { font-size: 0.95rem; font-weight: 800; color: var(--black-head); margin-bottom: 10px; line-height: 1.4; }
+    .pain-card p { font-size: 0.84rem; color: var(--body-text); line-height: 1.75; }
+    .pain-card.highlight {
+      background: var(--green); border-color: var(--green);
+    }
+    .pain-card.highlight .pain-icon { color: #fff; }
+    .pain-card.highlight h4, .pain-card.highlight p { color: #fff; }
+
+    @media (max-width: 1024px) { .pain-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 480px) { .pain-grid { grid-template-columns: 1fr; } }
+
+    /* ─── TRUST ─── */
+    #trust {
+      background: var(--bg-alt);
+      padding: 96px 24px;
+    }
+    .trust-header { text-align: center; margin-bottom: 20px; }
+    .trust-header h2 { margin: 16px 0 0; max-width: 700px; margin-left: auto; margin-right: auto; }
+    .trust-body-text { max-width: 680px; margin: 20px auto 52px; font-size: 0.98rem; color: var(--body-text); line-height: 1.9; text-align: center; }
+    .solution-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 32px; }
+    .solution-card {
+      background: var(--white); border-radius: var(--radius-card); padding: 32px 26px;
+      box-shadow: var(--card-shadow);
+    }
+    .problem-label {
+      display: inline-block; background: var(--green-light); color: var(--green-dark);
+      border-radius: 8px; padding: 4px 12px; font-size: 0.75rem; font-weight: 700; margin-bottom: 16px;
+    }
+    .solution-card h4 { font-size: 1rem; font-weight: 800; color: var(--black-head); margin-bottom: 10px; }
+    .solution-card p { font-size: 0.84rem; color: var(--body-text); line-height: 1.75; }
+    .trust-banner {
+      background: var(--green-light); border-radius: var(--radius-card); padding: 28px 36px;
+      display: flex; align-items: center; justify-content: center; gap: 40px; flex-wrap: wrap;
+    }
+    .trust-point { display: flex; align-items: center; gap: 10px; font-size: 0.92rem; font-weight: 600; color: var(--black-head); }
+    .trust-point .tp-icon { font-size: 1.2rem; }
+
+    @media (max-width: 768px) {
+      .solution-grid { grid-template-columns: 1fr; }
+      .trust-banner { gap: 20px; flex-direction: column; align-items: flex-start; }
+    }
+
+    /* ─── COMPARE ─── */
+    #compare {
+      background: var(--white);
+      padding: 96px 24px;
+    }
+    .compare-header { text-align: center; margin-bottom: 48px; }
+    .compare-header h2 { margin: 16px 0 0; }
+    .compare-table-wrap { overflow-x: auto; }
+    .compare-table {
+      width: 100%; border-collapse: collapse; border-radius: var(--radius-card); overflow: hidden;
+      box-shadow: var(--card-shadow);
+    }
+    .compare-table th {
+      padding: 20px 24px; font-size: 0.95rem; font-weight: 800; text-align: center;
+    }
+    .compare-table .th-hp { background: var(--green-dark); color: #fff; }
+    .compare-table .th-vs { background: #f3f4f6; color: var(--body-text); width: 180px; }
+    .compare-table .th-other { background: #6b7280; color: #fff; }
+    .compare-table td {
+      padding: 16px 24px; font-size: 0.88rem; text-align: center; border-bottom: 1px solid #f0f0f0;
+    }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table .td-hp { background: #f0fff4; font-weight: 600; color: var(--black-head); }
+    .compare-table .td-label { background: var(--white); font-weight: 700; color: var(--black-head); font-size: 0.85rem; }
+    .compare-table .td-other { background: var(--white); color: var(--body-text); }
+    .compare-table tr:nth-child(even) .td-hp { background: #e8faf0; }
+    .compare-table tr:nth-child(even) .td-label { background: #fafafa; }
+    .compare-table tr:nth-child(even) .td-other { background: #fafafa; }
+    .check-g { color: var(--green); font-weight: 800; }
+    .check-r { color: #ef4444; font-weight: 800; }
+
+    /* ─── FAQ ─── */
+    #faq {
+      background: var(--bg-alt);
+      padding: 96px 24px;
+    }
+    .faq-layout { display: grid; grid-template-columns: 38% 1fr; gap: 64px; align-items: start; }
+    .faq-left h2 { margin: 16px 0 20px; }
+    .faq-left p { font-size: 0.95rem; color: var(--body-text); margin-bottom: 32px; line-height: 1.8; }
+    .faq-cta { display: inline-flex; align-items: center; gap: 6px; }
+    .faq-items { display: flex; flex-direction: column; gap: 12px; }
+    .faq-item {
+      background: #f3f4f6; border-radius: 16px; overflow: hidden; cursor: pointer;
+      transition: box-shadow 0.2s;
+    }
+    .faq-item:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+    .faq-question {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 24px; font-size: 0.95rem; font-weight: 700; color: var(--black-head);
+    }
+    .faq-icon {
+      width: 28px; height: 28px; border-radius: 50%; background: var(--white);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+      font-size: 1.1rem; font-weight: 700; color: var(--green-dark); margin-left: 12px;
+      transition: transform 0.3s;
+    }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-answer {
+      padding: 0 24px; max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.3s ease;
+    }
+    .faq-answer p { font-size: 0.88rem; color: var(--body-text); line-height: 1.85; padding-bottom: 20px; }
+    .faq-item.open .faq-answer { max-height: 400px; }
+
+    @media (max-width: 768px) {
+      .faq-layout { grid-template-columns: 1fr; gap: 36px; }
+    }
+
+    /* ─── SCARCITY / CTA ─── */
+    #scarcity {
+      background: linear-gradient(160deg, #e8f5e0 0%, #c8e6b0 40%, #a8d490 100%);
+      padding: 112px 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    #scarcity::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Ccircle cx='30' cy='30' r='1.5' fill='rgba(255,255,255,0.18)'/%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+    .scarcity-inner { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; }
+    .limited-tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #ef4444; color: #fff; border-radius: var(--radius-pill);
+      padding: 4px 14px; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.06em;
+      text-transform: uppercase; margin-bottom: 24px;
+    }
+    .scarcity-h2 {
+      font-size: clamp(2rem, 4.5vw, 3.4rem); font-weight: 900; color: var(--black-head);
+      line-height: 1.2; word-break: keep-all; margin-bottom: 28px;
+    }
+    .scarcity-body { font-size: 0.98rem; color: #3d5a3d; line-height: 2; margin-bottom: 40px; }
+    .scarcity-buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: #1a2e1a;
+      padding: 56px 24px 40px;
+    }
+    .footer-inner { max-width: 1100px; margin: 0 auto; }
+    .footer-top {
+      display: flex; align-items: flex-start; justify-content: space-between;
+      gap: 32px; padding-bottom: 32px; border-bottom: 1px solid rgba(255,255,255,0.1);
+      flex-wrap: wrap;
+    }
+    .footer-logo { font-size: 1.4rem; font-weight: 900; color: #fff; letter-spacing: -0.02em; margin-bottom: 10px; }
+    .footer-logo span { color: var(--green); }
+    .footer-info { font-size: 0.8rem; color: rgba(255,255,255,0.5); line-height: 2; }
+    .footer-links { display: flex; gap: 20px; }
+    .footer-links a { color: rgba(255,255,255,0.55); text-decoration: none; font-size: 0.82rem; transition: color 0.2s; }
+    .footer-links a:hover { color: #fff; }
+    .footer-bottom {
+      padding-top: 24px; display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 12px;
+    }
+    .footer-copy { font-size: 0.8rem; color: rgba(255,255,255,0.35); }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAV ===== -->
+  <nav>
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo">High<span>Plus</span></a>
+      <ul class="nav-links">
+        <li><a href="#trust">우리의 차별점</a></li>
+        <li><a href="#services">핵심 서비스</a></li>
+      </ul>
+      <a href="#contact" class="btn-primary nav-cta">바로 연결하기</a>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section id="hero">
+    <div class="container">
+      <div class="hero-tag">
+        <span class="section-tag">BLOG AUTOMATION · AI</span>
+      </div>
+      <h1 class="hero-h1">
+        병원을 직접 운영해본 사람이 만든<br>
+        <span class="green">실행 중심</span> 마케팅
+      </h1>
+      <div class="hero-badges">
+        <span class="trust-badge"><span class="check">✓</span> Ai 실장 자동화</span>
+        <span class="trust-badge"><span class="check">✓</span> 브랜딩 블로그</span>
+        <span class="trust-badge"><span class="check">✓</span> 네이버 플레이스</span>
+      </div>
+      <p class="hero-sub">
+        초진이 늘지 않는 것은, 키워드 전략부터 콘텐츠, 플레이스, 퍼널 설계까지 구조가 빠져있기 때문입니다.
+      </p>
+      <div class="hero-buttons">
+        <a href="#ai-manager" class="btn-primary">블로그 자동화 프로그램 (Ai 실장)</a>
+        <a href="#services" class="btn-secondary">블로그 대행 알아보기</a>
+      </div>
+      <div class="stat-pills">
+        <span class="stat-pill">파트너 병원 40+</span>
+        <span class="stat-pill">계약 연장률 94%</span>
+        <span class="stat-pill">서비스 유지율 98%</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== AI MANAGER ===== -->
+  <section id="ai-manager">
+    <div class="container">
+      <div class="ai-header">
+        <span class="section-tag">BLOG AUTOMATION</span>
+        <h2>블로그 자동화 프로그램 <span class="green">애(Ai)실장</span></h2>
+        <p class="ai-sub">초진은 Ai실장에게 맡기시고, 원장님은 재진에 집중하세요.</p>
+      </div>
+      <div class="ai-grid">
+        <!-- LEFT: Pain -->
+        <div class="ai-card">
+          <div class="ai-card-label">PAIN POINT</div>
+          <h3>원장님, 이런 상황 아닌가요?</h3>
+          <p class="sub-note">저희도 병원을 운영해봤기 때문에 압니다.</p>
+          <div class="pain-rows">
+            <div class="pain-row"><span class="emoji">🧑‍💼</span><span>실장급 직원까지 고용하고 있는데, 광고비도 또 지출해야 하는 상황</span></div>
+            <div class="pain-row"><span class="emoji">💸</span><span>매달 대행비 100만 원 넘게 나가는데, 초진 체감이 전혀 없을 때</span></div>
+            <div class="pain-row"><span class="emoji">🤔</span><span>블로그 대행을 맡기면 우리 병원 글 같지가 않을 때</span></div>
+            <div class="pain-row"><span class="emoji">✨</span><span>내 진료 철학과 색깔을 형식적인 대행사 블로그 대신 직접 담고 싶을 때</span></div>
+            <div class="pain-row"><span class="emoji">📝</span><span>당장 뭘 써야 하는지, 콘텐츠 작성 기준이 명확하지 않을 때</span></div>
+            <div class="pain-row"><span class="emoji">🎯</span><span>더 이상 마케팅에 끌려다니지 않고 주도권을 갖고 싶을 때</span></div>
+          </div>
+        </div>
+        <!-- RIGHT: Features -->
+        <div class="ai-card">
+          <div class="price-tag">₩300,000 <span style="font-size:1rem;font-weight:600;color:var(--body-text);">/ 월 최대 30건</span></div>
+          <p class="price-note">VAT 별도 · 위약금 없는 월 단위 계약</p>
+          <p class="feat-tagline">Ai실장은 다른 자동화 툴과는 다릅니다.</p>
+          <div class="feat-grid">
+            <div class="feat-item">
+              <div class="fi-title">💰 비용 1/15</div>
+              <div class="fi-desc">직원 고용 대비 압도적 절감</div>
+            </div>
+            <div class="feat-item">
+              <div class="fi-title">⚡ 작성 시간 95% 단축</div>
+              <div class="fi-desc">원고 생성에 걸리는 시간 최소화</div>
+            </div>
+            <div class="feat-item">
+              <div class="fi-title">✍️ 원클릭 원고 생성</div>
+              <div class="fi-desc">클릭 한 번으로 완성된 글</div>
+            </div>
+            <div class="feat-item">
+              <div class="fi-title">🖼️ AI 이미지 자동 생성</div>
+              <div class="fi-desc">글에 맞는 이미지 자동 첨부</div>
+            </div>
+            <div class="feat-item">
+              <div class="fi-title">🔍 AI 키워드 추천</div>
+              <div class="fi-desc">검색 트렌드 기반 키워드 분석</div>
+            </div>
+            <div class="feat-item">
+              <div class="fi-title">🏥 병원 맞춤 프롬프트</div>
+              <div class="fi-desc">우리 병원 맥락을 이해하는 AI</div>
+            </div>
+            <div class="feat-item">
+              <div class="fi-title">📈 SEO 최적화</div>
+              <div class="fi-desc">노출 구조에 맞는 글쓰기 자동화</div>
+            </div>
+            <div class="feat-item">
+              <div class="fi-title">⚖️ 의료법 리스크 최소화</div>
+              <div class="fi-desc">의료 광고 기준 준수 자동 필터</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WHY AI MANAGER ===== -->
+  <section id="why-ai-manager">
+    <div class="container">
+      <div class="why-wrap">
+        <div class="why-card">
+          <div class="why-top">
+            <div class="why-top-title">그래서 만들었습니다!</div>
+            <p>
+              우리 병원을 정확히 이해하고 도움을 줄 수 있는 실장급 직원을 고용하고 싶지만, 여러 가지 이유로 하지 못하는 경우가 많습니다. 혹 고용 중인데도 블로그나 홍보 비용이 또 많이 들어가는 상황일 때, 실장급 직원을 대신할 수 있거나, 직원을 도와줄 수 있는 도구를 만들고 싶었습니다.
+            </p>
+            <p>
+              원내의 실장처럼 우리 병원의 지역과 컨셉 등을 이해하고, 자동으로 키워드를 찾고, 글을 쓰고, 이미지를 만듭니다.
+            </p>
+          </div>
+          <div class="why-bottom">
+            <p class="main-line">그래서 애(Ai)실장을 만들게 되었습니다.</p>
+            <p>병원 현장에서 쌓아온 경험과 수많은 고민이 애(Ai)실장 시스템의 기반입니다.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== GROWTH ===== -->
+  <section id="growth-story">
+    <div class="container">
+      <div class="growth-header">
+        <span class="section-tag">Growth</span>
+        <h2>블로그는 <span class="green">복리로</span> 성장합니다</h2>
+        <p>한 편의 글이 내일도, 다음 달에도, 1년 뒤에도 환자를 데려옵니다. 꾸준히 관리된 블로그는 시간이 지날수록 효과가 커집니다.</p>
+      </div>
+      <div class="growth-container">
+        <div class="growth-cards">
+          <div class="growth-card">
+            <div class="month-label">MONTH 1–3</div>
+            <h4>기반 구축</h4>
+            <p>키워드 분석, SEO 세팅, 콘텐츠 발행 시작</p>
+          </div>
+          <div class="growth-card">
+            <div class="month-label">MONTH 3–6</div>
+            <h4>효과 체감</h4>
+            <p>"블로그 보고 왔습니다" 환자가 나타나기 시작</p>
+          </div>
+          <div class="growth-card">
+            <div class="month-label">MONTH 6–12</div>
+            <h4>임계점 돌파</h4>
+            <p>같은 노력으로 2~3배 노출 발생</p>
+          </div>
+          <div class="growth-card">
+            <div class="month-label">12개월+</div>
+            <h4>자산화 완성</h4>
+            <p>블로그가 24시간 일하는 영업사원이 됩니다</p>
+          </div>
+        </div>
+      </div>
+      <div class="growth-insight">
+        원장님은 진료에만 집중하세요. 초진을 데려오는 건 잘 세팅된 블로그가 합니다
+      </div>
+      <p class="growth-note">
+        저희가 운영하는 40개 병원은 한 가지가 같습니다. 멈추지 않았다는 것. 꾸준함을 시스템이 대신하면, 포기할 이유가 사라집니다.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== TESTIMONIALS ===== -->
+  <section id="testimonials">
+    <div class="container">
+      <div class="test-header">
+        <span class="section-tag">Real Reviews</span>
+        <h2>파트너 원장님들의 <span class="green">실제 후기</span></h2>
+        <p>98%가 함께하고 있습니다. 원장님들의 솔직한 이야기를 들어보세요.</p>
+      </div>
+      <div class="test-grid">
+        <div class="test-card">
+          <div class="quote-mark">"</div>
+          <p class="test-title">블로그 보고 왔다는 환자 대폭 증가</p>
+          <p class="test-body">블로그 노출이 꾸준히 늘고 있고 실제로 블로그를 보고 내원하는 환자가 눈에 띄게 증가했습니다. 콘텐츠 퀄리티도 높고 관리가 체계적입니다.</p>
+          <div class="test-meta">
+            <span class="test-region">제주</span>
+            <span class="test-clinic">늘ㅇㅇㅇㅇ원</span>
+            <span class="test-name">강ㅇ우 원장님</span>
+          </div>
+        </div>
+        <div class="test-card">
+          <div class="quote-mark">"</div>
+          <p class="test-title">체계적 분석과 정성, 도약을 이끄는 마케팅</p>
+          <p class="test-body">체계적인 분석과 정성스러운 콘텐츠로 병원이 한 단계 도약하는 느낌입니다. 단순 홍보가 아닌 전략적 파트너라는 느낌을 받습니다.</p>
+          <div class="test-meta">
+            <span class="test-region">서울 구로구</span>
+            <span class="test-clinic">난ㅇㅇㅇㅇㅇㅇ원</span>
+            <span class="test-name">허ㅇ이 원장님</span>
+          </div>
+        </div>
+        <div class="test-card">
+          <div class="quote-mark">"</div>
+          <p class="test-title">의도한 질환군 환자가 직접 내원하는 매력</p>
+          <p class="test-body">양산형 광고 글이 아닌, 우리 병원의 전문성이 담긴 글이 올라갑니다. 원하는 질환 환자층이 직접 찾아오는 경험이 인상적입니다.</p>
+          <div class="test-meta">
+            <span class="test-region">서울 강남구</span>
+            <span class="test-clinic">양ㅇㅇㅇㅇㅇㅇ원</span>
+            <span class="test-name">김ㅇ언 원장님</span>
+          </div>
+        </div>
+        <div class="test-card">
+          <div class="quote-mark">"</div>
+          <p class="test-title">데이터 기반 분석, 가장 성실한 운영</p>
+          <p class="test-body">단순 홍보가 아니라 데이터로 분석하고 결과를 피드백해줍니다. 대행사 중에 이렇게 성실하게 운영해주는 곳은 처음입니다.</p>
+          <div class="test-meta">
+            <span class="test-region">인천 남동구</span>
+            <span class="test-clinic">맑ㅇㅇㅇㅇ원</span>
+            <span class="test-name">진ㅇ우 원장님</span>
+          </div>
+        </div>
+        <div class="test-card">
+          <div class="quote-mark">"</div>
+          <p class="test-title">초진 유입 증가, 즉각적인 피드백</p>
+          <p class="test-body">블로그 광고 하기 전보다 초진 비율이 올라갔고, 피드백도 빠르고 명확해서 믿고 맡길 수 있습니다.</p>
+          <div class="test-meta">
+            <span class="test-region">서울 강서구</span>
+            <span class="test-clinic">까ㅇㅇㅇ원</span>
+            <span class="test-name">최ㅇ근 원장님</span>
+          </div>
+        </div>
+        <div class="test-card">
+          <div class="quote-mark">"</div>
+          <p class="test-title">투명한 보고서와 세심한 브랜딩 관리</p>
+          <p class="test-body">매달 체계적인 보고서를 통해 어떤 글이 잘 되고 있는지, 어떤 방향으로 나아가야 하는지 명확하게 알 수 있습니다.</p>
+          <div class="test-meta">
+            <span class="test-region">서울 중랑구</span>
+            <span class="test-clinic">중ㅇㅇㅇㅇㅇ원</span>
+            <span class="test-name">정ㅇ학 원장님</span>
+          </div>
+        </div>
+        <div class="test-card">
+          <div class="quote-mark">"</div>
+          <p class="test-title">병원 문의 증가, 초진도 함께 관리</p>
+          <p class="test-body">하이플러스의 월말 보고시스템들을 통해 성과를 확인할 수 있고, 초진까지 꼼꼼히 챙겨주니 정말 든든합니다.</p>
+          <div class="test-meta">
+            <span class="test-region">인천 부평구</span>
+            <span class="test-clinic">미ㅇㅇㅇㅇ원</span>
+            <span class="test-name">권ㅇ우 원장님</span>
+          </div>
+        </div>
+        <div class="test-card">
+          <div class="quote-mark">"</div>
+          <p class="test-title">질환명 검색 노출 증가, 블로그 보고 내원</p>
+          <p class="test-body">초진환자 문진 시 블로그를 보고 왔다는 분들이 늘었습니다. 질환명으로 직접 검색해 찾아오는 환자가 눈에 띄게 많아졌습니다.</p>
+          <div class="test-meta">
+            <span class="test-region">부천 원미구</span>
+            <span class="test-clinic">바ㅇㅇㅇㅇㅇ원</span>
+            <span class="test-name">김ㅇ민 원장님</span>
+          </div>
+        </div>
+        <div class="test-card">
+          <div class="quote-mark">"</div>
+          <p class="test-title">의료인이 직접 운영, 진짜 파트너</p>
+          <p class="test-body">여기는 의료인이 직접 운영하는 곳이라 병원 사정을 너무 잘 알아요. 단순 대행사가 아닌 진짜 파트너라는 느낌입니다.</p>
+          <div class="test-meta">
+            <span class="test-region">인천 연수구</span>
+            <span class="test-clinic">송ㅇㅇㅇ의원</span>
+            <span class="test-name">엄ㅇ일 원장님</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section id="contact">
+    <div class="container">
+      <div class="contact-header">
+        <span class="section-tag">무료 상담 신청</span>
+        <h2>원장님도 <span class="green">함께하시겠습니까?</span></h2>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-form-card">
+          <form>
+            <div class="form-group">
+              <label>성함 / 직책</label>
+              <input type="text" placeholder="이름 · 원장님 / 실장님" />
+            </div>
+            <div class="form-group">
+              <label>연락처</label>
+              <input type="tel" placeholder="010-0000-0000" />
+            </div>
+            <div class="form-group">
+              <label>업체명</label>
+              <input type="text" placeholder="병원명을 입력해주세요" />
+            </div>
+            <div class="form-group">
+              <label>지역</label>
+              <input type="text" placeholder="예) 서울 강남구, 인천 연수구" />
+            </div>
+            <button type="submit" class="btn-green form-submit">바로 연결하기</button>
+          </form>
+        </div>
+        <div class="contact-info">
+          <div class="countdown-card">
+            <h4>이번 달 잔여 슬롯</h4>
+            <div class="countdown-num">3</div>
+            <p>1지역 1병원 독점 운영 원칙으로, 슬롯이 제한되어 있습니다.</p>
+          </div>
+          <div class="realtime-card">
+            <h4>실시간 접수 현황</h4>
+            <div class="realtime-item">
+              <span class="realtime-name"><span class="realtime-dot"></span>서울 강남구 ㅇㅇ의원</span>
+              <span class="realtime-time">방금 전</span>
+            </div>
+            <div class="realtime-item">
+              <span class="realtime-name"><span class="realtime-dot"></span>인천 연수구 ㅇㅇ병원</span>
+              <span class="realtime-time">3분 전</span>
+            </div>
+            <div class="realtime-item">
+              <span class="realtime-name"><span class="realtime-dot"></span>부산 해운대구 ㅇㅇ의원</span>
+              <span class="realtime-time">11분 전</span>
+            </div>
+            <div class="realtime-item">
+              <span class="realtime-name"><span class="realtime-dot"></span>대구 수성구 ㅇㅇ클리닉</span>
+              <span class="realtime-time">28분 전</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BRIDGE ===== -->
+  <div class="bridge-banner">
+    <p>블로그 자동화 외에, 광고대행은 어떻게 진행되나요?</p>
+    <a href="#services">광고대행 서비스 알아보기 →</a>
+  </div>
+
+  <!-- ===== SERVICES ===== -->
+  <section id="services">
+    <div class="container">
+      <div class="services-header">
+        <span class="section-tag">Core Solution</span>
+        <h2>HighPlus가 <span class="green">직접 실행</span>하는 것들</h2>
+        <p>블로그, 플레이스, 유튜브, 리포트까지 외주 없이 전부 인하우스로 운영합니다.</p>
+      </div>
+      <div class="services-container">
+        <div class="services-grid">
+          <div class="service-card">
+            <div class="service-num">01</div>
+            <h3>브랜딩 기획 블로그</h3>
+            <p>병원의 철학과 진료 특성을 녹인 브랜딩 블로그. 검색 노출과 신뢰 형성을 동시에 잡습니다.</p>
+            <ul class="service-bullets">
+              <li>병원 맞춤 키워드 전략 수립</li>
+              <li>전문의 감수 기반 콘텐츠 기획</li>
+              <li>월 8~20건 고퀄리티 포스팅</li>
+              <li>월말 성과 보고서 제공</li>
+            </ul>
+          </div>
+          <div class="service-card">
+            <div class="service-num">02</div>
+            <h3>네이버 플레이스 최적화</h3>
+            <p>검색하면 가장 먼저 보이는 플레이스. 지역 기반 노출 최적화로 초진 환자를 직접 유입합니다.</p>
+            <ul class="service-bullets">
+              <li>플레이스 프로필 전략 세팅</li>
+              <li>리뷰 관리 및 응답 전략</li>
+              <li>지역 키워드 기반 노출 작업</li>
+              <li>영업 시간·사진·정보 최신화</li>
+            </ul>
+          </div>
+          <div class="service-card">
+            <div class="service-num">03</div>
+            <h3>유튜브 콘텐츠</h3>
+            <p>원장님 얼굴 없이도 가능한 유튜브. 영상 콘텐츠로 장기 신뢰 자산을 쌓습니다.</p>
+            <ul class="service-bullets">
+              <li>주제·스크립트·편집 전부 인하우스</li>
+              <li>SEO 최적화 제목·설명 세팅</li>
+              <li>블로그 연계 퍼널 구조 설계</li>
+              <li>채널 성장 리포트 월 1회 제공</li>
+            </ul>
+          </div>
+          <div class="service-card">
+            <div class="service-num">04</div>
+            <h3>업무진행 보고서</h3>
+            <p>마케팅 대행은 믿음이 기반입니다. 투명한 보고 시스템으로 모든 과정을 공유합니다.</p>
+            <ul class="service-bullets">
+              <li>월 1회 정기 성과 보고서</li>
+              <li>노출수·클릭수·유입 데이터 공유</li>
+              <li>다음 달 전략 방향 사전 안내</li>
+              <li>전담 매니저 직통 소통 채널</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PAIN POINT ===== -->
+  <section id="pain-point">
+    <div class="container">
+      <div class="pain-header">
+        <span class="section-tag">Why HighPlus</span>
+        <h2>혹시 <span class="green">이런 경험</span>, 하고 계신 건 아닌가요?</h2>
+        <p>원장님만 겪는 문제가 아닙니다. 90%의 병원이 같은 상황입니다.</p>
+      </div>
+      <div class="pain-grid">
+        <div class="pain-card">
+          <div class="pain-icon">💸</div>
+          <h4>"매달 돈은 나가는데, 뭘 하고 있는지 모르겠습니다"</h4>
+          <p>보고도 없고, 무엇을 했는지 알 수 없는 대행. 비용 대비 성과가 체감되지 않을 때의 답답함은 압니다.</p>
+        </div>
+        <div class="pain-card">
+          <div class="pain-icon">📝</div>
+          <h4>"복붙 느낌 가득, 이 글로 환자가 올까요?"</h4>
+          <p>우리 병원 이름만 바꾼 것 같은 글. 진료 철학도, 전문성도 없는 콘텐츠로는 환자의 신뢰를 얻을 수 없습니다.</p>
+        </div>
+        <div class="pain-card">
+          <div class="pain-icon">🤔</div>
+          <h4>"어떤 검색어를 노리는지, 한 번도 설명을 못 들었습니다"</h4>
+          <p>왜 이 키워드인지, 어떤 전략인지 모르는 채로 맡기는 마케팅. 주도권이 없으면 결과도 알 수 없습니다.</p>
+        </div>
+        <div class="pain-card highlight">
+          <div class="pain-icon">⚡</div>
+          <h4>그래서 직접 실행합니다.</h4>
+          <p>하이플러스는 보고하지 않습니다. 직접 실행하고, 결과로 증명합니다. 병원을 운영해본 사람이 만든 마케팅입니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TRUST ===== -->
+  <section id="trust">
+    <div class="container">
+      <div class="trust-header">
+        <span class="section-tag">About HighPlus</span>
+        <h2>실제 병원을 운영해본 의료진이 <span class="green">직접 기획하고</span> 만들었습니다.</h2>
+      </div>
+      <p class="trust-body-text">
+        하이플러스는 병원 밖에서 만들어진 마케팅 회사가 아닙니다. 실제로 병원을 운영하며 마케팅의 한계를 직접 경험한 의료 현장 출신이 창업했습니다. 대행사에 맡겨도 체감이 없던 경험, 어디에 돈이 쓰이는지 알 수 없었던 답답함. 그 모든 고민이 하이플러스 서비스의 출발점입니다.
+      </p>
+      <div class="solution-grid">
+        <div class="solution-card">
+          <div class="problem-label">문제 인식</div>
+          <h4>Solution 01: 병원 운영 경험에서 출발한 마케팅</h4>
+          <p>마케팅을 모르는 의료진이 아니라, 마케팅을 직접 겪어본 의료진이 설계했습니다. 병원 현장의 언어로 전략을 수립합니다.</p>
+        </div>
+        <div class="solution-card">
+          <div class="problem-label">실행 구조</div>
+          <h4>Solution 02: 기획부터 발행까지 한 팀이 끝냅니다</h4>
+          <p>외주 없이, 분업 없이. 기획·작성·발행·보고까지 전담 팀이 처음부터 끝까지 책임집니다.</p>
+        </div>
+        <div class="solution-card">
+          <div class="problem-label">성과 집중</div>
+          <h4>Solution 03: 오직 퀄리티와 성과에만 집중</h4>
+          <p>병원 수를 늘리는 것보다, 파트너 병원의 결과를 만드는 것이 우선입니다. 그래서 제한된 수만 운영합니다.</p>
+        </div>
+      </div>
+      <div class="trust-banner">
+        <div class="trust-point"><span class="tp-icon">📍</span><span>1지역 1병원 독점 운영</span></div>
+        <div class="trust-point"><span class="tp-icon">✅</span><span>한 달 단위 자유 계약</span></div>
+        <div class="trust-point"><span class="tp-icon">👥</span><span>전담 매니저 직접 관리</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== COMPARE ===== -->
+  <section id="compare">
+    <div class="container">
+      <div class="compare-header">
+        <span class="section-tag">Compare</span>
+        <h2>똑같은 블로그, <span class="green">전혀 다른</span> 결과</h2>
+      </div>
+      <div class="compare-table-wrap">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th class="th-hp">HighPlus</th>
+              <th class="th-vs">비교 항목</th>
+              <th class="th-other">일반 대행사</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="td-hp"><span class="check-g">✓</span> 병원 운영 경험 기반 전략</td>
+              <td class="td-label">전략 수립</td>
+              <td class="td-other">마케팅 템플릿 적용</td>
+            </tr>
+            <tr>
+              <td class="td-hp"><span class="check-g">✓</span> 인하우스 전담팀</td>
+              <td class="td-label">실행 방식</td>
+              <td class="td-other">외주 프리랜서 다수</td>
+            </tr>
+            <tr>
+              <td class="td-hp"><span class="check-g">✓</span> 1지역 1병원 독점</td>
+              <td class="td-label">경쟁 병원</td>
+              <td class="td-other">동일 지역 여러 병원 동시 운영</td>
+            </tr>
+            <tr>
+              <td class="td-hp"><span class="check-g">✓</span> 월간 데이터 보고서 제공</td>
+              <td class="td-label">투명성</td>
+              <td class="td-other">결과물만 전달, 설명 없음</td>
+            </tr>
+            <tr>
+              <td class="td-hp"><span class="check-g">✓</span> 한 달 단위, 위약금 없음</td>
+              <td class="td-label">계약 방식</td>
+              <td class="td-other">6~12개월 장기 계약 강요</td>
+            </tr>
+            <tr>
+              <td class="td-hp"><span class="check-g">✓</span> 의료법 준수 콘텐츠 자동 필터</td>
+              <td class="td-label">의료법 리스크</td>
+              <td class="td-other"><span class="check-r">✗</span> 대부분 검수 없음</td>
+            </tr>
+            <tr>
+              <td class="td-hp"><span class="check-g">✓</span> 초진 유입 체계 설계</td>
+              <td class="td-label">성과 목표</td>
+              <td class="td-other">노출수·구독자 수 중심</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section id="faq">
+    <div class="container">
+      <div class="faq-layout">
+        <div class="faq-left">
+          <span class="section-tag">Q&amp;A</span>
+          <h2>자주 묻는 <span class="green">질문</span></h2>
+          <p>원장님·대표님들이 가장 궁금해하시는 질문을 모았습니다.</p>
+          <a href="#contact" class="btn-primary faq-cta">지금 시작하기 →</a>
+        </div>
+        <div class="faq-items">
+          <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-question">
+              병원 블로그 마케팅, 직접 하는 것과 대행사의 차이는?
+              <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-answer">
+              <p>직접 운영하면 비용은 절감되지만 전략적 키워드 분석, SEO 최적화, 꾸준한 발행 유지가 어렵습니다. 대행사는 이 과정 전체를 전문적으로 대신합니다. 특히 병원 전문 대행사는 의료법 준수, 질환별 콘텐츠 기획 등 일반 대행사와 차별화된 영역을 다룹니다.</p>
+            </div>
+          </div>
+          <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-question">
+              네이버 플레이스 상위 노출은 어떤 방식인가요?
+              <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-answer">
+              <p>네이버 플레이스 노출은 키워드 연관성, 리뷰 수·질, 정보 완성도, 블로그 콘텐츠 연계 등 복합 요소로 결정됩니다. 하이플러스는 프로필 최적화부터 리뷰 전략, 블로그 연계 퍼널까지 통합적으로 운영합니다.</p>
+            </div>
+          </div>
+          <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-question">
+              마케팅 대행사를 선택할 때 가장 중요한 기준은?
+              <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-answer">
+              <p>병원 업종 전문성, 투명한 보고 체계, 경쟁 병원 동시 운영 여부가 핵심입니다. 특히 같은 지역 경쟁 병원을 동시에 운영하는 대행사는 이해충돌이 발생합니다. 하이플러스는 1지역 1병원 원칙으로 이를 방지합니다.</p>
+            </div>
+          </div>
+          <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-question">
+              브랜딩 블로그가 정말 환자 유치에 직결되나요?
+              <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-answer">
+              <p>네, 특히 병원의 경우 질환명·증상·치료법 키워드 검색이 활발해 잘 세팅된 블로그는 지속적인 초진 유입으로 이어집니다. 저희 파트너 병원 94%가 6개월 이상 지속하는 이유가 바로 체감되는 성과 때문입니다.</p>
+            </div>
+          </div>
+          <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-question">
+              계약 기간과 비용은 어떻게 되나요?
+              <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-answer">
+              <p>월 단위 계약으로 위약금이 없습니다. 최소 의무 기간도 없어 언제든 해지 가능합니다. 비용은 서비스 구성에 따라 다르며, Ai실장 기본 플랜은 월 300,000원(VAT 별도)부터 시작합니다. 자세한 견적은 무료 상담을 통해 안내드립니다.</p>
+            </div>
+          </div>
+          <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-question">
+              Ai실장과 광고 대행의 차이가 무엇인가요?
+              <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-answer">
+              <p>Ai실장은 병원 내부에서 직접 블로그 콘텐츠를 생성할 수 있는 자동화 프로그램입니다. 월 300,000원으로 최대 30건의 원고를 AI가 자동 생성하며, 원장님 또는 직원이 직접 운영합니다. 광고 대행은 하이플러스 팀이 기획·작성·발행까지 전담하는 서비스입니다.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SCARCITY / CTA ===== -->
+  <section id="scarcity">
+    <div class="scarcity-inner">
+      <span class="limited-tag">LIMITED</span>
+      <h2 class="scarcity-h2">
+        지금 바로 시작하고 싶으셔도,<br>
+        <span class="green-dark">어려울</span> 수 있습니다.
+      </h2>
+      <p class="scarcity-body">
+        하이플러스는 아무 병원이나 받지 않습니다.<br>
+        1지역 1병원 독점 원칙을 지키고, 저희가 제대로 케어할 수 있는 수만큼만 계약합니다.<br><br>
+        단기간 폭발적인 성과를 약속하는 곳은 저희가 아닙니다.<br>
+        꾸준히 쌓이는 구조를 만드는 것, 그게 하이플러스 방식입니다.<br><br>
+        현재 슬롯이 마감된 경우, 대기 등록 후 순차적으로 안내드립니다.
+      </p>
+      <div class="scarcity-buttons">
+        <a href="#contact" class="btn-primary">현재 가능 여부 확인하기</a>
+        <a href="#services" class="btn-outline-white">서비스 알아보기</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <div class="footer-logo">High<span>Plus</span></div>
+          <div class="footer-info">
+            상호명 : 주식회사 하이플러스컴퍼니<br>
+            대표자 : 김태헌<br>
+            사업자등록번호 : 339-88-02845<br>
+            주소 : 인천광역시 연수구 송도문화로 28번길, 28<br>
+            이메일 : highplus23@gmail.com
+          </div>
+        </div>
+        <div class="footer-links">
+          <a href="#">이용약관</a>
+          <a href="#">개인정보처리방침</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span class="footer-copy">© 2026 HighPlus Marketing. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleFaq(el) {
+      const isOpen = el.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(function(item) {
+        item.classList.remove('open');
+      });
+      if (!isOpen) el.classList.add('open');
+    }
+  </script>
+
+</body>
+</html>
