@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HighPlus 시안 비교 — A · B · 기존 index</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+  <style>
+    :root {
+      --brand: #3478F6;
+      --brand-deep: #1A4FE0;
+      --ink: #0B1220;
+      --ink-2: #1E293B;
+      --ink-3: #475569;
+      --ink-4: #94A3B8;
+      --line: #E2E8F0;
+      --bg: #F8FAFC;
+      --tile-bg: #ffffff;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; overflow: hidden; }
+    body {
+      font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      background: var(--bg); color: var(--ink); display: flex; flex-direction: column;
+      letter-spacing: -0.011em;
+    }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ===== TOP BAR ===== */
+    .topbar {
+      flex-shrink: 0; background: #fff; border-bottom: 1px solid var(--line);
+      padding: 14px 24px; display: flex; align-items: center; gap: 24px;
+      flex-wrap: wrap; box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+    }
+    .topbar__brand {
+      font-size: 16px; font-weight: 900; color: var(--ink); letter-spacing: -0.04em;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .topbar__brand .badge {
+      padding: 3px 8px; background: var(--brand); color: #fff;
+      border-radius: 6px; font-size: 11px; font-weight: 700; letter-spacing: 0.04em;
+    }
+    .topbar__divider { width: 1px; height: 24px; background: var(--line); }
+    .topbar__group {
+      display: flex; gap: 4px; padding: 4px;
+      background: var(--bg); border-radius: 12px; border: 1px solid var(--line);
+    }
+    .topbar__btn {
+      padding: 8px 14px; border-radius: 8px;
+      font-size: 13px; font-weight: 700; color: var(--ink-3);
+      transition: all .15s; display: inline-flex; align-items: center; gap: 6px;
+    }
+    .topbar__btn:hover { background: rgba(255,255,255,0.6); color: var(--ink); }
+    .topbar__btn.is-active {
+      background: var(--ink); color: #fff;
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.2);
+    }
+    .topbar__btn .dot {
+      width: 6px; height: 6px; border-radius: 50%; background: var(--ink-4);
+    }
+    .topbar__btn.is-active .dot { background: #FCD34D; box-shadow: 0 0 8px #FCD34D; }
+    .topbar__label {
+      font-size: 11px; color: var(--ink-4); font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase; margin-right: 4px;
+    }
+    .topbar__spacer { flex: 1; }
+    .topbar__open {
+      padding: 9px 14px; border-radius: 8px;
+      background: var(--brand); color: #fff;
+      font-size: 13px; font-weight: 700;
+      display: inline-flex; align-items: center; gap: 6px;
+      transition: background .15s, transform .15s;
+    }
+    .topbar__open:hover { background: var(--brand-deep); transform: translateY(-1px); }
+
+    /* ===== STAGE ===== */
+    .stage {
+      flex: 1; display: flex; align-items: flex-start; justify-content: center;
+      padding: 24px; overflow: auto;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(52, 120, 246, 0.04), transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(124, 91, 245, 0.04), transparent 50%),
+        var(--bg);
+    }
+    .frame-wrap {
+      background: #fff; border-radius: 16px;
+      box-shadow: 0 24px 48px -16px rgba(15, 23, 42, 0.18), 0 4px 12px rgba(15, 23, 42, 0.06);
+      overflow: hidden; position: relative;
+      transition: width .3s ease, height .3s ease;
+    }
+    .frame-wrap__chrome {
+      height: 32px; background: #F1F5F9; border-bottom: 1px solid var(--line);
+      display: flex; align-items: center; padding: 0 12px; gap: 6px;
+    }
+    .chrome-dot { width: 11px; height: 11px; border-radius: 50%; }
+    .chrome-dot--r { background: #FF5F57; }
+    .chrome-dot--y { background: #FEBC2E; }
+    .chrome-dot--g { background: #28C840; }
+    .chrome-url {
+      flex: 1; margin: 0 20px; padding: 4px 12px;
+      background: #fff; border-radius: 6px;
+      font-size: 11px; color: var(--ink-4); font-family: ui-monospace, "SF Mono", Menlo, monospace;
+      text-align: center; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    }
+    .frame-wrap iframe {
+      width: 100%; height: calc(100% - 32px); border: 0; display: block; background: #fff;
+    }
+
+    /* ===== Device sizes ===== */
+    .stage[data-device="desktop"] .frame-wrap { width: 100%; height: calc(100vh - 110px); max-width: 1400px; }
+    .stage[data-device="tablet"]  .frame-wrap { width: 820px; height: calc(100vh - 110px); max-width: 100%; }
+    .stage[data-device="mobile"]  .frame-wrap { width: 412px; height: calc(100vh - 110px); max-width: 100%; }
+
+    /* ===== Empty state for index ===== */
+    .empty-note {
+      max-width: 560px; margin: 80px auto; padding: 48px 36px;
+      background: #fff; border-radius: 20px; text-align: center;
+      border: 1px dashed var(--line);
+    }
+    .empty-note h3 { font-size: 20px; margin-bottom: 12px; color: var(--ink); }
+    .empty-note p { font-size: 14px; color: var(--ink-3); line-height: 1.7; }
+
+    @media (max-width: 768px) {
+      .topbar { padding: 10px 16px; gap: 12px; }
+      .topbar__divider { display: none; }
+      .topbar__brand { font-size: 14px; }
+      .topbar__btn { padding: 6px 10px; font-size: 12px; }
+      .topbar__label { display: none; }
+      .stage { padding: 12px; }
+      .stage[data-device="desktop"] .frame-wrap,
+      .stage[data-device="tablet"] .frame-wrap { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar__brand">
+    HighPlus <span class="badge">시안 비교</span>
+  </div>
+  <div class="topbar__divider"></div>
+
+  <span class="topbar__label">View</span>
+  <div class="topbar__group" id="viewTabs">
+    <button class="topbar__btn is-active" data-src="index-new.html">
+      <span class="dot"></span> 🆕 index-new (작업본)
+    </button>
+    <button class="topbar__btn" data-src="mockup-afterdoc.html">
+      <span class="dot"></span> 시안 A · Afterdoc
+    </button>
+    <button class="topbar__btn" data-src="mockup-saas.html">
+      <span class="dot"></span> 시안 B · SaaS 트렌디
+    </button>
+    <button class="topbar__btn" data-src="index.html">
+      <span class="dot"></span> 기존 index (원본)
+    </button>
+  </div>
+
+  <div class="topbar__divider"></div>
+
+  <span class="topbar__label">Device</span>
+  <div class="topbar__group" id="deviceTabs">
+    <button class="topbar__btn is-active" data-device="desktop">🖥 Desktop</button>
+    <button class="topbar__btn" data-device="tablet">📱 Tablet</button>
+    <button class="topbar__btn" data-device="mobile">📱 Mobile</button>
+  </div>
+
+  <div class="topbar__spacer"></div>
+
+  <a href="#" id="openTab" class="topbar__open" target="_blank" rel="noopener">
+    새 탭에서 풀스크린 열기
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+  </a>
+</div>
+
+<div class="stage" id="stage" data-device="desktop">
+  <div class="frame-wrap" id="frameWrap">
+    <div class="frame-wrap__chrome">
+      <span class="chrome-dot chrome-dot--r"></span>
+      <span class="chrome-dot chrome-dot--y"></span>
+      <span class="chrome-dot chrome-dot--g"></span>
+      <div class="chrome-url" id="chromeUrl">index-new.html</div>
+    </div>
+    <iframe id="preview" src="index-new.html" title="시안 미리보기"></iframe>
+  </div>
+</div>
+
+<script>
+  (function () {
+    var iframe   = document.getElementById('preview');
+    var chrome   = document.getElementById('chromeUrl');
+    var openTab  = document.getElementById('openTab');
+    var stage    = document.getElementById('stage');
+
+    function setSrc(src) {
+      iframe.src = src;
+      chrome.textContent = src;
+      openTab.href = src;
+    }
+
+    // View tabs
+    var viewTabs = document.querySelectorAll('#viewTabs .topbar__btn');
+    viewTabs.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        viewTabs.forEach(function (b) { b.classList.remove('is-active'); });
+        btn.classList.add('is-active');
+        setSrc(btn.dataset.src);
+      });
+    });
+
+    // Device tabs
+    var deviceTabs = document.querySelectorAll('#deviceTabs .topbar__btn');
+    deviceTabs.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        deviceTabs.forEach(function (b) { b.classList.remove('is-active'); });
+        btn.classList.add('is-active');
+        stage.dataset.device = btn.dataset.device;
+      });
+    });
+
+    // Init openTab href
+    openTab.href = 'index-new.html';
+
+    // Keyboard shortcut (1, 2, 3, 4)
+    document.addEventListener('keydown', function (e) {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+      if (e.key === '1') viewTabs[0].click();
+      if (e.key === '2') viewTabs[1].click();
+      if (e.key === '3') viewTabs[2].click();
+      if (e.key === '4') viewTabs[3].click();
+      if (e.key === 'd') deviceTabs[0].click();
+      if (e.key === 't') deviceTabs[1].click();
+      if (e.key === 'm') deviceTabs[2].click();
+    });
+  })();
+</script>
+
+</body>
+</html>
