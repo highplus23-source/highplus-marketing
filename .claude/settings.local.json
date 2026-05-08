@@ -12,7 +12,19 @@
       "Bash(npx netlify:*)",
       "Bash(npx netlify-cli:*)",
       "Bash(gh repo:*)",
-      "Bash(# firebase-auth.js, toss-payment.js 복사\ncp \"C:\\\\Users\\\\User\\\\Desktop\\\\highplus-marketing\\\\js\\\\firebase-auth.js\" \"C:\\\\Users\\\\User\\\\Desktop\\\\highplus-about\\\\js\\\\firebase-auth.js\"\ncp \"C:\\\\Users\\\\User\\\\Desktop\\\\highplus-marketing\\\\js\\\\toss-payment.js\" \"C:\\\\Users\\\\User\\\\Desktop\\\\highplus-about\\\\js\\\\toss-payment.js\"\n\n# netlify functions 복사\nmkdir -p \"C:\\\\Users\\\\User\\\\Desktop\\\\highplus-about\\\\netlify\\\\functions\"\ncp \"C:\\\\Users\\\\User\\\\Desktop\\\\highplus-marketing\\\\netlify\\\\functions\\\\payment-confirm.js\" \"C:\\\\Users\\\\User\\\\Desktop\\\\highplus-about\\\\netlify\\\\functions\\\\payment-confirm.js\"\ncp \"C:\\\\Users\\\\User\\\\Desktop\\\\highplus-marketing\\\\netlify\\\\functions\\\\billing-success.js\" \"C:\\\\Users\\\\User\\\\Desktop\\\\highplus-about\\\\netlify\\\\functions\\\\billing-success.js\"\n\n# netlify.toml 복사\ncp \"C:\\\\Users\\\\User\\\\Desktop\\\\highplus-marketing\\\\netlify.toml\" \"C:\\\\Users\\\\User\\\\Desktop\\\\highplus-about\\\\netlify.toml\"\n\n# 결제 결과 페이지 복사\ncp \"C:\\\\Users\\\\User\\\\Desktop\\\\highplus-marketing\\\\payment-success.html\" \"C:\\\\Users\\\\User\\\\Desktop\\\\highplus-about\\\\payment-success.html\"\ncp \"C:\\\\Users\\\\User\\\\Desktop\\\\highplus-marketing\\\\payment-fail.html\" \"C:\\\\Users\\\\User\\\\Desktop\\\\highplus-about\\\\payment-fail.html\")"
+      "Bash(# firebase-auth.js, toss-payment.js 복사\ncp \"C:\\\\Users\\\\User\\\\Desktop\\\\highplus-marketing\\\\js\\\\firebase-auth.js\" \"C:\\\\Users\\\\User\\\\Desktop\\\\highplus-about\\\\js\\\\firebase-auth.js\"\ncp \"C:\\\\Users\\\\User\\\\Desktop\\\\highplus-marketing\\\\js\\\\toss-payment.js\" \"C:\\\\Users\\\\User\\\\Desktop\\\\highplus-about\\\\js\\\\toss-payment.js\"\n\n# netlify functions 복사\nmkdir -p \"C:\\\\Users\\\\User\\\\Desktop\\\\highplus-about\\\\netlify\\\\functions\"\ncp \"C:\\\\Users\\\\User\\\\Desktop\\\\highplus-marketing\\\\netlify\\\\functions\\\\payment-confirm.js\" \"C:\\\\Users\\\\User\\\\Desktop\\\\highplus-about\\\\netlify\\\\functions\\\\payment-confirm.js\"\ncp \"C:\\\\Users\\\\User\\\\Desktop\\\\highplus-marketing\\\\netlify\\\\functions\\\\billing-success.js\" \"C:\\\\Users\\\\User\\\\Desktop\\\\highplus-about\\\\netlify\\\\functions\\\\billing-success.js\"\n\n# netlify.toml 복사\ncp \"C:\\\\Users\\\\User\\\\Desktop\\\\highplus-marketing\\\\netlify.toml\" \"C:\\\\Users\\\\User\\\\Desktop\\\\highplus-about\\\\netlify.toml\"\n\n# 결제 결과 페이지 복사\ncp \"C:\\\\Users\\\\User\\\\Desktop\\\\highplus-marketing\\\\payment-success.html\" \"C:\\\\Users\\\\User\\\\Desktop\\\\highplus-about\\\\payment-success.html\"\ncp \"C:\\\\Users\\\\User\\\\Desktop\\\\highplus-marketing\\\\payment-fail.html\" \"C:\\\\Users\\\\User\\\\Desktop\\\\highplus-about\\\\payment-fail.html\")",
+      "Bash(npx claude-code-templates@latest *)",
+      "Bash(awk *)",
+      "Bash(sed -n '2076,2284p' index-new.html)",
+      "Read(//tmp/**)",
+      "Bash(grep *)",
+      "Bash(xargs du -h)",
+      "Read(//Users/higplus/.claude/plugins/marketplaces/**)",
+      "Read(//Users/higplus/.claude/plugins/marketplaces/claude-plugins-official/plugins/frontend-design/.claude-plugin/**)",
+      "Read(//Users/higplus/.claude/plugins/marketplaces/claude-plugins-official/plugins/frontend-design/**)",
+      "Bash(md5 /Users/higplus/.claude/skills/frontend-design/SKILL.md)",
+      "Bash(md5 /Users/higplus/.claude/plugins/marketplaces/claude-plugins-official/plugins/frontend-design/skills/frontend-design/SKILL.md)",
+      "Bash(git add *)"
     ]
   }
 }
