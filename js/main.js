@@ -11,11 +11,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // 2. Intersection Observer for Fade-Up Animations
-    // rootMargin: 뷰포트 하단에서 12% 안쪽으로 들어왔을 때 트리거 → 유저가 요소를 인식한 뒤 부드럽게 올라옴
+    // DESIGN_REFACTOR 3단계: threshold 0.15 — 요소 15%가 보이면 트리거. once: true는 unobserve로 구현됨.
     const observerOptions = {
         root: null,
-        rootMargin: '0px 0px -12% 0px',
-        threshold: 0
+        rootMargin: '0px',
+        threshold: 0.15
     };
 
     const observer = new IntersectionObserver((entries, observer) => {
