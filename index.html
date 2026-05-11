@@ -332,8 +332,12 @@
         color: var(--hp-ink) !important; border: 1.5px solid var(--hp-line) !important;
         backdrop-filter: blur(8px);
         border-radius: 999px !important; font-weight: 800 !important;
+        box-shadow: 0 4px 20px rgba(52, 120, 246, 0.3) !important;
       }
-      .btn-secondary:hover { border-color: var(--hp-brand) !important; color: var(--hp-brand) !important; transform: translateY(-2px); }
+      .btn-secondary:hover {
+        border-color: var(--hp-brand) !important; color: var(--hp-brand) !important; transform: translateY(-2px);
+        box-shadow: 0 8px 30px rgba(52, 120, 246, 0.4) !important;
+      }
 
       /* ─── 섹션 배경 부드러운 전환 ─── */
       #ai-manager { background: var(--hp-bg-blue) !important; }
@@ -1084,25 +1088,25 @@
           font-size: 0.95rem !important;
           line-height: 1.65 !important;
         }
-        #faq .faq-cta {
+        body #faq .faq-cta {
           font-size: 1rem !important;
         }
-        #faq .faq-q {
+        body #faq .faq-q {
           font-size: 1.32rem !important;
         }
-        /* #services 카드 안 텍스트 모바일 확대 (+20%) */
-        #services .service-card h3 {
-          font-size: 25px !important;
+        /* #services 카드 안 텍스트 모바일 확대 (base 대비 +10%) */
+        body #services .service-card h3 {
+          font-size: 21px !important;
         }
-        #services .service-card__lead {
-          font-size: 18px !important;
+        body #services .service-card__lead {
+          font-size: 14px !important;
         }
-        #services .service-card > p:not(.service-card__lead) {
-          font-size: 20px !important;
+        body #services .service-card > p:not(.service-card__lead) {
+          font-size: 15px !important;
           line-height: 1.65 !important;
         }
-        #services .service-list li {
-          font-size: 19px !important;
+        body #services .service-list li {
+          font-size: 14px !important;
           line-height: 1.6 !important;
         }
         #ai-manager .section-inner > .reveal[style*="grid-template-columns"] {
@@ -2653,6 +2657,130 @@
       footer[role="contentinfo"] img[alt="HighPlus 로고"] {
         filter: none !important;
         opacity: 1 !important;
+      }
+
+      /* ═════════ Footer 디자인 정돈 — 위계 + 반응형 (2026-05-11) ═════════ */
+      .hp-footer {
+        background: #ffffff;
+        border-top: 1px solid #000;
+        padding: 3.5rem 5% 2rem;
+      }
+      .hp-footer__inner {
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+      .hp-footer__brand {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.6rem;
+        margin-bottom: 1.5rem;
+      }
+      .hp-footer__logo {
+        height: 36px;
+        width: auto;
+        display: block;
+      }
+      .hp-footer__slogan {
+        font-size: 0.9rem;
+        color: #475569 !important;
+        -webkit-text-fill-color: #475569 !important;
+        line-height: 1.6;
+        word-break: keep-all;
+        margin: 0;
+        font-weight: 500;
+      }
+      .hp-footer__menu {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        padding: 1rem 0;
+        border-top: 1px solid rgba(0, 0, 0, 0.07);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+      }
+      .hp-footer__menu a {
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: #334155 !important;
+        text-decoration: none;
+        transition: color 0.2s ease;
+        cursor: pointer;
+      }
+      .hp-footer__menu a:hover {
+        color: #3478F6 !important;
+      }
+      .hp-footer__biz {
+        margin: 1.5rem 0 1.5rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.45rem 2.5rem;
+      }
+      .hp-footer__biz-row {
+        display: flex;
+        gap: 0.6rem;
+        font-size: 0.78rem;
+        line-height: 1.55;
+        word-break: keep-all;
+        margin: 0;
+      }
+      .hp-footer__biz-row dt {
+        flex-shrink: 0;
+        min-width: 88px;
+        font-weight: 600;
+        color: #94A3B8 !important;
+      }
+      .hp-footer__biz-row dd {
+        margin: 0;
+        color: #94A3B8 !important;
+        -webkit-text-fill-color: #94A3B8 !important;
+      }
+      .hp-footer__biz-row a {
+        color: inherit !important;
+        text-decoration: none;
+        transition: color 0.2s ease;
+      }
+      .hp-footer__biz-row a:hover {
+        color: #3478F6 !important;
+      }
+      .hp-footer__copyright {
+        font-size: 0.7rem;
+        color: #cbd5e1 !important;
+        -webkit-text-fill-color: #cbd5e1 !important;
+        text-align: center;
+        margin: 0;
+        padding-top: 1.2rem;
+        border-top: 1px solid rgba(0, 0, 0, 0.05);
+        letter-spacing: 0.02em;
+      }
+
+      @media (max-width: 768px) {
+        .hp-footer {
+          padding: 2.5rem 5% 1.75rem;
+        }
+        .hp-footer__brand {
+          margin-bottom: 1.25rem;
+        }
+        .hp-footer__slogan {
+          font-size: 0.85rem;
+        }
+        .hp-footer__menu {
+          gap: 1rem;
+          padding: 0.85rem 0;
+        }
+        .hp-footer__menu a {
+          font-size: 0.82rem;
+        }
+        .hp-footer__biz {
+          grid-template-columns: 1fr;
+          gap: 0.35rem;
+          margin: 1.25rem 0 1.25rem;
+        }
+        .hp-footer__biz-row {
+          font-size: 0.75rem;
+        }
+        .hp-footer__biz-row dt {
+          min-width: 80px;
+        }
       }
 
       /* ═══════════════════════════════════════════════════════════
@@ -4273,96 +4401,31 @@
 
       </main>
 
-    <footer
-      role="contentinfo"
-      style="
-        background: var(--bg-card);
-        border-top: 1px solid var(--border);
-        padding: 3rem 5%;
-      "
-    >
-      <div
-        style="
-          max-width: 1100px;
-          margin: 0 auto;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          flex-wrap: wrap;
-          gap: 1.5rem;
-        "
-      >
-        <div>
-          <img src="img/logo-black.png" alt="HighPlus 로고" style="height: 36px; display: block; margin-bottom: 0.5rem;">
-          <p
-            style="
-              font-size: 0.78rem;
-              color: var(--text-muted);
-              line-height: 1.6;
-              margin-bottom: 0.3rem;
-            "
-          >
-            병원 마케팅 전문, 브랜딩 블로그, 네이버 플레이스 최적화
-          </p>
+    <footer role="contentinfo" class="hp-footer">
+      <div class="hp-footer__inner">
+        <!-- 1. 브랜드: 로고 + 슬로건 -->
+        <div class="hp-footer__brand">
+          <img src="img/logo-black.png" alt="HighPlus 로고" class="hp-footer__logo">
+          <p class="hp-footer__slogan">병원 마케팅 전문, 브랜딩 블로그, 네이버 플레이스 최적화</p>
         </div>
-        <div style="display: flex; gap: 1.5rem">
-          <a
-            href="javascript:void(0)"
-            onclick="document.getElementById('terms-modal').style.display='flex'"
-            style="
-              font-size: 0.8rem;
-              color: var(--text-muted);
-              text-decoration: none;
-              cursor: pointer;
-            "
-            >이용약관</
-          ><a
-            href="javascript:void(0)"
-            onclick="document.getElementById('privacy-modal').style.display='flex'"
-            style="
-              font-size: 0.8rem;
-              color: var(--text-muted);
-              text-decoration: none;
-              cursor: pointer;
-            "
-            >개인정보처리방침</
-          >
+
+        <!-- 2. 메뉴 -->
+        <div class="hp-footer__menu" role="navigation" aria-label="푸터 정책">
+          <a href="javascript:void(0)" onclick="document.getElementById('terms-modal').style.display='flex'">이용약관</a>
+          <a href="javascript:void(0)" onclick="document.getElementById('privacy-modal').style.display='flex'">개인정보처리방침</a>
         </div>
-      </div>
-      <div
-        style="
-          max-width: 1100px;
-          margin: 1.5rem auto 0;
-          padding-top: 1.5rem;
-          border-top: 1px solid var(--border);
-          display: flex;
-          justify-content: flex-start;
-          align-items: flex-start;
-          flex-wrap: wrap;
-          gap: 0.5rem;
-          font-size: 0.73rem;
-          color: var(--text-muted);
-          line-height: 1.7;
-        "
-      >
-        <div style="display: flex; flex-direction: column; gap: 0.25rem; text-align: left;">
-          <span>상호명 : 주식회사 하이플러스컴퍼니</span>
-          <span>대표자 : 김태헌</span>
-          <span>사업자등록번호 : 339-88-02845</span>
-          <span>주소 : 인천광역시 연수구 송도문화로 28번길, 28</span>
-          <span>이메일 : <a href="mailto:highplus23@gmail.com" style="color: var(--text-muted); text-decoration: none;">highplus23@gmail.com</a></span>
-        </div>
-      </div>
-      <div
-        style="
-          max-width: 1100px;
-          margin: 1rem auto 0;
-          font-size: 0.7rem;
-          color: var(--text-muted);
-          text-align: center;
-        "
-      >
-        © 2026 HighPlus Marketing. All rights reserved.
+
+        <!-- 3. 사업자 정보 (PC 2열, 모바일 1열) -->
+        <dl class="hp-footer__biz">
+          <div class="hp-footer__biz-row"><dt>상호명</dt><dd>주식회사 하이플러스컴퍼니</dd></div>
+          <div class="hp-footer__biz-row"><dt>대표자</dt><dd>김태헌</dd></div>
+          <div class="hp-footer__biz-row"><dt>사업자등록번호</dt><dd>339-88-02845</dd></div>
+          <div class="hp-footer__biz-row"><dt>이메일</dt><dd><a href="mailto:highplus23@gmail.com">highplus23@gmail.com</a></dd></div>
+          <div class="hp-footer__biz-row"><dt>주소</dt><dd>인천광역시 연수구 송도문화로 28번길, 28</dd></div>
+        </dl>
+
+        <!-- 4. 카피라이트 -->
+        <p class="hp-footer__copyright">© 2026 HighPlus Marketing. All rights reserved.</p>
       </div>
     </footer>
 
