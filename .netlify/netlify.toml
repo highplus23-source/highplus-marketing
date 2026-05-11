@@ -1,12 +1,12 @@
-functionsDirectory = "C:\\Users\\User\\Desktop\\highplus-marketing\\netlify\\functions"
+functionsDirectory = "C:\\Users\\User\\Desktop\\highplus-about2-fresh\\netlify\\functions"
 functionsDirectoryOrigin = "config-v1"
 plugins = []
 redirects = []
 
 [build]
-publish = "C:\\Users\\User\\Desktop\\highplus-marketing"
+publish = "C:\\Users\\User\\Desktop\\highplus-about2-fresh"
 publishOrigin = "config"
-functions = "C:\\Users\\User\\Desktop\\highplus-marketing\\netlify\\functions"
+functions = "C:\\Users\\User\\Desktop\\highplus-about2-fresh\\netlify\\functions"
 
 [build.environment]
 
