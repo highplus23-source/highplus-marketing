@@ -210,14 +210,6 @@
         },
         {
           "@type": "Question",
-          "name": "애(Ai)실장 가격과 이월 정책이 어떻게 되나요?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "애(Ai)실장은 월 250, 000원(VAT 포함 275, 000원)으로, 월 24건(기본 20건 + 보장 4건)을 발행할 수 있습니다. 미사용분은 최대 2개월까지 이월되어 다음 달에 사용 가능하지만, 구독을 해지하시면 잔여 발행권은 모두 리셋됩니다. 위약금 없이 한 달 단위로 해지, 재시작 가능합니다."
-          }
-        },
-        {
-          "@type": "Question",
           "name": "애(Ai)실장과 광고 대행의 차이가 무엇인가요?",
           "acceptedAnswer": {
             "@type": "Answer",
@@ -235,7 +227,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
-    <link rel="stylesheet" href="css/style.css?v=20260402i" />
+    <link rel="stylesheet" href="css/style.css?v=20260511-gold-neon" />
 
     <!-- ═══════════════════════════════════════════════════════
          REDESIGN v2 (2026-05-04)
@@ -268,6 +260,30 @@
         --hp-radius-lg: 24px;
         --hp-radius-xl: 32px;
         --hp-ease: cubic-bezier(.4, 0, .2, 1);
+
+        /* ───────── DESIGN_REFACTOR 1단계: 토큰 보강 (기존 변수 유지) ───────── */
+        /* spacing — 8px scale */
+        --hp-space-1: 8px;
+        --hp-space-2: 16px;
+        --hp-space-3: 24px;
+        --hp-space-4: 32px;
+        --hp-space-5: 40px;
+        --hp-space-6: 48px;
+        --hp-space-7: 64px;
+
+        /* radius — 카드 표준 20px 반영, pill 추가 */
+        --hp-radius-sm: 8px;
+        --hp-radius-md: 12px;
+        --hp-radius-card: 20px;    /* 메모리 규칙: 카드 표준 */
+        --hp-radius-pill: 999px;
+
+        /* transition duration */
+        --hp-dur-fast: 0.2s;
+        --hp-dur-mid: 0.3s;
+        --hp-dur-slow: 0.6s;
+
+        /* easing — 호버는 기존 --hp-ease, 진입은 신규 ease-out */
+        --hp-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
       }
 
       /* ─── Typography 통일 (시안 A 톤) ─── */
@@ -297,7 +313,7 @@
       .pain-card, .service-card, .phil-card-wrapper > div:last-child,
       .growth-card, .empathy-bar, .ai-feat-card, .feat-card {
         border-radius: var(--hp-radius-lg) !important;
-        transition: transform .25s var(--hp-ease), box-shadow .25s var(--hp-ease), border-color .25s var(--hp-ease) !important;
+        transition: transform var(--hp-dur-mid) var(--hp-ease), box-shadow var(--hp-dur-mid) var(--hp-ease), border-color var(--hp-dur-mid) var(--hp-ease) !important;
       }
 
       /* ─── Buttons (시안 A 톤) ─── */
@@ -306,7 +322,7 @@
         box-shadow: var(--hp-shadow-brand) !important;
         border-radius: 999px !important;
         font-weight: 800 !important;
-        transition: transform .25s var(--hp-ease), box-shadow .25s var(--hp-ease) !important;
+        transition: transform var(--hp-dur-mid) var(--hp-ease), box-shadow var(--hp-dur-mid) var(--hp-ease) !important;
       }
       .btn-primary:hover {
         transform: translateY(-2px); box-shadow: 0 20px 40px -8px rgba(52, 120, 246, 0.45) !important;
@@ -373,6 +389,7 @@
         -webkit-background-clip: text; background-clip: text;
         -webkit-text-fill-color: transparent !important;
         color: transparent !important;
+        font-size: inherit !important;   /* style.css의 .grad-highlight 모바일 룰 차단 — 부모 hero-title 사이즈 따름 */
       }
       /* 첫 줄 .hero-line은 잉크 블랙 (둘째 줄 그라디언트와 색 분리) */
       #hero.hero-v2 .hero-title .hero-line {
@@ -390,6 +407,15 @@
       #hero.hero-v2 .hero-btns .btn-primary,
       #hero.hero-v2 .hero-btns .btn-secondary {
         padding: 16px 30px !important; font-size: 16px !important;
+        white-space: nowrap !important;
+      }
+      @media (max-width: 768px) {
+        #hero.hero-v2 .hero-btns .btn-primary,
+        #hero.hero-v2 .hero-btns .btn-secondary {
+          padding: 14px 22px !important;
+          font-size: 14px !important;
+          width: auto !important;
+        }
       }
       .hp-hero-counter {
         display: flex; gap: 56px; margin-top: 80px; justify-content: center; flex-wrap: wrap;
@@ -458,7 +484,7 @@
       .hp-agency-card > * { position: relative; z-index: 1; }
       .hp-agency-tag {
         display: inline-block; padding: 6px 14px; border-radius: 999px;
-        background: rgba(252, 211, 77, 0.18); color: #FCD34D;
+        background: rgba(212, 175, 55, 0.18); color: #D4AF37;
         font-size: 12px; font-weight: 800; letter-spacing: 0.08em;
         margin-bottom: 20px; align-self: flex-start;
       }
@@ -479,6 +505,30 @@
       }
       .hp-agency-price .unit { font-size: 16px; color: rgba(255, 255, 255, 0.7); font-weight: 600; }
       .hp-agency-list { list-style: none; padding: 0; margin: 0 0 28px; flex: 1; }
+      /* 체크리스트 2그룹 분리 (기본 포함 / 추가 항목) */
+      .hp-agency-groups {
+        flex: 1; display: flex; flex-direction: column;
+        gap: 18px; margin-bottom: 28px;
+      }
+      .hp-agency-groups .hp-agency-list {
+        margin: 0; flex: initial;
+      }
+      .hp-agency-group { display: flex; flex-direction: column; }
+      .hp-agency-group-label {
+        display: inline-flex; align-items: center; gap: 8px;
+        font-size: 11px; font-weight: 800;
+        letter-spacing: 0.12em; text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.55);
+        margin: 0 0 8px; padding: 0;
+        align-self: center;
+      }
+      .hp-agency-group--addon {
+        padding-top: 16px;
+        border-top: 1px dashed rgba(212, 175, 55, 0.28);
+      }
+      .hp-agency-group--addon .hp-agency-group-label {
+        color: rgba(212, 175, 55, 0.9);
+      }
       .hp-agency-list li {
         display: flex; gap: 10px; align-items: flex-start;
         padding: 8px 0; font-size: 14px; color: rgba(255, 255, 255, 0.92); line-height: 1.55;
@@ -498,15 +548,15 @@
         padding: 16px 24px; border-radius: 999px;
         background: #fff; color: var(--hp-brand-deep);
         font-size: 15px; font-weight: 800; text-decoration: none;
-        transition: transform .2s var(--hp-ease), background .2s var(--hp-ease);
+        transition: transform var(--hp-dur-mid) var(--hp-ease), background var(--hp-dur-mid) var(--hp-ease);
       }
-      .hp-agency-cta:hover { background: #FCD34D; color: var(--hp-ink); transform: translateY(-2px); }
+      .hp-agency-cta:hover { background: #D4AF37; color: var(--hp-ink); transform: translateY(-2px); }
       .hp-agency-note {
         margin-top: 14px; padding: 12px 16px;
         background: rgba(255, 255, 255, 0.06); border-radius: 12px;
         font-size: 12px; color: rgba(255, 255, 255, 0.78); line-height: 1.55;
       }
-      .hp-agency-note strong { color: #FCD34D; }
+      .hp-agency-note strong { color: #D4AF37; }
       .hp-scarcity-card {
         padding: 40px 36px; border-radius: var(--hp-radius-xl);
         background: #fff; border: 1px solid var(--hp-line);
@@ -526,7 +576,7 @@
         text-align: center; overflow: hidden;
       }
       .hp-part-divider.is-clickable {
-        cursor: pointer; transition: background 0.25s var(--hp-ease);
+        cursor: pointer; transition: background var(--hp-dur-mid) var(--hp-ease);
         outline: none;
       }
       .hp-part-divider.is-clickable:hover {
@@ -561,7 +611,7 @@
       }
       .hp-part-badge::before {
         content: ''; width: 6px; height: 6px; border-radius: 50%;
-        background: #FCD34D; box-shadow: 0 0 10px #FCD34D;
+        background: #D4AF37; box-shadow: 0 0 10px #D4AF37;
       }
       /* PART 02 서비스명 라벨 — 다크 pill + 골드 텍스트 */
       .hp-part-service-name {
@@ -573,7 +623,7 @@
         border-radius: 6px;
         font-size: clamp(0.88rem, 1.45vw, 1.02rem);
         font-weight: 800;
-        color: #FCD34D;
+        color: #D4AF37;
         letter-spacing: 0.05em;
         box-shadow: 0 8px 20px -6px rgba(0, 0, 0, 0.18), inset 0 0 0 1px rgba(252, 211, 77, 0.06);
         text-shadow: 0 0 14px rgba(252, 211, 77, 0.25);
@@ -728,6 +778,11 @@
         .hp-feat-row:nth-child(even) .hp-feat-text { order: 1; }
         .hp-feat-row:nth-child(even) .hp-feat-visual { order: 2; }
         .hp-feat-visual { padding: 24px; aspect-ratio: 16/11; }
+        /* 카드 사이 구분선 (영상 하단) */
+        .hp-feat-row:not(:last-child) {
+          padding-bottom: 32px;
+          border-bottom: 1px solid rgba(52, 120, 246, 0.18);
+        }
       }
       /* ─── #ai-benefits (8개 기능 빠른 요약, 시안 A 톤) ─── */
       /* 위 #ai-manager 연블루(#e8f0fe)와 톤 분리: 블루 끼 제거한 중성 회색 + 미세 도트 패턴 */
@@ -783,7 +838,7 @@
       .hp-benefit-card {
         padding: 28px 22px; border-radius: var(--hp-radius-lg);
         background: #fff; border: 1px solid var(--hp-line);
-        transition: transform .25s var(--hp-ease), border-color .25s var(--hp-ease), box-shadow .25s var(--hp-ease);
+        transition: transform var(--hp-dur-mid) var(--hp-ease), border-color var(--hp-dur-mid) var(--hp-ease), box-shadow var(--hp-dur-mid) var(--hp-ease);
       }
       .hp-benefit-card:hover {
         transform: translateY(-4px); border-color: var(--hp-brand);
@@ -912,7 +967,7 @@
         font-size: 15px; font-weight: 800; text-decoration: none;
         border: none;
         box-shadow: var(--hp-shadow-brand);
-        transition: transform .2s var(--hp-ease), box-shadow .2s var(--hp-ease);
+        transition: transform var(--hp-dur-mid) var(--hp-ease), box-shadow var(--hp-dur-mid) var(--hp-ease);
       }
       /* 전역 :focus-visible(2px 블루 outline) 무력화, 클릭 후 잔류하는 네온 경계선 방지 */
       .hp-price-card__cta:focus,
@@ -949,6 +1004,107 @@
       }
       /* ─── 플랜 카드 그리드 반응형 ─── */
       @media (max-width: 768px) {
+        /* #ai-features 헤더 하단 구분선 (모바일) */
+        #ai-features .features-head {
+          padding-bottom: 24px !important;
+          border-bottom: 1px solid rgba(52, 120, 246, 0.18) !important;
+          margin-bottom: 2.4rem !important;
+        }
+        /* #contact 헤더 하단 구분선 (모바일) */
+        #contact .section-inner > div:first-child {
+          padding-bottom: 24px !important;
+          border-bottom: 1px solid rgba(52, 120, 246, 0.18) !important;
+          margin-bottom: 2.4rem !important;
+        }
+        /* #contact h2 한 줄 유지 (긴 카피 fit) */
+        body #contact h2 {
+          font-size: clamp(22px, 6vw, 30px) !important;
+          white-space: nowrap !important;
+        }
+        /* #services h2 한 줄 유지 ("HighPlus가 직접 실행하는 것들") */
+        body #services .section-title {
+          font-size: clamp(20px, 5.5vw, 28px) !important;
+          white-space: nowrap !important;
+        }
+        /* growth-lead 폰트 통일 (hp-feat-desc와 일치) */
+        #growth-story .growth-lead {
+          font-size: 0.95rem !important;
+          line-height: 1.65 !important;
+        }
+        /* 헤딩 안의 .grad-highlight 일괄 — style.css의 2.04rem 모바일 룰 무력화 (부모 h1/h2 사이즈 상속) */
+        h1 .grad-highlight,
+        h2 .grad-highlight,
+        h3 .grad-highlight,
+        .section-title .grad-highlight,
+        .hero-title .grad-highlight {
+          font-size: inherit !important;
+        }
+        /* section-tag 모바일 확대 — 라벨 가독성 */
+        .section-tag, .empathy-tag {
+          font-size: 0.94rem !important;
+        }
+        /* hp-agency-price 한 줄 유지 (모바일) */
+        .hp-agency-price {
+          flex-wrap: nowrap !important;
+        }
+        .hp-agency-price .num {
+          font-size: clamp(28px, 7vw, 32px) !important;
+          white-space: nowrap !important;
+        }
+        .hp-agency-price .unit {
+          white-space: nowrap !important;
+          flex-shrink: 0;
+        }
+        /* hp-agency 그룹/리스트/CTA/note 모바일 확대 */
+        .hp-agency-group-label {
+          font-size: 13px !important;
+        }
+        .hp-agency-list li {
+          font-size: 16px !important;
+          line-height: 1.6 !important;
+        }
+        .hp-agency-cta {
+          font-size: 16px !important;
+        }
+        .hp-agency-note {
+          font-size: 14px !important;
+          line-height: 1.6 !important;
+        }
+        /* 마감 카운트다운 숫자 모바일 축소 (1.4rem → 1.12rem, -20%) */
+        #deadline-banner [id^="cd-"] {
+          font-size: 1.12rem !important;
+        }
+        /* FAQ intro 가운데 정렬 + 질문 폰트 키움 (모바일) */
+        #faq .faq-intro {
+          text-align: center !important;
+        }
+        #faq .faq-intro p {
+          margin-left: auto !important;
+          margin-right: auto !important;
+          font-size: 0.95rem !important;
+          line-height: 1.65 !important;
+        }
+        #faq .faq-cta {
+          font-size: 1rem !important;
+        }
+        #faq .faq-q {
+          font-size: 1.32rem !important;
+        }
+        /* #services 카드 안 텍스트 모바일 확대 (+20%) */
+        #services .service-card h3 {
+          font-size: 25px !important;
+        }
+        #services .service-card__lead {
+          font-size: 18px !important;
+        }
+        #services .service-card > p:not(.service-card__lead) {
+          font-size: 20px !important;
+          line-height: 1.65 !important;
+        }
+        #services .service-list li {
+          font-size: 19px !important;
+          line-height: 1.6 !important;
+        }
         #ai-manager .section-inner > .reveal[style*="grid-template-columns"] {
           grid-template-columns: 1fr !important;
         }
@@ -1003,7 +1159,8 @@
           font-size: 1rem !important;
         }
         #trust .reveal[style*="linear-gradient(135deg, #3478f6"] p:last-child {
-          font-size: 0.8rem !important;
+          font-size: 0.95rem !important;
+          line-height: 1.65 !important;
         }
         /* 애(Ai)실장 공감 카드 모바일 텍스트 */
         #ai-manager h3[style*="font-size: 1.3rem"] {
@@ -1017,14 +1174,16 @@
         }
         #ai-manager p[style*="font-size: 1rem"]:not(.empathy-sub),
         #ai-manager p[style*="font-size: 0.9rem"]:not(.empathy-sub) {
-          font-size: 0.82rem !important;
+          font-size: 0.95rem !important;
+          line-height: 1.65 !important;
         }
         /* empathy-bar 카드 텍스트 모바일 확대 */
         #ai-manager .empathy-bar p {
           font-size: 1.15rem !important;
         }
         #ai-manager ul li {
-          font-size: 0.8rem !important;
+          font-size: 0.95rem !important;
+          line-height: 1.65 !important;
         }
         /* 애(Ai)실장 기능 카드 모바일 */
         #ai-manager .ai-feature-grid > div {
@@ -1038,7 +1197,8 @@
           font-size: 0.82rem !important;
         }
         #ai-manager .ai-feature-grid p {
-          font-size: 0.72rem !important;
+          font-size: 0.95rem !important;
+          line-height: 1.65 !important;
         }
         /* 프리미엄 스펙 pill */
         #ai-manager [style*="grid-template-columns: 1fr 1fr"][style*="gap: 0.6rem"] > div {
@@ -1053,12 +1213,13 @@
         }
         /* trust 섹션 모바일 */
         #trust .section-desc {
-          font-size: 0.8rem !important;
-          line-height: 1.8 !important;
+          font-size: 0.95rem !important;
+          line-height: 1.65 !important;
         }
         /* pain-point 섹션 모바일 */
         #pain-point p {
-          font-size: 0.82rem !important;
+          font-size: 0.95rem !important;
+          line-height: 1.65 !important;
         }
         /* 희소성 섹션 */
         #scarcity {
@@ -1103,13 +1264,13 @@
         padding: 32px 28px; border-radius: var(--hp-radius-lg);
         background: #fff; border: 1px solid var(--hp-line);
         text-align: center;
-        transition: transform .25s var(--hp-ease), box-shadow .25s var(--hp-ease), border-color .25s var(--hp-ease);
+        transition: transform var(--hp-dur-mid) var(--hp-ease), box-shadow var(--hp-dur-mid) var(--hp-ease), border-color var(--hp-dur-mid) var(--hp-ease);
         position: relative; overflow: hidden;
       }
       #growth-story .growth-card::before {
         content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
         background: var(--hp-grad); transform: scaleX(0); transform-origin: left;
-        transition: transform .3s var(--hp-ease);
+        transition: transform var(--hp-dur-mid) var(--hp-ease);
       }
       #growth-story .growth-card:hover {
         transform: translateY(-6px); box-shadow: var(--hp-shadow-lg); border-color: transparent;
@@ -1271,7 +1432,7 @@
         width: 48px; height: 48px; border-radius: 14px;
         background: rgba(52, 120, 246, 0.10);
         font-size: 26px;
-        transition: transform .25s var(--hp-ease), background .25s var(--hp-ease);
+        transition: transform var(--hp-dur-mid) var(--hp-ease), background var(--hp-dur-mid) var(--hp-ease);
       }
       .hp-icon-em-lg {
         width: 96px; height: 96px; border-radius: 24px;
@@ -1300,7 +1461,7 @@
       /* trust phil-card 안 큰 이모지 박스 hover lift */
       .phil-card-wrapper:hover .hp-icon-em-lg {
         transform: translateY(-3px);
-        transition: transform .3s var(--hp-ease);
+        transition: transform var(--hp-dur-mid) var(--hp-ease);
       }
 
       /* ═════════ Core Solution (services) 가독성 개선 ═════════ */
@@ -1504,7 +1665,7 @@
         font-weight: 700;
         font-size: 0.95rem;
         text-decoration: none;
-        transition: transform .2s var(--hp-ease), background .2s var(--hp-ease);
+        transition: transform var(--hp-dur-mid) var(--hp-ease), background var(--hp-dur-mid) var(--hp-ease);
         letter-spacing: -0.01em;
       }
       #faq .faq-cta:hover {
@@ -1516,18 +1677,19 @@
       /* 우측 아코디언 */
       #faq .faq-list {
         display: flex; flex-direction: column;
-        gap: 12px;
+        gap: 16px;
       }
       #faq .faq-item {
         background: #ffffff !important;
         border: 1px solid var(--hp-line) !important;
         border-radius: 28px !important;
         overflow: hidden;
-        transition: border-color .2s var(--hp-ease), box-shadow .2s var(--hp-ease);
+        transition: border-color var(--hp-dur-mid) var(--hp-ease), box-shadow var(--hp-dur-mid) var(--hp-ease);
       }
+      /* dark-tone override at line ~2010 wins — base hover defined gold-friendly */
       #faq .faq-item:hover {
-        border-color: rgba(52, 120, 246, 0.35) !important;
-        box-shadow: 0 8px 20px -10px rgba(15, 23, 42, 0.08) !important;
+        border-color: rgba(212, 175, 55, 0.35) !important;
+        box-shadow: 0 8px 20px -10px rgba(0, 0, 0, 0.4) !important;
       }
       #faq .faq-q {
         width: 100% !important;
@@ -1537,7 +1699,7 @@
         font-size: 1rem !important;
         font-weight: 700 !important;
         color: var(--hp-ink) !important;
-        padding: 22px 28px !important;
+        padding: 28px 28px !important;
         display: flex !important;
         align-items: center !important;
         justify-content: space-between !important;
@@ -1552,7 +1714,12 @@
         font-size: 1.4rem !important;
         font-weight: 300 !important;
         color: var(--hp-ink-4) !important;
-        transition: transform .25s var(--hp-ease), color .25s var(--hp-ease);
+        transition:
+          transform var(--hp-dur-mid) var(--hp-ease),
+          color var(--hp-dur-mid) var(--hp-ease),
+          background var(--hp-dur-mid) var(--hp-ease),
+          box-shadow var(--hp-dur-mid) var(--hp-ease),
+          border-color var(--hp-dur-mid) var(--hp-ease);
         line-height: 1;
         flex-shrink: 0;
         font-family: inherit !important;
@@ -1563,17 +1730,21 @@
       }
       #faq .faq-a {
         max-height: 0;
+        opacity: 0;
         overflow: hidden;
-        transition: max-height .35s var(--hp-ease);
+        transition:
+          max-height 0.4s var(--hp-ease-out),
+          opacity 0.3s ease;
       }
       #faq .faq-item.open .faq-a {
-        max-height: 600px;
+        max-height: 1000px;
+        opacity: 1;
       }
       #faq .faq-a-inner {
-        padding: 0 28px 22px !important;
+        padding: 16px 28px 32px !important;
         color: var(--hp-ink-3) !important;
-        font-size: 0.95rem !important;
-        line-height: 1.75 !important;
+        font-size: 1.05rem !important;
+        line-height: 1.8 !important;
         word-break: keep-all;
         border-top: none !important;
       }
@@ -1598,6 +1769,13 @@
         --premium-text-2:    #CCCCCC;
         --premium-text-3:    #999999;
         --premium-text-4:    #666666;
+
+        /* ───────── DESIGN_REFACTOR 1단계: shadow 토큰 신규 ───────── */
+        --premium-shadow:      0 8px 24px -8px rgba(0, 0, 0, 0.5), 0 2px 6px rgba(0, 0, 0, 0.3);
+        --premium-shadow-lg:   0 28px 56px -16px rgba(0, 0, 0, 0.6), 0 8px 16px -4px rgba(212, 175, 55, 0.06);
+        --premium-shadow-gold: 0 16px 32px -8px rgba(212, 175, 55, 0.3);
+
+        /* spacing / radius / duration / easing은 라이트 톤 변수(--hp-*) 그대로 공유 */
       }
 
       /* ───────── #services 다크 변환 ───────── */
@@ -1717,8 +1895,9 @@
           radial-gradient(ellipse 60% 100% at 50% 70%, rgba(212, 175, 55, 0.10), transparent 70%),
           linear-gradient(180deg, #ffffff 0%, #ffffff 35%, var(--premium-bg) 100%) !important;
       }
+      /* 상단은 border-top으로 명확한 경계선 — ::before 라이트 잔재 숨김 */
       .hp-part-divider::before {
-        background: linear-gradient(90deg, transparent, rgba(52, 120, 246, 0.35), transparent) !important;
+        display: none !important;
       }
       .hp-part-divider::after {
         background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.45), transparent) !important;
@@ -1969,7 +2148,7 @@
       #faq .faq-q .arrow { color: var(--premium-text-3) !important; }
       #faq .faq-item.open { border-color: var(--premium-gold) !important; }
       #faq .faq-item.open .faq-q .arrow { color: var(--premium-gold) !important; }
-      #faq .faq-a-inner { color: var(--premium-text-3) !important; }
+      #faq .faq-a-inner { color: var(--premium-text-2) !important; }
       #faq .faq-a-inner strong { color: var(--premium-gold) !important; }
 
       /* ───────── #scarcity 다크 (가장 깊은 톤) ───────── */
@@ -2048,13 +2227,14 @@
       body #pain-point .section-title { color: var(--premium-text) !important; }
       body #pain-point .section-desc { color: var(--premium-text-3) !important; }
 
-      /* hp-part-divider 그라디언트 흰 영역 제거 → 전체 다크 */
+      /* hp-part-divider: 다크 단색 + 상단 경계선 골드 라인 (DESIGN_REFACTOR 5단계 — fade 대신 경계선) */
       body .hp-part-divider {
         background:
           radial-gradient(ellipse 70% 80% at 50% 50%, rgba(212, 175, 55, 0.14), transparent 70%),
           radial-gradient(ellipse 50% 50% at 20% 30%, rgba(212, 175, 55, 0.06), transparent 65%),
           radial-gradient(ellipse 50% 50% at 80% 70%, rgba(212, 175, 55, 0.05), transparent 65%),
           linear-gradient(180deg, var(--premium-bg-2) 0%, var(--premium-bg) 100%) !important;
+        border-top: 1px solid var(--premium-gold) !important;
       }
       body .hp-part-divider.is-clickable:hover {
         background:
@@ -2090,7 +2270,13 @@
         color: var(--premium-gold) !important;
         border: 1px solid rgba(212, 175, 55, 0.28) !important;
       }
-      body #scarcity .hp-agency-price .num { color: var(--premium-text) !important; }
+      body #scarcity .hp-agency-price .num {
+        background: linear-gradient(135deg, var(--premium-gold), var(--premium-gold-deep)) !important;
+        -webkit-background-clip: text !important;
+        background-clip: text !important;
+        -webkit-text-fill-color: transparent !important;
+        color: transparent !important;
+      }
       body #scarcity .hp-agency-price .unit { color: var(--premium-text-3) !important; }
       body #scarcity .hp-price-card__price .num { color: var(--premium-text) !important; }
       body #scarcity .hp-price-card__price .unit { color: var(--premium-text-3) !important; }
@@ -2129,7 +2315,7 @@
         font-weight: 800 !important;
         border: none !important;
         box-shadow: 0 12px 28px -8px rgba(212, 175, 55, 0.5) !important;
-        transition: transform .2s ease, box-shadow .2s ease !important;
+        transition: transform var(--hp-dur-mid) var(--hp-ease), box-shadow var(--hp-dur-mid) var(--hp-ease) !important;
         text-decoration: none !important;
       }
       body .hp-part-divider .hp-part-badge:hover,
@@ -2204,7 +2390,7 @@
       body #faq .faq-q { color: var(--premium-text) !important; }
       body #faq .faq-q .arrow { color: var(--premium-text-3) !important; }
       body #faq .faq-item.open .faq-q .arrow { color: var(--premium-gold) !important; }
-      body #faq .faq-a-inner { color: var(--premium-text-3) !important; }
+      body #faq .faq-a-inner { color: var(--premium-text-2) !important; }
       body #faq .faq-a-inner strong { color: var(--premium-gold) !important; }
       body #faq .faq-intro h2 { color: var(--premium-text) !important; }
       body #faq .faq-intro p { color: var(--premium-text-3) !important; }
@@ -2282,7 +2468,13 @@
       body #scarcity .hp-agency-card h3,
       body #scarcity .hp-agency-card h3 * { color: var(--premium-text) !important; }
       body #scarcity .hp-agency-list li { color: var(--premium-text-2) !important; }
-      body #scarcity .hp-agency-price .num { color: var(--premium-text) !important; }
+      body #scarcity .hp-agency-price .num {
+        background: linear-gradient(135deg, var(--premium-gold), var(--premium-gold-deep)) !important;
+        -webkit-background-clip: text !important;
+        background-clip: text !important;
+        -webkit-text-fill-color: transparent !important;
+        color: transparent !important;
+      }
       body #scarcity .hp-agency-price .unit { color: var(--premium-text-3) !important; }
       body #scarcity .hp-agency-price { border-bottom: 1px solid var(--premium-line) !important; }
 
@@ -2398,10 +2590,10 @@
         line-height: 1.15 !important;
       }
       body .hp-part-divider h3 {
-        font-size: clamp(2.2rem, 4.8vw, 3.8rem) !important;
+        font-size: clamp(2.025rem, 4.455vw, 3.645rem) !important;
         font-weight: 900 !important;
-        letter-spacing: -0.035em !important;
-        line-height: 1.1 !important;
+        letter-spacing: -0.04em !important;
+        line-height: 1.05 !important;
       }
       body #faq .faq-intro h2 {
         font-size: clamp(2.4rem, 5vw, 4rem) !important;
@@ -2425,14 +2617,19 @@
         body #pain-point .section-title,
         body #compare .section-title,
         body #scarcity h2,
-        body #faq .faq-intro h2,
+        body #faq .faq-intro h2 {
+          font-size: clamp(28px, 7.5vw, 36px) !important;
+          line-height: 1.3 !important;
+        }
         body .hp-part-divider h3 {
-          font-size: clamp(1.8rem, 8vw, 2.6rem) !important;
+          font-size: clamp(26px, 7vw, 32px) !important;
+          line-height: 1.3 !important;
         }
       }
       /* ═════════ /PART 02 헤드라인 사이즈 ═════════ */
 
       /* ═════════ Footer 라이트 강제 (사용자 토큰의 다크 --bg-card 영향 차단) ═════════ */
+      /* DESIGN_REFACTOR 5단계: PART 2(dark) → footer(light) 경계 — 검정 1px로 컷 정돈 */
       footer[role="contentinfo"] {
         --bg-card: #ffffff;
         --border: rgba(0, 0, 0, 0.07);
@@ -2440,7 +2637,7 @@
         --text-primary: #1a1a2e;
         --text-secondary: #475569;
         background: #ffffff !important;
-        border-top: 1px solid rgba(0, 0, 0, 0.07) !important;
+        border-top: 1px solid #000 !important;
       }
       footer[role="contentinfo"] p,
       footer[role="contentinfo"] span {
@@ -2494,9 +2691,9 @@
         letter-spacing: var(--tracking-tight) !important;
         line-height: var(--lh-display) !important;
       }
-      /* scarcity 카드 안쪽 h2는 카드 내부 위계 (섹션 헤드보다 작게) */
+      /* scarcity 카드 안쪽 h2를 좌측 hp-agency-card h3와 동일 사이즈로 통일 */
       body #scarcity .hp-scarcity-card h2 {
-        font-size: clamp(18px, 2.1vw, 24px) !important;
+        font-size: clamp(22px, 3vw, 28px) !important;
         font-weight: 900 !important;
         letter-spacing: -0.025em !important;
         line-height: 1.25 !important;
@@ -2519,7 +2716,8 @@
         body #trust .section-title,
         body #compare .section-title,
         body #faq .faq-intro h2 {
-          font-size: clamp(22px, 5.6vw, 32px) !important;
+          font-size: clamp(28px, 7.5vw, 36px) !important;
+          line-height: 1.3 !important;
         }
       }
 
@@ -2532,9 +2730,9 @@
       body #ai-benefits .hp-benefit-card,
       body #faq .faq-item,
       body #trust .phil-card-wrapper > div:last-child {
-        transition: transform var(--dur-base) var(--hp-ease),
-                    border-color var(--dur-base) var(--hp-ease),
-                    box-shadow var(--dur-base) var(--hp-ease) !important;
+        transition: transform var(--hp-dur-mid) var(--hp-ease),
+                    border-color var(--hp-dur-mid) var(--hp-ease),
+                    box-shadow var(--hp-dur-mid) var(--hp-ease) !important;
       }
       body .pain-card:hover,
       body .service-card:hover,
@@ -2557,10 +2755,10 @@
       body .hp-price-card__cta,
       body .hp-part-badge,
       body #faq .faq-cta {
-        transition: transform var(--dur-fast) var(--hp-ease),
-                    box-shadow var(--dur-fast) var(--hp-ease),
-                    background var(--dur-fast) var(--hp-ease),
-                    border-color var(--dur-fast) var(--hp-ease) !important;
+        transition: transform var(--hp-dur-mid) var(--hp-ease),
+                    box-shadow var(--hp-dur-mid) var(--hp-ease),
+                    background var(--hp-dur-mid) var(--hp-ease),
+                    border-color var(--hp-dur-mid) var(--hp-ease) !important;
       }
       body .btn-primary:hover,
       body .btn-secondary:hover,
@@ -2576,8 +2774,8 @@
       body #nav-login-btn,
       body #login-modal button:not(:disabled):not([onclick^="close"]),
       body .pay-btn {
-        transition: transform var(--dur-fast) var(--hp-ease),
-                    box-shadow var(--dur-fast) var(--hp-ease) !important;
+        transition: transform var(--hp-dur-mid) var(--hp-ease),
+                    box-shadow var(--hp-dur-mid) var(--hp-ease) !important;
       }
 
       /* ─── FAQ 동그라미 + 아이콘 골드 오버라이드 (style.css의 파란 원형 무력화) ─── */
@@ -2599,9 +2797,11 @@
         border: 1px solid rgba(212, 175, 55, 0.18) !important;
         border-radius: 12px !important;
       }
-      /* FAQ 펼침/접힘 애니메이션 부드럽게 (max-height 선형 → 머티리얼 커브) */
+      /* FAQ 펼침/접힘 애니메이션 부드럽게 (DESIGN_REFACTOR 7단계 — max-height + opacity, ease-out) */
       body #faq .faq-a {
-        transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        transition:
+          max-height 0.4s var(--hp-ease-out),
+          opacity 0.3s ease !important;
       }
       body #faq .faq-item.open .faq-a {
         max-height: 800px !important;
@@ -2646,15 +2846,15 @@
       #payment-modal > div,
       #terms-modal > div,
       #privacy-modal > div {
-        animation: hpModalPanel 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        animation: hpModalPanel 0.35s var(--hp-ease);
       }
 
-      /* ─── 스크롤 진입 stagger 80ms 단일화 ─── */
+      /* ─── 스크롤 진입 stagger 100ms 단일화 (DESIGN_REFACTOR 3단계) ─── */
       .stagger-grid > .reveal:nth-child(1) { transition-delay: 0ms !important; }
-      .stagger-grid > .reveal:nth-child(2) { transition-delay: 80ms !important; }
-      .stagger-grid > .reveal:nth-child(3) { transition-delay: 160ms !important; }
-      .stagger-grid > .reveal:nth-child(4) { transition-delay: 240ms !important; }
-      .stagger-grid > .reveal:nth-child(n+5) { transition-delay: 240ms !important; }
+      .stagger-grid > .reveal:nth-child(2) { transition-delay: 100ms !important; }
+      .stagger-grid > .reveal:nth-child(3) { transition-delay: 200ms !important; }
+      .stagger-grid > .reveal:nth-child(4) { transition-delay: 300ms !important; }
+      .stagger-grid > .reveal:nth-child(n+5) { transition-delay: 300ms !important; }
       /* ═════════ /FINAL UNIFICATION ═════════ */
 
     </style>
@@ -2728,7 +2928,7 @@
             <span class="hero-line">원장님의 색깔이 담긴 글이 쌓여</span><br /><span class="grad-highlight">초진으로 나타납니다.</span>
           </h1>
           <p class="hero-subline" style="max-width: 760px; width: 100%; word-break: keep-all;">
-            <strong style="color: var(--hp-brand); font-weight: 800;">애(Ai) 실장</strong> — 진료 철학과 컨셉을 학습해, 우리병원만의 글을 자동으로 생성합니다.<br />
+            <strong style="color: var(--hp-brand); font-weight: 800;">애(Ai) 실장</strong> — 진료 철학과 컨셉을 학습해, 우리 병원만의 글을 자동으로 생성합니다.<br />
             <strong style="color: var(--hp-brand); font-weight: 800;">블로그 대행</strong> — 블로그, 유튜브, 플레이스까지 아우르는 통합 솔루션
           </p>
           <div class="hero-btns">
@@ -3153,7 +3353,7 @@
 
           <div class="growth-insight reveal">
             <span class="icon">📈</span>
-            <p>원장님은 진료에만 집중하세요. 초진을 데려오는 건 잘 세팅된 블로그가 합니다</p>
+            <p>원장님은 진료에만 집중하세요.<br class="mo-br" />초진을 데려오는 건 잘 세팅된 블로그가 합니다</p>
           </div>
 
           <p class="growth-bottom reveal">
@@ -3170,7 +3370,7 @@
           <div class="test-head" style="text-align:center; max-width: 720px; margin: 0 auto;">
             <span class="section-tag">REAL REVIEWS</span>
             <h2>파트너 원장님들의 <span class="grad">실제 후기</span></h2>
-            <p>98%가 함께하고 있습니다. 원장님들의 솔직한 이야기를 들어보세요.</p>
+            <p>98%가 함께하고 있습니다.<br class="mo-br" />원장님들의 솔직한 이야기를 들어보세요.</p>
           </div>
         </div>
 
@@ -3605,7 +3805,7 @@
           <span class="hp-part-badge">PART 02, AGENCY SERVICE</span>
           <div class="hp-part-service-name">블로그 대행 서비스</div>
           <h3>직접 운영이 어려우시다면<br /><span class="grad">저희가 대신 해드립니다.</span></h3>
-          <p><span class="hp-part-bridge">진료에만 집중하고 싶으신 원장님께,</span><br>병원 블로그를 직접 대행 운영해, 원장님의 블로그 <span class="gold-emph">자산 자체를 키우는 일</span>입니다.<br><span class="hp-part-detail">의료 전문 에디터, 디자이너 팀이 키워드 설계부터 발행, 리포트까지 처음부터 끝까지 맡습니다.</span></p>
+          <p>병원 블로그를 직접 대행 운영해, 원장님의 블로그 <span class="gold-emph">자산 자체를 키우는 일</span>입니다.<br><span class="hp-part-detail">의료 전문 에디터, 디자이너 팀이 키워드 설계부터 발행, 리포트까지 처음부터 끝까지 맡습니다.</span></p>
           <div class="hp-part-divider__arrow" aria-hidden="true">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
           </div>
@@ -3619,7 +3819,7 @@
             <span class="section-tag">Core Solution</span>
             <h2 class="section-title">HighPlus가 <span class="grad-highlight">직접 실행</span>하는 것들</h2>
             <p class="section-desc">
-              블로그, 플레이스, 유튜브, 리포트까지 외주 없이 전부 인하우스로 운영합니다.
+              블로그, 플레이스, 유튜브, 리포트 4가지 영역을 끝까지 책임집니다.
             </p>
           </div>
 
@@ -3661,9 +3861,9 @@
                 대기실 TV, 플레이스, SNS에 활용할 수 있는 영상을 하이플러스가 자체 제작합니다.
               </p>
               <ul class="service-list">
-                <li>질환 설명, 시술 안내, 치료 후기 등</li>
-                <li>원내 TV 송출용 맞춤 편집</li>
-                <li>촬영, 기획, 편집 올인원 제작</li>
+                <li>원장님 페르소나 AI 영상</li>
+                <li>블로그 글을 숏츠로 재가공</li>
+                <li>촬영 부담 없이 꾸준히 발행</li>
               </ul>
             </div>
             <div class="service-card reveal">
@@ -3702,7 +3902,7 @@
               </div>
               <h3>"매달 돈은 나가는데, 뭘 하고 있는지 모르겠습니다"</h3>
               <p>
-                보고서를 달라니까 PDF 한 장 보내주고 끝.
+                보고서를 달라니까 순위 캡쳐사진만 보내주고 끝.
                 물어보면 <strong>"진행 중입니다"</strong>라는 답만 돌아옵니다.
                 진짜 효과가 있는 건지, 돈만 쓰는 건지 알 수가 없습니다.
               </p>
@@ -3713,9 +3913,8 @@
               </div>
               <h3>"복붙 느낌 가득, 이 글로 환자가 올까요?"</h3>
               <p>
-                병원 이름만 바꿔서 다른 곳에도 쓰는 <strong>같은 원고</strong>.
-                한눈에 봐도 대행사가 쓴 티가 납니다.
-                이런 글은 환자의 신뢰를 얻기는커녕, 병원 이미지만 깎입니다.
+                병원 이름만 바꿔서 다른 곳에도 쓰는 <strong>같은 원고</strong>.<br />
+                제목은 다른 글이지만 정작 들어가보면 이미지만 깔려있고, 의미없는 글들이 많은 원고.
               </p>
             </div>
             <div class="pain-card reveal">
@@ -3724,8 +3923,8 @@
               </div>
               <h3>"어떤 검색어를 노리는지, 한 번도 설명을 못 들었습니다"</h3>
               <p>
-                전략이 뭔지, 어떤 환자를 타겟으로 잡았는지 공유가 없습니다.
-                글만 올라가고, <strong>숫자는 안 올라갑니다</strong>.
+                전략이 뭔지, 어떤 환자를 타겟으로 잡았는지 공유가 없습니다.<br />
+                글만 올라가고, <strong>숫자는 안 올라갑니다</strong>.<br />
                 결국 마케팅 비용이 아니라 매몰 비용이 됩니다.
               </p>
             </div>
@@ -3753,7 +3952,7 @@
               실제 병원을 운영해본 의료진이<br /><span class="grad-highlight">직접 기획하고 만들었습니다.</span>
             </h2>
             <p class="section-desc" style="max-width: none; color: #999999; font-size: 1.05rem;">
-              저도 5년 넘게 같은 돈을 내고, 같은 실망을 했습니다.<br />
+              저도 5년 넘게 같은 많은 돈을 내고, 같은 실망을 했습니다.<br />
               보고서가 안 오는 답답함,<br class="mo-br" />초진이 늘지 않는 좌절을 똑같이 겪었습니다.<br /><br />
               원장님이 어떤 마음인지,<br class="mo-br" />실장님이 무슨 고민을 하는지 <strong>너무나 잘 압니다.</strong><br />
               <strong style="color: #CCCCCC;">같은 자리에 앉아봤기 때문에, 무엇이 진짜 필요한지 압니다.</strong>
@@ -3765,7 +3964,7 @@
             <!-- Card 1 -->
             <div class="phil-card-wrapper reveal" style="display: flex; flex-direction: column; gap: 1rem; height: 100%;">
               <div style="background: rgba(212, 175, 55, 0.12); border-radius: 16px; padding: 1.5rem; text-align: center; display: flex; align-items: center; justify-content: center; min-height: 100px; position: relative; border: 1px solid rgba(212, 175, 55, 0.28);">
-                <p style="color: #D4AF37; font-weight: 700; font-size: 1rem; margin: 0; word-break: keep-all; line-height: 1.5;">대행사에 맡겨도 환자 마음을<br>모르는 답답함</p>
+                <p style="color: #D4AF37; font-weight: 700; font-size: 1rem; margin: 0; word-break: keep-all; line-height: 1.5;">환자 입장에서 한 번도<br>써본 적 없는 원고</p>
                 <!-- downward line -->
                 <div style="position: absolute; bottom: -1rem; left: 50%; width: 0; height: 1rem; border-left: 2px dashed rgba(212, 175, 55, 0.5);"></div>
               </div>
@@ -3780,7 +3979,7 @@
             <!-- Card 2 -->
             <div class="phil-card-wrapper reveal" style="display: flex; flex-direction: column; gap: 1rem; height: 100%;">
               <div style="background: rgba(212, 175, 55, 0.12); border-radius: 16px; padding: 1.5rem; text-align: center; display: flex; align-items: center; justify-content: center; min-height: 100px; position: relative; border: 1px solid rgba(212, 175, 55, 0.28);">
-                <p style="color: #D4AF37; font-weight: 700; font-size: 1rem; margin: 0; word-break: keep-all; line-height: 1.5;">말만 번지르르하고<br>실행은 하청 주는 대행사</p>
+                <p style="color: #D4AF37; font-weight: 700; font-size: 1rem; margin: 0; word-break: keep-all; line-height: 1.5;">기획자, 디자이너, 발행자가<br>따로 노는 분절된 마케팅</p>
                 <div style="position: absolute; bottom: -1rem; left: 50%; width: 0; height: 1rem; border-left: 2px dashed rgba(212, 175, 55, 0.5);"></div>
               </div>
               <div style="background: #161616; border-radius: 20px; padding: 2.5rem 2rem; text-align: center; box-shadow: 0 10px 30px rgba(212, 175, 55, 0.12); flex-grow: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-start;">
@@ -3825,10 +4024,10 @@
                 </div>
               </div>
               <div style="display: flex; align-items: center; gap: 0.8rem;">
-                <span class="hp-icon-em hp-icon-em-sm" role="img" aria-label="전담 매니저">👥</span>
+                <span class="hp-icon-em hp-icon-em-sm" role="img" aria-label="팀단위 운영">👥</span>
                 <div style="text-align: left;">
-                  <p style="color: #FFFFFF; font-size: 1.2rem; font-weight: 800; margin: 0;">전담 매니저 고정 배치</p>
-                  <p style="color: #666666; font-size: 0.85rem; margin: 0.2rem 0 0;">담당자가 바뀌지 않습니다</p>
+                  <p style="color: #FFFFFF; font-size: 1.2rem; font-weight: 800; margin: 0;">팀단위 운영</p>
+                  <p style="color: #666666; font-size: 0.85rem; margin: 0.2rem 0 0;">일관성 있는 원고의 톤앤매너</p>
                 </div>
               </div>
             </div>
@@ -3845,7 +4044,7 @@
         <div class="section-inner" style="position: relative; z-index: 1; max-width: 1050px; margin: 0 auto;">
           <div class="section-center reveal" style="margin-bottom: 3rem;">
             <span class="section-tag">Compare</span>
-            <h2 class="section-title" style="color: #FFFFFF;">똑같은 블로그, <span style="position: relative; z-index: 1;">전혀 다른 결과<span style="position: absolute; bottom: 4px; left: 0; right: 0; height: 10px; background: rgba(212, 175, 55, 0.3); z-index: -1;"></span></span></h2>
+            <h2 class="section-title" style="color: #FFFFFF;">똑같은 블로그, <span class="grad-highlight">전혀 다른 결과</span></h2>
             <p class="section-desc" style="color: #999999;">
               단순 글 올리기가 아닌, 진짜 성과를 만드는 차이를 비교합니다.
             </p>
@@ -3858,9 +4057,9 @@
               .vs-tbl .th-left { background: linear-gradient(180deg, #E8C770 0%, #D4AF37 50%, #B8860B 100%); color: #000; width: 40%; border-radius: 0; border-right: 1px solid rgba(0, 0, 0, 0.15); }
               .vs-tbl .th-center { background: #1a1a1a; color: #aab3c0; width: 20%; font-size: 0.9rem; font-weight: 700; letter-spacing: 1px; border-right: 1px solid rgba(212, 175, 55, 0.18); }
               .vs-tbl .th-right { background: #1f1f1f; color: #999999; width: 40%; }
-              .vs-tbl tbody td { padding: 1.6rem 1.4rem; text-align: center; vertical-align: middle; font-size: 0.98rem; word-break: keep-all; border-bottom: 1px solid rgba(212, 175, 55, 0.10); transition: background 0.2s var(--hp-ease); }
+              .vs-tbl tbody td { padding: 1.6rem 1.4rem; text-align: center; vertical-align: middle; font-size: 0.98rem; word-break: keep-all; border-bottom: 1px solid rgba(212, 175, 55, 0.10); transition: background var(--hp-dur-mid) var(--hp-ease); }
               .vs-tbl tbody tr:last-child td { border-bottom: none; }
-              .vs-tbl .td-left { color: #FFFFFF; font-weight: 700; background: #161616; border-right: 1px solid rgba(212, 175, 55, 0.10); }
+              .vs-tbl .td-left { color: #FFFFFF; font-weight: 700; background: #161616; border-right: 1px solid rgba(212, 175, 55, 0.10); font-size: 1.176rem; }
               .vs-tbl .td-center { color: #B8860B; font-weight: 700; font-size: 0.85rem; background: #1a1a1a; border-right: 1px solid rgba(212, 175, 55, 0.10); }
               .vs-tbl .td-right { color: #999faa; background: #161616; }
               .vs-tbl tbody tr:hover .td-left { background: rgba(212, 175, 55, 0.08); }
@@ -3870,6 +4069,7 @@
                 .vs-tbl thead th { padding: 1rem 0.5rem; font-size: 0.92rem; }
                 .vs-tbl .th-center { font-size: 0.78rem; }
                 .vs-tbl tbody td { padding: 1rem 0.6rem; font-size: 0.82rem; }
+                .vs-tbl .td-left { font-size: 0.984rem; }
                 .vs-tbl .td-center { font-size: 0.75rem; }
               }
             </style>
@@ -3910,7 +4110,7 @@
                 <tr>
                   <td class="td-left">지역, 질환 맞춤 퍼널 기획</td>
                   <td class="td-center">키워드 전략</td>
-                  <td class="td-right">키워드 없이 양산형 발행</td>
+                  <td class="td-right">범용 키워드 위주의 양산형 발행</td>
                 </tr>
                 <tr>
                   <td class="td-left">블로그 자산은 100% 병원 귀속</td>
@@ -3955,7 +4155,7 @@
               </button>
               <div class="faq-a">
                 <div class="faq-a-inner">
-                  단순 어뷰징이 아닌 1:1 전담 고정 IP와 리뷰 선순환 구조를 통해 지속 가능하고 안전한 노출을 만듭니다. 키워드 적합성과 체류 시간을 개선하여 플레이스 최상단 안착을 돕습니다.
+                  어뷰징이 아닌, 검증된 운영 방식을 통해 지속 가능하고 안전한 노출을 만듭니다. 키워드 적합성과 체류 시간을 개선하여 플레이스 최상단 안착을 돕습니다.
                 </div>
               </div>
             </div>
@@ -3985,17 +4185,8 @@
               </button>
               <div class="faq-a">
                 <div class="faq-a-inner">
-                  한 달 단위 계약을 원칙으로 합니다. 구체적인 비용은 지역, 규모, 서비스 구성에 따라 달라지며 무료 컨설팅 시 맞춤 안내해 드립니다.
-                </div>
-              </div>
-            </div>
-            <div class="faq-item">
-              <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
-                <span>애(Ai)실장 가격과 이월 정책이 어떻게 되나요?</span><span class="arrow">+</span>
-              </button>
-              <div class="faq-a">
-                <div class="faq-a-inner">
-                  애(Ai)실장은 <strong>월 250, 000원 (VAT 포함 275, 000원)</strong>으로, 월 24건(기본 20건 + 보장 4건)을 발행할 수 있습니다. 미사용분은 <strong>최대 2개월까지 이월</strong>되어 다음 달에 사용 가능하지만, 구독을 <strong>해지하시면 잔여 발행권은 모두 리셋</strong>됩니다. 위약금 없이 한 달 단위로 해지, 재시작 가능합니다.
+                  한 달 단위 계약을 원칙으로 합니다.<br />
+                  구체적인 비용은 원고의 주간 발행 횟수, 운용 블로그 갯수, 플레이스나 유튜브의 추가 유무(서비스 구성) 등에 따라 달라지므로 무료 컨설팅을 요청하시면 맞춤 안내해 드리겠습니다.
                 </div>
               </div>
             </div>
@@ -4005,7 +4196,7 @@
               </button>
               <div class="faq-a">
                 <div class="faq-a-inner">
-                  애(Ai)실장(월 250, 000원, VAT 포함 275, 000원)은 키워드 전략과 블로그 최적화 자동화 시스템을 제공하는 '솔루션'에 가깝고, 광고 대행(월 900, 000원, VAT 별도)은 블로그, 플레이스, 유튜브 등 전체 마케팅을 직접 운영해드리는 '풀 매니지드' 서비스입니다.
+                  애(Ai)실장(월 250,000원, VAT 포함 275,000원)은 키워드 전략과 블로그 최적화 자동화 시스템을 제공하는 '솔루션'에 가깝고, 광고 대행(월 900,000원, VAT 별도)은 블로그, 플레이스, 유튜브 등 전체 마케팅을 직접 운영해드리는 '통합 관리' 서비스입니다.
                 </div>
               </div>
             </div>
@@ -4022,43 +4213,55 @@
 
             <!-- 좌: 광고 대행 서비스 (₩900, 000) - 다크 카드 -->
             <div class="hp-agency-card">
-              <span class="hp-agency-tag">FULL MANAGED, 풀 매니지드</span>
+              <span class="hp-agency-tag">FULL MANAGEMENT, 풀 매니지먼트</span>
               <h3>A부터 Z까지<br />저희가 책임집니다</h3>
               <p class="lead">의료 전문 에디터, 디자이너 팀이 블로그, 플레이스, 유튜브를 직접 운영해드립니다.<br /><br />원장님은 진료에만 집중하세요.</p>
 
               <div class="hp-agency-price">
-                <span class="num">₩900, 000</span>
-                <span class="unit">/ 월</span>
+                <span class="num">기본 900,000 ~</span>
+                <span class="unit">/월</span>
               </div>
 
-              <ul class="hp-agency-list">
-                <li>의료 전문 에디터의 콘텐츠 기획, 발행 (주 2회)</li>
-                <li>네이버 플레이스 최적화 (전담 IP, 어뷰징 제로)</li>
-                <li>유튜브 콘텐츠 제작 (촬영, 기획, 편집)</li>
-                <li>월간 성과 보고서 + 다음 달 전략 제안</li>
-                <li>전담 매니저 고정 배치 (담당자 변경 없음)</li>
-              </ul>
+              <div class="hp-agency-groups">
+                <div class="hp-agency-group">
+                  <p class="hp-agency-group-label">기본 포함</p>
+                  <ul class="hp-agency-list">
+                    <li>의료 전문 에디터의 콘텐츠 기획, 발행<br />(주 2회~, 최소 월 8회 이상)</li>
+                    <li>월간 성과 보고서 + 다음 달 전략 제안</li>
+                    <li>전담 매니저 고정 배치 (담당자 변경 없음)</li>
+                  </ul>
+                </div>
+                <div class="hp-agency-group hp-agency-group--addon">
+                  <p class="hp-agency-group-label">추가 항목</p>
+                  <ul class="hp-agency-list">
+                    <li>네이버 플레이스 최적화 (전담 IP, 어뷰징 제로)</li>
+                    <li>유튜브 콘텐츠 제작 (촬영, 기획, 편집)</li>
+                  </ul>
+                </div>
+              </div>
 
               <a href="mailto:highplus23@gmail.com?subject=%5B%ED%95%98%EC%9D%B4%ED%94%8C%EB%9F%AC%EC%8A%A4%5D%20%EB%8C%80%ED%96%89%20%EC%84%9C%EB%B9%84%EC%8A%A4%20%EB%AC%B8%EC%9D%98&body=%EC%9B%90%EC%9E%A5%EB%8B%98%20%EC%84%B1%ED%95%A8%3A%0D%0A%EB%B3%91%EC%9B%90%EB%AA%85%3A%0D%0A%EC%A7%80%EC%97%AD%3A%0D%0A%EC%A7%84%EB%A3%8C%EA%B3%BC%3A%0D%0A%EB%AC%B8%EC%9D%98%EC%82%AC%ED%95%AD%3A%0D%0A" class="hp-agency-cta">
                 📧 대행 문의하기
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
               </a>
               <div class="hp-agency-note">
-                <strong>highplus23@gmail.com</strong>으로 직접 문의 주시면 24시간 내 회신드립니다. VAT 별도, 1지역 1병원 독점.
+                <strong>highplus23@gmail.com</strong>으로 직접 문의 주시면 24시간 내 회신드립니다.<br />
+                VAT 별도, 1지역 1병원 독점.
               </div>
             </div>
 
             <!-- 우: 기존 LIMITED SLOT (디자인 톤만 카드화) -->
             <div class="hp-scarcity-card">
               <span class="section-tag">LIMITED</span>
-              <h2 class="section-title" style="color: #FFFFFF; margin-bottom: 1.5rem; font-size: clamp(1.6rem, 3vw, 2.2rem);">
+              <h2 class="section-title" style="color: #FFFFFF; margin-bottom: 1.5rem;">
                 지금 바로 시작하고 싶으셔도,<br /><span class="grad-highlight">어려울 수 있습니다.</span>
               </h2>
               <p style="color: #999999; font-size: clamp(0.9rem, 1.6vw, 1rem); line-height: 1.8; word-break: keep-all; margin-bottom: 2rem;">
                 하이플러스는 아무 병원이나 받지 않습니다.<br />
                 1지역 1병원 독점 원칙을 지키고, 저희가 제대로 케어할 수 있는 수 만큼만 계약합니다.<br /><br />
                 단기간 폭발적인 성과를 약속하는 곳은 저희가 아닙니다.<br />
-                꾸준히 쌓이는 구조를 만드는 것, 그게 하이플러스 방식입니다.<br /><br />
+                1년 뒤에도 환자가 찾아올 수 있게<br />
+                꾸준히 노출되는 글과 구조를 만드는 것, 그게 하이플러스 방식입니다.<br /><br />
                 현재 슬롯이 마감된 경우, 대기 등록 후 순차적으로 안내드립니다.
               </p>
               <a href="#contact" class="btn-primary" style="font-size: 1rem; padding: 1rem 2rem; align-self: flex-start;">현재 가능 여부 확인하기</a>

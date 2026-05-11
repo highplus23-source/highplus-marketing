@@ -255,10 +255,10 @@
 
       @keyframes neonPulse {
         0%, 100% {
-          box-shadow: 0 0 8px rgba(52,120,246,0.3), 0 0 20px rgba(52,120,246,0.15), 0 0 40px rgba(52,120,246,0.08);
+          box-shadow: 0 0 8px rgba(212,175,55,0.3), 0 0 20px rgba(212,175,55,0.15), 0 0 40px rgba(212,175,55,0.08);
         }
         50% {
-          box-shadow: 0 0 12px rgba(52,120,246,0.5), 0 0 30px rgba(52,120,246,0.25), 0 0 60px rgba(52,120,246,0.12);
+          box-shadow: 0 0 12px rgba(212,175,55,0.5), 0 0 30px rgba(212,175,55,0.25), 0 0 60px rgba(212,175,55,0.12);
         }
       }
       .neon-card {
@@ -1843,14 +1843,14 @@
         );
       }
 
-      /* ─── SCROLL REVEAL (통일 애니메이션) ─── */
+      /* ─── SCROLL REVEAL (통일 애니메이션) — DESIGN_REFACTOR 3단계 ─── */
       .reveal,
       .fade-up {
         opacity: 0;
-        transform: translateY(32px);
+        transform: translateY(20px);
         transition-property: opacity, transform;
-        transition-duration: 0.9s;
-        transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+        transition-duration: 0.6s;
+        transition-timing-function: var(--hp-ease-out, cubic-bezier(0.16, 1, 0.3, 1));
         will-change: opacity, transform;
       }
 
