@@ -1,4 +1,67 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // 0-1. 후기 마키 무한 스크롤 + 화살표 컨트롤
+    (function initTestimonialsMarquee() {
+        const track = document.querySelector('#testimonials .test-marquee__track');
+        const prevBtn = document.querySelector('#testimonials .test-marquee__arrow--prev');
+        const nextBtn = document.querySelector('#testimonials .test-marquee__arrow--next');
+        if (!track) return;
+
+        let position = 0;
+        let lastTime = 0;
+        let isPaused = false;
+        let resumeTimer = null;
+        const speedPxPerSec = 32; // 느린 자연 스크롤
+
+        // 트랙 절반 너비 (중복된 후반 시작점)
+        function getLoopWidth() {
+            const totalWidth = track.scrollWidth;
+            return totalWidth / 2;
+        }
+
+        function step(now) {
+            if (lastTime && !isPaused) {
+                const dt = now - lastTime;
+                position -= (speedPxPerSec * dt) / 1000;
+                const loopWidth = getLoopWidth();
+                if (position <= -loopWidth) position += loopWidth;
+                track.style.transform = 'translateX(' + position + 'px)';
+            }
+            lastTime = now;
+            requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+
+        function pauseTemp(duration) {
+            isPaused = true;
+            if (resumeTimer) clearTimeout(resumeTimer);
+            resumeTimer = setTimeout(function() { isPaused = false; }, duration);
+        }
+
+        function shift(deltaPx) {
+            position += deltaPx;
+            const loopWidth = getLoopWidth();
+            // 무한 루프 경계 보정
+            while (position <= -loopWidth) position += loopWidth;
+            while (position > 0) position -= loopWidth;
+            track.style.transform = 'translateX(' + position + 'px)';
+            pauseTemp(3500);
+        }
+
+        // 호버 시 일시 정지
+        const marquee = track.parentElement;
+        marquee.addEventListener('mouseenter', function() { isPaused = true; });
+        marquee.addEventListener('mouseleave', function() {
+            if (!resumeTimer || Date.now() > (resumeTimer._readyAt || 0)) {
+                isPaused = false;
+            }
+        });
+
+        // 화살표 클릭 (1카드 분량 = 약 384px = card 360 + gap 24)
+        const cardShift = 384;
+        if (prevBtn) prevBtn.addEventListener('click', function() { shift(cardShift); });
+        if (nextBtn) nextBtn.addEventListener('click', function() { shift(-cardShift); });
+    })();
+
     // 0. 히어로 카운터 업 애니메이션
     (function initHeroCounter() {
         const counters = document.querySelectorAll('.hp-counter-num');
