@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1280">
+<title>Meta Tone — HighPlus 컨셉 시안</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+
+  :root {
+    --bg: #ffffff;
+    --surface-soft: #f5f6f7;
+    --ink-deep: #0a1317;
+    --charcoal: #5a6770;
+    --steel: #7a878f;
+    --line: #e3e6e8;
+    --cobalt: #1a4fe0;
+    --cobalt-hover: #1542c4;
+    --black-pill: #1c2b33;
+    --black-pill-hover: #0a1317;
+    --promo-yellow: #ffc233;
+    --t: 200ms cubic-bezier(.4,0,.2,1);
+  }
+
+  body {
+    font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--ink-deep);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: -0.01em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  /* ========= Layout ========= */
+  .section { padding: 96px 0; }
+  .section--soft { background: var(--surface-soft); }
+  .container {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ========= Typography ========= */
+  .eyebrow {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--charcoal);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin: 0 0 20px;
+  }
+  .eyebrow--cobalt { color: var(--cobalt); }
+  .display {
+    font-size: 56px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    font-weight: 500;
+    margin: 0;
+    color: var(--ink-deep);
+  }
+  .display--xl {
+    font-size: 64px;
+    line-height: 1.04;
+    letter-spacing: -0.025em;
+  }
+  .display--md {
+    font-size: 48px;
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+  }
+  .lead {
+    font-size: 20px;
+    line-height: 1.45;
+    letter-spacing: -0.012em;
+    color: var(--charcoal);
+    font-weight: 400;
+    margin: 24px 0 0;
+  }
+
+  /* ========= Buttons ========= */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 30px;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    border-radius: 9999px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: background var(--t), color var(--t), border-color var(--t), transform 80ms ease-out;
+    text-decoration: none;
+    white-space: nowrap;
+    font-family: inherit;
+  }
+  .btn:active { transform: scale(0.97); }
+
+  .btn--black {
+    background: var(--black-pill);
+    color: #ffffff;
+  }
+  .btn--black:hover { background: var(--black-pill-hover); }
+
+  .btn--cobalt {
+    background: var(--cobalt);
+    color: #ffffff;
+  }
+  .btn--cobalt:hover { background: var(--cobalt-hover); }
+
+  .btn--outline {
+    background: transparent;
+    color: var(--ink-deep);
+    border-color: var(--ink-deep);
+  }
+  .btn--outline:hover { background: var(--ink-deep); color: #ffffff; }
+
+  .btn--block { width: 100%; }
+  .btn--lg { padding: 16px 32px; font-size: 16px; }
+
+  /* ========= Badges / Pills ========= */
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 14px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    border-radius: 9999px;
+    text-transform: uppercase;
+  }
+  .pill--cobalt { background: var(--cobalt); color: #ffffff; }
+  .pill--yellow { background: var(--promo-yellow); color: var(--ink-deep); }
+  .pill--outline { background: transparent; color: var(--ink-deep); border: 1px solid var(--line); }
+
+  /* ========= Section 1 · Hero ========= */
+  .hero { padding: 80px 0 96px; }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+  .hero-eyebrow-row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 24px;
+  }
+  .hero .lead {
+    max-width: 520px;
+  }
+  .hero-ctas {
+    display: flex;
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .hero-visual {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    border-radius: 32px;
+    background: var(--surface-soft);
+    border: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--steel);
+    font-size: 13px;
+    letter-spacing: 0.04em;
+  }
+
+  /* ========= Section 2 · Pricing ========= */
+  .pricing { padding: 96px 0 112px; }
+  .pricing-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 48px;
+    margin-bottom: 64px;
+  }
+  .pricing-head-text { flex: 1; max-width: 720px; }
+  .pricing-head-note {
+    font-size: 14px;
+    color: var(--charcoal);
+    max-width: 280px;
+    line-height: 1.5;
+  }
+
+  .plans {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .plan {
+    background: #ffffff;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    transition: border-color var(--t);
+  }
+  .plan:hover { border-color: var(--ink-deep); }
+
+  .plan--featured {
+    background: var(--ink-deep);
+    color: #ffffff;
+    border-color: var(--ink-deep);
+  }
+  .plan--featured:hover { border-color: var(--cobalt); }
+
+  .plan-pill-row {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 20px;
+  }
+  .plan-title {
+    font-size: 24px;
+    font-weight: 500;
+    letter-spacing: -0.012em;
+    margin: 0 0 8px;
+    color: inherit;
+  }
+  .plan-tagline {
+    font-size: 14px;
+    color: var(--charcoal);
+    margin: 0 0 28px;
+  }
+  .plan--featured .plan-tagline { color: rgba(255,255,255,0.7); }
+
+  .plan-price {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 6px;
+  }
+  .plan-amt {
+    font-size: 44px;
+    font-weight: 500;
+    letter-spacing: -0.025em;
+    line-height: 1;
+    color: inherit;
+  }
+  .plan-unit {
+    font-size: 15px;
+    color: var(--charcoal);
+  }
+  .plan--featured .plan-unit { color: rgba(255,255,255,0.7); }
+
+  .plan-vat {
+    font-size: 13px;
+    color: var(--charcoal);
+    margin: 0 0 32px;
+  }
+  .plan--featured .plan-vat { color: rgba(255,255,255,0.6); }
+
+  .plan-features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 32px;
+    flex: 1;
+  }
+  .plan-features li {
+    padding: 12px 0 12px 28px;
+    font-size: 15px;
+    line-height: 1.5;
+    color: inherit;
+    position: relative;
+    border-top: 1px solid var(--line);
+  }
+  .plan-features li:first-child { border-top: 0; }
+  .plan--featured .plan-features li {
+    border-top-color: rgba(255,255,255,0.12);
+  }
+  .plan-features li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 18px;
+    width: 14px;
+    height: 7px;
+    border-left: 2px solid var(--cobalt);
+    border-bottom: 2px solid var(--cobalt);
+    transform: rotate(-45deg);
+  }
+  .plan--featured .plan-features li::before {
+    border-color: var(--promo-yellow);
+  }
+
+  /* ========= Section 3 · Apply ========= */
+  .apply { padding: 96px 0 120px; }
+  .apply-head {
+    margin-bottom: 56px;
+    max-width: 720px;
+  }
+  .apply-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 32px;
+    align-items: start;
+  }
+
+  .form-card {
+    background: #ffffff;
+    border: 1px solid var(--line);
+    border-radius: 32px;
+    padding: 48px;
+  }
+  .form-card-title {
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: -0.012em;
+    margin: 0 0 8px;
+  }
+  .form-card-sub {
+    font-size: 14px;
+    color: var(--charcoal);
+    margin: 0 0 32px;
+  }
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 18px;
+  }
+  .form-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink-deep);
+    margin-bottom: 6px;
+    letter-spacing: -0.005em;
+  }
+  .form-input {
+    appearance: none;
+    border: 1px solid var(--line);
+    background: var(--surface-soft);
+    border-radius: 12px;
+    padding: 14px 16px;
+    font-size: 15px;
+    font-family: inherit;
+    color: var(--ink-deep);
+    letter-spacing: -0.01em;
+    transition: border-color var(--t), background var(--t);
+  }
+  .form-input::placeholder { color: var(--steel); }
+  .form-input:focus {
+    outline: none;
+    border-color: var(--cobalt);
+    background: #ffffff;
+  }
+  .form-actions {
+    margin-top: 16px;
+  }
+
+  /* Side · countdown + recents */
+  .side-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .side-card {
+    background: #ffffff;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 32px;
+  }
+  .side-card--dark {
+    background: var(--ink-deep);
+    color: #ffffff;
+    border-color: var(--ink-deep);
+  }
+  .side-label {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--charcoal);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin: 0 0 16px;
+  }
+  .side-card--dark .side-label { color: rgba(255,255,255,0.7); }
+
+  .countdown {
+    display: flex;
+    gap: 12px;
+    margin: 0 0 8px;
+    font-variant-numeric: tabular-nums;
+  }
+  .cd-unit {
+    flex: 1;
+    text-align: center;
+  }
+  .cd-num {
+    font-size: 32px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    color: inherit;
+  }
+  .cd-label {
+    font-size: 11px;
+    color: rgba(255,255,255,0.6);
+    margin-top: 6px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .countdown-note {
+    font-size: 13px;
+    color: rgba(255,255,255,0.7);
+    margin: 16px 0 0;
+  }
+
+  .recents {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .recents li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 0;
+    border-top: 1px solid var(--line);
+    font-size: 14px;
+  }
+  .recents li:first-child { border-top: 0; padding-top: 0; }
+  .recent-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--cobalt);
+    margin-right: 10px;
+    vertical-align: middle;
+  }
+  .recent-time {
+    font-size: 12px;
+    color: var(--steel);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ========= Footer note ========= */
+  .footnote {
+    font-size: 12px;
+    color: var(--steel);
+    text-align: center;
+    padding: 40px 32px 64px;
+    letter-spacing: 0;
+  }
+</style>
+</head>
+<body>
+
+  <!-- ============ Section 1 · Hero ============ -->
+  <section class="section hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div>
+          <div class="hero-eyebrow-row">
+            <span class="pill pill--outline">For Clinics</span>
+            <span class="pill pill--yellow">Beta · 5월 모집</span>
+          </div>
+          <h1 class="display display--xl">병원 블로그 자동화,<br>애(Ai)실장.</h1>
+          <p class="lead">초진은 애(Ai)실장에게 맡기시고,<br>원장님은 재진에 집중하세요.</p>
+          <div class="hero-ctas">
+            <a class="btn btn--cobalt btn--lg" href="#apply">시작하기</a>
+            <a class="btn btn--outline btn--lg" href="#pricing">더 알아보기</a>
+          </div>
+        </div>
+        <div class="hero-visual">image placeholder · 4:5</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Section 2 · Pricing ============ -->
+  <section class="section section--soft pricing" id="pricing">
+    <div class="container">
+      <header class="pricing-head">
+        <div class="pricing-head-text">
+          <p class="eyebrow eyebrow--cobalt">Blog Automation</p>
+          <h2 class="display">원장님을 위한<br>두 가지 플랜.</h2>
+        </div>
+        <p class="pricing-head-note">병원 규모와 운영 방식에 맞춰 선택하세요. 월 단위 구독이며 언제든 변경하실 수 있습니다.</p>
+      </header>
+
+      <div class="plans">
+        <article class="plan">
+          <div class="plan-pill-row">
+            <span class="pill pill--outline">Basic</span>
+          </div>
+          <h3 class="plan-title">애(Ai)실장 기본</h3>
+          <p class="plan-tagline">소규모 병원에 적합한 자동화 패키지</p>
+          <div class="plan-price">
+            <span class="plan-amt">₩250,000</span>
+            <span class="plan-unit">/ 월</span>
+          </div>
+          <p class="plan-vat">VAT 별도 · 부가세 포함 ₩275,000</p>
+          <ul class="plan-features">
+            <li>월 30건 자동 블로그 포스팅</li>
+            <li>병원 키워드 자동 분석</li>
+            <li>네이버 SEO 최적화</li>
+            <li>월간 성과 리포트 1회</li>
+            <li>전담 매니저 채팅 상담</li>
+          </ul>
+          <a class="btn btn--black btn--block btn--lg" href="#apply">기본 플랜 시작하기</a>
+        </article>
+
+        <article class="plan plan--featured">
+          <div class="plan-pill-row">
+            <span class="pill pill--cobalt">추천 Premium</span>
+            <span class="pill pill--yellow">Best</span>
+          </div>
+          <h3 class="plan-title">애(Ai)실장 프리미엄</h3>
+          <p class="plan-tagline">페르소나 1:1 커스터마이징 풀세트</p>
+          <div class="plan-price">
+            <span class="plan-amt">₩400,000</span>
+            <span class="plan-unit">/ 월</span>
+          </div>
+          <p class="plan-vat">VAT 별도 · 부가세 포함 ₩440,000</p>
+          <ul class="plan-features">
+            <li>기본 플랜 전체 포함</li>
+            <li>원장님 페르소나 1:1 커스터마이징</li>
+            <li>월 60건 프리미엄 포스팅</li>
+            <li>경쟁 병원 모니터링 리포트</li>
+            <li>주간 트렌드 키워드 제공</li>
+            <li>전담 매니저 우선 응대</li>
+          </ul>
+          <a class="btn btn--cobalt btn--block btn--lg" href="#apply">프리미엄 시작하기</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Section 3 · Apply ============ -->
+  <section class="section apply" id="apply">
+    <div class="container">
+      <header class="apply-head">
+        <p class="eyebrow eyebrow--cobalt">Start now</p>
+        <h2 class="display display--md">원장님도<br>함께하시겠습니까?</h2>
+        <p class="lead">5월 모집 마감 전까지 신청서를 보내주시면, 영업일 기준 1일 내 컨설팅 전화드립니다.</p>
+      </header>
+
+      <div class="apply-grid">
+        <form class="form-card">
+          <h3 class="form-card-title">신청서 작성</h3>
+          <p class="form-card-sub">4개 항목 · 약 30초 소요</p>
+          <div class="form-field">
+            <label class="form-label" for="mp-name">성함</label>
+            <input class="form-input" id="mp-name" type="text" placeholder="원장님 성함을 입력해 주세요">
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="mp-phone">연락처</label>
+            <input class="form-input" id="mp-phone" type="tel" placeholder="010-0000-0000">
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="mp-clinic">업체명</label>
+            <input class="form-input" id="mp-clinic" type="text" placeholder="병원/클리닉명">
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="mp-region">지역</label>
+            <input class="form-input" id="mp-region" type="text" placeholder="예) 서울 강남구">
+          </div>
+          <div class="form-actions">
+            <button class="btn btn--cobalt btn--block btn--lg" type="button">신청서 제출하기</button>
+          </div>
+        </form>
+
+        <div class="side-stack">
+          <div class="side-card side-card--dark">
+            <p class="side-label">마감까지</p>
+            <div class="countdown">
+              <div class="cd-unit"><div class="cd-num">07</div><div class="cd-label">Days</div></div>
+              <div class="cd-unit"><div class="cd-num">14</div><div class="cd-label">Hours</div></div>
+              <div class="cd-unit"><div class="cd-num">22</div><div class="cd-label">Min</div></div>
+              <div class="cd-unit"><div class="cd-num">11</div><div class="cd-label">Sec</div></div>
+            </div>
+            <p class="countdown-note">5월 모집 마감 · 잔여 7석</p>
+          </div>
+
+          <div class="side-card">
+            <p class="side-label">실시간 접수현황</p>
+            <ul class="recents">
+              <li><span><span class="recent-dot"></span>김○○ 원장 · 강남 피부과</span><span class="recent-time">방금 전</span></li>
+              <li><span><span class="recent-dot"></span>이○○ 원장 · 부산 정형외과</span><span class="recent-time">3분 전</span></li>
+              <li><span><span class="recent-dot"></span>박○○ 원장 · 대구 한의원</span><span class="recent-time">12분 전</span></li>
+              <li><span><span class="recent-dot"></span>정○○ 원장 · 인천 치과</span><span class="recent-time">28분 전</span></li>
+              <li><span><span class="recent-dot"></span>최○○ 원장 · 광주 내과</span><span class="recent-time">41분 전</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <p class="footnote">© HighPlus Marketing · Concept preview — Meta tone</p>
+
+</body>
+</html>

@@ -1,0 +1,1687 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HighPlus — Apple Tone v2 시안</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  img, svg { display: block; max-width: 100%; }
+  button { font: inherit; }
+
+  :root {
+    --ap-white: #ffffff;
+    --ap-bg: #f7f8fc;
+    --ap-parchment: #eff1f6;
+    --ap-ink: #0b1020;
+    --ap-ink-2: #2e334a;
+    --ap-ink-sub: #5a6178;
+    --ap-ink-mute: #8a90a4;
+    --ap-hairline: #d6d8e0;
+    --ap-hairline-soft: #e8eaf0;
+
+    --ap-indigo: #3b48f8;
+    --ap-indigo-2: #5b6bff;
+    --ap-indigo-deep: #2b37d6;
+    --ap-blue: #1062ff;
+    --ap-blue-hover: #0a52d8;
+
+    --ap-yellow-hl: #fde68a;
+    --ap-blue-hl: #c6d8ff;
+    --ap-mint: #6dd3a6;
+
+    --ink: #0b1020;
+    --t: 240ms cubic-bezier(.4,0,.2,1);
+  }
+
+  body {
+    font-family: "SF Pro Display", "SF Pro Text", -apple-system, BlinkMacSystemFont,
+                 "Pretendard Variable", Pretendard, system-ui, "Helvetica Neue", sans-serif;
+    background: var(--ap-white);
+    color: var(--ap-ink);
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: -0.014em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  a { color: var(--ap-blue); text-decoration: none; transition: color var(--t); }
+  a:hover { text-decoration: underline; }
+
+  /* ───────── Nav ───────── */
+  .ap-nav {
+    position: sticky; top: 0; z-index: 50;
+    height: 56px;
+    background: rgba(255,255,255, 0.78);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    border-bottom: 1px solid var(--ap-hairline-soft);
+  }
+  .ap-nav__inner {
+    max-width: 1180px; height: 100%;
+    margin: 0 auto; padding: 0 28px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .ap-nav__brand {
+    font-size: 20px; font-weight: 700; letter-spacing: -0.025em; color: var(--ap-ink);
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .ap-nav__brand .mark {
+    width: 22px; height: 22px; border-radius: 7px;
+    background: linear-gradient(135deg, var(--ap-indigo) 0%, var(--ap-indigo-2) 100%);
+    box-shadow: 0 6px 14px -4px rgba(59,72,248,0.45);
+    display: grid; place-items: center; color: #fff;
+    font-size: 13px; font-weight: 800;
+  }
+  .ap-nav__menu { display: flex; gap: 32px; align-items: center; }
+  .ap-nav__menu a {
+    font-size: 14px; color: var(--ap-ink-2); letter-spacing: -0.01em; font-weight: 500;
+  }
+  .ap-nav__menu a:hover { color: var(--ap-ink); text-decoration: none; }
+  .ap-nav__cta {
+    background: var(--ap-ink); color: #fff !important;
+    padding: 8px 16px; border-radius: 100px;
+    font-size: 13px; font-weight: 600;
+  }
+  .ap-nav__cta:hover { background: #1f263c; text-decoration: none; }
+
+  /* ───────── Section / Layout ───────── */
+  .section { padding: 120px 0; position: relative; }
+  .section--parchment { background: var(--ap-parchment); }
+  .section--soft { background: var(--ap-bg); }
+  .section--white { background: #fff; }
+  .container { max-width: 1180px; margin: 0 auto; padding: 0 28px; }
+  .container--narrow { max-width: 760px; }
+
+  /* ───────── Typography ───────── */
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 12px; font-weight: 600;
+    color: var(--ap-indigo);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    background: rgba(59,72,248,0.08);
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin: 0 0 18px;
+  }
+  .eyebrow .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--ap-indigo); }
+  .sect-num {
+    font-family: "SF Mono", ui-monospace, Menlo, monospace;
+    font-size: 14px; font-weight: 600; letter-spacing: 0.04em;
+    color: var(--ap-indigo);
+    display: inline-block;
+    margin: 0 0 16px;
+  }
+  .display-xl {
+    font-size: clamp(44px, 6.6vw, 84px);
+    line-height: 1.05; letter-spacing: -0.028em;
+    font-weight: 700; margin: 0; color: var(--ap-ink);
+  }
+  .display {
+    font-size: clamp(36px, 4.8vw, 56px);
+    line-height: 1.08; letter-spacing: -0.018em;
+    font-weight: 700; margin: 0; color: var(--ap-ink);
+  }
+  .headline {
+    font-size: 30px; line-height: 1.18; letter-spacing: -0.012em;
+    font-weight: 700; margin: 0;
+  }
+  .subhead {
+    font-size: 19px; line-height: 1.55; letter-spacing: -0.008em;
+    color: var(--ap-ink-sub); font-weight: 400; margin: 22px auto 0;
+    max-width: 640px;
+  }
+  .grad-blue {
+    background: linear-gradient(95deg, var(--ap-indigo) 0%, var(--ap-indigo-2) 60%, #8b8aff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Highlight marker (reference image 4) */
+  .hl-mark {
+    background: linear-gradient(transparent 55%, var(--ap-yellow-hl) 55%, var(--ap-yellow-hl) 96%, transparent 96%);
+    padding: 0 4px;
+  }
+  .hl-mark--blue {
+    background: linear-gradient(transparent 55%, var(--ap-blue-hl) 55%, var(--ap-blue-hl) 96%, transparent 96%);
+    padding: 0 4px;
+  }
+  .hl-mark--solid-blue {
+    background: var(--ap-indigo);
+    color: #fff;
+    padding: 0 8px;
+    border-radius: 4px;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+  }
+
+  /* ───────── Buttons ───────── */
+  .btn-group { display: inline-flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+    padding: 14px 24px;
+    font-size: 16px; font-weight: 600; line-height: 1.21; letter-spacing: -0.012em;
+    border-radius: 9999px; border: 1px solid transparent;
+    cursor: pointer; text-decoration: none; white-space: nowrap;
+    transition: background var(--t), color var(--t), border-color var(--t), transform 80ms ease-out, box-shadow var(--t);
+  }
+  .btn:hover { text-decoration: none; }
+  .btn:active { transform: scale(0.97); }
+  .btn-primary {
+    background: var(--ap-indigo); color: #fff;
+    box-shadow: 0 14px 30px -10px rgba(59,72,248,0.55);
+  }
+  .btn-primary:hover { background: var(--ap-indigo-deep); color: #fff; box-shadow: 0 18px 36px -10px rgba(59,72,248,0.65); }
+  .btn-outline {
+    background: #fff; color: var(--ap-ink);
+    border-color: var(--ap-hairline);
+  }
+  .btn-outline:hover { border-color: var(--ap-ink); color: var(--ap-ink); }
+
+  .center { text-align: center; }
+
+  /* ═════════════════════════════════════
+     HERO
+     ═════════════════════════════════════ */
+  .hero {
+    padding: 96px 0 100px;
+    background:
+      radial-gradient(900px 500px at 12% -10%, rgba(59,72,248,0.10), transparent 60%),
+      radial-gradient(700px 400px at 90% 10%, rgba(255,200,80,0.10), transparent 60%),
+      linear-gradient(180deg, #f7f8fc 0%, #ffffff 70%);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-grid {
+    display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 40px;
+    align-items: center;
+  }
+  .hero-copy h1 {
+    font-size: clamp(40px, 5.6vw, 72px);
+    line-height: 1.06; letter-spacing: -0.024em; font-weight: 700;
+    margin: 0; color: var(--ap-ink); word-break: keep-all;
+  }
+  .hero-copy h1 .line { display: block; }
+  .hero-sub {
+    font-size: 19px; line-height: 1.55; color: var(--ap-ink-sub);
+    margin: 26px 0 0; max-width: 560px; word-break: keep-all;
+  }
+  .hero-sub strong { color: var(--ap-ink); font-weight: 600; }
+  .hero-actions { display: flex; gap: 12px; margin-top: 36px; flex-wrap: wrap; align-items: center; }
+  .hero-trust {
+    margin-top: 28px;
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 13px; color: var(--ap-ink-sub);
+  }
+  .hero-trust .avs { display: inline-flex; }
+  .hero-trust .avs span {
+    width: 26px; height: 26px; border-radius: 50%; border: 2px solid #fff;
+    margin-left: -8px; background: var(--ap-indigo);
+    display: grid; place-items: center; color: #fff; font-size: 11px; font-weight: 700;
+  }
+  .hero-trust .avs span:nth-child(1) { background: #f97316; margin-left: 0; }
+  .hero-trust .avs span:nth-child(2) { background: #8b5cf6; }
+  .hero-trust .avs span:nth-child(3) { background: #10b981; }
+  .hero-trust .avs span:nth-child(4) { background: var(--ap-indigo); }
+  .hero-trust strong { color: var(--ap-ink); font-weight: 700; }
+
+  /* Phone mockup with ripples */
+  .hero-visual { position: relative; min-height: 540px; display: grid; place-items: center; }
+  .ripple {
+    position: absolute; inset: 0; display: grid; place-items: center;
+    pointer-events: none;
+  }
+  .ripple svg { width: 92%; height: 92%; opacity: 0.6; }
+  .phone {
+    position: relative; z-index: 1;
+    width: 280px; aspect-ratio: 280 / 580;
+    background: linear-gradient(180deg, #1a1f2e 0%, #0b0f1d 100%);
+    border-radius: 42px;
+    padding: 8px;
+    box-shadow:
+      0 30px 80px -20px rgba(11,16,32,0.45),
+      0 10px 30px -12px rgba(11,16,32,0.30),
+      inset 0 1px 0 rgba(255,255,255,0.10);
+  }
+  .phone__screen {
+    background: #fff; border-radius: 34px; height: 100%; overflow: hidden;
+    position: relative;
+    display: flex; flex-direction: column;
+  }
+  .phone__notch {
+    position: absolute; top: 8px; left: 50%; transform: translateX(-50%);
+    width: 96px; height: 24px;
+    background: #0b0f1d; border-radius: 100px; z-index: 2;
+  }
+  .phone__status {
+    padding: 18px 24px 10px;
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: 12px; font-weight: 700; color: var(--ap-ink);
+  }
+  .phone__status .ico { display: inline-flex; gap: 3px; align-items: center; }
+  .phone__body { padding: 18px 18px 18px; flex: 1; display: flex; flex-direction: column; gap: 12px; }
+  .ph-card {
+    background: linear-gradient(180deg, #f7f8fc 0%, #eef2fb 100%);
+    border-radius: 16px;
+    padding: 14px;
+    border: 1px solid var(--ap-hairline-soft);
+  }
+  .ph-card__tag {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 10px; font-weight: 700;
+    color: #fff; background: var(--ap-indigo);
+    padding: 4px 8px; border-radius: 100px;
+  }
+  .ph-card__title {
+    font-size: 13px; line-height: 1.3; font-weight: 700; margin: 8px 0 4px; color: var(--ap-ink);
+    letter-spacing: -0.008em;
+  }
+  .ph-card__sub { font-size: 10px; color: var(--ap-ink-mute); line-height: 1.4; margin: 0; }
+  .ph-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-top: 10px; }
+  .ph-stat { background: #fff; border-radius: 8px; padding: 6px; text-align: center; border: 1px solid var(--ap-hairline-soft); }
+  .ph-stat .n { font-size: 13px; font-weight: 800; color: var(--ap-indigo); letter-spacing: -0.01em; display: block; }
+  .ph-stat .l { font-size: 9px; color: var(--ap-ink-mute); margin-top: 2px; display: block; }
+  .ph-chart { height: 76px; position: relative; }
+  .ph-chart svg { width: 100%; height: 100%; }
+  .ph-row { display: flex; align-items: center; gap: 10px; padding: 10px; background: #fff; border: 1px solid var(--ap-hairline-soft); border-radius: 12px; }
+  .ph-row .avt { width: 26px; height: 26px; border-radius: 50%; background: var(--ap-indigo); display: grid; place-items: center; font-size: 10px; font-weight: 800; color: #fff; }
+  .ph-row .meta { flex: 1; }
+  .ph-row .meta .name { font-size: 11px; font-weight: 700; color: var(--ap-ink); margin: 0; }
+  .ph-row .meta .when { font-size: 9px; color: var(--ap-ink-mute); margin: 1px 0 0; }
+  .ph-row .pill { font-size: 9px; font-weight: 700; padding: 3px 8px; border-radius: 100px; background: #d1fae5; color: #047857; }
+
+  /* Floating sticker chips around phone */
+  .chip-float {
+    position: absolute; z-index: 2;
+    background: #fff;
+    border-radius: 100px;
+    padding: 8px 14px;
+    box-shadow: 0 14px 32px -10px rgba(15,22,42,0.18), 0 4px 12px -6px rgba(15,22,42,0.10);
+    border: 1px solid var(--ap-hairline-soft);
+    font-size: 13px; font-weight: 600; color: var(--ap-ink);
+    display: inline-flex; align-items: center; gap: 8px;
+    letter-spacing: -0.008em;
+  }
+  .chip-float .swatch {
+    width: 22px; height: 22px; border-radius: 7px;
+    display: grid; place-items: center;
+    color: #fff; font-size: 12px;
+  }
+  .chip-float--a { top: 8%; left: -6%; }
+  .chip-float--a .swatch { background: linear-gradient(135deg,#f59e0b,#ef4444); }
+  .chip-float--b { top: 38%; right: -8%; }
+  .chip-float--b .swatch { background: linear-gradient(135deg,var(--ap-indigo),var(--ap-indigo-2)); }
+  .chip-float--c { bottom: 8%; left: -2%; }
+  .chip-float--c .swatch { background: linear-gradient(135deg,#22c55e,#16a34a); }
+
+  /* HERO stats row */
+  .hero-stats {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+    margin: 64px auto 0;
+  }
+  .stat-card {
+    position: relative; overflow: hidden;
+    background: #fff; border: 1px solid var(--ap-hairline-soft);
+    border-radius: 20px; padding: 28px 26px 32px;
+    box-shadow: 0 10px 28px -18px rgba(15,22,42,0.12);
+    transition: transform var(--t), box-shadow var(--t);
+  }
+  .stat-card:hover { transform: translateY(-3px); box-shadow: 0 18px 38px -18px rgba(15,22,42,0.20); }
+  .stat-card::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 4px;
+    background: linear-gradient(90deg, var(--ap-indigo), var(--ap-indigo-2));
+  }
+  .stat-card--alt::after { background: linear-gradient(90deg, #f59e0b, #ef4444); }
+  .stat-card--alt2::after { background: linear-gradient(90deg, #22c55e, #16a34a); }
+  .stat-card__top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+  .stat-card__label { font-size: 14px; font-weight: 600; color: var(--ap-ink-2); letter-spacing: -0.008em; }
+  .stat-card__ic {
+    width: 30px; height: 30px; border-radius: 9px;
+    display: grid; place-items: center;
+    background: var(--ap-parchment);
+    color: var(--ap-indigo);
+  }
+  .stat-card__num { font-size: 44px; line-height: 1; letter-spacing: -0.022em; font-weight: 800; color: var(--ap-ink); margin: 0; }
+  .stat-card__num span { font-size: 0.55em; font-weight: 700; color: var(--ap-ink-sub); }
+  .stat-card__desc { font-size: 13px; color: var(--ap-ink-sub); margin: 8px 0 0; line-height: 1.5; }
+
+  /* ═════════════════════════════════════
+     AI MANAGER
+     ═════════════════════════════════════ */
+  #ai-manager.section { padding: 130px 0; }
+  .ai-head { text-align: center; margin: 0 auto 64px; max-width: 820px; }
+  .ai-head h2 {
+    font-size: clamp(38px, 5.4vw, 60px);
+    line-height: 1.08; letter-spacing: -0.02em; font-weight: 700; margin: 0;
+  }
+  .ai-head .pname { display: inline; }
+  .ai-head .sub { font-size: 19px; color: var(--ap-ink-sub); margin: 22px 0 0; line-height: 1.55; }
+
+  /* PAIN POINT — image1 style feature grid */
+  .pain-card {
+    background: linear-gradient(180deg, #ffffff 0%, #f4f6fc 100%);
+    border-radius: 28px;
+    padding: 56px 44px 52px;
+    margin: 0 auto 28px;
+    border: 1px solid var(--ap-hairline-soft);
+    box-shadow: 0 20px 50px -30px rgba(15,22,42,0.18);
+  }
+  .pain-card__head { text-align: center; margin-bottom: 44px; }
+  .pain-card__head .eyebrow { background: rgba(239,68,68,0.10); color: #dc2626; }
+  .pain-card__head .eyebrow .dot { background: #dc2626; }
+  .pain-card__head h3 { font-size: 34px; line-height: 1.15; letter-spacing: -0.014em; font-weight: 700; margin: 0; }
+  .pain-card__head p { color: var(--ap-ink-sub); margin: 12px 0 0; font-size: 16px; }
+  .pain-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
+  }
+  .pain-tile {
+    background: linear-gradient(180deg, #ffffff 0%, #f4f6fc 100%);
+    border-radius: 20px;
+    padding: 28px 24px 26px;
+    border: 1px solid var(--ap-hairline-soft);
+    text-align: center;
+    transition: transform var(--t), box-shadow var(--t), border-color var(--t);
+  }
+  .pain-tile:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 18px 34px -20px rgba(15,22,42,0.20);
+    border-color: rgba(59,72,248,0.30);
+  }
+  .pain-tile__ic {
+    width: 56px; height: 56px;
+    border-radius: 16px;
+    display: grid; place-items: center;
+    color: #fff;
+    margin: 0 auto 16px;
+    font-size: 24px;
+    box-shadow: 0 12px 24px -10px rgba(59,72,248,0.45);
+  }
+  .pain-tile__ic--indigo { background: linear-gradient(135deg, var(--ap-indigo) 0%, var(--ap-indigo-2) 100%); }
+  .pain-tile__ic--amber  { background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%); box-shadow: 0 12px 24px -10px rgba(245,158,11,0.45); }
+  .pain-tile__ic--mint   { background: linear-gradient(135deg, #10b981 0%, #14b8a6 100%); box-shadow: 0 12px 24px -10px rgba(16,185,129,0.45); }
+  .pain-tile__ic--rose   { background: linear-gradient(135deg, #f43f5e 0%, #ec4899 100%); box-shadow: 0 12px 24px -10px rgba(244,63,94,0.45); }
+  .pain-tile__ic--violet { background: linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%); box-shadow: 0 12px 24px -10px rgba(139,92,246,0.45); }
+  .pain-tile__ic--sky    { background: linear-gradient(135deg, #0ea5e9 0%, #38bdf8 100%); box-shadow: 0 12px 24px -10px rgba(14,165,233,0.45); }
+  .pain-tile__title { font-size: 17px; line-height: 1.4; font-weight: 700; color: var(--ap-ink); margin: 0; letter-spacing: -0.012em; word-break: keep-all; }
+  .pain-tile__desc { font-size: 13px; color: var(--ap-ink-sub); margin: 8px 0 0; line-height: 1.5; word-break: keep-all; }
+
+  /* PRICE TILE */
+  .price-row {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;
+    margin: 0 auto;
+  }
+  .price-card {
+    position: relative; overflow: hidden;
+    background: #fff;
+    border: 1px solid var(--ap-hairline-soft);
+    border-radius: 28px;
+    padding: 40px 36px 34px;
+    display: flex; flex-direction: column;
+    transition: border-color var(--t), transform var(--t), box-shadow var(--t);
+    box-shadow: 0 18px 40px -28px rgba(15,22,42,0.18);
+  }
+  .price-card:hover { transform: translateY(-3px); box-shadow: 0 24px 48px -24px rgba(15,22,42,0.22); }
+  .price-card__ripple {
+    position: absolute; inset: 0; pointer-events: none; opacity: 0.5;
+  }
+  .price-card__ripple svg { position: absolute; right: -120px; top: -120px; width: 380px; height: 380px; }
+  .price-card--accent {
+    background:
+      radial-gradient(600px 400px at 100% 0%, rgba(59,72,248,0.35), transparent 60%),
+      linear-gradient(180deg, #0e1430 0%, #060a1b 100%);
+    color: #fff; border: 1px solid rgba(255,255,255,0.08);
+  }
+  .price-card--accent .pc-tag { color: rgba(255,255,255,0.6); }
+  .price-card--accent .pc-title { color: #fff; }
+  .price-card--accent .pc-sub { color: rgba(255,255,255,0.75); }
+  .price-card--accent .pc-price-num { color: #fff; }
+  .price-card--accent .pc-price-unit { color: rgba(255,255,255,0.6); }
+  .price-card--accent .pc-list li { color: rgba(255,255,255,0.92); border-top-color: rgba(255,255,255,0.10); }
+  .price-card--accent .pc-list .check {
+    background: linear-gradient(135deg, #6dd3a6, #34d399);
+    color: #061629;
+  }
+  .price-card--accent .pc-cta { background: #fff; color: #061629; box-shadow: 0 14px 30px -10px rgba(255,255,255,0.20); }
+  .price-card--accent .pc-cta:hover { background: #e6e6e6; }
+  .price-card--accent .pc-note { color: rgba(255,255,255,0.55); border-top-color: rgba(255,255,255,0.14); }
+  .pc-badge {
+    position: absolute; top: 22px; right: 22px; z-index: 2;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+    color: #fff; background: var(--ap-indigo);
+    padding: 6px 12px; border-radius: 100px;
+    box-shadow: 0 8px 20px -6px rgba(59,72,248,0.45);
+  }
+  .price-card--accent .pc-badge { background: linear-gradient(135deg, #fbbf24, #f59e0b); color: #1a1a2e; box-shadow: 0 8px 20px -6px rgba(245,158,11,0.55); }
+  .pc-tag { font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ap-ink-mute); position: relative; z-index: 1; }
+  .pc-title { font-size: 30px; line-height: 1.15; letter-spacing: -0.014em; font-weight: 700; margin: 8px 0 0; color: var(--ap-ink); position: relative; z-index: 1; }
+  .pc-price { margin-top: 26px; position: relative; z-index: 1; }
+  .pc-price-num { font-size: 48px; line-height: 1; letter-spacing: -0.022em; font-weight: 800; color: var(--ap-ink); }
+  .pc-price-unit { display: block; margin-top: 8px; font-size: 13px; color: var(--ap-ink-sub); letter-spacing: -0.008em; }
+  .pc-price-unit strong { font-weight: 700; color: var(--ap-ink-2); }
+  .price-card--accent .pc-price-unit strong { color: #fff; }
+  .pc-sub { font-size: 14px; color: var(--ap-ink-sub); margin: 14px 0 0; line-height: 1.55; position: relative; z-index: 1; word-break: keep-all; }
+  .pc-sub strong { color: var(--ap-ink); font-weight: 700; }
+  .price-card--accent .pc-sub strong { color: #fff; }
+  .pc-list { list-style: none; padding: 0; margin: 26px 0 0; position: relative; z-index: 1; }
+  .pc-list li {
+    display: flex; align-items: center; gap: 12px;
+    font-size: 15px; line-height: 1.4; color: var(--ap-ink); letter-spacing: -0.012em;
+    padding: 10px 0; border-top: 1px solid var(--ap-hairline-soft);
+  }
+  .pc-list li:first-child { border-top: none; }
+  .pc-list .check {
+    flex: 0 0 22px; height: 22px; border-radius: 7px;
+    background: rgba(59,72,248,0.10);
+    color: var(--ap-indigo);
+    display: grid; place-items: center;
+  }
+  .pc-list strong { font-weight: 700; }
+  .pc-cta {
+    margin-top: 28px; position: relative; z-index: 1;
+    display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+    padding: 14px 24px;
+    font-size: 16px; font-weight: 600; line-height: 1.21; letter-spacing: -0.012em;
+    background: var(--ap-indigo); color: #fff; border-radius: 9999px;
+    text-decoration: none; transition: background var(--t), transform 80ms ease-out;
+    border: none; cursor: pointer;
+    box-shadow: 0 14px 28px -10px rgba(59,72,248,0.55);
+  }
+  .pc-cta:hover { background: var(--ap-indigo-deep); }
+  .pc-cta:active { transform: scale(0.97); }
+  .pc-note {
+    margin-top: 18px; padding-top: 16px; position: relative; z-index: 1;
+    border-top: 1px solid var(--ap-hairline-soft);
+    font-size: 12px; line-height: 1.5; color: var(--ap-ink-mute);
+  }
+  .pc-note strong { color: var(--ap-ink-sub); font-weight: 700; }
+
+  /* ═════════════════════════════════════
+     GROWTH
+     ═════════════════════════════════════ */
+  #growth.section { padding: 130px 0; }
+  .growth-head { text-align: center; max-width: 800px; margin: 0 auto 64px; }
+  .growth-head h2 { font-size: clamp(38px, 5.2vw, 60px); line-height: 1.08; letter-spacing: -0.018em; font-weight: 700; margin: 0; }
+  .growth-head p { color: var(--ap-ink-sub); font-size: 19px; margin: 20px 0 0; line-height: 1.55; word-break: keep-all; }
+  .growth-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+  }
+  .growth-tile {
+    background: linear-gradient(180deg, #ffffff 0%, #f4f6fc 100%);
+    border: 1px solid var(--ap-hairline-soft);
+    border-radius: 22px; padding: 30px 28px 32px;
+    position: relative; overflow: hidden;
+    transition: transform var(--t), box-shadow var(--t), border-color var(--t);
+  }
+  .growth-tile:hover { transform: translateY(-4px); box-shadow: 0 20px 40px -22px rgba(15,22,42,0.20); border-color: rgba(59,72,248,0.30); }
+  .growth-tile__ic {
+    width: 52px; height: 52px; border-radius: 14px;
+    display: grid; place-items: center;
+    color: #fff; margin: 0 0 22px;
+    box-shadow: 0 12px 22px -10px rgba(59,72,248,0.45);
+  }
+  .growth-tile__ic--1 { background: linear-gradient(135deg, #fbbf24, #f59e0b); box-shadow: 0 12px 22px -10px rgba(245,158,11,0.45); }
+  .growth-tile__ic--2 { background: linear-gradient(135deg, #10b981, #14b8a6); box-shadow: 0 12px 22px -10px rgba(16,185,129,0.45); }
+  .growth-tile__ic--3 { background: linear-gradient(135deg, var(--ap-indigo), var(--ap-indigo-2)); }
+  .growth-tile__ic--4 { background: linear-gradient(135deg, #8b5cf6, #a855f7); box-shadow: 0 12px 22px -10px rgba(139,92,246,0.45); }
+  .growth-tile__num {
+    font-family: "SF Mono", ui-monospace, Menlo, monospace;
+    font-size: 12px; font-weight: 700; letter-spacing: 0.04em;
+    color: var(--ap-indigo); margin: 0;
+  }
+  .growth-tile__period {
+    margin-top: 2px;
+    font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ap-ink-mute); font-weight: 600;
+  }
+  .growth-tile__title {
+    font-size: 22px; line-height: 1.2; letter-spacing: -0.012em;
+    font-weight: 700; color: var(--ap-ink); margin: 10px 0 8px;
+  }
+  .growth-tile__desc {
+    font-size: 14px; line-height: 1.5; color: var(--ap-ink-sub); margin: 0;
+    word-break: keep-all;
+  }
+
+  .growth-insight {
+    margin: 56px auto 0;
+    background:
+      radial-gradient(500px 200px at 50% 0%, rgba(59,72,248,0.20), transparent 60%),
+      linear-gradient(180deg, #0e1430 0%, #060a1b 100%);
+    color: #fff;
+    border-radius: 26px;
+    padding: 48px 44px;
+    text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .growth-insight__ic {
+    width: 56px; height: 56px; border-radius: 16px;
+    background: linear-gradient(135deg, var(--ap-indigo), var(--ap-indigo-2));
+    display: grid; place-items: center; color: #fff;
+    margin: 0 auto 18px;
+    box-shadow: 0 16px 32px -12px rgba(59,72,248,0.55);
+  }
+  .growth-insight p {
+    font-size: 24px; line-height: 1.4; letter-spacing: -0.012em;
+    color: #fff; margin: 0; font-weight: 600;
+    word-break: keep-all;
+  }
+  .growth-insight p strong { color: var(--ap-yellow-hl); font-weight: 700; }
+
+  .growth-bottom {
+    text-align: center; margin: 40px auto 0; max-width: 680px;
+    color: var(--ap-ink-sub); font-size: 16px; line-height: 1.65;
+    word-break: keep-all;
+  }
+  .growth-bottom strong { color: var(--ap-ink); font-weight: 700; }
+
+  /* ═════════════════════════════════════
+     REVIEWS
+     ═════════════════════════════════════ */
+  #reviews.section { padding: 130px 0 110px; overflow: hidden; }
+  .rv-head { text-align: center; max-width: 760px; margin: 0 auto 56px; padding: 0 28px; }
+  .rv-head h2 { font-size: clamp(38px, 5.2vw, 60px); line-height: 1.08; letter-spacing: -0.018em; font-weight: 700; margin: 0; }
+  .rv-head p { color: var(--ap-ink-sub); font-size: 19px; margin: 20px 0 0; line-height: 1.55; }
+
+  .rv-marquee {
+    position: relative; width: 100%; overflow: hidden;
+    mask-image: linear-gradient(90deg, transparent 0, #000 100px, #000 calc(100% - 100px), transparent 100%);
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 100px, #000 calc(100% - 100px), transparent 100%);
+  }
+  .rv-track {
+    display: flex; gap: 18px; width: max-content; padding: 12px 0;
+    animation: rvScroll 55s linear infinite;
+  }
+  .rv-track:hover { animation-play-state: paused; }
+  @keyframes rvScroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .rv-card {
+    flex: 0 0 380px;
+    background: #fff;
+    border: 1px solid var(--ap-hairline-soft);
+    border-radius: 22px;
+    padding: 28px 26px 22px;
+    display: flex; flex-direction: column; gap: 14px;
+    transition: border-color var(--t), transform var(--t), box-shadow var(--t);
+    box-shadow: 0 10px 28px -18px rgba(15,22,42,0.14);
+    position: relative;
+  }
+  .rv-card:hover { border-color: rgba(59,72,248,0.30); transform: translateY(-4px); box-shadow: 0 22px 44px -22px rgba(15,22,42,0.22); }
+  .rv-quotemark {
+    position: absolute; top: 16px; right: 22px;
+    font-family: Georgia, serif; font-size: 56px; line-height: 1;
+    color: rgba(59,72,248,0.12); font-weight: 800;
+  }
+  .rv-stars { color: #fbbf24; font-size: 14px; letter-spacing: 1.5px; }
+  .rv-quote {
+    font-size: 19px; line-height: 1.4; letter-spacing: -0.012em;
+    font-weight: 700; color: var(--ap-ink); margin: 0;
+    word-break: keep-all;
+  }
+  .rv-text {
+    font-size: 14px; line-height: 1.6; color: var(--ap-ink-sub); margin: 0;
+    word-break: keep-all;
+    display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .rv-author {
+    display: flex; align-items: center; gap: 12px;
+    padding-top: 14px; border-top: 1px solid var(--ap-hairline-soft);
+    margin-top: auto;
+  }
+  .rv-avatar {
+    width: 40px; height: 40px; border-radius: 50%;
+    display: grid; place-items: center;
+    font-size: 15px; font-weight: 700; color: #fff;
+    background: var(--ap-indigo);
+    flex-shrink: 0;
+  }
+  .rv-meta { display: flex; flex-direction: column; gap: 2px; }
+  .rv-meta .name { font-size: 14px; font-weight: 700; color: var(--ap-ink); letter-spacing: -0.008em; }
+  .rv-meta .loc { font-size: 12px; color: var(--ap-ink-mute); }
+
+  /* ═════════════════════════════════════
+     START NOW
+     ═════════════════════════════════════ */
+  #start.section { padding: 130px 0 100px; position: relative; overflow: hidden; }
+  #start::before {
+    content: "";
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(700px 380px at 10% 0%, rgba(59,72,248,0.10), transparent 60%),
+      radial-gradient(600px 320px at 90% 100%, rgba(255,180,80,0.08), transparent 60%);
+    pointer-events: none;
+  }
+  .start-head { text-align: center; max-width: 760px; margin: 0 auto 56px; position: relative; }
+  .start-head h2 { font-size: clamp(42px, 6vw, 68px); line-height: 1.06; letter-spacing: -0.022em; font-weight: 800; margin: 0; }
+  .start-head p { color: var(--ap-ink-sub); font-size: 19px; margin: 22px 0 0; line-height: 1.55; word-break: keep-all; }
+
+  .start-grid {
+    display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 24px;
+    margin: 0 auto; align-items: stretch;
+    position: relative;
+  }
+  .start-form {
+    background: #fff;
+    border: 1px solid var(--ap-hairline-soft);
+    border-radius: 26px;
+    padding: 40px 36px 36px;
+    box-shadow: 0 24px 50px -30px rgba(15,22,42,0.18);
+    position: relative; overflow: hidden;
+  }
+  .start-form__deco {
+    position: absolute; top: -60px; right: -60px;
+    width: 220px; height: 220px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(59,72,248,0.10), transparent 60%);
+    pointer-events: none;
+  }
+  .start-form__title {
+    font-size: 24px; line-height: 1.2; letter-spacing: -0.016em;
+    font-weight: 700; margin: 0 0 6px; position: relative;
+  }
+  .start-form__sub { font-size: 14px; color: var(--ap-ink-sub); margin: 0 0 24px; position: relative; }
+  .fg { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; position: relative; }
+  .fg label { font-size: 13px; color: var(--ap-ink-2); font-weight: 600; letter-spacing: -0.008em; }
+  .fg input {
+    height: 48px; width: 100%;
+    border: 1px solid var(--ap-hairline);
+    background: #fbfbfd; border-radius: 12px;
+    padding: 0 16px;
+    font: inherit; font-size: 15px; letter-spacing: -0.012em;
+    color: var(--ap-ink);
+    transition: border-color var(--t), background var(--t), box-shadow var(--t);
+  }
+  .fg input::placeholder { color: var(--ap-ink-mute); }
+  .fg input:focus {
+    outline: none; border-color: var(--ap-indigo); background: #fff;
+    box-shadow: 0 0 0 4px rgba(59,72,248,0.14);
+  }
+  .form-submit {
+    margin-top: 12px; width: 100%; height: 54px;
+    background: var(--ap-indigo); color: #fff;
+    border: none; border-radius: 14px;
+    font-size: 16px; font-weight: 700; letter-spacing: -0.014em;
+    cursor: pointer; transition: background var(--t), transform 80ms ease-out, box-shadow var(--t);
+    box-shadow: 0 16px 32px -10px rgba(59,72,248,0.55);
+    display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  }
+  .form-submit:hover { background: var(--ap-indigo-deep); box-shadow: 0 22px 38px -10px rgba(59,72,248,0.65); }
+  .form-submit:active { transform: scale(0.99); }
+  .form-note { margin: 14px 0 0; font-size: 12px; color: var(--ap-ink-mute); text-align: center; }
+
+  .start-side { display: flex; flex-direction: column; gap: 16px; position: relative; }
+  .countdown {
+    background:
+      radial-gradient(500px 220px at 100% 0%, rgba(59,72,248,0.30), transparent 60%),
+      linear-gradient(180deg, #0e1430 0%, #060a1b 100%);
+    color: #fff;
+    border-radius: 22px; padding: 26px 24px;
+    box-shadow: 0 20px 40px -18px rgba(15,22,42,0.28);
+    position: relative; overflow: hidden;
+  }
+  .countdown__top { display: flex; align-items: center; gap: 10px; justify-content: center; margin-bottom: 16px; }
+  .countdown__top .pip { width: 8px; height: 8px; background: #ef4444; border-radius: 50%; animation: pulseDot 1.4s infinite ease-out; box-shadow: 0 0 0 0 rgba(239,68,68,0.55); }
+  @keyframes pulseDot {
+    0% { box-shadow: 0 0 0 0 rgba(239,68,68,0.55); }
+    100% { box-shadow: 0 0 0 10px rgba(239,68,68,0); }
+  }
+  .countdown__title { font-size: 13px; color: rgba(255,255,255,0.85); letter-spacing: 0.06em; font-weight: 700; margin: 0; }
+  .countdown__row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  .countdown__cell {
+    background: rgba(255,255,255,0.10);
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 14px;
+    padding: 16px 4px 12px; text-align: center;
+    backdrop-filter: blur(8px);
+  }
+  .countdown__cell .n { font-size: 30px; font-weight: 800; letter-spacing: -0.022em; color: #fff; display: block; line-height: 1; }
+  .countdown__cell .l { font-size: 11px; color: rgba(255,255,255,0.55); margin-top: 6px; display: block; letter-spacing: 0.08em; font-weight: 600; }
+  .live {
+    background: #fff;
+    border: 1px solid var(--ap-hairline-soft);
+    border-radius: 22px;
+    padding: 24px;
+    flex: 1; min-height: 0;
+    display: flex; flex-direction: column;
+    box-shadow: 0 18px 38px -22px rgba(15,22,42,0.16);
+  }
+  .live__head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+  .live__head h3 { font-size: 17px; font-weight: 700; margin: 0; letter-spacing: -0.012em; }
+  .live__head .dot-live {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 11px; color: #15803d; font-weight: 800; letter-spacing: 0.06em;
+    padding: 5px 10px; background: #dcfce7; border-radius: 100px;
+  }
+  .live__head .dot-live::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 0 0 rgba(34,197,94,0.55); animation: pulseDot 1.5s ease-out infinite; }
+  .live__list { display: flex; flex-direction: column; gap: 6px; max-height: 240px; overflow: hidden; }
+  .live__item {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 12px;
+    background: var(--ap-parchment);
+    border-radius: 12px;
+    font-size: 13px;
+  }
+  .live__item .avt {
+    width: 26px; height: 26px; border-radius: 50%;
+    background: var(--ap-indigo); color: #fff;
+    display: grid; place-items: center; font-size: 11px; font-weight: 700;
+    flex-shrink: 0;
+  }
+  .live__item .who { color: var(--ap-ink); font-weight: 600; letter-spacing: -0.008em; flex: 1; }
+  .live__item .who .mute { color: var(--ap-ink-mute); font-weight: 400; }
+  .live__item .when { color: var(--ap-ink-mute); font-size: 12px; }
+  .live__footer { margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--ap-hairline-soft); font-size: 11px; color: var(--ap-ink-mute); display: flex; align-items: center; gap: 6px; }
+
+  /* ═════════════════════════════════════
+     WHY (그래서 만들었습니다)
+     ═════════════════════════════════════ */
+  #why.section { padding: 120px 0; }
+  .why-wrap { max-width: 760px; margin: 0 auto; text-align: center; position: relative; }
+  .why-qmark { width: 56px; height: 42px; color: var(--ap-indigo); opacity: 0.18; display: block; }
+  .why-qmark--open { margin: 0 0 -6px -4px; transform: scale(-1,-1); }
+  .why-qmark--close { margin: 14px 0 0 auto; }
+  .why-title { font-size: clamp(34px, 4.8vw, 56px); line-height: 1.12; font-weight: 700; letter-spacing: -0.022em; color: var(--ap-ink); margin: 0 0 18px; }
+  .why-divider { width: 48px; height: 4px; border-radius: 100px; background: linear-gradient(135deg, var(--ap-indigo), var(--ap-indigo-2)); margin: 0 auto 36px; box-shadow: 0 4px 10px -2px rgba(59,72,248,0.45); }
+  .why-para { font-size: 17px; line-height: 1.75; color: var(--ap-ink-2); margin: 0 0 14px; word-break: keep-all; }
+  .why-sig { margin-top: 36px; padding-top: 32px; border-top: 1px solid var(--ap-hairline-soft); }
+  .why-sig__tagline { font-size: clamp(22px, 2.6vw, 28px); line-height: 1.35; font-weight: 700; letter-spacing: -0.016em; color: var(--ap-ink); margin: 0 0 12px; word-break: keep-all; }
+  .why-sig__body { font-size: 15px; line-height: 1.6; color: var(--ap-ink-sub); margin: 0; word-break: keep-all; }
+  .why-sig__body strong { color: var(--ap-ink); font-weight: 700; }
+
+  /* ═════════════════════════════════════
+     BENEFITS (WHY 애(Ai)실장, 차원이 다른 8가지)
+     ═════════════════════════════════════ */
+  #benefits.section { padding: 130px 0; }
+  .ben-head { text-align: center; margin: 0 auto 56px; max-width: 800px; }
+  .ben-head h2 { font-size: clamp(38px, 5vw, 56px); line-height: 1.1; letter-spacing: -0.018em; font-weight: 700; margin: 0; }
+  .ben-head p { font-size: 18px; color: var(--ap-ink-sub); margin: 22px 0 0; line-height: 1.55; word-break: keep-all; }
+  .ben-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .ben-card {
+    background: linear-gradient(180deg, #ffffff 0%, #f4f6fc 100%);
+    border: 1px solid var(--ap-hairline-soft);
+    border-radius: 22px;
+    padding: 28px 24px 26px;
+    transition: transform var(--t), box-shadow var(--t), border-color var(--t);
+  }
+  .ben-card:hover { transform: translateY(-4px); box-shadow: 0 22px 40px -22px rgba(15,22,42,0.20); border-color: rgba(59,72,248,0.30); }
+  .ben-card__ic { width: 52px; height: 52px; border-radius: 15px; display: grid; place-items: center; color: #fff; margin: 0 0 18px; }
+  .ben-card__title { font-size: 17px; line-height: 1.3; font-weight: 700; color: var(--ap-ink); margin: 0; letter-spacing: -0.012em; word-break: keep-all; }
+  .ben-card__desc { font-size: 14px; line-height: 1.55; color: var(--ap-ink-sub); margin: 8px 0 0; word-break: keep-all; }
+  .ben-card__note { margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--ap-hairline); font-size: 11px; color: var(--ap-ink-mute); line-height: 1.5; }
+  .ben-card__note strong { color: var(--ap-indigo); font-weight: 700; }
+  .ben-ic--1 { background: linear-gradient(135deg, #fbbf24, #f59e0b); box-shadow: 0 12px 22px -10px rgba(245,158,11,0.45); }
+  .ben-ic--2 { background: linear-gradient(135deg, #f43f5e, #ec4899); box-shadow: 0 12px 22px -10px rgba(244,63,94,0.45); }
+  .ben-ic--3 { background: linear-gradient(135deg, var(--ap-indigo), var(--ap-indigo-2)); box-shadow: 0 12px 22px -10px rgba(59,72,248,0.45); }
+  .ben-ic--4 { background: linear-gradient(135deg, #8b5cf6, #a855f7); box-shadow: 0 12px 22px -10px rgba(139,92,246,0.45); }
+  .ben-ic--5 { background: linear-gradient(135deg, #10b981, #14b8a6); box-shadow: 0 12px 22px -10px rgba(16,185,129,0.45); }
+  .ben-ic--6 { background: linear-gradient(135deg, #0ea5e9, #38bdf8); box-shadow: 0 12px 22px -10px rgba(14,165,233,0.45); }
+  .ben-ic--7 { background: linear-gradient(135deg, #f97316, #ea580c); box-shadow: 0 12px 22px -10px rgba(249,115,22,0.45); }
+  .ben-ic--8 { background: linear-gradient(135deg, #64748b, #475569); box-shadow: 0 12px 22px -10px rgba(100,116,139,0.45); }
+
+  /* ═════════════════════════════════════
+     FEATURES (압도적인 차별점, 3가지)
+     ═════════════════════════════════════ */
+  #features.section { padding: 130px 0; }
+  .feat-head { text-align: center; margin: 0 auto 80px; max-width: 820px; }
+  .feat-head h2 { font-size: clamp(38px, 5vw, 56px); line-height: 1.1; letter-spacing: -0.018em; font-weight: 700; margin: 0; }
+  .feat-head p { font-size: 18px; color: var(--ap-ink-sub); margin: 22px 0 0; line-height: 1.55; word-break: keep-all; }
+  .feat-head p strong { color: var(--ap-ink); font-weight: 700; }
+  .feat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; margin-bottom: 88px; }
+  .feat-row:last-child { margin-bottom: 0; }
+  .feat-row--reverse .feat-text { order: 2; }
+  .feat-row--reverse .feat-visual { order: 1; }
+  .feat-text .feat-num { font-family: "SF Mono", ui-monospace, Menlo, monospace; font-size: 13px; font-weight: 700; letter-spacing: 0.04em; color: var(--ap-indigo); margin: 0 0 16px; }
+  .feat-text h3 { font-size: clamp(28px, 3.4vw, 40px); line-height: 1.18; letter-spacing: -0.018em; font-weight: 700; margin: 0; color: var(--ap-ink); word-break: keep-all; }
+  .feat-text .desc { font-size: 16px; line-height: 1.7; color: var(--ap-ink-2); margin: 22px 0 0; word-break: keep-all; }
+  .feat-text .desc strong { color: var(--ap-ink); font-weight: 700; }
+  .feat-checks { list-style: none; padding: 0; margin: 26px 0 0; display: flex; flex-direction: column; gap: 10px; }
+  .feat-checks li { display: flex; align-items: flex-start; gap: 10px; font-size: 15px; line-height: 1.5; color: var(--ap-ink-2); letter-spacing: -0.01em; word-break: keep-all; }
+  .feat-checks .ck { flex: 0 0 22px; height: 22px; border-radius: 7px; background: rgba(59,72,248,0.10); color: var(--ap-indigo); display: grid; place-items: center; margin-top: 1px; font-size: 12px; }
+  .feat-visual { position: relative; background: linear-gradient(180deg, #ffffff 0%, #edf1fb 100%); border-radius: 28px; padding: 32px; border: 1px solid var(--ap-hairline-soft); min-height: 360px; display: flex; flex-direction: column; gap: 14px; overflow: hidden; box-shadow: 0 18px 40px -28px rgba(15,22,42,0.18); }
+  .feat-visual::before { content: ""; position: absolute; inset: 0; background: radial-gradient(400px 200px at 50% 0%, rgba(59,72,248,0.14), transparent 60%); pointer-events: none; }
+  .fv-tag { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 700; color: #fff; background: var(--ap-indigo); padding: 5px 11px; border-radius: 100px; align-self: flex-start; position: relative; z-index: 1; box-shadow: 0 6px 14px -4px rgba(59,72,248,0.45); }
+  .fv-window { background: #fff; border: 1px solid var(--ap-hairline-soft); border-radius: 14px; padding: 14px; position: relative; z-index: 1; display: flex; flex-direction: column; gap: 8px; }
+  .fv-row { display: flex; align-items: center; gap: 8px; }
+  .fv-bar { height: 8px; border-radius: 6px; background: linear-gradient(90deg, #dbe4f7, #eef2fb); }
+  .fv-bar--blue { background: linear-gradient(90deg, #3b48f8, #6b7afe); }
+  .fv-bar--amber { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
+  .fv-bar--green { background: linear-gradient(90deg, #10b981, #34d399); }
+  .fv-chip { font-size: 11px; font-weight: 600; padding: 4px 9px; border-radius: 100px; background: var(--ap-parchment); color: var(--ap-ink-2); letter-spacing: -0.008em; white-space: nowrap; }
+  .fv-chip--blue { background: var(--ap-indigo); color: #fff; }
+  .fv-chip--mint { background: #d1fae5; color: #047857; }
+  .fv-chip--amber { background: #fef3c7; color: #92400e; }
+  .fv-chip--sky { background: #dbeafe; color: #1e40af; }
+  .fv-kw-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+  .fv-kw-row strong { font-size: 13px; font-weight: 700; color: var(--ap-ink); letter-spacing: -0.008em; }
+  .fv-kpi { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; position: relative; z-index: 1; }
+  .fv-kpi__cell { background: #fff; border: 1px solid var(--ap-hairline-soft); border-radius: 12px; padding: 12px 8px; text-align: center; }
+  .fv-kpi__cell .n { font-size: 20px; font-weight: 800; color: var(--ap-indigo); letter-spacing: -0.014em; display: block; line-height: 1; }
+  .fv-kpi__cell .l { font-size: 10px; color: var(--ap-ink-mute); margin-top: 5px; display: block; letter-spacing: -0.004em; }
+  .fv-imggrid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; position: relative; z-index: 1; }
+  .fv-imggrid__cell { aspect-ratio: 1; border-radius: 10px; position: relative; overflow: hidden; }
+  .fv-imggrid__cell::after { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.35), transparent 60%); }
+  .fv-imggrid__cell:nth-child(1) { background: linear-gradient(135deg, var(--ap-indigo), #6b7afe); }
+  .fv-imggrid__cell:nth-child(2) { background: linear-gradient(135deg, #f59e0b, #f97316); }
+  .fv-imggrid__cell:nth-child(3) { background: linear-gradient(135deg, #10b981, #34d399); }
+  .fv-imggrid__cell:nth-child(4) { background: linear-gradient(135deg, #f43f5e, #ec4899); }
+  .fv-imggrid__cell:nth-child(5) { background: linear-gradient(135deg, #8b5cf6, #a855f7); }
+
+  /* ───────── Footer ───────── */
+  .ap-foot {
+    padding: 36px 28px; text-align: center;
+    border-top: 1px solid var(--ap-hairline-soft);
+    background: #fff;
+  }
+  .ap-foot p { font-size: 12px; color: var(--ap-ink-mute); margin: 0; }
+
+  /* ═════════════════════════════════════
+     RESPONSIVE
+     ═════════════════════════════════════ */
+  @media (max-width: 1024px) {
+    .pain-grid { grid-template-columns: repeat(2, 1fr); }
+    .ben-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 900px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 60px; }
+    .hero-copy { text-align: center; }
+    .hero-actions { justify-content: center; }
+    .hero-trust { justify-content: center; }
+    .hero-stats { grid-template-columns: repeat(3, 1fr); }
+    .price-row { grid-template-columns: 1fr; gap: 16px; }
+    .growth-grid { grid-template-columns: repeat(2, 1fr); }
+    .rv-card { flex-basis: 320px; }
+    .start-grid { grid-template-columns: 1fr; }
+    .chip-float--a { top: -2%; left: 5%; }
+    .chip-float--b { top: 30%; right: 5%; }
+    .chip-float--c { bottom: -2%; left: 5%; }
+    .feat-row { grid-template-columns: 1fr; gap: 36px; margin-bottom: 72px; }
+    .feat-row--reverse .feat-text { order: 1; }
+    .feat-row--reverse .feat-visual { order: 2; }
+  }
+  @media (max-width: 600px) {
+    .section { padding: 88px 0; }
+    .hero { padding: 72px 0 80px; }
+    .hero-stats { grid-template-columns: 1fr; }
+    .pain-grid { grid-template-columns: 1fr; }
+    .pain-card { padding: 36px 22px 32px; }
+    .growth-grid { grid-template-columns: 1fr; }
+    .growth-insight { padding: 36px 24px; }
+    .growth-insight p { font-size: 20px; }
+    .rv-card { flex-basis: 290px; padding: 22px; }
+    .price-card { padding: 32px 26px 28px; }
+    .pc-price-num { font-size: 40px; }
+    .start-form { padding: 32px 24px 28px; }
+    .ben-grid { grid-template-columns: 1fr; }
+    .feat-visual { padding: 22px; min-height: 280px; }
+    .why-para { font-size: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ───────── NAV ───────── -->
+<nav class="ap-nav" aria-label="Primary">
+  <div class="ap-nav__inner">
+    <a href="#" class="ap-nav__brand"><span class="mark">+</span> HighPlus</a>
+    <div class="ap-nav__menu">
+      <a href="#ai-manager">애(Ai)실장</a>
+      <a href="#benefits">차별점</a>
+      <a href="#features">핵심 기능</a>
+      <a href="#reviews">실제 후기</a>
+      <a href="#start" class="ap-nav__cta">상담 신청 ›</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ═════════════════════════════════════ HERO ═════════════════════════════════════ -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <span class="eyebrow"><span class="dot"></span> 병원 전문 마케팅 · 의료인이 만든 시스템</span>
+        <h1>
+          <span class="line">원장님의 색깔이 담긴</span>
+          <span class="line">글이 쌓여 <span class="hl-mark">초진</span>으로</span>
+          <span class="line"><span class="grad-blue">나타납니다.</span></span>
+        </h1>
+        <p class="hero-sub">
+          <strong>애(Ai)실장</strong>이 진료 컨셉과 병원의 색깔을 학습해, 우리 병원만의 글을 자동으로 만들어 드립니다. 초진은 시스템에, 재진은 원장님께.
+        </p>
+        <div class="hero-actions">
+          <a href="#ai-manager" class="btn btn-primary">애(Ai)실장 시작하기 <span aria-hidden="true">→</span></a>
+          <a href="#growth" class="btn btn-outline">성장 스토리 보기</a>
+        </div>
+        <div class="hero-trust">
+          <span class="avs">
+            <span>강</span><span>김</span><span>최</span><span>+</span>
+          </span>
+          <span>이미 <strong>35개+ 병원</strong>이 사용 중입니다</span>
+        </div>
+      </div>
+
+      <!-- Phone mock + ripples + floating chips -->
+      <div class="hero-visual" aria-hidden="true">
+        <div class="ripple">
+          <svg viewBox="0 0 500 500" fill="none">
+            <circle cx="250" cy="250" r="60" stroke="rgba(59,72,248,0.18)" stroke-width="1"/>
+            <circle cx="250" cy="250" r="110" stroke="rgba(59,72,248,0.14)" stroke-width="1"/>
+            <circle cx="250" cy="250" r="160" stroke="rgba(59,72,248,0.10)" stroke-width="1"/>
+            <circle cx="250" cy="250" r="210" stroke="rgba(59,72,248,0.07)" stroke-width="1"/>
+            <circle cx="250" cy="250" r="245" stroke="rgba(59,72,248,0.05)" stroke-width="1"/>
+          </svg>
+        </div>
+
+        <div class="chip-float chip-float--a">
+          <span class="swatch">📈</span>초진 +172% 증가
+        </div>
+        <div class="chip-float chip-float--b">
+          <span class="swatch">⚡</span>저품질 걱정 ZERO
+        </div>
+        <div class="chip-float chip-float--c">
+          <span class="swatch">✓</span>서비스 유지율 98%
+        </div>
+
+        <div class="phone">
+          <div class="phone__screen">
+            <div class="phone__notch"></div>
+            <div class="phone__status">
+              <span>9:41</span>
+              <span class="ico">●●● 5G</span>
+            </div>
+            <div class="phone__body">
+              <div class="ph-card">
+                <span class="ph-card__tag">● 자동 발행 완료</span>
+                <p class="ph-card__title">40대 직장인 거북목, 회복까지 178건의 케이스</p>
+                <p class="ph-card__sub">신경외과 · 도수치료 / 우리 병원 색깔로 작성됨</p>
+                <div class="ph-stats">
+                  <div class="ph-stat"><span class="n">1,284</span><span class="l">조회</span></div>
+                  <div class="ph-stat"><span class="n">#3</span><span class="l">키워드</span></div>
+                  <div class="ph-stat"><span class="n">23</span><span class="l">문의</span></div>
+                </div>
+              </div>
+              <div class="ph-card" style="padding: 12px;">
+                <div class="ph-chart">
+                  <svg viewBox="0 0 240 76" preserveAspectRatio="none">
+                    <defs>
+                      <linearGradient id="hpg" x1="0" x2="0" y1="0" y2="1">
+                        <stop offset="0" stop-color="#3b48f8" stop-opacity="0.32"/>
+                        <stop offset="1" stop-color="#3b48f8" stop-opacity="0"/>
+                      </linearGradient>
+                    </defs>
+                    <path d="M0 60 L30 56 L60 50 L90 44 L120 38 L150 30 L180 22 L210 14 L240 8 L240 76 L0 76 Z" fill="url(#hpg)"/>
+                    <path d="M0 60 L30 56 L60 50 L90 44 L120 38 L150 30 L180 22 L210 14 L240 8" stroke="#3b48f8" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                    <circle cx="240" cy="8" r="4" fill="#3b48f8"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="ph-row">
+                <div class="avt">강</div>
+                <div class="meta">
+                  <p class="name">강○우 원장님</p>
+                  <p class="when">"블로그 보고 왔어요" 환자 +172%</p>
+                </div>
+                <span class="pill">LIVE</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HERO stats — Image 5 style -->
+    <div class="hero-stats">
+      <div class="stat-card">
+        <div class="stat-card__top">
+          <span class="stat-card__label">파트너 병원</span>
+          <span class="stat-card__ic">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 9h6"/><path d="M9 13h6"/><path d="M9 17h6"/></svg>
+          </span>
+        </div>
+        <p class="stat-card__num">35<span>+</span></p>
+        <p class="stat-card__desc">전국 진료과 35개 이상 병원이 함께 운영 중입니다.</p>
+      </div>
+      <div class="stat-card stat-card--alt">
+        <div class="stat-card__top">
+          <span class="stat-card__label">서비스 유지율</span>
+          <span class="stat-card__ic">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="14 7 21 7 21 14"/></svg>
+          </span>
+        </div>
+        <p class="stat-card__num">98<span>%</span></p>
+        <p class="stat-card__desc">한 번 시작한 원장님 100명 중 98명이 계속 함께합니다.</p>
+      </div>
+      <div class="stat-card stat-card--alt2">
+        <div class="stat-card__top">
+          <span class="stat-card__label">병원 운영 노하우</span>
+          <span class="stat-card__ic">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg>
+          </span>
+        </div>
+        <p class="stat-card__num">5<span>년+</span></p>
+        <p class="stat-card__desc">현역 의료인이 직접 5년 이상 운영하며 만든 시스템입니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════════════════════════════ AI MANAGER ═════════════════════════════════════ -->
+<section id="ai-manager" class="section section--parchment">
+  <div class="container">
+    <header class="ai-head">
+      <span class="sect-num">/ 01 BLOG AUTOMATION</span>
+      <h2>
+        블로그 자동화 프로그램,<br>
+        <span class="pname">애(Ai)<span class="hl-mark--solid-blue">실장</span></span>
+      </h2>
+      <p class="sub">초진은 애(Ai)실장에게 맡기시고, 원장님은 재진에 집중하세요.</p>
+    </header>
+
+    <!-- PAIN POINT — Image 1 "What you will get" style -->
+    <div class="pain-card">
+      <div class="pain-card__head">
+        <span class="eyebrow"><span class="dot"></span> Pain Point</span>
+        <h3>원장님, <span class="hl-mark">이런 상황</span> 아닌가요?</h3>
+        <p>저희도 병원을 운영해봤기 때문에 압니다.</p>
+      </div>
+      <div class="pain-grid">
+        <article class="pain-tile">
+          <div class="pain-tile__ic pain-tile__ic--indigo">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7" r="4"/><path d="M4 21v-1a8 8 0 0 1 16 0v1"/></svg>
+          </div>
+          <h4 class="pain-tile__title">광고비 이중 지출</h4>
+          <p class="pain-tile__desc">실장급 직원까지 고용 중인데, 광고비도 또 지출해야 하는 상황</p>
+        </article>
+        <article class="pain-tile">
+          <div class="pain-tile__ic pain-tile__ic--amber">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg>
+          </div>
+          <h4 class="pain-tile__title">마케팅 주도권</h4>
+          <p class="pain-tile__desc">더 이상 마케팅에 끌려다니지 않고 주도권을 갖고 싶을 때</p>
+        </article>
+        <article class="pain-tile">
+          <div class="pain-tile__ic pain-tile__ic--mint">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <h4 class="pain-tile__title">병원 톤이 사라짐</h4>
+          <p class="pain-tile__desc">블로그 대행을 맡기면 우리 병원 글 같지가 않을 때</p>
+        </article>
+        <article class="pain-tile">
+          <div class="pain-tile__ic pain-tile__ic--rose">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.39 5.32L20 8.27l-4.5 4.05L17 19l-5-3-5 3 1.5-6.68L4 8.27l5.61-.95z"/></svg>
+          </div>
+          <h4 class="pain-tile__title">진료 철학 표현</h4>
+          <p class="pain-tile__desc">내 진료 철학과 색깔을 형식적인 대행사 글 대신 직접 담고 싶을 때</p>
+        </article>
+        <article class="pain-tile">
+          <div class="pain-tile__ic pain-tile__ic--violet">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><polyline points="14 7 21 7 21 14"/></svg>
+          </div>
+          <h4 class="pain-tile__title">콘텐츠 기준 부재</h4>
+          <p class="pain-tile__desc">당장 뭘 써야 하는지, 콘텐츠 작성 기준이 명확하지 않을 때</p>
+        </article>
+        <article class="pain-tile">
+          <div class="pain-tile__ic pain-tile__ic--sky">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
+          <h4 class="pain-tile__title">초진 체감 없음</h4>
+          <p class="pain-tile__desc">매달 대행비 100만원 넘게 나가는데, 초진 체감이 전혀 없을 때</p>
+        </article>
+      </div>
+    </div>
+
+    <!-- PRICE TILES -->
+    <div class="price-row">
+      <article class="price-card">
+        <div class="price-card__ripple" aria-hidden="true">
+          <svg viewBox="0 0 380 380" fill="none">
+            <circle cx="190" cy="190" r="60" stroke="rgba(59,72,248,0.12)" stroke-width="1"/>
+            <circle cx="190" cy="190" r="110" stroke="rgba(59,72,248,0.10)" stroke-width="1"/>
+            <circle cx="190" cy="190" r="160" stroke="rgba(59,72,248,0.07)" stroke-width="1"/>
+          </svg>
+        </div>
+        <span class="pc-badge">BEST</span>
+        <span class="pc-tag">Subscription</span>
+        <h3 class="pc-title">애(Ai)실장</h3>
+
+        <div class="pc-price">
+          <span class="pc-price-num">₩250,000</span>
+          <span class="pc-price-unit">/ 월 · VAT 포함 <strong>₩275,000</strong></span>
+        </div>
+        <p class="pc-sub">월 원고 <strong>22건</strong> (기본 20건 + 보장 2건) · 이미지 추출 <strong>50회</strong></p>
+
+        <ul class="pc-list">
+          <li><span class="check"><svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.2 3.2L13 5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>의료법 리스크 <strong>100% 최소화</strong></span></li>
+          <li><span class="check"><svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.2 3.2L13 5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span><strong>위약금 없는</strong> 월 단위 계약</span></li>
+          <li><span class="check"><svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.2 3.2L13 5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>미사용분 <strong>최대 2개월 이월</strong></span></li>
+          <li><span class="check"><svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.2 3.2L13 5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>현역 <strong>의료인이 직접 만든</strong> 시스템</span></li>
+          <li><span class="check"><svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.2 3.2L13 5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span><strong>1:1 온보딩</strong> + 우선 응답 지원</span></li>
+        </ul>
+
+        <a href="#start" class="pc-cta">애(Ai)실장 시작하기 <span aria-hidden="true">→</span></a>
+        <p class="pc-note"><strong>이월 정책</strong> · 미사용분은 최대 2개월까지 이월됩니다. 구독 해지 시 잔여 발행권은 모두 리셋됩니다.</p>
+      </article>
+
+      <article class="price-card price-card--accent">
+        <div class="price-card__ripple" aria-hidden="true">
+          <svg viewBox="0 0 380 380" fill="none">
+            <circle cx="190" cy="190" r="60" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+            <circle cx="190" cy="190" r="110" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+            <circle cx="190" cy="190" r="160" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+          </svg>
+        </div>
+        <span class="pc-badge">RECOMMENDED</span>
+        <span class="pc-tag">Subscription</span>
+        <h3 class="pc-title">애(Ai)실장 프리미엄</h3>
+
+        <div class="pc-price">
+          <span class="pc-price-num">₩400,000</span>
+          <span class="pc-price-unit">/ 월 · VAT 포함 <strong>₩440,000</strong></span>
+        </div>
+        <p class="pc-sub">우리 병원만의 페르소나를 <strong>1:1 면담</strong>으로 직접 세팅해 드립니다.</p>
+
+        <ul class="pc-list">
+          <li><span class="check"><svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.2 3.2L13 5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>원장님 1:1 면담 후 <strong>페르소나 직접 세팅</strong></span></li>
+          <li><span class="check"><svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.2 3.2L13 5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span><strong>특화 진료 · 고유 치료법</strong> 콘텐츠 반영</span></li>
+          <li><span class="check"><svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.2 3.2L13 5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>진료 프로세스 · 치료 철학을 글에 자연스럽게 반영</span></li>
+          <li><span class="check"><svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.2 3.2L13 5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>대행사가 만들 수 없는 케이스 기반 콘텐츠</span></li>
+          <li><span class="check"><svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.2 3.2L13 5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span><strong>기본 플랜 5가지 혜택</strong> 모두 포함</span></li>
+        </ul>
+
+        <a href="#start" class="pc-cta">프리미엄 상담 신청 <span aria-hidden="true">→</span></a>
+        <p class="pc-note"><strong>이월 정책</strong> · 미사용분은 최대 2개월까지 이월됩니다. 구독 해지 시 잔여 발행권은 모두 리셋됩니다.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════════════════════════════ WHY (그래서 만들었습니다) ═════════════════════════════════════ -->
+<section id="why" class="section section--soft">
+  <div class="container container--narrow">
+    <div class="why-wrap">
+      <svg class="why-qmark why-qmark--open" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M9.983 3v7.391c0 5.704-3.731 9.57-8.983 10.609l-.995-2.151c2.432-.917 3.995-3.638 3.995-5.849h-4v-10h9.983zm14.017 0v7.391c0 5.704-3.748 9.571-9 10.609l-.996-2.151c2.433-.917 3.996-3.638 3.996-5.849h-3.983v-10h9.983z"/>
+      </svg>
+      <h2 class="why-title">그래서 <span class="grad-blue">만들었습니다.</span></h2>
+      <div class="why-divider"></div>
+      <p class="why-para">우리 병원을 정확히 이해하고 도움을 줄 수 있는 실장급 직원을 고용하고 싶지만, 여러 가지 이유로 하지 못하는 경우가 많습니다.</p>
+      <p class="why-para">혹 고용 중인데도 블로그나 홍보 비용이 또 많이 들어가는 상황일 때, 실장급 직원을 대신할 수 있거나, 직원을 도와줄 수 있는 도구를 만들고 싶었습니다.</p>
+      <p class="why-para">원내의 실장처럼 우리 병원의 지역과 컨셉 등을 이해하고, 자동으로 키워드를 찾고, 글을 쓰고, 이미지를 만듭니다.</p>
+      <svg class="why-qmark why-qmark--close" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M9.983 3v7.391c0 5.704-3.731 9.57-8.983 10.609l-.995-2.151c2.432-.917 3.995-3.638 3.995-5.849h-4v-10h9.983zm14.017 0v7.391c0 5.704-3.748 9.571-9 10.609l-.996-2.151c2.433-.917 3.996-3.638 3.996-5.849h-3.983v-10h9.983z"/>
+      </svg>
+      <div class="why-sig">
+        <p class="why-sig__tagline">원장님 옆에서 함께 일하는,<br><span class="grad-blue">또 한 명의 실장입니다.</span></p>
+        <p class="why-sig__body">병원 현장에서 쌓아온 경험과 수많은 고민이 <strong>애(Ai)실장 시스템의 기반</strong>입니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════════════════════════════ BENEFITS (WHY 애(Ai)실장 — 차원이 다른 8가지) ═════════════════════════════════════ -->
+<section id="benefits" class="section">
+  <div class="container">
+    <header class="ben-head">
+      <span class="sect-num">/ WHY 애(Ai)실장</span>
+      <h2>애(Ai)실장, <span class="hl-mark">차원이 다른 8가지</span></h2>
+      <p>병원에서 블로그를 직접 운영하면서 필요했던 모든 기능을 담았습니다.</p>
+    </header>
+    <div class="ben-grid">
+      <article class="ben-card">
+        <div class="ben-card__ic ben-ic--1">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <h4 class="ben-card__title">비용 약 1/20</h4>
+        <p class="ben-card__desc">타사 블로그 대행 대비 약 1/20 수준의 비용으로 운영할 수 있습니다.</p>
+        <p class="ben-card__note">*타사 평균 블로그 1건 발행 비용 : <strong>15만원</strong></p>
+      </article>
+      <article class="ben-card">
+        <div class="ben-card__ic ben-ic--2">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z"/></svg>
+        </div>
+        <h4 class="ben-card__title">보통 2~3분 이내</h4>
+        <p class="ben-card__desc">SEO 알고리즘이 선호하는 구조로 작성되어, 저품질 분류 가능성이 매우 낮습니다.</p>
+      </article>
+      <article class="ben-card">
+        <div class="ben-card__ic ben-ic--3">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 1 1 3 3L7 19l-4 1 1-4z"/></svg>
+        </div>
+        <h4 class="ben-card__title">원클릭 원고 생성</h4>
+        <p class="ben-card__desc">키워드 → 유형 → 버튼 한 번으로 데이터 기반 유입 구조의 원고가 완성됩니다.</p>
+      </article>
+      <article class="ben-card">
+        <div class="ben-card__ic ben-ic--4">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+        </div>
+        <h4 class="ben-card__title">AI 이미지 자동 생성</h4>
+        <p class="ben-card__desc">콘텐츠 주제와 톤에 맞는 이미지를 AI가 자동으로 생성합니다.</p>
+      </article>
+      <article class="ben-card">
+        <div class="ben-card__ic ben-ic--5">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        </div>
+        <h4 class="ben-card__title">AI 키워드 추천</h4>
+        <p class="ben-card__desc">키워드를 자동 추출, AI가 블로그에 적합한 키워드를 골라드립니다.</p>
+      </article>
+      <article class="ben-card">
+        <div class="ben-card__ic ben-ic--6">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 9h6M9 13h6M9 17h6"/></svg>
+        </div>
+        <h4 class="ben-card__title">병원 맞춤 프롬프트</h4>
+        <p class="ben-card__desc">우리 병원의 지역·진료과·컨셉에 맞는 개별 프롬프트로 원고를 제작합니다.</p>
+      </article>
+      <article class="ben-card">
+        <div class="ben-card__ic ben-ic--7">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><polyline points="14 7 21 7 21 14"/></svg>
+        </div>
+        <h4 class="ben-card__title">SEO 최적화</h4>
+        <p class="ben-card__desc">검색 노출에 유리한 구조와 키워드 배치를 자동으로 적용합니다.</p>
+      </article>
+      <article class="ben-card">
+        <div class="ben-card__ic ben-ic--8">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l9 4-9 4-9-4 9-4z"/><path d="M3 10l9 4 9-4M3 14l9 4 9-4"/></svg>
+        </div>
+        <h4 class="ben-card__title">의료법 리스크 최소화</h4>
+        <p class="ben-card__desc">의료광고 심의 기준을 반영하여 법적 리스크를 줄여줍니다.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════════════════════════════ FEATURES (압도적인 차별점 3가지) ═════════════════════════════════════ -->
+<section id="features" class="section section--parchment">
+  <div class="container">
+    <header class="feat-head">
+      <span class="sect-num">/ CORE FEATURES</span>
+      <h2>압도적인 차별점, <span class="hl-mark--blue">3가지</span></h2>
+      <p>애(Ai)실장은 단순한 자동화 툴이 아닙니다. <strong>최상위 LLM을 탑재</strong>한 병원 전용 마케팅 엔진입니다.</p>
+    </header>
+
+    <!-- FEATURE 01 -->
+    <div class="feat-row">
+      <div class="feat-text">
+        <p class="feat-num">/ 01 NATURAL WRITING</p>
+        <h3>원장님이 직접 쓰신 글처럼,<br><span class="grad-blue">전혀 어색하지 않습니다</span></h3>
+        <p class="desc"><strong>수년간 축적된 병원 콘텐츠 데이터</strong>에 <strong>27개 항목의 정밀 프로파일링</strong>을 더합니다. 진료 프로세스, 치료 철학, 환자 응대 방식까지 모두 데이터화하고, 이 위에서 <strong>최상위 LLM</strong>이 병원 전용 프롬프트로 원고를 작성합니다.</p>
+        <p class="desc">AI 자동화 툴 특유의 어색한 문장은 나오지 않습니다. 환자가 끝까지 읽고 예약 버튼을 누르게 만드는 글이, 결국 <strong>초진 한 명을 더</strong> 만들어냅니다.</p>
+        <ul class="feat-checks">
+          <li><span class="ck"><svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.2 3.2L13 5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>최상위 LLM 탑재 · 자연스러운 문체</li>
+          <li><span class="ck"><svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.2 3.2L13 5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>27개 항목 병원 프로파일링</li>
+          <li><span class="ck"><svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.2 3.2L13 5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>발행 전 미리보기로 직접 검토 가능</li>
+          <li><span class="ck"><svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.2 3.2L13 5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>최신 의료광고법 기준 자동 검수</li>
+        </ul>
+      </div>
+      <div class="feat-visual">
+        <span class="fv-tag">● 원고 자동 작성 중</span>
+        <div class="fv-window">
+          <div class="fv-row" style="flex-wrap:wrap;gap:6px;">
+            <span class="fv-chip fv-chip--blue">신경외과</span>
+            <span class="fv-chip">거북목</span>
+            <span class="fv-chip">도수치료</span>
+            <span class="fv-chip">40대</span>
+          </div>
+          <div class="fv-bar fv-bar--blue" style="width: 92%;"></div>
+          <div class="fv-bar" style="width: 100%;"></div>
+          <div class="fv-bar" style="width: 88%;"></div>
+          <div class="fv-bar" style="width: 95%;"></div>
+          <div class="fv-bar" style="width: 70%;"></div>
+        </div>
+        <div class="fv-window">
+          <div class="fv-kw-row">
+            <strong>의료광고법 자동 검수</strong>
+            <span class="fv-chip fv-chip--mint">통과 ✓</span>
+          </div>
+          <div class="fv-bar fv-bar--green" style="width: 100%;"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FEATURE 02 -->
+    <div class="feat-row feat-row--reverse">
+      <div class="feat-text">
+        <p class="feat-num">/ 02 KEYWORD STRATEGY</p>
+        <h3>키워드 전략,<br><span class="grad-blue">AI가 대신 세워드립니다</span></h3>
+        <p class="desc"><strong>지역·전국·조합 키워드</strong>까지 자동 추출. 본지역·인근·상위 3단계로 분류하고, <strong>13개 진료 카테고리별 DB</strong>에서 AI가 '우리 블로그에 가장 적합한' 키워드만 선별합니다.</p>
+        <p class="desc">네이버 <strong>월간 검색량과 경쟁도</strong>를 한 화면에서. 순위 하락 시 해당 키워드로 새 원고를 즉시 재생성합니다.</p>
+        <ul class="feat-checks">
+          <li><span class="ck"><svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.2 3.2L13 5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>지역·전국·조합 키워드 자동 추출</li>
+          <li><span class="ck"><svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.2 3.2L13 5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>13개 진료 카테고리 전용 DB</li>
+          <li><span class="ck"><svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.2 3.2L13 5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>네이버 실시간 검색량·경쟁도 분석</li>
+          <li><span class="ck"><svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.2 3.2L13 5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>검색 순위 매일 자동 수집, 차트 시각화</li>
+          <li><span class="ck"><svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.2 3.2L13 5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>순위 하락 시 자동 재생성</li>
+        </ul>
+      </div>
+      <div class="feat-visual">
+        <span class="fv-tag">● 키워드 실시간 분석</span>
+        <div class="fv-window">
+          <div class="fv-kw-row">
+            <strong>강남 신경외과</strong>
+            <span class="fv-chip fv-chip--amber">#3위</span>
+          </div>
+          <div class="fv-bar fv-bar--blue" style="width: 88%;"></div>
+          <div class="fv-kw-row">
+            <strong>강남 거북목</strong>
+            <span class="fv-chip fv-chip--sky">#7위</span>
+          </div>
+          <div class="fv-bar fv-bar--amber" style="width: 64%;"></div>
+          <div class="fv-kw-row">
+            <strong>양재 도수치료</strong>
+            <span class="fv-chip fv-chip--mint">#1위</span>
+          </div>
+          <div class="fv-bar fv-bar--green" style="width: 98%;"></div>
+        </div>
+        <div class="fv-kpi">
+          <div class="fv-kpi__cell"><span class="n">12,400</span><span class="l">월 검색량</span></div>
+          <div class="fv-kpi__cell"><span class="n">중</span><span class="l">경쟁도</span></div>
+          <div class="fv-kpi__cell"><span class="n">+8</span><span class="l">순위 변동</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FEATURE 03 -->
+    <div class="feat-row">
+      <div class="feat-text">
+        <p class="feat-num">/ 03 IMAGE GENERATION</p>
+        <h3>무료 이미지 찾던 30분,<br><span class="grad-blue">이제 30초</span></h3>
+        <p class="desc">최신 AI 이미지 모델 <strong>Nano Banana Pro</strong>가 원고를 분석합니다. <strong>일러스트·실사</strong> 스타일에 다양한 연령대·성별까지 조합해 한 번에 5장을 생성합니다.</p>
+        <p class="desc"><strong>저작권 리스크</strong>도, <strong>글과 따로 노는 사진을 억지로 끼워 맞추던 작업</strong>도 더는 없습니다.</p>
+        <ul class="feat-checks">
+          <li><span class="ck"><svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.2 3.2L13 5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Nano Banana Pro · 최신 AI 이미지 모델</li>
+          <li><span class="ck"><svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.2 3.2L13 5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>일러스트·실사 스타일 선택</li>
+          <li><span class="ck"><svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.2 3.2L13 5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>다양한 연령대·성별 페르소나 조합</li>
+          <li><span class="ck"><svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.2 3.2L13 5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>1회 생성당 5장, 골라서 사용</li>
+          <li><span class="ck"><svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.2 3.2L13 5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>이미지만 따로 재생성 가능</li>
+        </ul>
+      </div>
+      <div class="feat-visual">
+        <span class="fv-tag">● 5장 자동 생성</span>
+        <div class="fv-imggrid">
+          <div class="fv-imggrid__cell"></div>
+          <div class="fv-imggrid__cell"></div>
+          <div class="fv-imggrid__cell"></div>
+          <div class="fv-imggrid__cell"></div>
+          <div class="fv-imggrid__cell"></div>
+        </div>
+        <div class="fv-window">
+          <div class="fv-kw-row" style="flex-wrap:wrap;gap:6px;">
+            <strong>스타일</strong>
+            <span class="fv-chip fv-chip--blue">일러스트</span>
+            <span class="fv-chip">실사</span>
+          </div>
+          <div class="fv-kw-row" style="flex-wrap:wrap;gap:6px;">
+            <strong>페르소나</strong>
+            <span class="fv-chip">30대 여성</span>
+            <span class="fv-chip">40대 남성</span>
+            <span class="fv-chip">시니어</span>
+          </div>
+        </div>
+        <div class="fv-window">
+          <div class="fv-kw-row">
+            <strong>저작권 리스크</strong>
+            <span class="fv-chip fv-chip--mint">ZERO ✓</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════════════════════════════ GROWTH ═════════════════════════════════════ -->
+<section id="growth" class="section">
+  <div class="container">
+    <header class="growth-head">
+      <span class="sect-num">/ 02 COMPOUNDING GROWTH</span>
+      <h2>블로그는 <span class="hl-mark--blue">복리</span>로 성장합니다</h2>
+      <p>한 편의 글이 내일도, 다음 달에도, 1년 뒤에도 환자를 데려옵니다.<br>꾸준히 관리된 블로그는 시간이 지날수록 효과가 커집니다.</p>
+    </header>
+
+    <div class="growth-grid">
+      <article class="growth-tile">
+        <div class="growth-tile__ic growth-tile__ic--1">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 21V9"/></svg>
+        </div>
+        <p class="growth-tile__num">/ 01</p>
+        <p class="growth-tile__period">Month 1–3</p>
+        <h3 class="growth-tile__title">기반 구축</h3>
+        <p class="growth-tile__desc">키워드 분석, SEO 세팅, 콘텐츠 발행 시작</p>
+      </article>
+      <article class="growth-tile">
+        <div class="growth-tile__ic growth-tile__ic--2">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12c0 5-5 9-10 9S2 17 2 12 7 3 12 3a7 7 0 0 1 7 7"/><path d="M12 7v5l3 3"/></svg>
+        </div>
+        <p class="growth-tile__num">/ 02</p>
+        <p class="growth-tile__period">Month 3–6</p>
+        <h3 class="growth-tile__title">효과 체감</h3>
+        <p class="growth-tile__desc">"블로그 보고 왔습니다" 환자가 나타나기 시작</p>
+      </article>
+      <article class="growth-tile">
+        <div class="growth-tile__ic growth-tile__ic--3">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><polyline points="14 7 21 7 21 14"/></svg>
+        </div>
+        <p class="growth-tile__num">/ 03</p>
+        <p class="growth-tile__period">Month 6–12</p>
+        <h3 class="growth-tile__title">임계점 돌파</h3>
+        <p class="growth-tile__desc">같은 노력으로 2~3배 노출이 발생합니다</p>
+      </article>
+      <article class="growth-tile">
+        <div class="growth-tile__ic growth-tile__ic--4">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M9 14l-2 8 5-3 5 3-2-8"/></svg>
+        </div>
+        <p class="growth-tile__num">/ 04</p>
+        <p class="growth-tile__period">12 Months +</p>
+        <h3 class="growth-tile__title">자산화 완성</h3>
+        <p class="growth-tile__desc">블로그가 24시간 일하는 영업사원이 됩니다</p>
+      </article>
+    </div>
+
+    <div class="growth-insight">
+      <div class="growth-insight__ic">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l6-6 4 4 8-8"/><polyline points="14 2 21 2 21 9"/></svg>
+      </div>
+      <p>원장님은 <strong>진료에만</strong> 집중하세요.<br>초진을 데려오는 건, 잘 세팅된 블로그가 합니다.</p>
+    </div>
+
+    <p class="growth-bottom">
+      저희가 운영하는 35개+ 병원은 한 가지가 같습니다.<br>
+      <strong>멈추지 않았다는 것.</strong> 꾸준함을 시스템이 대신하면, 포기할 이유가 사라집니다.
+    </p>
+  </div>
+</section>
+
+<!-- ═════════════════════════════════════ REVIEWS ═════════════════════════════════════ -->
+<section id="reviews" class="section section--parchment">
+  <header class="rv-head">
+    <span class="sect-num">/ 03 REAL REVIEWS</span>
+    <h2>파트너 원장님들의 <span class="hl-mark">실제 후기</span></h2>
+    <p>98%가 함께하고 있습니다. 원장님들의 솔직한 이야기를 들어보세요.</p>
+  </header>
+
+  <div class="rv-marquee">
+    <div class="rv-track">
+      <article class="rv-card">
+        <span class="rv-quotemark">"</span>
+        <div class="rv-stars">★★★★★</div>
+        <p class="rv-quote">블로그 보고 왔다는<br>환자가 대폭 증가했습니다</p>
+        <p class="rv-text">블로그 노출이 꾸준히 늘고 있고, 실제로 블로그를 보고 찾아왔다는 환자분들이 많아졌습니다. 초진 환자 유입에 도움이 되어 만족스럽게 운영하고 있습니다.</p>
+        <div class="rv-author"><div class="rv-avatar" style="background:#f97316;">강</div><div class="rv-meta"><span class="name">강○우 원장님</span><span class="loc">제주 / 늘○○○○원</span></div></div>
+      </article>
+      <article class="rv-card">
+        <span class="rv-quotemark">"</span>
+        <div class="rv-stars">★★★★★</div>
+        <p class="rv-quote">체계적 분석과 정성,<br>도약을 이끄는 마케팅</p>
+        <p class="rv-text">체계적인 분석과 정성이 담긴 블로그를 통해 한의원에 도약을 이끌어주는 마케팅업체입니다. 추천합니다.</p>
+        <div class="rv-author"><div class="rv-avatar" style="background:#8b5cf6;">허</div><div class="rv-meta"><span class="name">허○이 원장님</span><span class="loc">서울 구로구 / 난○○○○○○원</span></div></div>
+      </article>
+      <article class="rv-card">
+        <span class="rv-quotemark">"</span>
+        <div class="rv-stars">★★★★★</div>
+        <p class="rv-quote">의도한 질환군 환자가<br>직접 내원합니다</p>
+        <p class="rv-text">양산형 광고 포스팅과 다르게 대표가 직접 작성한 느낌을 주고 퀄리티가 좋습니다. 키워드 순위까지 잘 잡아주셔서 노출과 조회수 모두 크게 증가했습니다.</p>
+        <div class="rv-author"><div class="rv-avatar" style="background:#3b82f6;">김</div><div class="rv-meta"><span class="name">김○언 원장님</span><span class="loc">서울 강남구 / 양○○○○○○원</span></div></div>
+      </article>
+      <article class="rv-card">
+        <span class="rv-quotemark">"</span>
+        <div class="rv-stars">★★★★★</div>
+        <p class="rv-quote">데이터 기반 분석,<br>가장 성실한 운영</p>
+        <p class="rv-text">단순 홍보가 아니라 데이터를 기반으로 객관적으로 분석해 주는 점이 계속 계약을 유지하는 이유입니다. 지금까지 의뢰했던 업체 중 가장 성실하게 운영해 줍니다.</p>
+        <div class="rv-author"><div class="rv-avatar" style="background:#ec4899;">진</div><div class="rv-meta"><span class="name">진○우 원장님</span><span class="loc">인천 남동구 / 맑○○○○원</span></div></div>
+      </article>
+      <article class="rv-card">
+        <span class="rv-quotemark">"</span>
+        <div class="rv-stars">★★★★★</div>
+        <p class="rv-quote">초진 유입 증가,<br>즉각적인 피드백</p>
+        <p class="rv-text">블로그 광고 하기 전보다 초진 유입이 늘었으며 노출이 잘 되어서 만족합니다. 즉각적인 피드백이 너무나 좋습니다.</p>
+        <div class="rv-author"><div class="rv-avatar" style="background:#10b981;">최</div><div class="rv-meta"><span class="name">최○근 원장님</span><span class="loc">서울 강서구 / 까○○○원</span></div></div>
+      </article>
+      <article class="rv-card">
+        <span class="rv-quotemark">"</span>
+        <div class="rv-stars">★★★★★</div>
+        <p class="rv-quote">투명한 보고서,<br>세심한 브랜딩 관리</p>
+        <p class="rv-text">매달 체계적인 보고서를 통해 진행 상황을 투명하게 공유해 주셔서 신뢰가 갑니다. 피드백 반영이 빠르고 브랜딩이 탄탄해지는 게 느껴집니다.</p>
+        <div class="rv-author"><div class="rv-avatar" style="background:#f97316;">정</div><div class="rv-meta"><span class="name">정○학 원장님</span><span class="loc">서울 중랑구 / 중○○○○○원</span></div></div>
+      </article>
+      <!-- loop dup -->
+      <article class="rv-card">
+        <span class="rv-quotemark">"</span>
+        <div class="rv-stars">★★★★★</div>
+        <p class="rv-quote">블로그 보고 왔다는<br>환자가 대폭 증가했습니다</p>
+        <p class="rv-text">블로그 노출이 꾸준히 늘고 있고, 실제로 블로그를 보고 찾아왔다는 환자분들이 많아졌습니다. 초진 환자 유입에 도움이 되어 만족스럽게 운영하고 있습니다.</p>
+        <div class="rv-author"><div class="rv-avatar" style="background:#f97316;">강</div><div class="rv-meta"><span class="name">강○우 원장님</span><span class="loc">제주 / 늘○○○○원</span></div></div>
+      </article>
+      <article class="rv-card">
+        <span class="rv-quotemark">"</span>
+        <div class="rv-stars">★★★★★</div>
+        <p class="rv-quote">체계적 분석과 정성,<br>도약을 이끄는 마케팅</p>
+        <p class="rv-text">체계적인 분석과 정성이 담긴 블로그를 통해 한의원에 도약을 이끌어주는 마케팅업체입니다. 추천합니다.</p>
+        <div class="rv-author"><div class="rv-avatar" style="background:#8b5cf6;">허</div><div class="rv-meta"><span class="name">허○이 원장님</span><span class="loc">서울 구로구 / 난○○○○○○원</span></div></div>
+      </article>
+      <article class="rv-card">
+        <span class="rv-quotemark">"</span>
+        <div class="rv-stars">★★★★★</div>
+        <p class="rv-quote">의도한 질환군 환자가<br>직접 내원합니다</p>
+        <p class="rv-text">양산형 광고 포스팅과 다르게 대표가 직접 작성한 느낌을 주고 퀄리티가 좋습니다. 키워드 순위까지 잘 잡아주셔서 노출과 조회수 모두 크게 증가했습니다.</p>
+        <div class="rv-author"><div class="rv-avatar" style="background:#3b82f6;">김</div><div class="rv-meta"><span class="name">김○언 원장님</span><span class="loc">서울 강남구 / 양○○○○○○원</span></div></div>
+      </article>
+      <article class="rv-card">
+        <span class="rv-quotemark">"</span>
+        <div class="rv-stars">★★★★★</div>
+        <p class="rv-quote">데이터 기반 분석,<br>가장 성실한 운영</p>
+        <p class="rv-text">단순 홍보가 아니라 데이터를 기반으로 객관적으로 분석해 주는 점이 계속 계약을 유지하는 이유입니다.</p>
+        <div class="rv-author"><div class="rv-avatar" style="background:#ec4899;">진</div><div class="rv-meta"><span class="name">진○우 원장님</span><span class="loc">인천 남동구 / 맑○○○○원</span></div></div>
+      </article>
+      <article class="rv-card">
+        <span class="rv-quotemark">"</span>
+        <div class="rv-stars">★★★★★</div>
+        <p class="rv-quote">초진 유입 증가,<br>즉각적인 피드백</p>
+        <p class="rv-text">블로그 광고 하기 전보다 초진 유입이 늘었으며 노출이 잘 되어서 만족합니다. 즉각적인 피드백이 너무나 좋습니다.</p>
+        <div class="rv-author"><div class="rv-avatar" style="background:#10b981;">최</div><div class="rv-meta"><span class="name">최○근 원장님</span><span class="loc">서울 강서구 / 까○○○원</span></div></div>
+      </article>
+      <article class="rv-card">
+        <span class="rv-quotemark">"</span>
+        <div class="rv-stars">★★★★★</div>
+        <p class="rv-quote">투명한 보고서,<br>세심한 브랜딩 관리</p>
+        <p class="rv-text">매달 체계적인 보고서를 통해 진행 상황을 투명하게 공유해 주셔서 신뢰가 갑니다. 브랜딩이 탄탄해지는 게 느껴집니다.</p>
+        <div class="rv-author"><div class="rv-avatar" style="background:#f97316;">정</div><div class="rv-meta"><span class="name">정○학 원장님</span><span class="loc">서울 중랑구 / 중○○○○○원</span></div></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════════════════════════════ START NOW ═════════════════════════════════════ -->
+<section id="start" class="section">
+  <div class="container">
+    <header class="start-head">
+      <span class="sect-num">/ 04 START NOW</span>
+      <h2>원장님도 <span class="hl-mark--blue">함께</span> 하시겠습니까?</h2>
+      <p>이번 달 선착순 모집이 진행 중입니다. 상담은 부담 없이 시작하세요.</p>
+    </header>
+
+    <div class="start-grid">
+      <div class="start-form">
+        <div class="start-form__deco"></div>
+        <h3 class="start-form__title">상담 신청</h3>
+        <p class="start-form__sub">담당 매니저가 영업일 기준 24시간 내 연락드립니다.</p>
+        <form>
+          <div class="fg"><label for="f-name">성함 / 직책</label><input id="f-name" type="text" placeholder="홍길동 대표"></div>
+          <div class="fg"><label for="f-phone">연락처</label><input id="f-phone" type="tel" placeholder="010-0000-0000"></div>
+          <div class="fg"><label for="f-clinic">업체명</label><input id="f-clinic" type="text" placeholder="업체명 기재"></div>
+          <div class="fg"><label for="f-region">지역</label><input id="f-region" type="text" placeholder="예: 서울 강남구 양재동"></div>
+          <button type="button" class="form-submit">바로 연결하기 <span aria-hidden="true">→</span></button>
+          <p class="form-note">제출 시 개인정보 수집·이용에 동의합니다.</p>
+        </form>
+      </div>
+
+      <aside class="start-side">
+        <div class="countdown">
+          <div class="countdown__top">
+            <span class="pip"></span>
+            <p class="countdown__title">이번 달 선착순 마감까지</p>
+          </div>
+          <div class="countdown__row">
+            <div class="countdown__cell"><span class="n" id="cd-d">18</span><span class="l">DAYS</span></div>
+            <div class="countdown__cell"><span class="n" id="cd-h">07</span><span class="l">HRS</span></div>
+            <div class="countdown__cell"><span class="n" id="cd-m">42</span><span class="l">MIN</span></div>
+            <div class="countdown__cell"><span class="n" id="cd-s">19</span><span class="l">SEC</span></div>
+          </div>
+        </div>
+
+        <div class="live">
+          <div class="live__head">
+            <h3>실시간 접수현황</h3>
+            <span class="dot-live">LIVE</span>
+          </div>
+          <div class="live__list">
+            <div class="live__item"><span class="avt">김</span><span class="who">김○○ <span class="mute">/ 서울 강남구</span></span><span class="when">방금</span></div>
+            <div class="live__item"><span class="avt" style="background:#f59e0b;">박</span><span class="who">박○○ <span class="mute">/ 부산 해운대구</span></span><span class="when">2분 전</span></div>
+            <div class="live__item"><span class="avt" style="background:#10b981;">이</span><span class="who">이○○ <span class="mute">/ 대구 수성구</span></span><span class="when">11분 전</span></div>
+            <div class="live__item"><span class="avt" style="background:#ec4899;">최</span><span class="who">최○○ <span class="mute">/ 인천 남동구</span></span><span class="when">28분 전</span></div>
+            <div class="live__item"><span class="avt" style="background:#8b5cf6;">정</span><span class="who">정○○ <span class="mute">/ 경기 분당구</span></span><span class="when">52분 전</span></div>
+            <div class="live__item"><span class="avt" style="background:#0ea5e9;">조</span><span class="who">조○○ <span class="mute">/ 광주 서구</span></span><span class="when">1시간 전</span></div>
+          </div>
+          <div class="live__footer">🔒 개인정보는 암호화되어 보호됩니다.</div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<footer class="ap-foot">
+  <p>© HighPlus Marketing. Apple Tone v2 시안 — 내부 검토용</p>
+</footer>
+
+<script>
+  (function(){
+    const end = new Date();
+    end.setDate(end.getDate() + 18);
+    end.setHours(end.getHours() + 7, end.getMinutes() + 42, end.getSeconds() + 19);
+    const d = document.getElementById('cd-d');
+    const h = document.getElementById('cd-h');
+    const m = document.getElementById('cd-m');
+    const s = document.getElementById('cd-s');
+    if (!d) return;
+    function pad(n){ return String(n).padStart(2,'0'); }
+    function tick(){
+      const diff = Math.max(0, end - new Date());
+      const days = Math.floor(diff / 86400000);
+      const hrs = Math.floor(diff / 3600000) % 24;
+      const mins = Math.floor(diff / 60000) % 60;
+      const secs = Math.floor(diff / 1000) % 60;
+      d.textContent = pad(days);
+      h.textContent = pad(hrs);
+      m.textContent = pad(mins);
+      s.textContent = pad(secs);
+    }
+    tick();
+    setInterval(tick, 1000);
+  })();
+</script>
+
+</body>
+</html>

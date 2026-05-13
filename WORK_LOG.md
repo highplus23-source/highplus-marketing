@@ -69,6 +69,24 @@
 
 ---
 
+## 2026-05-13 (수) - 클로드
+
+### 완료한 작업
+
+- **톤 비교 시안 2종 생성, 탱 검토 대기**: 하이플러스 홈페이지 디자인 톤 결정을 위한 컨셉 시안 2개 작성
+  - `preview/apple-style.html` — 애플 톤 (흰색 + parchment 교대, 단일 블루 #0066cc, SF Pro Display, 그림자/그라데이션 0)
+  - `preview/meta-style.html` — 메타 톤 (검정 마케팅 CTA + 코발트 구매 CTA, Pretendard, 뱃지 사용, 그림자/그라데이션 0)
+- 공통 콘텐츠 3섹션 동일 구성 (Hero / BLOG AUTOMATION 가격 / START NOW 신청 폼) — 톤만 비교 가능하도록
+- 두 파일 모두 단독 실행 가능 (인라인 CSS, Pretendard CDN만 의존)
+- 기존 `index.html` 무관하게 신규 작업 — 블루→퍼플 그라데이션, 이모지 박스, 그림자 카드 스타일 모두 배제
+
+### 다음 할 일
+
+- 탱 검토 후 어느 톤으로 갈지 결정
+- 결정된 톤 기반으로 `index.html` 또는 `page-about.html`에 디자인 시스템 반영
+
+---
+
 <!-- 다음 작업일에 아래 형식으로 추가:
 
 ## YYYY-MM-DD
