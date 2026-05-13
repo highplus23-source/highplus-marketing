@@ -158,3 +158,80 @@ B안(본문 + 줄간격) 적용:
 2. 각 단계 끝날 때마다 체크박스 업데이트
 3. 단계별로 변경 요약 보여주고 확인 받고 다음 단계 진행
 4. 한 번에 다 하지 말 것
+
+---
+
+# PART 02 다크 + 골드 럭셔리 전면 리디자인 (2026-05-XX)
+
+레퍼런스: iPhone 17 Pro 광고 (다크 + 골든 림 라이트) · 중국 Hall of Fame (골드 프레임 + 그라데이션 텍스트) · iPhone 측면 백라이트 (네온 글로우).
+
+## 작업 범위 (PART 02 ~ 페이지 끝까지)
+
+| 영역 | 라인 범위 | 비고 |
+|---|---|---|
+| `.hp-part-divider` PART 02 진입 디바이더 | 4603–4615 | 골드 그라데이션 라인 + 골드 글로우 |
+| `#services` (핵심 서비스 4종) | 4620–4690 | 4 카드 (`.service-card`) |
+| `#pain-point` (대행사 페인포인트) | 4692–4747 | 6 카드 (`.pain-card`) |
+| `#trust` (About HighPlus + philosophy 3종) | 4749–4844 | 3 카드 (`.phil-card`) + 1지역 1병원 배너 (`.neon-card`) |
+| `#compare` (비교표) | 4846–4929 | `.vs-tbl` |
+| `#faq` (FAQ 아코디언) | 4931–5010 | 8 FAQ |
+| `#scarcity` (FULL MANAGEMENT + agency form) | 5012–5094 | `.hp-agency-card` + `.hp-agency-form-card` |
+| `#limited` (LIMITED slot) | 5096–~5115 | `.hp-scarcity-card--full` |
+
+CSS 영역: 기존 PART 02 관련 룰 라인 ~1600–3200, 신규 추가는 마지막 `</style>` 직전.
+
+## 디자인 토큰 (STEP 1)
+
+```css
+:root {
+  --neon-gold-core:  #FFC83D;
+  --neon-gold-glow:  rgba(255, 200, 61, 0.55);
+  --neon-gold-soft:  #B8901C;
+  --card-bg-deep:    linear-gradient(180deg, rgba(20, 17, 12, 0.95) 0%, rgba(10, 10, 10, 0.98) 100%);
+  --card-border-rim: rgba(255, 200, 61, 0.30);
+
+  --glow-rim:       0 0 0 1px rgba(255, 200, 61, 0.22), 0 0 24px rgba(255, 200, 61, 0.18),
+                    0 16px 40px -12px rgba(0, 0, 0, 0.60), inset 0 1px 0 rgba(255, 230, 128, 0.12);
+  --glow-rim-hover: 0 0 0 1px rgba(255, 200, 61, 0.55), 0 0 36px rgba(255, 200, 61, 0.35),
+                    0 24px 56px -12px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 230, 128, 0.22);
+  --glow-inset:     inset 0 0 60px -20px rgba(255, 200, 61, 0.08);
+}
+```
+
+## 공통 컴포넌트 클래스 (STEP 2)
+
+- `.hp-premium-card` — 모든 PART 02 카드 통합 (다크 + 골드 림 + inset glow)
+- `.hp-premium-label` — 뱃지/라벨 (uppercase + letter-spacing + 골드 글로우)
+- `.hp-premium-emoji` — 이모지 아이콘 컨테이너 (골드 배경 글로우)
+- `.hp-premium-divider` — 섹션 사이 골드 그라데이션 라인
+
+## 체크리스트
+
+- [x] backup 커밋 (`b53d663`)
+- [x] 디자인 토큰 :root에 정의 (`--neon-gold-core/bright/glow/soft/grad`, `--card-bg-deep`, `--glow-rim/-hover/-inset`)
+- [x] 공통 카드 클래스 `.hp-premium-card` 정의 + 모든 기존 카드 셀렉터에 cascade (`.service-card`, `.pain-card`, `.phil-card`, `.hp-agency-card`, `.hp-agency-form-card`, `.hp-scarcity-card`, `.neon-card`, FAQ item)
+- [x] 공통 라벨 `.hp-premium-label` + 모든 `section-tag` / `hp-agency-tag`에 cascade
+- [x] 공통 이모지 컨테이너 `.hp-premium-emoji` + 골드 라디얼 글로우 (모든 PART 02 아이콘 셀렉터)
+- [x] 호버 인터랙션 통일 (`transform: translateY(-4px) + var(--glow-rim-hover)`, transition cubic-bezier 0.3s)
+- [x] 헤드라인 골드 그라데이션 + `text-shadow` 글로우 + grad-highlight 골드 그라데이션
+- [x] CTA 버튼 골드 알약 + 글로우 (`.hp-agency-submit`, `.btn-primary` in scarcity/limited)
+- [x] 섹션 사이 디바이더 골드 그라데이션 라인 (`::before` linear-gradient)
+- [x] compare 비교표 골드 림 + 헤더 골드 그라데이션
+- [x] agency form 입력 필드 골드 포커스 글로우
+- [x] 회색·블루 잔재 제거 (Attribute selector로 `#94A3B8` / `rgba(52,120,246)` 자동 변환)
+- [x] 잔재 grep 검증 — PART 02 진입(라인 4924) 이후 블루/라이트 hex 0건
+
+## 변경 요약
+
+- 신규 CSS 라인: ~270 (index.html 3680 직전)
+- 영향 셀렉터: 12개 카드 패밀리 + 8개 헤딩 패밀리 + 7개 라벨 패밀리
+- HTML 변경 0 — 기존 클래스명 보존하며 CSS만 cascade로 새 시스템 적용
+- 모바일: 호버 transform 비활성, 이모지 컨테이너 48px 축소
+- 잔재 그레이/블루: attribute selector + !important로 자동 무력화
+
+## 다음 단계 (필요 시)
+
+- 페이지 라이브 확인 후 카드별 미세 보정 (텍스트 색 강도, 패딩 등)
+- 페이지 전체 lighthouse / 접근성 점검
+- 모션 reduced-motion 대응 확장 (현재 카드 호버는 GPU 가속 transform이라 부담 적음)
+

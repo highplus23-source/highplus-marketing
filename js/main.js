@@ -1,4 +1,41 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // 0. 히어로 카운터 업 애니메이션
+    (function initHeroCounter() {
+        const counters = document.querySelectorAll('.hp-counter-num');
+        if (!counters.length) return;
+
+        function animateCount(el, target, suffix, duration) {
+            const startTime = performance.now();
+            function frame(now) {
+                const elapsed = now - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const eased = 1 - Math.pow(1 - progress, 3);
+                const current = Math.floor(eased * target);
+                el.textContent = current + suffix;
+                if (progress < 1) requestAnimationFrame(frame);
+                else el.textContent = target + suffix;
+            }
+            requestAnimationFrame(frame);
+        }
+
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting || entry.target.dataset.counted) return;
+                entry.target.dataset.counted = 'true';
+                const original = entry.target.dataset.target || entry.target.textContent.trim();
+                if (!entry.target.dataset.target) entry.target.dataset.target = original;
+                const match = original.match(/^(\d+)(.*)$/);
+                if (!match) return;
+                const target = parseInt(match[1], 10);
+                const suffix = match[2] || '';
+                entry.target.textContent = '0' + suffix;
+                animateCount(entry.target, target, suffix, 1600);
+            });
+        }, { threshold: 0.4, rootMargin: '0px 0px -10% 0px' });
+
+        counters.forEach(el => counterObserver.observe(el));
+    })();
+
     // 1. Header Scroll Effect
     const header = document.getElementById('header');
     window.addEventListener('scroll', () => {
