@@ -290,6 +290,64 @@
 
         /* easing — 호버는 기존 --hp-ease, 진입은 신규 ease-out */
         --hp-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+
+        /* ───────── apple-v2 시안 다색 액센트 (2026-05-14) ───────── */
+        /* 너무 파랑만 들어가던 톤을 깨기 위한 보조 강조색 */
+        --hp-amber: #F59E0B;
+        --hp-amber-deep: #F97316;
+        --hp-mint: #10B981;
+        --hp-mint-deep: #14B8A6;
+        --hp-rose: #F43F5E;
+        --hp-rose-deep: #EC4899;
+        --hp-violet: #8B5CF6;
+        --hp-violet-deep: #A855F7;
+
+        /* 강조 그라데이션 */
+        --hp-grad-amber: linear-gradient(135deg, #F59E0B 0%, #F97316 100%);
+        --hp-grad-mint:  linear-gradient(135deg, #10B981 0%, #14B8A6 100%);
+        --hp-grad-rose:  linear-gradient(135deg, #F43F5E 0%, #EC4899 100%);
+        --hp-grad-violet:linear-gradient(135deg, #8B5CF6 0%, #A855F7 100%);
+
+        /* 형광펜 색 */
+        --hp-hl-yellow: #FDE68A;
+        --hp-hl-blue:   #C6D8FF;
+        --hp-hl-mint:   #BBF7D0;
+        --hp-hl-rose:   #FECDD3;
+      }
+
+      /* ───────── 형광펜 마크 유틸 (apple-v2 시그니처) ─────────
+         사용: <span class="hl-mark">초진</span>
+              <span class="hl-mark grad">차원이 다른</span>  ← .grad와 조합 가능 (텍스트는 블루 그라데이션, 띠는 노랑)
+         ::before 레이어로 띠를 그려서 .grad/.grad-highlight의 background-clip 덮어쓰기 문제 회피. */
+      .hl-mark {
+        position: relative;
+        isolation: isolate;
+        padding: 0 4px;
+        font-weight: 800;
+      }
+      .hl-mark::before {
+        content: '';
+        position: absolute;
+        left: 0; right: 0;
+        bottom: 4%;
+        height: 42%;
+        background: var(--hp-hl-yellow);
+        z-index: -1;
+        border-radius: 2px;
+      }
+      .hl-mark--blue::before  { background: var(--hp-hl-blue); }
+      .hl-mark--mint::before  { background: var(--hp-hl-mint); }
+      .hl-mark--rose::before  { background: var(--hp-hl-rose); }
+      /* 솔리드 블록 — 강한 시선 고정용 */
+      .hl-mark--solid-amber {
+        background: var(--hp-grad-amber);
+        color: #fff;
+        -webkit-text-fill-color: #fff;
+        padding: 2px 10px;
+        border-radius: 6px;
+        font-weight: 800;
+        box-decoration-break: clone;
+        -webkit-box-decoration-break: clone;
       }
 
       /* ─── Typography 통일 (시안 A 톤) ─── */
@@ -345,30 +403,23 @@
         box-shadow: 0 8px 30px rgba(52, 120, 246, 0.4) !important;
       }
 
-      /* ─── 섹션 배경 부드러운 전환 ─── */
-      #ai-manager { background: var(--hp-bg-blue) !important; }
+      /* ─── 섹션 배경 부드러운 전환 (apple-v2 neutral 톤) ─── */
+      #ai-manager { background: #f7f8fc !important; }
       #compare { background: var(--hp-bg-soft) !important; }
       #scarcity { background: var(--hp-bg-blue) !important; }
 
       /* ─── HERO v2 (시안 B 그라데이션 메쉬 + 플로팅 카드) ─── */
+      /* apple-v2 히어로 톤 — 좌상단 블루 + 우상단 웜 옐로 radial + 라이트 베이스 */
       #hero.hero-v2 {
         padding: 120px 0 100px !important; min-height: auto !important;
         position: relative; overflow: hidden !important;
         background:
-          radial-gradient(ellipse 60% 50% at 20% 30%, rgba(52, 120, 246, 0.18), transparent 60%),
-          radial-gradient(ellipse 50% 50% at 80% 80%, rgba(124, 91, 245, 0.16), transparent 60%),
-          radial-gradient(ellipse 80% 60% at 50% 0%, rgba(91, 155, 247, 0.10), transparent 60%),
-          linear-gradient(180deg, #F8FBFF 0%, #ffffff 100%) !important;
+          radial-gradient(900px 500px at 12% -10%, rgba(52, 120, 246, 0.10), transparent 60%),
+          radial-gradient(700px 400px at 90% 10%, rgba(255, 200, 80, 0.10), transparent 60%),
+          linear-gradient(180deg, #f7f8fc 0%, #ffffff 70%) !important;
       }
       #hero.hero-v2::after {
-        content: ''; position: absolute; inset: 0;
-        background-image:
-          linear-gradient(rgba(52, 120, 246, 0.04) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(52, 120, 246, 0.04) 1px, transparent 1px);
-        background-size: 56px 56px;
-        mask-image: radial-gradient(ellipse 60% 60% at 50% 50%, #000 30%, transparent 70%);
-        -webkit-mask-image: radial-gradient(ellipse 60% 60% at 50% 50%, #000 30%, transparent 70%);
-        pointer-events: none;
+        content: none;
       }
       #hero.hero-v2 .hero-eyebrow {
         display: inline-flex; align-items: center; gap: 8px;
@@ -393,19 +444,47 @@
           white-space: nowrap;
         }
       }
+      /* 히어로 타이틀 내 span 기본 — .hl-mark, .hero-line은 제외 (각자 자기 스타일 유지) */
       #hero.hero-v2 .hero-title .grad-highlight,
-      #hero.hero-v2 .hero-title span {
+      #hero.hero-v2 .hero-title span:not(.hl-mark):not(.hero-line) {
         background: var(--hp-grad);
         -webkit-background-clip: text; background-clip: text;
         -webkit-text-fill-color: transparent !important;
         color: transparent !important;
         font-size: inherit !important;   /* style.css의 .grad-highlight 모바일 룰 차단 — 부모 hero-title 사이즈 따름 */
       }
-      /* 첫 줄 .hero-line은 잉크 블랙 (둘째 줄 그라디언트와 색 분리) */
+      /* .hero-line은 잉크 블랙 (두 줄 다 동일 톤, 형광펜 강조와 분리) */
       #hero.hero-v2 .hero-title .hero-line {
         background: none !important;
         -webkit-text-fill-color: var(--hp-ink) !important;
         color: var(--hp-ink) !important;
+        font-size: inherit !important;
+      }
+      /* 히어로 타이틀 내 형광펜 강조 — 사이즈/굵기 인헤리트, color는 hl-mark 클래스가 결정 */
+      #hero.hero-v2 .hero-title .hl-mark {
+        font-size: inherit !important;
+        font-weight: 800 !important;
+      }
+      /* 형광펜(노랑) + 블루 그라데이션 텍스트 콤보 — 노란 띠는 ::before로 뒤에, 텍스트는 그라데이션 클립 */
+      #hero.hero-v2 .hero-title .hl-mark.grad-highlight {
+        position: relative;
+        background: var(--hp-grad) !important;
+        -webkit-background-clip: text !important;
+        background-clip: text !important;
+        -webkit-text-fill-color: transparent !important;
+        color: transparent !important;
+        padding: 0 4px;
+        isolation: isolate;
+      }
+      #hero.hero-v2 .hero-title .hl-mark.grad-highlight::before {
+        content: '';
+        position: absolute;
+        left: 0; right: 0;
+        bottom: 4%;
+        height: 42%;
+        background: var(--hp-hl-yellow);
+        z-index: -1;
+        border-radius: 2px;
       }
       #hero.hero-v2 .hero-subline {
         font-size: clamp(17px, 2vw, 21px) !important; color: var(--hp-ink-3) !important;
@@ -495,6 +574,54 @@
         margin-top: 10px; letter-spacing: 0.01em;
         text-transform: uppercase;
       }
+      /* ─── 카운터 4색 분기 (apple-v2 다색 액센트, 2026-05-14) ─── */
+      /* 1) 35+ 파트너 — INDIGO (브랜드 유지) */
+      .hp-counter-item:nth-child(1) .hp-counter-num {
+        background: linear-gradient(135deg, #1A4FE0 0%, #3478F6 50%, #7C5BF5 100%);
+        -webkit-background-clip: text; background-clip: text;
+        filter: drop-shadow(0 2px 10px rgba(52, 120, 246, 0.22));
+      }
+      /* 2) 98% 유지율 — MINT (성공/지속) */
+      .hp-counter-item:nth-child(2) .hp-counter-num {
+        background: var(--hp-grad-mint);
+        -webkit-background-clip: text; background-clip: text;
+        filter: drop-shadow(0 2px 10px rgba(16, 185, 129, 0.28));
+      }
+      .hp-counter-item:nth-child(2)::before {
+        background: linear-gradient(90deg, transparent 0%, rgba(16,185,129,0.55) 50%, transparent 100%);
+      }
+      .hp-counter-item:nth-child(2)::after {
+        background: radial-gradient(ellipse at top, rgba(16, 185, 129, 0.15) 0%, transparent 60%);
+      }
+      .hp-counter-item:nth-child(2):hover { border-color: rgba(16,185,129,0.40); }
+      /* 3) 9년 노하우 — AMBER (경험/연륜) */
+      .hp-counter-item:nth-child(3) .hp-counter-num {
+        background: var(--hp-grad-amber);
+        -webkit-background-clip: text; background-clip: text;
+        filter: drop-shadow(0 2px 10px rgba(245, 158, 11, 0.30));
+      }
+      .hp-counter-item:nth-child(3)::before {
+        background: linear-gradient(90deg, transparent 0%, rgba(245,158,11,0.55) 50%, transparent 100%);
+      }
+      .hp-counter-item:nth-child(3)::after {
+        background: radial-gradient(ellipse at top, rgba(245, 158, 11, 0.15) 0%, transparent 60%);
+      }
+      .hp-counter-item:nth-child(3):hover { border-color: rgba(245,158,11,0.40); }
+      /* 4) ZERO — ROSE (강한 pop, 시선 고정점) */
+      .hp-counter-item:nth-child(4) .hp-counter-num {
+        background: var(--hp-grad-rose);
+        -webkit-background-clip: text; background-clip: text;
+        filter: drop-shadow(0 2px 10px rgba(244, 63, 94, 0.32));
+        letter-spacing: -0.05em; /* ZERO 4글자 → 살짝 좁혀 다른 카드와 시각 균형 */
+      }
+      .hp-counter-item:nth-child(4)::before {
+        background: linear-gradient(90deg, transparent 0%, rgba(244,63,94,0.55) 50%, transparent 100%);
+      }
+      .hp-counter-item:nth-child(4)::after {
+        background: radial-gradient(ellipse at top, rgba(244, 63, 94, 0.15) 0%, transparent 60%);
+      }
+      .hp-counter-item:nth-child(4):hover { border-color: rgba(244,63,94,0.40); }
+
       @media (max-width: 768px) {
         .hp-counter-item { padding: 16px 20px; min-width: 0; flex: 1 1 30%; }
         .hp-hero-counter { gap: 10px; }
@@ -555,7 +682,7 @@
       .contact-blob-4 {
         bottom: 12%; right: -6%;
         width: 22vw; height: 22vw;
-        background: radial-gradient(circle, rgba(212, 184, 150, 0.10) 0%, transparent 60%);
+        background: radial-gradient(circle, rgba(52, 120, 246, 0.10) 0%, transparent 60%);
         filter: blur(40px);
       }
       /* 도트 그리드 텍스처 */
@@ -647,7 +774,7 @@
       .hp-agency-card > * { position: relative; z-index: 1; }
       .hp-agency-tag {
         display: inline-block; padding: 6px 14px; border-radius: 999px;
-        background: rgba(212, 184, 150, 0.18); color: #D4B896;
+        background: rgba(52, 120, 246, 0.18); color: #3478F6;
         font-size: 12px; font-weight: 800; letter-spacing: 0.08em;
         margin-bottom: 20px; align-self: flex-start;
       }
@@ -707,14 +834,14 @@
         padding-top: 8px;
       }
       .hp-agency-group--addon .hp-agency-group-label {
-        color: rgba(212, 184, 150, 0.95);
-        text-shadow: 0 0 12px rgba(212, 184, 150, 0.35);
+        color: rgba(52, 120, 246, 0.95);
+        text-shadow: 0 0 12px rgba(52, 120, 246, 0.35);
       }
       .hp-agency-group--addon .hp-agency-group-label::before,
       .hp-agency-group--addon .hp-agency-group-label::after {
         background: linear-gradient(90deg,
           transparent,
-          rgba(212, 184, 150, 0.35) 50%,
+          rgba(52, 120, 246, 0.35) 50%,
           transparent);
       }
       .hp-agency-list li {
@@ -738,13 +865,13 @@
         font-size: 15px; font-weight: 800; text-decoration: none;
         transition: transform var(--hp-dur-mid) var(--hp-ease), background var(--hp-dur-mid) var(--hp-ease);
       }
-      .hp-agency-cta:hover { background: #D4B896; color: var(--hp-ink); transform: translateY(-2px); }
+      .hp-agency-cta:hover { background: #3478F6; color: var(--hp-ink); transform: translateY(-2px); }
       .hp-agency-note {
         margin-top: 14px; padding: 12px 16px;
         background: rgba(255, 255, 255, 0.06); border-radius: 12px;
         font-size: 12px; color: rgba(255, 255, 255, 0.78); line-height: 1.55;
       }
-      .hp-agency-note strong { color: #D4B896; }
+      .hp-agency-note strong { color: #3478F6; }
       .hp-scarcity-card {
         padding: 40px 36px; border-radius: var(--hp-radius-xl);
         background: #fff; border: 1px solid var(--hp-line);
@@ -768,7 +895,7 @@
         top: -32px; left: 50%;
         transform: translateX(-50%);
         width: 1px; height: 32px;
-        background: linear-gradient(180deg, transparent 0%, rgba(212, 184, 150, 0.55) 100%);
+        background: linear-gradient(180deg, transparent 0%, rgba(52, 120, 246, 0.55) 100%);
       }
       .hp-scarcity-card--full .section-tag {
         align-self: center !important;
@@ -804,13 +931,13 @@
       .hp-agency-form-card::before {
         content: ''; position: absolute; top: -150px; left: -150px;
         width: 350px; height: 350px;
-        background: radial-gradient(circle, rgba(212, 184, 150, 0.20) 0%, transparent 65%);
+        background: radial-gradient(circle, rgba(52, 120, 246, 0.20) 0%, transparent 65%);
         filter: blur(80px); border-radius: 50%;
       }
       .hp-agency-form-card > * { position: relative; z-index: 1; }
       .hp-agency-form-card .hp-agency-tag {
-        background: rgba(212, 184, 150, 0.18) !important;
-        color: #D4B896 !important;
+        background: rgba(52, 120, 246, 0.18) !important;
+        color: #3478F6 !important;
       }
       .hp-agency-form-card h3 {
         color: #fff !important; font-size: clamp(22px, 3vw, 28px) !important;
@@ -854,9 +981,9 @@
       .hp-agency-form input:focus,
       .hp-agency-form textarea:focus {
         outline: none;
-        border-color: #D4B896;
+        border-color: #3478F6;
         background: rgba(255, 255, 255, 0.10);
-        box-shadow: 0 0 0 3px rgba(212, 184, 150, 0.18);
+        box-shadow: 0 0 0 3px rgba(52, 120, 246, 0.18);
       }
       /* ─── 다크 + 골드 체크박스 (관심 서비스 선택) ─── */
       .hp-checkbox-group {
@@ -877,8 +1004,8 @@
         transition: background 0.25s, border-color 0.25s, box-shadow 0.25s, transform 0.25s;
       }
       .hp-checkbox:hover {
-        background: rgba(212, 184, 150, 0.08);
-        border-color: rgba(212, 184, 150, 0.30);
+        background: rgba(52, 120, 246, 0.08);
+        border-color: rgba(52, 120, 246, 0.30);
       }
       .hp-checkbox input[type="checkbox"] {
         position: absolute;
@@ -911,20 +1038,20 @@
         transition: color 0.2s;
       }
       .hp-checkbox input[type="checkbox"]:checked ~ .hp-checkbox__box {
-        background: linear-gradient(135deg, #E8C998 0%, #C9A370 100%);
-        border-color: #D4B896;
-        box-shadow: 0 0 0 3px rgba(212, 184, 150, 0.20), 0 0 12px rgba(212, 184, 150, 0.40);
+        background: linear-gradient(135deg, #5B9BF7 0%, #3478F6 100%);
+        border-color: #3478F6;
+        box-shadow: 0 0 0 3px rgba(52, 120, 246, 0.20), 0 0 12px rgba(52, 120, 246, 0.40);
       }
       .hp-checkbox input[type="checkbox"]:checked ~ .hp-checkbox__box::after {
         transform: translate(-50%, -65%) rotate(45deg) scale(1);
       }
       .hp-checkbox:has(input[type="checkbox"]:checked) {
-        background: rgba(212, 184, 150, 0.12);
-        border-color: var(--neon-gold-core, #D4B896);
-        box-shadow: 0 0 0 1px rgba(212, 184, 150, 0.30), 0 8px 20px -8px rgba(212, 184, 150, 0.30);
+        background: rgba(52, 120, 246, 0.12);
+        border-color: var(--neon-gold-core, #3478F6);
+        box-shadow: 0 0 0 1px rgba(52, 120, 246, 0.30), 0 8px 20px -8px rgba(52, 120, 246, 0.30);
       }
       .hp-checkbox:has(input[type="checkbox"]:checked) .hp-checkbox__label {
-        color: var(--neon-gold-bright, #EFE0C8);
+        color: var(--neon-gold-bright, #DBEAFE);
       }
       @media (max-width: 480px) {
         .hp-checkbox { min-width: 100%; flex: 0 0 100%; }
@@ -937,16 +1064,16 @@
       .hp-agency-form .hp-agency-submit {
         display: inline-flex; align-items: center; justify-content: center; gap: 8px;
         padding: 16px 24px; border-radius: 999px;
-        background: linear-gradient(135deg, #D4B896 0%, #8B6F4E 100%);
+        background: linear-gradient(135deg, #3478F6 0%, #1A4FE0 100%);
         color: #0F172A;
         font-size: 15px; font-weight: 900; letter-spacing: -0.005em;
         border: none; cursor: pointer; margin-top: 8px;
-        box-shadow: 0 10px 24px -8px rgba(212, 184, 150, 0.40);
+        box-shadow: 0 10px 24px -8px rgba(52, 120, 246, 0.40);
         transition: transform 0.2s, box-shadow 0.2s;
       }
       .hp-agency-form .hp-agency-submit:hover {
         transform: translateY(-2px);
-        box-shadow: 0 14px 32px -8px rgba(212, 184, 150, 0.55);
+        box-shadow: 0 14px 32px -8px rgba(52, 120, 246, 0.55);
       }
       .hp-agency-form .hp-form-note {
         font-size: 12px; color: rgba(255, 255, 255, 0.55);
@@ -1003,27 +1130,27 @@
       }
       .hp-part-badge::before {
         content: ''; width: 6px; height: 6px; border-radius: 50%;
-        background: #D4B896; box-shadow: 0 0 10px #D4B896;
+        background: #3478F6; box-shadow: 0 0 10px #3478F6;
       }
-      /* PART 02 서비스명 라벨 — 다크 pill + 골드 텍스트 */
+      /* PART 02 서비스명 라벨 — 다크 pill + 블루 텍스트 (이전 골드 → 블루 retarget) */
       .hp-part-service-name {
         display: inline-block;
         margin: -4px 0 20px;
         padding: 6px 18px;
-        background: linear-gradient(135deg, #1D1D1F 0%, #2a2520 100%);
-        border: 1px solid rgba(252, 211, 77, 0.35);
+        background: linear-gradient(135deg, #1D1D1F 0%, #1A2240 100%);
+        border: 1px solid rgba(52, 120, 246, 0.40);
         border-radius: 6px;
         font-size: clamp(0.88rem, 1.45vw, 1.02rem);
         font-weight: 800;
-        color: #D4B896;
+        color: #5B9BF7;
         letter-spacing: 0.05em;
-        box-shadow: 0 8px 20px -6px rgba(0, 0, 0, 0.18), inset 0 0 0 1px rgba(252, 211, 77, 0.06);
-        text-shadow: 0 0 14px rgba(252, 211, 77, 0.25);
+        box-shadow: 0 8px 20px -6px rgba(0, 0, 0, 0.18), inset 0 0 0 1px rgba(52, 120, 246, 0.10);
+        text-shadow: 0 0 14px rgba(52, 120, 246, 0.30);
       }
       .hp-part-divider p .gold-emph {
-        color: #8B6F4E;
+        color: #5B9BF7;
         font-weight: 800;
-        background: linear-gradient(180deg, transparent 62%, rgba(252, 211, 77, 0.22) 62%);
+        background: linear-gradient(180deg, transparent 62%, rgba(52, 120, 246, 0.22) 62%);
         padding: 0 2px;
       }
       @media (max-width: 768px) {
@@ -1077,16 +1204,14 @@
         .hp-part-divider { padding: 56px 5%; }
       }
 
-      /* ─── #ai-features (6개 기능 쇼케이스, SaaS 톤) ─── */
+      /* ─── #ai-features (3개 기능 쇼케이스, apple-v2 white 톤) ─── */
       #ai-features {
         padding: 6rem 5%;
-        background: linear-gradient(180deg, #ffffff 0%, #F8FBFF 100%);
+        background: #ffffff;
         position: relative; overflow: hidden;
       }
       #ai-features::before {
-        content: ''; position: absolute; top: -10%; left: -5%; width: 40vw; height: 40vw;
-        background: radial-gradient(circle, rgba(124, 91, 245, 0.05) 0%, transparent 60%);
-        filter: blur(80px); pointer-events: none;
+        content: none;
       }
       #ai-features .features-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
       #ai-features .features-head {
@@ -1112,13 +1237,18 @@
         -webkit-text-fill-color: transparent;
       }
 
-      .hp-feat-list { display: flex; flex-direction: column; gap: 120px; }
+      .hp-feat-list { display: flex; flex-direction: column; gap: 80px; }
       .hp-feat-row {
         display: grid; grid-template-columns: 1fr 1fr;
         gap: 64px; align-items: center;
       }
       .hp-feat-row:nth-child(even) .hp-feat-text { order: 2; }
       .hp-feat-row:nth-child(even) .hp-feat-visual { order: 1; }
+      /* 카드 사이 구분선 (데스크톱/모바일 공통) */
+      .hp-feat-row:not(:last-child) {
+        padding-bottom: 80px;
+        border-bottom: 1px solid rgba(52, 120, 246, 0.18);
+      }
       .hp-feat-title {
         font-size: clamp(1.55rem, 3vw, 2.2rem); font-weight: 900;
         color: var(--hp-ink); letter-spacing: -0.035em;
@@ -1157,10 +1287,10 @@
         border-top: 1px dashed rgba(52, 120, 246, 0.18);
       }
       .hp-feat-checks li {
-        display: flex; gap: 10px; align-items: flex-start;
-        font-size: 13.5px; color: var(--hp-ink-2); line-height: 1.5;
-        font-weight: 600; letter-spacing: -0.005em;
-        padding: 10px 12px;
+        display: flex; gap: 12px; align-items: flex-start;
+        font-size: 15.5px; color: var(--hp-ink); line-height: 1.5;
+        font-weight: 700; letter-spacing: -0.012em;
+        padding: 13px 16px;
         background: linear-gradient(135deg, rgba(52, 120, 246, 0.05), rgba(124, 91, 245, 0.03));
         border: 1px solid rgba(52, 120, 246, 0.14);
         border-radius: 12px;
@@ -1173,20 +1303,139 @@
         transform: translateY(-1px);
       }
       .hp-feat-checks li::before {
-        content: ''; flex-shrink: 0; width: 18px; height: 18px; margin-top: 1px;
+        content: ''; flex-shrink: 0; width: 22px; height: 22px; margin-top: 2px;
         background: var(--hp-grad);
         border-radius: 50%;
         background-image:
           linear-gradient(135deg, #3478F6 0%, #7C5BF5 100%),
-          url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
-        background-size: cover, 10px;
+          url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+        background-size: cover, 12px;
         background-repeat: no-repeat;
         background-position: center;
         box-shadow: 0 2px 8px rgba(52, 120, 246, 0.30);
       }
       @media (max-width: 768px) {
         .hp-feat-checks { grid-template-columns: 1fr; }
+        .hp-feat-checks li { font-size: 14.5px; padding: 12px 14px; }
       }
+
+      /* ═════════ FEATURE 미리보기 모달 ═════════ */
+      .hp-feat-preview-btn {
+        display: inline-flex; align-items: center; gap: 8px;
+        margin-top: 24px;
+        padding: 14px 24px;
+        background: var(--hp-grad);
+        color: #fff; border: none; border-radius: 999px;
+        font-size: 14.5px; font-weight: 800; letter-spacing: -0.012em;
+        cursor: pointer;
+        box-shadow: 0 12px 28px -10px rgba(52, 120, 246, 0.50);
+        transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s;
+      }
+      .hp-feat-preview-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 18px 36px -10px rgba(52, 120, 246, 0.60);
+      }
+      .hp-feat-preview-btn:active { transform: translateY(0); }
+
+      .hp-modal {
+        position: fixed; inset: 0; z-index: 1000;
+        display: none;
+        align-items: center; justify-content: center;
+        padding: 24px;
+      }
+      .hp-modal.is-open { display: flex; }
+      .hp-modal__backdrop {
+        position: absolute; inset: 0;
+        background: rgba(15, 23, 42, 0.55);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        animation: hpModalFade 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .hp-modal__panel {
+        position: relative;
+        width: 100%; max-width: 720px;
+        max-height: 85vh;
+        background: #fff;
+        border-radius: 24px;
+        box-shadow: 0 40px 80px -20px rgba(15, 23, 42, 0.40);
+        overflow: hidden;
+        display: flex; flex-direction: column;
+        animation: hpModalSlide 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      @keyframes hpModalFade {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      @keyframes hpModalSlide {
+        from { opacity: 0; transform: translateY(20px) scale(0.97); }
+        to { opacity: 1; transform: translateY(0) scale(1); }
+      }
+      .hp-modal__close {
+        position: absolute; top: 16px; right: 16px;
+        width: 36px; height: 36px;
+        border-radius: 50%;
+        background: rgba(15, 23, 42, 0.06);
+        border: none;
+        font-size: 18px;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        z-index: 2;
+        color: var(--hp-ink-2);
+        transition: background 0.2s;
+      }
+      .hp-modal__close:hover { background: rgba(15, 23, 42, 0.12); }
+      .hp-modal__header {
+        padding: 32px 36px 20px;
+        border-bottom: 1px solid var(--hp-line);
+      }
+      .hp-modal__tag {
+        display: inline-block;
+        font-size: 12px; font-weight: 800;
+        letter-spacing: 0.1em; text-transform: uppercase;
+        color: var(--hp-brand);
+        background: rgba(52, 120, 246, 0.08);
+        border: 1px solid rgba(52, 120, 246, 0.18);
+        padding: 5px 12px; border-radius: 999px;
+        margin-bottom: 12px;
+      }
+      .hp-modal__title {
+        font-size: 22px; font-weight: 800;
+        color: var(--hp-ink); line-height: 1.35;
+        margin: 0 0 6px; letter-spacing: -0.018em;
+        word-break: keep-all;
+      }
+      .hp-modal__sub {
+        font-size: 13.5px; color: var(--hp-ink-3);
+        margin: 0; font-weight: 600;
+      }
+      .hp-modal__body {
+        padding: 24px 36px 32px;
+        overflow-y: auto; flex: 1;
+        font-size: 15px; line-height: 1.75;
+        color: var(--hp-ink-2);
+      }
+      .hp-modal__body h4 {
+        font-size: 17px; font-weight: 800;
+        color: var(--hp-ink); margin: 24px 0 10px;
+        letter-spacing: -0.012em;
+      }
+      .hp-modal__body h4:first-child { margin-top: 0; }
+      .hp-modal__body p {
+        margin: 0 0 12px;
+        word-break: keep-all;
+      }
+      .hp-modal__body strong {
+        color: var(--hp-brand-deep); font-weight: 700;
+      }
+      @media (max-width: 768px) {
+        .hp-modal { padding: 16px; }
+        .hp-modal__panel { max-height: 90vh; border-radius: 18px; }
+        .hp-modal__header { padding: 24px 22px 16px; }
+        .hp-modal__body { padding: 20px 22px 24px; font-size: 14px; }
+        .hp-modal__title { font-size: 19px; }
+        .hp-feat-preview-btn { padding: 12px 20px; font-size: 14px; }
+      }
+
       .hp-feat-visual {
         position: relative; border-radius: 24px;
         background: linear-gradient(135deg, #F4F7FF 0%, #E5EEFD 50%, #DDE7FC 100%);
@@ -1234,41 +1483,23 @@
           inset 0 -1px 0 rgba(52, 120, 246, 0.12);
       }
       @media (max-width: 968px) {
-        .hp-feat-list { gap: 64px; }
+        .hp-feat-list { gap: 48px; }
         .hp-feat-row { grid-template-columns: 1fr; gap: 24px; }
         .hp-feat-row:nth-child(even) .hp-feat-text { order: 1; }
         .hp-feat-row:nth-child(even) .hp-feat-visual { order: 2; }
         .hp-feat-visual { padding: 24px; aspect-ratio: 16/11; }
-        /* 카드 사이 구분선 (영상 하단) */
+        /* 모바일은 padding-bottom 만 줄임 (border 는 베이스 룰 사용) */
         .hp-feat-row:not(:last-child) {
-          padding-bottom: 32px;
-          border-bottom: 1px solid rgba(52, 120, 246, 0.18);
+          padding-bottom: 48px;
         }
       }
-      /* ─── #ai-benefits (8개 기능 빠른 요약, 시안 A 톤) ─── */
-      /* 위 #ai-manager 연블루(#e8f0fe)와 톤 분리: 블루 끼 제거한 중성 회색 + 미세 도트 패턴 */
+      /* ─── #ai-benefits (8개 기능 빠른 요약, apple-v2 soft 톤) ─── */
       #ai-benefits {
         padding: 6rem 5%;
-        background-color: #EBEEF3;
-        background-image: radial-gradient(circle, rgba(15, 23, 42, 0.06) 1px, transparent 1px);
-        background-size: 22px 22px;
+        background: #f7f8fc;
         position: relative;
-        box-shadow: inset 0 8px 24px -16px rgba(15, 23, 42, 0.10),
-                    inset 0 -8px 24px -16px rgba(15, 23, 42, 0.10);
-      }
-      #ai-benefits::before,
-      #ai-benefits::after {
-        content: ''; position: absolute; left: 0; right: 0; height: 24px;
-        pointer-events: none;
-      }
-      #ai-benefits::before {
-        top: 0; background: linear-gradient(180deg, rgba(15, 23, 42, 0.05), transparent);
-      }
-      #ai-benefits::after {
-        bottom: 0; background: linear-gradient(0deg, rgba(15, 23, 42, 0.05), transparent);
       }
       #ai-benefits .benefits-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
-      /* 카드는 화이트 유지 (회색 배경과 강한 대비로 카드가 떠있는 느낌) */
       #ai-benefits .hp-benefit-card {
         background: #ffffff;
         box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
@@ -1303,7 +1534,7 @@
         display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
       }
       .hp-benefit-card {
-        padding: 28px 22px; border-radius: var(--hp-radius-lg);
+        padding: 30px 24px; border-radius: var(--hp-radius-lg);
         background: #fff; border: 1px solid var(--hp-line);
         transition: transform var(--hp-dur-mid) var(--hp-ease), border-color var(--hp-dur-mid) var(--hp-ease), box-shadow var(--hp-dur-mid) var(--hp-ease);
       }
@@ -1312,18 +1543,30 @@
         box-shadow: var(--hp-shadow);
       }
       .hp-benefit-card__icon {
-        width: 44px; height: 44px; border-radius: 12px;
-        background: var(--hp-brand-tint); color: var(--hp-brand-deep);
+        width: 52px; height: 52px; border-radius: 14px;
+        background: var(--hp-grad);
+        color: #fff;
         display: flex; align-items: center; justify-content: center;
-        font-size: 22px; margin-bottom: 16px;
+        font-size: 24px; margin-bottom: 18px;
+        box-shadow: 0 12px 22px -10px rgba(52, 120, 246, 0.45);
       }
+      /* apple-v2 다색 액센트 — 8 cards × 4 colors rotate */
+      .hp-benefit-grid .hp-benefit-card:nth-child(8n+1) .hp-benefit-card__icon { background: var(--hp-grad-amber); box-shadow: 0 12px 22px -10px rgba(245,158,11,0.45); }
+      .hp-benefit-grid .hp-benefit-card:nth-child(8n+2) .hp-benefit-card__icon { background: var(--hp-grad-rose);  box-shadow: 0 12px 22px -10px rgba(244,63,94,0.45); }
+      .hp-benefit-grid .hp-benefit-card:nth-child(8n+3) .hp-benefit-card__icon { background: var(--hp-grad);        box-shadow: 0 12px 22px -10px rgba(52,120,246,0.45); }
+      .hp-benefit-grid .hp-benefit-card:nth-child(8n+4) .hp-benefit-card__icon { background: var(--hp-grad-violet); box-shadow: 0 12px 22px -10px rgba(139,92,246,0.45); }
+      .hp-benefit-grid .hp-benefit-card:nth-child(8n+5) .hp-benefit-card__icon { background: var(--hp-grad-mint);   box-shadow: 0 12px 22px -10px rgba(16,185,129,0.45); }
+      .hp-benefit-grid .hp-benefit-card:nth-child(8n+6) .hp-benefit-card__icon { background: linear-gradient(135deg,#0ea5e9,#38bdf8); box-shadow: 0 12px 22px -10px rgba(14,165,233,0.45); }
+      .hp-benefit-grid .hp-benefit-card:nth-child(8n+7) .hp-benefit-card__icon { background: linear-gradient(135deg,#f97316,#ea580c); box-shadow: 0 12px 22px -10px rgba(249,115,22,0.45); }
+      .hp-benefit-grid .hp-benefit-card:nth-child(8n)   .hp-benefit-card__icon { background: var(--hp-grad-rose); box-shadow: 0 12px 22px -10px rgba(244,63,94,0.45); }
       .hp-benefit-card h4 {
-        font-size: 16px; font-weight: 800; color: var(--hp-ink);
-        margin: 0 0 8px; letter-spacing: -0.02em;
+        font-size: 17px; font-weight: 800; color: var(--hp-ink);
+        margin: 0 0 10px; letter-spacing: -0.02em;
       }
       .hp-benefit-card p {
-        font-size: 13.5px; color: var(--hp-ink-3);
+        font-size: 14.85px; color: var(--hp-ink-2);
         margin: 0; line-height: 1.6; word-break: keep-all;
+        font-weight: 700; letter-spacing: -0.012em;
       }
       .hp-benefit-card__note {
         margin-top: 10px; padding-top: 10px;
@@ -1342,9 +1585,57 @@
       /* ─── #ai-manager 가격카드 2단 높이 매칭 ─── */
       #ai-manager .ai-two-col > div { height: 100%; }
 
-      /* PAIN POINT 그리드, 모바일에서 1열로 */
+      /* ═════════ apple-v2 PAIN TILE (centered) ═════════ */
+      #ai-manager .pain-tile-grid {
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 18px !important;
+      }
+      #ai-manager .pain-tile {
+        background: #ffffff;
+        border-radius: 20px;
+        padding: 28px 24px 26px;
+        border: 1px solid rgba(52,120,246,0.12);
+        text-align: center;
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                    box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                    border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+      }
+      #ai-manager .pain-tile:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 18px 34px -20px rgba(52,120,246,0.30);
+        border-color: rgba(52,120,246,0.32);
+      }
+      #ai-manager .pain-tile__ic {
+        width: 56px; height: 56px; border-radius: 16px;
+        display: grid; place-items: center;
+        color: #fff; margin: 0 auto 16px;
+        font-size: 26px;
+      }
+      #ai-manager .pain-tile__ic--indigo { background: var(--hp-grad);        box-shadow: 0 12px 24px -10px rgba(52,120,246,0.45); }
+      #ai-manager .pain-tile__ic--amber  { background: var(--hp-grad-amber);  box-shadow: 0 12px 24px -10px rgba(245,158,11,0.45); }
+      #ai-manager .pain-tile__ic--mint   { background: var(--hp-grad-mint);   box-shadow: 0 12px 24px -10px rgba(16,185,129,0.45); }
+      #ai-manager .pain-tile__ic--rose   { background: var(--hp-grad-rose);   box-shadow: 0 12px 24px -10px rgba(244,63,94,0.45); }
+      #ai-manager .pain-tile__ic--violet { background: var(--hp-grad-violet); box-shadow: 0 12px 24px -10px rgba(139,92,246,0.45); }
+      #ai-manager .pain-tile__ic--sky    { background: linear-gradient(135deg,#0ea5e9,#38bdf8); box-shadow: 0 12px 24px -10px rgba(14,165,233,0.45); }
+      #ai-manager .pain-tile__title {
+        font-size: 17px; line-height: 1.4; font-weight: 800; color: var(--hp-ink);
+        margin: 0; letter-spacing: -0.012em; word-break: keep-all;
+      }
+      #ai-manager .pain-tile__desc {
+        font-size: 14.85px; color: var(--hp-ink-2); margin: 8px 0 0;
+        line-height: 1.55; word-break: keep-all; font-weight: 700;
+      }
+      @media (max-width: 968px) {
+        #ai-manager .pain-tile-grid { grid-template-columns: repeat(2, 1fr) !important; }
+      }
+      @media (max-width: 600px) {
+        #ai-manager .pain-tile-grid { grid-template-columns: 1fr !important; }
+      }
+      /* Legacy empathy-bar 1열 보존 (다른 위치에서 사용될 가능성 대비) */
       @media (max-width: 768px) {
-        #ai-manager .empathy-list--grid {
+        #ai-manager .empathy-list--grid:not(.pain-tile-grid) {
           grid-template-columns: 1fr !important;
         }
       }
@@ -1404,10 +1695,11 @@
         font-weight: 800; color: var(--hp-brand-deep);
       }
       .hp-price-card__sub {
-        font-size: 15.6px; color: var(--hp-ink-4);
+        font-size: 15.6px; color: var(--hp-ink-2);
         margin: 0 0 24px; line-height: 1.6;
+        font-weight: 700; letter-spacing: -0.01em;
       }
-      .hp-price-card__sub strong { color: var(--hp-brand-deep); }
+      .hp-price-card__sub strong { color: var(--hp-brand-deep); font-weight: 800; }
       .hp-price-card__list {
         list-style: none; padding: 24px 0 0; margin: 0 0 28px;
         border-top: 1px solid var(--hp-line); flex: 1;
@@ -1890,28 +2182,51 @@
     </style>
     <style>
       /* ═════════ GROWTH 섹션 (복리 성장 타임라인) ═════════ */
+      /* apple-v2 parchment 톤 — 미세 중성 그레이 */
       #growth-story.growth-section {
-        padding: 96px 0; position: relative; overflow: hidden;
-        background:
-          radial-gradient(ellipse 55% 50% at 15% 0%, rgba(52, 120, 246, 0.12), transparent 60%),
-          radial-gradient(ellipse 55% 60% at 85% 100%, rgba(124, 91, 245, 0.10), transparent 60%),
-          linear-gradient(180deg, #FAFBFF 0%, #F4F8FF 60%, #EEF2FF 100%);
+        padding: 120px 0; position: relative; overflow: hidden;
+        background: #eff1f6;
+        color: var(--hp-ink);
       }
       #growth-story.growth-section::before {
-        content: ''; position: absolute; inset: 0;
-        background-image: radial-gradient(circle, rgba(52, 120, 246, 0.10) 1px, transparent 1px);
-        background-size: 26px 26px;
-        opacity: 0.6;
-        mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.55) 0%, transparent 80%);
-        -webkit-mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.55) 0%, transparent 80%);
-        pointer-events: none;
+        content: none;
       }
       #growth-story.growth-section::after {
-        content: ''; position: absolute; top: -8%; right: -8%;
-        width: 36vw; height: 36vw;
-        background: radial-gradient(circle, rgba(124, 91, 245, 0.14) 0%, transparent 65%);
-        filter: blur(60px);
-        pointer-events: none;
+        content: none;
+      }
+      /* 외곽 화이트 카드 (이미지 reference 스타일) */
+      #growth-story .growth-inner {
+        position: relative; max-width: 1200px; margin: 0 auto; padding: 0 24px;
+      }
+      #growth-story .growth-card-wrap {
+        margin-top: 48px;
+        background: #ffffff;
+        border-radius: 32px;
+        padding: 40px 36px;
+        box-shadow:
+          0 32px 80px -28px rgba(52, 120, 246, 0.18),
+          0 4px 16px -4px rgba(15, 23, 42, 0.04),
+          inset 0 1px 0 rgba(255, 255, 255, 1);
+        border: 1px solid rgba(52, 120, 246, 0.10);
+        position: relative; overflow: hidden;
+      }
+      #growth-story .growth-card-wrap__tag-center {
+        text-align: center;
+        margin-bottom: 32px;
+      }
+      #growth-story .growth-card-wrap__tag {
+        display: inline-flex; align-items: center; gap: 8px;
+        padding: 9px 18px; border-radius: 999px;
+        background: var(--hp-grad);
+        color: #fff;
+        font-size: 13.5px; font-weight: 800;
+        letter-spacing: 0.04em;
+        box-shadow: 0 10px 24px -8px rgba(52, 120, 246, 0.45);
+      }
+      #growth-story .growth-card-wrap__tag::before {
+        content: ''; width: 8px; height: 8px; border-radius: 50%;
+        background: #fff;
+        box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
       }
       #growth-story .growth-inner {
         position: relative; max-width: 1200px; margin: 0 auto; padding: 0 24px;
@@ -1937,133 +2252,148 @@
         -webkit-background-clip: text; background-clip: text;
         -webkit-text-fill-color: transparent;
       }
+      /* apple-v2 톤 — 흰 카드 + 위쪽 컬러 액센트 스트라이프 (차분하게) */
       #growth-story .growth-grid {
         position: relative;
-        display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 64px;
-      }
-      /* 카드들을 가로지르는 타임라인 점선 */
-      #growth-story .growth-grid::before {
-        content: ''; position: absolute;
-        top: 70px; left: 12%; right: 12%; height: 2px;
-        background-image: linear-gradient(90deg, rgba(52, 120, 246, 0.35) 50%, transparent 50%);
-        background-size: 14px 2px;
-        background-repeat: repeat-x;
-        z-index: 0;
-        pointer-events: none;
+        display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
       }
       #growth-story .growth-card {
-        padding: 32px 24px 28px; border-radius: 20px;
-        background: linear-gradient(180deg, #ffffff 0%, #F8FBFF 100%);
-        border: 1px solid rgba(52, 120, 246, 0.14);
-        text-align: center;
+        position: relative; overflow: hidden;
+        background: #ffffff;
+        border: 1px solid var(--hp-line);
+        border-radius: 24px;
+        padding: 36px 30px 34px;
+        min-height: 260px;
+        text-align: left;
+        display: flex; flex-direction: column;
+        color: var(--hp-ink);
         transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
                     box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
                     border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        position: relative; overflow: hidden;
-        z-index: 1;
-        box-shadow:
-          0 16px 40px -16px rgba(52, 120, 246, 0.18),
-          0 4px 16px -4px rgba(52, 120, 246, 0.08),
-          inset 0 1px 0 rgba(255, 255, 255, 0.90);
+        box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
       }
-      /* 카드 안 배경의 거대한 숫자 (visual anchor) */
-      #growth-story .growth-card::after {
-        content: attr(data-step);
-        position: absolute;
-        right: -10px; bottom: -40px;
-        font-size: 180px; font-weight: 900;
-        line-height: 1;
-        color: rgba(52, 120, 246, 0.045);
-        pointer-events: none;
-        letter-spacing: -0.08em;
-        z-index: 0;
-      }
+      /* 위쪽 컬러 스트라이프 (액센트만 컬러, 카드는 흰색) */
       #growth-story .growth-card::before {
-        content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-        background: linear-gradient(90deg, transparent 0%, rgba(52, 120, 246, 0.40) 30%, rgba(124, 91, 245, 0.40) 70%, transparent 100%);
-        transform: scaleX(0.20); transform-origin: left;
-        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+        opacity: 1;
       }
-      #growth-story .growth-card:hover {
-        transform: translateY(-8px);
-        border-color: rgba(52, 120, 246, 0.40);
-        box-shadow:
-          0 28px 56px -16px rgba(52, 120, 246, 0.30),
-          0 8px 24px -4px rgba(124, 91, 245, 0.16),
-          inset 0 1px 0 rgba(255, 255, 255, 0.95);
-      }
-      #growth-story .growth-card:hover::before { transform: scaleX(1); }
+      #growth-story .growth-card:nth-child(1)::before { background: var(--hp-grad-amber); }
+      #growth-story .growth-card:nth-child(2)::before { background: var(--hp-grad-mint); }
+      #growth-story .growth-card:nth-child(3)::before { background: var(--hp-grad); }
+      #growth-story .growth-card:nth-child(4)::before { background: var(--hp-grad-violet); }
       #growth-story .growth-card > * { position: relative; z-index: 1; }
-
-      /* 마지막 카드 (4단계 — 자산화 완성) 강조 */
-      #growth-story .growth-card:last-child {
-        background: linear-gradient(180deg, #EEF2FF 0%, #E0E7FF 100%);
-        border-color: rgba(124, 91, 245, 0.30);
-      }
-      #growth-story .growth-card:last-child .growth-card__num {
-        box-shadow: 0 12px 28px -6px rgba(124, 91, 245, 0.50),
-                    0 0 0 6px rgba(124, 91, 245, 0.10);
+      #growth-story .growth-card:hover {
+        transform: translateY(-4px);
+        border-color: rgba(52, 120, 246, 0.22);
+        box-shadow: 0 18px 36px -14px rgba(15, 23, 42, 0.14);
       }
 
+      /* Step 번호 — 비비드 솔리드 그라데이션 + 광택 + 그림자 (image #4 아이콘 톤) */
       #growth-story .growth-card__num {
-        display: inline-flex; width: 64px; height: 64px; border-radius: 50%;
-        background: linear-gradient(135deg, #1A4FE0 0%, #3478F6 50%, #7C5BF5 100%);
+        position: relative; overflow: hidden;
+        display: inline-flex; width: 64px; height: 64px; border-radius: 18px;
+        font-family: "SF Mono", ui-monospace, Menlo, monospace;
+        font-weight: 800; font-size: 19px;
+        align-items: center; justify-content: center;
+        margin: 0 0 22px;
         color: #fff;
-        font-weight: 900; font-size: 24px;
-        align-items: center; justify-content: center; margin: 0 auto 20px;
-        box-shadow:
-          0 12px 28px -6px rgba(52, 120, 246, 0.50),
-          0 0 0 6px rgba(52, 120, 246, 0.08),
-          inset 0 2px 0 rgba(255, 255, 255, 0.30);
-        position: relative;
+        letter-spacing: -0.005em;
+      }
+      /* 좌상단 광택 highlight (image #4 아이콘과 동일) */
+      #growth-story .growth-card__num::after {
+        content: ''; position: absolute; inset: 0;
+        background: radial-gradient(circle at 28% 22%, rgba(255,255,255,0.40), transparent 55%);
+        pointer-events: none;
+      }
+      #growth-story .growth-card:nth-child(1) .growth-card__num {
+        background: var(--hp-grad-amber);
+        box-shadow: 0 12px 22px -8px rgba(245,158,11,0.50);
+      }
+      #growth-story .growth-card:nth-child(2) .growth-card__num {
+        background: var(--hp-grad-mint);
+        box-shadow: 0 12px 22px -8px rgba(16,185,129,0.50);
+      }
+      #growth-story .growth-card:nth-child(3) .growth-card__num {
+        background: var(--hp-grad);
+        box-shadow: 0 12px 22px -8px rgba(52,120,246,0.50);
+      }
+      #growth-story .growth-card:nth-child(4) .growth-card__num {
+        background: var(--hp-grad-violet);
+        box-shadow: 0 12px 22px -8px rgba(139,92,246,0.50);
+      }
+
+      /* Month 기간 라벨 — 카드 안에 직접 (apple-v2 패턴) */
+      #growth-story .growth-card__period {
+        font-size: 11px; font-weight: 700;
+        letter-spacing: 0.14em; text-transform: uppercase;
+        color: var(--hp-ink-4); margin: 0 0 6px;
       }
       #growth-story .growth-card__title {
-        font-size: 20px; font-weight: 900; color: var(--hp-ink);
-        margin-bottom: 10px; letter-spacing: -0.02em;
+        font-size: 22px; font-weight: 800; color: var(--hp-ink);
+        margin: 0 0 12px; letter-spacing: -0.018em;
       }
       #growth-story .growth-card__desc {
-        font-size: 14.5px; color: var(--hp-ink-3); margin: 0; line-height: 1.65;
-        font-weight: 500; word-break: keep-all; letter-spacing: -0.005em;
+        font-size: 15.5px; color: var(--hp-ink-2);
+        margin: 0; line-height: 1.6;
+        font-weight: 600; word-break: keep-all; letter-spacing: -0.012em;
       }
 
+      /* 결과 패널만 유지 (단계별 기간 패널은 카드 안으로 이동했으니 제거) */
+      #growth-story .growth-meta-panel--result {
+        margin-top: 20px;
+        background: #ffffff;
+        border: 1px solid var(--hp-line);
+        border-radius: 16px;
+        padding: 16px 20px;
+        display: grid; grid-template-columns: 1fr auto; gap: 16px;
+        align-items: center;
+      }
+      #growth-story .growth-meta-panel--result .growth-meta-panel__label {
+        font-size: 14px; font-weight: 800; color: var(--hp-ink); letter-spacing: -0.012em;
+      }
+      #growth-story .growth-pill {
+        display: inline-flex; align-items: center; justify-content: center;
+        padding: 7px 14px; border-radius: 999px;
+        font-size: 13px; font-weight: 800; letter-spacing: -0.005em;
+        white-space: nowrap;
+      }
+      #growth-story .growth-pill--mint {
+        background: #D1FAE5; color: #047857;
+      }
+
+      /* 인사이트 박스 — 오렌지 그라데이션 (warmth + 따뜻한 격려 톤) */
       #growth-story .growth-insight {
-        margin-top: 48px; padding: 36px 48px; border-radius: 24px;
-        background:
-          radial-gradient(ellipse 80% 100% at 30% 0%, rgba(124, 91, 245, 0.40), transparent 60%),
-          linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #1F1B3A 100%);
-        color: #fff; display: flex; align-items: center; gap: 20px; justify-content: center;
-        box-shadow:
-          0 32px 64px -16px rgba(15, 23, 42, 0.45),
-          0 0 0 1px rgba(124, 91, 245, 0.30),
-          inset 0 1px 0 rgba(255, 255, 255, 0.10);
-        position: relative;
-        overflow: hidden;
+        margin-top: 28px; padding: 28px 36px; border-radius: 20px;
+        background: linear-gradient(135deg, #FBBF24 0%, #F97316 50%, #EA580C 100%);
+        color: #fff; display: flex; align-items: center; gap: 18px; justify-content: center;
+        box-shadow: 0 24px 48px -16px rgba(249, 115, 22, 0.40);
+        position: relative; overflow: hidden;
       }
       #growth-story .growth-insight::before {
         content: ''; position: absolute;
         top: -40%; right: -10%;
         width: 50%; height: 200%;
-        background: radial-gradient(circle, rgba(52, 120, 246, 0.30) 0%, transparent 60%);
-        filter: blur(40px);
+        background: radial-gradient(circle, rgba(255,255,255,0.18) 0%, transparent 60%);
+        filter: blur(30px);
         pointer-events: none;
       }
       #growth-story .growth-insight > * { position: relative; z-index: 1; }
       #growth-story .growth-insight .icon {
-        font-size: 40px;
-        filter: drop-shadow(0 4px 16px rgba(124, 91, 245, 0.50));
+        font-size: 36px;
+        filter: drop-shadow(0 4px 12px rgba(180, 83, 9, 0.40));
       }
       #growth-story .growth-insight p {
-        font-size: clamp(17px, 2.4vw, 23px); font-weight: 800; color: #fff;
+        font-size: clamp(16px, 2.2vw, 21px); font-weight: 800; color: #fff;
         margin: 0; line-height: 1.5; word-break: keep-all;
         letter-spacing: -0.012em;
-        text-shadow: 0 2px 12px rgba(0, 0, 0, 0.30);
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.20);
       }
 
       #growth-story .growth-bottom {
-        margin-top: 48px; text-align: center;
-        font-size: clamp(18px, 2.4vw, 22px);
+        margin-top: 40px; text-align: center;
+        font-size: clamp(16px, 2.2vw, 20px);
         color: var(--hp-ink-2); line-height: 1.8;
-        font-weight: 500; letter-spacing: -0.012em;
+        font-weight: 600; letter-spacing: -0.012em;
         word-break: keep-all;
       }
       #growth-story .growth-bottom strong {
@@ -2074,19 +2404,22 @@
       }
 
       @media (max-width: 768px) {
-        #growth-story.growth-section { padding: 56px 0; }
-        #growth-story .growth-grid { grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 40px; }
-        /* 모바일에서는 가로 점선 타임라인 숨김 */
-        #growth-story .growth-grid::before { display: none; }
-        #growth-story .growth-card { padding: 24px 18px; }
-        #growth-story .growth-card::after { font-size: 130px; right: -6px; bottom: -28px; }
-        #growth-story .growth-card__num { width: 52px; height: 52px; font-size: 20px; margin-bottom: 14px; }
-        #growth-story .growth-card__title { font-size: 17px; }
-        #growth-story .growth-card__desc { font-size: 13.5px; }
-        #growth-story .growth-insight {
-          padding: 28px 22px; flex-direction: column; gap: 12px; margin-top: 32px;
+        #growth-story.growth-section { padding: 64px 0; }
+        #growth-story .growth-card-wrap { padding: 24px 18px; border-radius: 24px; }
+        #growth-story .growth-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+        #growth-story .growth-card { padding: 22px 18px; }
+        #growth-story .growth-card__num { width: 48px; height: 48px; font-size: 15px; margin-bottom: 14px; border-radius: 14px; }
+        #growth-story .growth-card__period { font-size: 10px; }
+        #growth-story .growth-card__title { font-size: 16.5px; }
+        #growth-story .growth-card__desc { font-size: 13px; }
+        #growth-story .growth-meta-panel--result {
+          grid-template-columns: 1fr; text-align: center; gap: 10px;
         }
-        #growth-story .growth-insight .icon { font-size: 32px; }
+        #growth-story .growth-pill { font-size: 12px; padding: 6px 12px; }
+        #growth-story .growth-insight {
+          padding: 24px 20px; flex-direction: column; gap: 12px; margin-top: 22px;
+        }
+        #growth-story .growth-insight .icon { font-size: 28px; }
       }
       /* ═════════ /GROWTH ═════════ */
 
@@ -2347,23 +2680,43 @@
       }
       #services .service-num::before { display: none !important; }
 
-      /* 아이콘 박스: 56×56 그라디언트 wrapper (시안 A) */
-      #services .service-card .service-icon,
-      #services .service-card:nth-child(1) .service-icon,
-      #services .service-card:nth-child(2) .service-icon,
-      #services .service-card:nth-child(3) .service-icon,
-      #services .service-card:nth-child(4) .service-icon {
+      /* 아이콘 박스: 56×56 비비드 다색 그라데이션 (apple-v2 톤 + 좌상단 광택) */
+      #services .service-card .service-icon {
+        position: relative; overflow: hidden;
         width: 56px !important; height: 56px !important;
         border-radius: 16px !important;
-        background: linear-gradient(135deg, rgba(212, 184, 150, 0.18), rgba(184, 134, 11, 0.08)) !important;
         border: none !important;
         padding: 0 !important;
         display: flex !important;
         align-items: center; justify-content: center;
         margin-bottom: 20px !important;
       }
+      /* 좌상단 광택 — image #4 아이콘 톤 */
+      #services .service-card .service-icon::after {
+        content: ''; position: absolute; inset: 0;
+        background: radial-gradient(circle at 28% 22%, rgba(255,255,255,0.30), transparent 55%);
+        pointer-events: none;
+      }
+      /* 4 카드 컬러 로테이션 — apple-v2 grad 토큰 */
+      #services .service-card:nth-child(1) .service-icon {
+        background: var(--hp-grad-amber) !important;
+        box-shadow: 0 12px 24px -10px rgba(245,158,11,0.55) !important;
+      }
+      #services .service-card:nth-child(2) .service-icon {
+        background: var(--hp-grad) !important;
+        box-shadow: 0 12px 24px -10px rgba(52,120,246,0.55) !important;
+      }
+      #services .service-card:nth-child(3) .service-icon {
+        background: var(--hp-grad-rose) !important;
+        box-shadow: 0 12px 24px -10px rgba(244,63,94,0.55) !important;
+      }
+      #services .service-card:nth-child(4) .service-icon {
+        background: var(--hp-grad-mint) !important;
+        box-shadow: 0 12px 24px -10px rgba(16,185,129,0.55) !important;
+      }
       /* 내부 이모지: transparent + 28px (시안 A) */
       #services .service-card .hp-icon-em-sm {
+        position: relative; z-index: 1;
         width: auto !important; height: auto !important;
         background: transparent !important;
         border-radius: 0 !important;
@@ -2504,7 +2857,7 @@
       }
       /* dark-tone override at line ~2010 wins — base hover defined gold-friendly */
       #faq .faq-item:hover {
-        border-color: rgba(212, 184, 150, 0.35) !important;
+        border-color: rgba(52, 120, 246, 0.35) !important;
         box-shadow: 0 8px 20px -10px rgba(0, 0, 0, 0.4) !important;
       }
       #faq .faq-q {
@@ -2579,8 +2932,8 @@
         --premium-card-hover:#262626;
         --premium-line:      rgba(255, 255, 255, 0.10);
         --premium-line-soft: rgba(255, 255, 255, 0.05);
-        --premium-gold:      #D4B896;            /* Vivid Luxe Gold (Black Gold) */
-        --premium-gold-deep: #8B6F4E;
+        --premium-gold:      #3478F6;            /* (이전 골드 → 브랜드 블루로 retarget) */
+        --premium-gold-deep: #1A4FE0;
         --premium-text:      #F5F5F7;            /* Apple 본문 */
         --premium-text-2:    #D2D2D7;            /* Apple secondary */
         --premium-text-3:    #A1A1A6;            /* Apple tertiary */
@@ -2588,33 +2941,33 @@
 
         /* ───────── DESIGN_REFACTOR 1단계: shadow 토큰 신규 ───────── */
         --premium-shadow:      0 8px 24px -8px rgba(0, 0, 0, 0.5), 0 2px 6px rgba(0, 0, 0, 0.3);
-        --premium-shadow-lg:   0 28px 56px -16px rgba(0, 0, 0, 0.6), 0 8px 16px -4px rgba(212, 184, 150, 0.08);
-        --premium-shadow-gold: 0 16px 32px -8px rgba(212, 184, 150, 0.30);
+        --premium-shadow-lg:   0 28px 56px -16px rgba(0, 0, 0, 0.6), 0 8px 16px -4px rgba(52, 120, 246, 0.08);
+        --premium-shadow-gold: 0 16px 32px -8px rgba(52, 120, 246, 0.30);
 
         /* ───────── PART 02 LUXE REDESIGN — Neon Gold System ───────── */
-        --neon-gold-core:  #D4B896;                                /* 텍스트/테두리 메인 */
-        --neon-gold-bright:#EFE0C8;                                /* 라이트 하이라이트 */
-        --neon-gold-glow:  rgba(212, 184, 150, 0.55);               /* 발광용 */
-        --neon-gold-soft:  #8B6F4E;                                /* 그라데이션 끝 */
-        --neon-gold-grad:  linear-gradient(135deg, #E8C998 0%, #C9A370 45%, #8B6F4E 100%);
-        --card-bg-deep:    linear-gradient(180deg, #15120A 0%, #0A0A0A 100%);
-        --card-bg-deeper:  linear-gradient(180deg, #1A160C 0%, #0F0F0F 100%);
-        --card-border-rim: rgba(212, 184, 150, 0.32);
+        --neon-gold-core:  #3478F6;                                /* 텍스트/테두리 메인 */
+        --neon-gold-bright:#DBEAFE;                                /* 라이트 하이라이트 (이전 골드 → 라이트 블루) */
+        --neon-gold-glow:  rgba(52, 120, 246, 0.55);               /* 발광용 */
+        --neon-gold-soft:  #1A4FE0;                                /* 그라데이션 끝 */
+        --neon-gold-grad:  linear-gradient(135deg, #5B9BF7 0%, #3478F6 45%, #1A4FE0 100%);
+        --card-bg-deep:    linear-gradient(180deg, #0E1424 0%, #0A0A0A 100%);
+        --card-bg-deeper:  linear-gradient(180deg, #131A2E 0%, #0F0F0F 100%);
+        --card-border-rim: rgba(52, 120, 246, 0.32);
 
         --glow-rim:
-          0 0 0 1px rgba(212, 184, 150, 0.22),
-          0 0 24px rgba(212, 184, 150, 0.18),
+          0 0 0 1px rgba(52, 120, 246, 0.22),
+          0 0 24px rgba(52, 120, 246, 0.18),
           0 16px 40px -12px rgba(0, 0, 0, 0.60),
           inset 0 1px 0 rgba(239, 224, 200, 0.12),
-          inset 0 0 60px -20px rgba(212, 184, 150, 0.06);
+          inset 0 0 60px -20px rgba(52, 120, 246, 0.06);
         --glow-rim-hover:
-          0 0 0 1px rgba(212, 184, 150, 0.55),
-          0 0 36px rgba(212, 184, 150, 0.35),
+          0 0 0 1px rgba(52, 120, 246, 0.55),
+          0 0 36px rgba(52, 120, 246, 0.35),
           0 24px 56px -12px rgba(0, 0, 0, 0.70),
           inset 0 1px 0 rgba(239, 224, 200, 0.24),
-          inset 0 0 80px -20px rgba(212, 184, 150, 0.12);
+          inset 0 0 80px -20px rgba(52, 120, 246, 0.12);
         --glow-inset:
-          inset 0 0 60px -20px rgba(212, 184, 150, 0.08);
+          inset 0 0 60px -20px rgba(52, 120, 246, 0.08);
 
         /* spacing / radius / duration / easing은 라이트 톤 변수(--hp-*) 그대로 공유 */
       }
@@ -2622,8 +2975,8 @@
       /* ───────── #services 다크 변환 ───────── */
       #services {
         background:
-          radial-gradient(ellipse 60% 50% at 25% 15%, rgba(212, 184, 150, 0.18), transparent 65%),
-          radial-gradient(ellipse 55% 50% at 80% 90%, rgba(212, 184, 150, 0.14), transparent 60%),
+          radial-gradient(ellipse 60% 50% at 25% 15%, rgba(52, 120, 246, 0.18), transparent 65%),
+          radial-gradient(ellipse 55% 50% at 80% 90%, rgba(52, 120, 246, 0.14), transparent 60%),
           linear-gradient(180deg, var(--premium-bg) 0%, var(--premium-bg-2) 100%) !important;
         position: relative;
         padding: 6.5rem 5% 7rem !important;
@@ -2642,8 +2995,8 @@
             0deg,
             transparent 0,
             transparent 2px,
-            rgba(212, 184, 150, 0.012) 2px,
-            rgba(212, 184, 150, 0.012) 3px
+            rgba(52, 120, 246, 0.012) 2px,
+            rgba(52, 120, 246, 0.012) 3px
           ) !important;
         top: 0 !important; left: 0 !important; width: 100% !important; height: 100% !important;
         z-index: 0 !important;
@@ -2656,9 +3009,9 @@
 
       /* eyebrow */
       #services .section-tag {
-        background: rgba(212, 184, 150, 0.10) !important;
+        background: rgba(52, 120, 246, 0.10) !important;
         color: var(--premium-gold) !important;
-        border: 1px solid rgba(212, 184, 150, 0.28) !important;
+        border: 1px solid rgba(52, 120, 246, 0.28) !important;
       }
       #services .section-tag::before {
         background: var(--premium-gold) !important;
@@ -2695,7 +3048,7 @@
         border-color: var(--premium-gold) !important;
         box-shadow:
           0 24px 48px -12px rgba(0, 0, 0, 0.55),
-          0 0 32px -8px rgba(212, 184, 150, 0.22) !important;
+          0 0 32px -8px rgba(52, 120, 246, 0.22) !important;
       }
 
       /* num "01" — 골드 */
@@ -2710,8 +3063,8 @@
       #services .service-card:nth-child(2) .service-icon,
       #services .service-card:nth-child(3) .service-icon,
       #services .service-card:nth-child(4) .service-icon {
-        background: linear-gradient(135deg, rgba(212, 184, 150, 0.18), rgba(212, 184, 150, 0.04)) !important;
-        border: 1px solid rgba(212, 184, 150, 0.22) !important;
+        background: linear-gradient(135deg, rgba(52, 120, 246, 0.18), rgba(52, 120, 246, 0.04)) !important;
+        border: 1px solid rgba(52, 120, 246, 0.22) !important;
       }
 
       /* h3 / lead / 본문 / 리스트 색상 */
@@ -2735,7 +3088,7 @@
       /* ───────── hp-part-divider: 라이트→다크 전환 다리 ───────── */
       .hp-part-divider {
         background:
-          radial-gradient(ellipse 60% 100% at 50% 70%, rgba(212, 184, 150, 0.10), transparent 70%),
+          radial-gradient(ellipse 60% 100% at 50% 70%, rgba(52, 120, 246, 0.10), transparent 70%),
           linear-gradient(180deg, #ffffff 0%, #ffffff 35%, var(--premium-bg) 100%) !important;
       }
       /* 상단은 border-top으로 명확한 경계선 — ::before 라이트 잔재 숨김 */
@@ -2743,7 +3096,7 @@
         display: none !important;
       }
       .hp-part-divider::after {
-        background: linear-gradient(90deg, transparent, rgba(212, 184, 150, 0.45), transparent) !important;
+        background: linear-gradient(90deg, transparent, rgba(52, 120, 246, 0.45), transparent) !important;
       }
       .hp-part-divider h3 {
         color: var(--premium-text) !important;
@@ -2760,28 +3113,28 @@
       .hp-part-badge {
         background: linear-gradient(135deg, var(--premium-gold) 0%, var(--premium-gold-deep) 100%) !important;
         color: var(--premium-bg) !important;
-        box-shadow: 0 12px 28px -8px rgba(212, 184, 150, 0.45) !important;
+        box-shadow: 0 12px 28px -8px rgba(52, 120, 246, 0.45) !important;
       }
       .hp-part-badge::before {
         background: var(--premium-bg) !important;
         box-shadow: 0 0 10px rgba(10, 15, 31, 0.6) !important;
       }
       .hp-part-divider__arrow {
-        background: rgba(212, 184, 150, 0.12) !important;
-        border-color: rgba(212, 184, 150, 0.35) !important;
+        background: rgba(52, 120, 246, 0.12) !important;
+        border-color: rgba(52, 120, 246, 0.35) !important;
         color: var(--premium-gold) !important;
         box-shadow: 0 8px 20px -8px rgba(0, 0, 0, 0.4) !important;
       }
       .hp-part-divider.is-clickable:hover {
         background:
-          radial-gradient(ellipse 60% 100% at 50% 70%, rgba(212, 184, 150, 0.18), transparent 70%),
+          radial-gradient(ellipse 60% 100% at 50% 70%, rgba(52, 120, 246, 0.18), transparent 70%),
           linear-gradient(180deg, #ffffff 0%, #ffffff 30%, var(--premium-bg) 100%) !important;
       }
       .hp-part-divider.is-clickable:hover .hp-part-divider__arrow {
         background: var(--premium-gold) !important;
         color: var(--premium-bg) !important;
         border-color: var(--premium-gold) !important;
-        box-shadow: 0 12px 28px -8px rgba(212, 184, 150, 0.55) !important;
+        box-shadow: 0 12px 28px -8px rgba(52, 120, 246, 0.55) !important;
       }
       /* ───────── /hp-part-divider premium 다리 ───────── */
 
@@ -2792,16 +3145,16 @@
       /* ───────── #pain-point 다크 ───────── */
       #pain-point {
         background:
-          radial-gradient(ellipse 60% 50% at 80% 10%, rgba(212, 184, 150, 0.16), transparent 65%),
+          radial-gradient(ellipse 60% 50% at 80% 10%, rgba(52, 120, 246, 0.16), transparent 65%),
           radial-gradient(ellipse 55% 50% at 15% 85%, rgba(139, 111, 78, 0.12), transparent 65%),
           var(--premium-bg) !important;
         position: relative !important;
         padding: 6rem 5% !important;
       }
       #pain-point .section-tag {
-        background: rgba(212, 184, 150, 0.10) !important;
+        background: rgba(52, 120, 246, 0.10) !important;
         color: var(--premium-gold) !important;
-        border: 1px solid rgba(212, 184, 150, 0.28) !important;
+        border: 1px solid rgba(52, 120, 246, 0.28) !important;
       }
       #pain-point .section-tag::before {
         background: var(--premium-gold) !important;
@@ -2823,7 +3176,7 @@
       #pain-point .pain-card:hover {
         border-color: var(--premium-gold) !important;
         background: var(--premium-card-hover) !important;
-        box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.55), 0 0 32px -8px rgba(212, 184, 150, 0.2) !important;
+        box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.55), 0 0 32px -8px rgba(52, 120, 246, 0.2) !important;
       }
       #pain-point .pain-card h3 { color: var(--premium-text) !important; }
       #pain-point .pain-card p { color: var(--premium-text-3) !important; }
@@ -2837,23 +3190,23 @@
       }
       #pain-point .hp-solution-step,
       #trust .hp-solution-step {
-        background: rgba(212, 184, 150, 0.10) !important;
+        background: rgba(52, 120, 246, 0.10) !important;
         color: var(--premium-gold) !important;
-        border: 1px solid rgba(212, 184, 150, 0.28) !important;
+        border: 1px solid rgba(52, 120, 246, 0.28) !important;
       }
 
       /* ───────── #trust 다크 ───────── */
       #trust {
         background:
-          radial-gradient(ellipse 50% 60% at 20% 30%, rgba(212, 184, 150, 0.18), transparent 65%),
-          radial-gradient(ellipse 50% 60% at 80% 80%, rgba(212, 184, 150, 0.14), transparent 65%),
+          radial-gradient(ellipse 50% 60% at 20% 30%, rgba(52, 120, 246, 0.18), transparent 65%),
+          radial-gradient(ellipse 50% 60% at 80% 80%, rgba(52, 120, 246, 0.14), transparent 65%),
           linear-gradient(180deg, var(--premium-bg) 0%, var(--premium-bg-2) 100%) !important;
         position: relative !important;
       }
       #trust .section-tag {
-        background: rgba(212, 184, 150, 0.10) !important;
+        background: rgba(52, 120, 246, 0.10) !important;
         color: var(--premium-gold) !important;
-        border: 1px solid rgba(212, 184, 150, 0.28) !important;
+        border: 1px solid rgba(52, 120, 246, 0.28) !important;
       }
       #trust .section-tag::before {
         background: var(--premium-gold) !important;
@@ -2887,11 +3240,11 @@
       #trust .phil-card-wrapper:hover > div:last-child {
         border-color: var(--premium-gold) !important;
         background: var(--premium-card-hover) !important;
-        box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.5), 0 0 28px -8px rgba(212, 184, 150, 0.2) !important;
+        box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.5), 0 0 28px -8px rgba(52, 120, 246, 0.2) !important;
       }
       #trust .hp-icon-em-lg {
-        background: linear-gradient(135deg, rgba(212, 184, 150, 0.18), rgba(212, 184, 150, 0.04)) !important;
-        border: 1px solid rgba(212, 184, 150, 0.25) !important;
+        background: linear-gradient(135deg, rgba(52, 120, 246, 0.18), rgba(52, 120, 246, 0.04)) !important;
+        border: 1px solid rgba(52, 120, 246, 0.25) !important;
       }
       /* ─── PART 02 럭셔리 배경 효과: 별빛 파티클 (코너 글로우는 섹션별 background에서 직접) ─── */
       /* 섹션 경계 디바이더 — 다크 섹션 사이 명확한 구분 (border-top + inset glow) */
@@ -2902,11 +3255,11 @@
       #scarcity,
       #limited {
         position: relative;
-        border-top: 1px solid rgba(212, 184, 150, 0.42) !important;
+        border-top: 1px solid rgba(52, 120, 246, 0.42) !important;
         box-shadow:
-          inset 0 1px 0 rgba(212, 184, 150, 0.18),
-          inset 0 16px 40px -8px rgba(212, 184, 150, 0.08),
-          0 -8px 24px -8px rgba(212, 184, 150, 0.10) !important;
+          inset 0 1px 0 rgba(52, 120, 246, 0.18),
+          inset 0 16px 40px -8px rgba(52, 120, 246, 0.08),
+          0 -8px 24px -8px rgba(52, 120, 246, 0.10) !important;
       }
       /* 중앙 골드 액센트 라이트 (디바이더 가운데 발광점) */
       #pain-point::after,
@@ -2923,8 +3276,8 @@
         width: min(420px, 60vw);
         height: 80px;
         background: radial-gradient(ellipse at center top,
-          rgba(212, 184, 150, 0.42) 0%,
-          rgba(212, 184, 150, 0.16) 35%,
+          rgba(52, 120, 246, 0.42) 0%,
+          rgba(52, 120, 246, 0.16) 35%,
           transparent 72%) !important;
         filter: blur(6px);
         z-index: 2;
@@ -2954,17 +3307,17 @@
         inset: 0;
         background-image:
           radial-gradient(1.5px 1.5px at 8% 15%,  rgba(239, 224, 200, 0.95), transparent 100%),
-          radial-gradient(1px 1px     at 22% 38%, rgba(212, 184, 150, 0.85),  transparent 100%),
+          radial-gradient(1px 1px     at 22% 38%, rgba(52, 120, 246, 0.85),  transparent 100%),
           radial-gradient(2px 2px     at 41% 12%, rgba(239, 224, 200, 0.90), transparent 100%),
-          radial-gradient(1px 1px     at 58% 47%, rgba(212, 184, 150, 0.75),  transparent 100%),
+          radial-gradient(1px 1px     at 58% 47%, rgba(52, 120, 246, 0.75),  transparent 100%),
           radial-gradient(1.5px 1.5px at 73% 22%, rgba(239, 224, 200, 0.90), transparent 100%),
-          radial-gradient(1px 1px     at 88% 8%,  rgba(212, 184, 150, 0.80),  transparent 100%),
+          radial-gradient(1px 1px     at 88% 8%,  rgba(52, 120, 246, 0.80),  transparent 100%),
           radial-gradient(2px 2px     at 12% 65%, rgba(239, 224, 200, 0.85), transparent 100%),
-          radial-gradient(1px 1px     at 33% 78%, rgba(212, 184, 150, 0.70),  transparent 100%),
+          radial-gradient(1px 1px     at 33% 78%, rgba(52, 120, 246, 0.70),  transparent 100%),
           radial-gradient(1.5px 1.5px at 47% 88%, rgba(239, 224, 200, 0.90), transparent 100%),
-          radial-gradient(1px 1px     at 65% 71%, rgba(212, 184, 150, 0.80),  transparent 100%),
+          radial-gradient(1px 1px     at 65% 71%, rgba(52, 120, 246, 0.80),  transparent 100%),
           radial-gradient(2px 2px     at 82% 55%, rgba(239, 224, 200, 0.85), transparent 100%),
-          radial-gradient(1px 1px     at 95% 82%, rgba(212, 184, 150, 0.75),  transparent 100%),
+          radial-gradient(1px 1px     at 95% 82%, rgba(52, 120, 246, 0.75),  transparent 100%),
           radial-gradient(1px 1px     at 5%  92%, rgba(239, 224, 200, 0.80), transparent 100%);
         background-repeat: no-repeat;
         pointer-events: none;
@@ -3008,8 +3361,8 @@
             inset 0 0 18px rgba(239, 224, 200, 0.10),
             0 0 0 1px rgba(239, 224, 200, 0.32),
             0 0 14px rgba(239, 224, 200, 0.45),
-            0 0 36px rgba(212, 184, 150, 0.55),
-            0 0 72px rgba(212, 184, 150, 0.32),
+            0 0 36px rgba(52, 120, 246, 0.55),
+            0 0 72px rgba(52, 120, 246, 0.32),
             0 0 140px rgba(139, 111, 78, 0.22) !important;
         }
         50% {
@@ -3018,8 +3371,8 @@
             inset 0 0 24px rgba(239, 224, 200, 0.18),
             0 0 0 1px rgba(239, 224, 200, 0.50),
             0 0 22px rgba(239, 224, 200, 0.65),
-            0 0 52px rgba(212, 184, 150, 0.70),
-            0 0 104px rgba(212, 184, 150, 0.45),
+            0 0 52px rgba(52, 120, 246, 0.70),
+            0 0 104px rgba(52, 120, 246, 0.45),
             0 0 180px rgba(139, 111, 78, 0.32) !important;
         }
       }
@@ -3035,8 +3388,8 @@
             inset 0 0 0 1px rgba(239, 224, 200, 0.22),
             0 0 0 1px rgba(239, 224, 200, 0.40),
             0 0 18px rgba(239, 224, 200, 0.55),
-            0 0 44px rgba(212, 184, 150, 0.55),
-            0 0 90px rgba(212, 184, 150, 0.32),
+            0 0 44px rgba(52, 120, 246, 0.55),
+            0 0 90px rgba(52, 120, 246, 0.32),
             0 0 150px rgba(139, 111, 78, 0.22) !important;
         }
       }
@@ -3048,21 +3401,21 @@
       #trust .neon-card p { color: var(--premium-text) !important; }
       #trust .neon-card p:last-child { color: var(--premium-text-3) !important; }
       #trust .neon-card .hp-icon-em-sm {
-        background: linear-gradient(135deg, rgba(212, 184, 150, 0.20), rgba(212, 184, 150, 0.05)) !important;
-        border: 1px solid rgba(212, 184, 150, 0.30) !important;
+        background: linear-gradient(135deg, rgba(52, 120, 246, 0.20), rgba(52, 120, 246, 0.05)) !important;
+        border: 1px solid rgba(52, 120, 246, 0.30) !important;
       }
 
       /* ───────── #compare 다크 ───────── */
       #compare {
         background:
-          radial-gradient(ellipse 70% 50% at 50% 0%, rgba(212, 184, 150, 0.20), transparent 70%),
+          radial-gradient(ellipse 70% 50% at 50% 0%, rgba(52, 120, 246, 0.20), transparent 70%),
           radial-gradient(ellipse 60% 50% at 50% 100%, rgba(139, 111, 78, 0.14), transparent 70%),
           var(--premium-bg) !important;
       }
       #compare .section-tag {
-        background: rgba(212, 184, 150, 0.10) !important;
+        background: rgba(52, 120, 246, 0.10) !important;
         color: var(--premium-gold) !important;
-        border: 1px solid rgba(212, 184, 150, 0.28) !important;
+        border: 1px solid rgba(52, 120, 246, 0.28) !important;
       }
       #compare .section-tag::before {
         background: var(--premium-gold) !important;
@@ -3084,7 +3437,7 @@
         color: var(--premium-text-2) !important;
       }
       #compare th {
-        background: rgba(212, 184, 150, 0.08) !important;
+        background: rgba(52, 120, 246, 0.08) !important;
         color: var(--premium-gold) !important;
         border-color: var(--premium-line-soft) !important;
       }
@@ -3092,20 +3445,20 @@
         color: var(--premium-text-2) !important;
         border-color: var(--premium-line-soft) !important;
       }
-      #compare tr:hover td { background: rgba(212, 184, 150, 0.04) !important; }
+      #compare tr:hover td { background: rgba(52, 120, 246, 0.04) !important; }
       #compare strong { color: var(--premium-gold) !important; }
 
       /* ───────── #faq 다크 ───────── */
       #faq {
         background:
-          radial-gradient(ellipse 50% 60% at 30% 20%, rgba(212, 184, 150, 0.16), transparent 65%),
+          radial-gradient(ellipse 50% 60% at 30% 20%, rgba(52, 120, 246, 0.16), transparent 65%),
           radial-gradient(ellipse 50% 60% at 75% 80%, rgba(139, 111, 78, 0.12), transparent 65%),
           linear-gradient(180deg, var(--premium-bg-2) 0%, var(--premium-bg) 100%) !important;
       }
       #faq .section-tag {
-        background: rgba(212, 184, 150, 0.10) !important;
+        background: rgba(52, 120, 246, 0.10) !important;
         color: var(--premium-gold) !important;
-        border: 1px solid rgba(212, 184, 150, 0.28) !important;
+        border: 1px solid rgba(52, 120, 246, 0.28) !important;
       }
       #faq .section-tag::before {
         background: var(--premium-gold) !important;
@@ -3123,10 +3476,10 @@
       #faq .faq-cta {
         background: linear-gradient(135deg, var(--premium-gold) 0%, var(--premium-gold-deep) 100%) !important;
         color: var(--premium-bg) !important;
-        box-shadow: 0 12px 28px -8px rgba(212, 184, 150, 0.4) !important;
+        box-shadow: 0 12px 28px -8px rgba(52, 120, 246, 0.4) !important;
       }
       #faq .faq-cta:hover {
-        box-shadow: 0 16px 36px -8px rgba(212, 184, 150, 0.55) !important;
+        box-shadow: 0 16px 36px -8px rgba(52, 120, 246, 0.55) !important;
       }
       #faq .faq-item {
         background: var(--premium-card) !important;
@@ -3134,7 +3487,7 @@
       }
       #faq .faq-item:hover {
         border-color: var(--premium-gold) !important;
-        box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.5), 0 0 24px -10px rgba(212, 184, 150, 0.25) !important;
+        box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.5), 0 0 24px -10px rgba(52, 120, 246, 0.25) !important;
       }
       #faq .faq-q { color: var(--premium-text) !important; }
       #faq .faq-q .arrow { color: var(--premium-text-3) !important; }
@@ -3146,7 +3499,7 @@
       /* ───────── #scarcity 다크 (가장 깊은 톤) ───────── */
       #scarcity {
         background:
-          radial-gradient(ellipse 70% 60% at 50% 30%, rgba(212, 184, 150, 0.22), transparent 65%),
+          radial-gradient(ellipse 70% 60% at 50% 30%, rgba(52, 120, 246, 0.22), transparent 65%),
           radial-gradient(ellipse 50% 50% at 50% 100%, rgba(139, 111, 78, 0.16), transparent 60%),
           var(--premium-bg) !important;
         padding: 7rem 5% 8rem !important;
@@ -3155,7 +3508,7 @@
       /* ───────── #limited 다크 (LIMITED 단독 섹션) ───────── */
       #limited {
         background:
-          radial-gradient(ellipse 60% 50% at 50% 0%, rgba(212, 184, 150, 0.20), transparent 65%),
+          radial-gradient(ellipse 60% 50% at 50% 0%, rgba(52, 120, 246, 0.20), transparent 65%),
           radial-gradient(ellipse 55% 50% at 50% 100%, rgba(139, 111, 78, 0.14), transparent 60%),
           linear-gradient(180deg, var(--premium-bg-2) 0%, var(--premium-bg) 100%) !important;
         padding: 7rem 5% 8rem !important;
@@ -3172,9 +3525,9 @@
         display: none !important;
       }
       #scarcity .section-tag {
-        background: rgba(212, 184, 150, 0.12) !important;
+        background: rgba(52, 120, 246, 0.12) !important;
         color: var(--premium-gold) !important;
-        border: 1px solid rgba(212, 184, 150, 0.32) !important;
+        border: 1px solid rgba(52, 120, 246, 0.32) !important;
       }
       #scarcity .section-tag::before {
         background: var(--premium-gold) !important;
@@ -3195,7 +3548,7 @@
       #scarcity a[class*="cta"] {
         background: linear-gradient(135deg, var(--premium-gold) 0%, var(--premium-gold-deep) 100%) !important;
         color: var(--premium-bg) !important;
-        box-shadow: 0 16px 36px -8px rgba(212, 184, 150, 0.5) !important;
+        box-shadow: 0 16px 36px -8px rgba(52, 120, 246, 0.5) !important;
       }
       /* ═══════════ /PREMIUM 변환 ═══════════ */
 
@@ -3205,7 +3558,7 @@
       body #pain-point::before { display: none !important; }
       body #pain-point {
         background:
-          radial-gradient(ellipse 60% 50% at 80% 10%, rgba(212, 184, 150, 0.06), transparent 65%),
+          radial-gradient(ellipse 60% 50% at 80% 10%, rgba(52, 120, 246, 0.06), transparent 65%),
           var(--premium-bg) !important;
       }
 
@@ -3222,17 +3575,35 @@
       body #pain-point .pain-card.pain-card--highlight,
       body #pain-point .pain-card--highlight {
         background: linear-gradient(135deg, #1F1F1F 0%, var(--premium-card) 100%) !important;
-        border: 1px solid rgba(212, 184, 150, 0.4) !important;
+        border: 1px solid rgba(52, 120, 246, 0.4) !important;
         color: var(--premium-text) !important;
       }
       body #pain-point .pain-card--highlight h3 { color: var(--premium-gold) !important; }
       body #pain-point .pain-card--highlight p,
       body #pain-point .pain-card--highlight strong { color: var(--premium-text) !important; }
 
-      /* pain-icon 박스 다크 */
+      /* pain-icon 박스 다크 + 다색 액센트 (apple-v2 톤) — 카드별 컬러 로테이션 */
       body #pain-point .pain-card .pain-icon {
-        background: linear-gradient(135deg, rgba(212, 184, 150, 0.18), rgba(212, 184, 150, 0.04)) !important;
-        border: 1px solid rgba(212, 184, 150, 0.25) !important;
+        position: relative; overflow: hidden;
+        border: none !important;
+        color: #fff !important;
+      }
+      body #pain-point .pain-card .pain-icon::after {
+        content: ''; position: absolute; inset: 0;
+        background: radial-gradient(circle at 28% 22%, rgba(255,255,255,0.30), transparent 55%);
+        pointer-events: none;
+      }
+      body #pain-point .pain-card:nth-child(1) .pain-icon {
+        background: var(--hp-grad-rose) !important;
+        box-shadow: 0 12px 24px -10px rgba(244,63,94,0.50) !important;
+      }
+      body #pain-point .pain-card:nth-child(2) .pain-icon {
+        background: var(--hp-grad-amber) !important;
+        box-shadow: 0 12px 24px -10px rgba(245,158,11,0.50) !important;
+      }
+      body #pain-point .pain-card:nth-child(3) .pain-icon {
+        background: var(--hp-grad-violet) !important;
+        box-shadow: 0 12px 24px -10px rgba(139,92,246,0.50) !important;
       }
 
       /* section-title / desc 강한 specificity 헤딩 가시성 */
@@ -3242,17 +3613,17 @@
       /* hp-part-divider: 다크 단색 + 상단 경계선 골드 라인 (DESIGN_REFACTOR 5단계 — fade 대신 경계선) */
       body .hp-part-divider {
         background:
-          radial-gradient(ellipse 70% 80% at 50% 50%, rgba(212, 184, 150, 0.14), transparent 70%),
-          radial-gradient(ellipse 50% 50% at 20% 30%, rgba(212, 184, 150, 0.06), transparent 65%),
-          radial-gradient(ellipse 50% 50% at 80% 70%, rgba(212, 184, 150, 0.05), transparent 65%),
+          radial-gradient(ellipse 70% 80% at 50% 50%, rgba(52, 120, 246, 0.14), transparent 70%),
+          radial-gradient(ellipse 50% 50% at 20% 30%, rgba(52, 120, 246, 0.06), transparent 65%),
+          radial-gradient(ellipse 50% 50% at 80% 70%, rgba(52, 120, 246, 0.05), transparent 65%),
           linear-gradient(180deg, var(--premium-bg-2) 0%, var(--premium-bg) 100%) !important;
         border-top: 1px solid var(--premium-gold) !important;
       }
       body .hp-part-divider.is-clickable:hover {
         background:
-          radial-gradient(ellipse 75% 85% at 50% 50%, rgba(212, 184, 150, 0.22), transparent 70%),
-          radial-gradient(ellipse 50% 50% at 20% 30%, rgba(212, 184, 150, 0.10), transparent 65%),
-          radial-gradient(ellipse 50% 50% at 80% 70%, rgba(212, 184, 150, 0.08), transparent 65%),
+          radial-gradient(ellipse 75% 85% at 50% 50%, rgba(52, 120, 246, 0.22), transparent 70%),
+          radial-gradient(ellipse 50% 50% at 20% 30%, rgba(52, 120, 246, 0.10), transparent 65%),
+          radial-gradient(ellipse 50% 50% at 80% 70%, rgba(52, 120, 246, 0.08), transparent 65%),
           linear-gradient(180deg, var(--premium-bg-2) 0%, var(--premium-bg) 100%) !important;
       }
       body .hp-part-divider h3 { color: var(--premium-text) !important; }
@@ -3264,7 +3635,7 @@
         background: var(--premium-card) !important;
         border: 1px solid var(--premium-line) !important;
       }
-      body #scarcity .hp-price-card { border-color: rgba(212, 184, 150, 0.3) !important; }
+      body #scarcity .hp-price-card { border-color: rgba(52, 120, 246, 0.3) !important; }
       body #scarcity .hp-agency-card h3,
       body #scarcity .hp-price-card__title { color: var(--premium-text) !important; }
       body #scarcity .hp-agency-card p,
@@ -3278,9 +3649,9 @@
       body #scarcity .hp-agency-note strong { color: var(--premium-gold) !important; }
       body #scarcity .hp-agency-note { color: var(--premium-text-3) !important; }
       body #scarcity .hp-agency-tag {
-        background: rgba(212, 184, 150, 0.10) !important;
+        background: rgba(52, 120, 246, 0.10) !important;
         color: var(--premium-gold) !important;
-        border: 1px solid rgba(212, 184, 150, 0.28) !important;
+        border: 1px solid rgba(52, 120, 246, 0.28) !important;
       }
       body #scarcity .hp-agency-price .num {
         background: linear-gradient(135deg, var(--premium-gold), var(--premium-gold-deep)) !important;
@@ -3295,14 +3666,14 @@
       body #scarcity .hp-price-card__badge,
       body #scarcity .hp-price-card__tag { color: var(--premium-gold) !important; }
       body #scarcity .hp-price-card__list li .ico {
-        background: rgba(212, 184, 150, 0.18) !important;
+        background: rgba(52, 120, 246, 0.18) !important;
       }
 
       /* #scarcity 자체 배경 강제 */
       body #scarcity {
         background:
-          radial-gradient(ellipse 70% 60% at 50% 30%, rgba(212, 184, 150, 0.12), transparent 65%),
-          radial-gradient(ellipse 50% 50% at 50% 100%, rgba(212, 184, 150, 0.06), transparent 60%),
+          radial-gradient(ellipse 70% 60% at 50% 30%, rgba(52, 120, 246, 0.12), transparent 65%),
+          radial-gradient(ellipse 50% 50% at 50% 100%, rgba(52, 120, 246, 0.06), transparent 60%),
           var(--premium-bg) !important;
       }
 
@@ -3320,13 +3691,13 @@
       body #faq a.faq-cta,
       body #scarcity .hp-price-card__cta,
       body #scarcity a.hp-price-card__cta {
-        background: linear-gradient(135deg, #D4B896 0%, #8B6F4E 100%) !important;
+        background: linear-gradient(135deg, #3478F6 0%, #1A4FE0 100%) !important;
         color: #000000 !important;
         border-radius: 50px !important;
         padding: 14px 28px !important;
         font-weight: 800 !important;
         border: none !important;
-        box-shadow: 0 12px 28px -8px rgba(212, 184, 150, 0.5) !important;
+        box-shadow: 0 12px 28px -8px rgba(52, 120, 246, 0.5) !important;
         transition: transform var(--hp-dur-mid) var(--hp-ease), box-shadow var(--hp-dur-mid) var(--hp-ease) !important;
         text-decoration: none !important;
       }
@@ -3335,7 +3706,7 @@
       body #faq .faq-cta:hover,
       body #scarcity .hp-price-card__cta:hover {
         transform: translateY(-2px) !important;
-        box-shadow: 0 18px 40px -8px rgba(212, 184, 150, 0.6) !important;
+        box-shadow: 0 18px 40px -8px rgba(52, 120, 246, 0.6) !important;
       }
       body .hp-part-divider .hp-part-badge::before {
         background: #000 !important;
@@ -3354,9 +3725,9 @@
       /* ═════════ LIMITED 배지 강제 (scarcity + limited .section-tag) ═════════ */
       body #scarcity .section-tag,
       body #limited .section-tag {
-        background: rgba(212, 184, 150, 0.10) !important;
+        background: rgba(52, 120, 246, 0.10) !important;
         color: var(--premium-gold) !important;
-        border: 1px solid rgba(212, 184, 150, 0.32) !important;
+        border: 1px solid rgba(52, 120, 246, 0.32) !important;
       }
       body #scarcity .section-tag::before,
       body #limited .section-tag::before {
@@ -3391,8 +3762,8 @@
         background: var(--premium-card) !important;
         border: 1px solid var(--premium-line) !important;
       }
-      body #compare th { background: rgba(212, 184, 150, 0.08) !important; color: var(--premium-gold) !important; }
-      body #compare th.th-left { background: linear-gradient(180deg, #EFE0C8 0%, #D4B896 50%, #8B6F4E 100%) !important; color: #000 !important; }
+      body #compare th { background: rgba(52, 120, 246, 0.08) !important; color: var(--premium-gold) !important; }
+      body #compare th.th-left { background: linear-gradient(180deg, #DBEAFE 0%, #3478F6 50%, #1A4FE0 100%) !important; color: #000 !important; }
       body #compare td { color: var(--premium-text-2) !important; }
       body #compare strong { color: var(--premium-gold) !important; }
 
@@ -3417,8 +3788,8 @@
       }
       body #pain-point .pain-highlight-inner {
         background: linear-gradient(135deg, #1F1F1F 0%, var(--premium-card) 100%) !important;
-        border: 1px solid rgba(212, 184, 150, 0.4) !important;
-        box-shadow: 0 0 32px rgba(212, 184, 150, 0.15) !important;
+        border: 1px solid rgba(52, 120, 246, 0.4) !important;
+        box-shadow: 0 0 32px rgba(52, 120, 246, 0.15) !important;
         color: var(--premium-text) !important;
       }
       body #pain-point .pain-highlight-inner::before { display: none !important; }
@@ -3434,8 +3805,8 @@
 
       /* pain-icon 박스 라이트 → 다크 + 골드 */
       body #pain-point .pain-icon {
-        background: linear-gradient(135deg, rgba(212, 184, 150, 0.18), rgba(212, 184, 150, 0.04)) !important;
-        border: 1px solid rgba(212, 184, 150, 0.25) !important;
+        background: linear-gradient(135deg, rgba(52, 120, 246, 0.18), rgba(52, 120, 246, 0.04)) !important;
+        border: 1px solid rgba(52, 120, 246, 0.25) !important;
         filter: none !important;
       }
 
@@ -3446,32 +3817,32 @@
         box-shadow: none !important;
       }
       body #scarcity .hp-agency-card::before {
-        background: radial-gradient(circle, rgba(212, 184, 150, 0.18), transparent 70%) !important;
+        background: radial-gradient(circle, rgba(52, 120, 246, 0.18), transparent 70%) !important;
         opacity: 1 !important;
       }
       /* hp-agency-list li 체크 dot — 옛 블루 그라디언트 → 골드 */
       body #scarcity .hp-agency-list li::before {
         background-image:
-          linear-gradient(135deg, #D4B896 0%, #8B6F4E 100%),
+          linear-gradient(135deg, #3478F6 0%, #1A4FE0 100%),
           url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E") !important;
       }
       /* hp-agency-tag 옅은 노랑 → 골드 알약 */
       body #scarcity .hp-agency-tag {
-        background: rgba(212, 184, 150, 0.18) !important;
+        background: rgba(52, 120, 246, 0.18) !important;
         color: var(--premium-gold) !important;
       }
       /* hp-agency-cta 흰 → 골드 그라디언트 알약 */
       body #scarcity .hp-agency-cta {
-        background: linear-gradient(135deg, #D4B896 0%, #8B6F4E 100%) !important;
+        background: linear-gradient(135deg, #3478F6 0%, #1A4FE0 100%) !important;
         color: #000 !important;
         border-radius: 50px !important;
         font-weight: 800 !important;
-        box-shadow: 0 12px 28px -8px rgba(212, 184, 150, 0.5) !important;
+        box-shadow: 0 12px 28px -8px rgba(52, 120, 246, 0.5) !important;
       }
       body #scarcity .hp-agency-cta:hover {
         color: #000 !important;
         transform: translateY(-2px) !important;
-        box-shadow: 0 18px 40px -8px rgba(212, 184, 150, 0.6) !important;
+        box-shadow: 0 18px 40px -8px rgba(52, 120, 246, 0.6) !important;
       }
       body #scarcity .hp-agency-note {
         background: rgba(255, 255, 255, 0.04) !important;
@@ -3501,9 +3872,9 @@
       }
       body #scarcity .hp-scarcity-card .section-tag,
       body #limited .hp-scarcity-card .section-tag {
-        background: rgba(212, 184, 150, 0.10) !important;
+        background: rgba(52, 120, 246, 0.10) !important;
         color: var(--premium-gold) !important;
-        border: 1px solid rgba(212, 184, 150, 0.32) !important;
+        border: 1px solid rgba(52, 120, 246, 0.32) !important;
       }
       body #scarcity .hp-scarcity-card .section-tag::before,
       body #limited .hp-scarcity-card .section-tag::before {
@@ -3528,18 +3899,18 @@
       body #scarcity .hp-scarcity-card a.btn-primary,
       body #limited .hp-scarcity-card .btn-primary,
       body #limited .hp-scarcity-card a.btn-primary {
-        background: linear-gradient(135deg, #D4B896 0%, #8B6F4E 100%) !important;
+        background: linear-gradient(135deg, #3478F6 0%, #1A4FE0 100%) !important;
         color: #000 !important;
         border-radius: 50px !important;
         border: none !important;
         font-weight: 800 !important;
-        box-shadow: 0 12px 28px -8px rgba(212, 184, 150, 0.5) !important;
+        box-shadow: 0 12px 28px -8px rgba(52, 120, 246, 0.5) !important;
         text-decoration: none !important;
       }
       body #scarcity .hp-scarcity-card .btn-primary:hover,
       body #limited .hp-scarcity-card .btn-primary:hover {
         transform: translateY(-2px) !important;
-        box-shadow: 0 18px 40px -8px rgba(212, 184, 150, 0.6) !important;
+        box-shadow: 0 18px 40px -8px rgba(52, 120, 246, 0.6) !important;
       }
       /* ═════════ /FINAL FIX ═════════ */
 
@@ -3548,15 +3919,15 @@
       body #pain-point .pain-highlight,
       body #pain-point .pain-highlight-inner {
         background: linear-gradient(135deg, #1F1F1F 0%, var(--premium-card) 100%) !important;
-        border: 1px solid rgba(212, 184, 150, 0.4) !important;
-        box-shadow: 0 0 32px rgba(212, 184, 150, 0.15) !important;
+        border: 1px solid rgba(52, 120, 246, 0.4) !important;
+        box-shadow: 0 0 32px rgba(52, 120, 246, 0.15) !important;
       }
       body #pain-point .pain-highlight h3,
       body #pain-point .pain-highlight-inner h3,
       body #pain-point .pain-highlight h3 *,
       body #pain-point .pain-highlight-inner h3 * {
-        color: #D4B896 !important;
-        -webkit-text-fill-color: #D4B896 !important;
+        color: #3478F6 !important;
+        -webkit-text-fill-color: #3478F6 !important;
       }
       body #pain-point .pain-highlight p,
       body #pain-point .pain-highlight-inner p,
@@ -3567,8 +3938,8 @@
       }
       body #pain-point .pain-highlight strong,
       body #pain-point .pain-highlight-inner strong {
-        color: #D4B896 !important;
-        -webkit-text-fill-color: #D4B896 !important;
+        color: #3478F6 !important;
+        -webkit-text-fill-color: #3478F6 !important;
       }
 
       /* PART 02 안 var(--hp-brand) / var(--hp-brand-deep) 잔재 옛 블루 → 골드 */
@@ -3579,8 +3950,8 @@
       body #faq,
       body #scarcity,
       body .hp-part-divider {
-        --hp-brand-deep: #D4B896;
-        --hp-brand: #D4B896;
+        --hp-brand-deep: #3478F6;
+        --hp-brand: #3478F6;
       }
 
       /* 모든 PART 02 골드 알약 그라디언트 통일 (vertical 골드 글로스) */
@@ -3589,7 +3960,7 @@
       body #scarcity .hp-scarcity-card .btn-primary,
       body #faq .faq-cta,
       body #scarcity .hp-price-card__cta {
-        background: linear-gradient(180deg, #EFE0C8 0%, #D4B896 50%, #8B6F4E 100%) !important;
+        background: linear-gradient(180deg, #DBEAFE 0%, #3478F6 50%, #1A4FE0 100%) !important;
         color: #000 !important;
       }
       /* ═════════ /ABSOLUTE FINAL ═════════ */
@@ -3962,21 +4333,21 @@
 
       /* ─── FAQ 동그라미 + 아이콘 골드 오버라이드 (style.css의 파란 원형 무력화) ─── */
       body #faq .faq-q .arrow {
-        background: rgba(212, 184, 150, 0.12) !important;
+        background: rgba(52, 120, 246, 0.12) !important;
         color: var(--premium-gold) !important;
-        border: 1px solid rgba(212, 184, 150, 0.3) !important;
+        border: 1px solid rgba(52, 120, 246, 0.3) !important;
         box-shadow: none !important;
       }
       body #faq .faq-item.open .faq-q .arrow {
-        background: linear-gradient(180deg, #EFE0C8 0%, #D4B896 50%, #8B6F4E 100%) !important;
+        background: linear-gradient(180deg, #DBEAFE 0%, #3478F6 50%, #1A4FE0 100%) !important;
         color: #000 !important;
         border-color: transparent !important;
-        box-shadow: 0 4px 12px rgba(212, 184, 150, 0.35) !important;
+        box-shadow: 0 4px 12px rgba(52, 120, 246, 0.35) !important;
       }
       /* FAQ 답변 배경 다크 + 골드 라인 (style.css의 흰 배경 무력화) */
       body #faq .faq-a-inner {
-        background: rgba(212, 184, 150, 0.05) !important;
-        border: 1px solid rgba(212, 184, 150, 0.18) !important;
+        background: rgba(52, 120, 246, 0.05) !important;
+        border: 1px solid rgba(52, 120, 246, 0.18) !important;
         border-radius: 12px !important;
       }
       /* FAQ 펼침/접힘 애니메이션 부드럽게 (DESIGN_REFACTOR 7단계 — max-height + opacity, ease-out) */
@@ -4235,9 +4606,9 @@
         align-items: center !important;
         gap: 8px !important;
         padding: 7px 16px !important;
-        background: rgba(212, 184, 150, 0.10) !important;
+        background: rgba(52, 120, 246, 0.10) !important;
         color: var(--neon-gold-core) !important;
-        border: 1px solid rgba(212, 184, 150, 0.40) !important;
+        border: 1px solid rgba(52, 120, 246, 0.40) !important;
         border-radius: 999px !important;
         font-size: 11.5px !important;
         font-weight: 800 !important;
@@ -4245,8 +4616,8 @@
         text-transform: uppercase !important;
         text-shadow: 0 0 12px var(--neon-gold-glow);
         box-shadow:
-          0 0 0 1px rgba(212, 184, 150, 0.15),
-          0 0 16px rgba(212, 184, 150, 0.25),
+          0 0 0 1px rgba(52, 120, 246, 0.15),
+          0 0 16px rgba(52, 120, 246, 0.25),
           inset 0 1px 0 rgba(239, 224, 200, 0.12) !important;
       }
       body #services .section-tag::before,
@@ -4276,13 +4647,13 @@
         width: 56px !important; height: 56px !important;
         border-radius: 16px !important;
         background: radial-gradient(circle at center,
-          rgba(212, 184, 150, 0.18) 0%,
-          rgba(212, 184, 150, 0.05) 60%,
+          rgba(52, 120, 246, 0.18) 0%,
+          rgba(52, 120, 246, 0.05) 60%,
           transparent 100%) !important;
-        border: 1px solid rgba(212, 184, 150, 0.30) !important;
+        border: 1px solid rgba(52, 120, 246, 0.30) !important;
         box-shadow:
-          0 0 24px rgba(212, 184, 150, 0.22),
-          inset 0 0 16px rgba(212, 184, 150, 0.06),
+          0 0 24px rgba(52, 120, 246, 0.22),
+          inset 0 0 16px rgba(52, 120, 246, 0.06),
           inset 0 1px 0 rgba(239, 224, 200, 0.18) !important;
         font-size: 1.5rem;
         flex-shrink: 0;
@@ -4316,7 +4687,7 @@
         background-clip: text !important;
         -webkit-text-fill-color: transparent !important;
         color: transparent !important;
-        filter: drop-shadow(0 0 16px rgba(212, 184, 150, 0.30));
+        filter: drop-shadow(0 0 16px rgba(52, 120, 246, 0.30));
       }
 
       /* ─── 골드 CTA 버튼 통일 ─── */
@@ -4332,8 +4703,8 @@
         letter-spacing: -0.005em !important;
         box-shadow:
           0 0 0 1px rgba(239, 224, 200, 0.40),
-          0 12px 32px -8px rgba(212, 184, 150, 0.50),
-          0 0 24px rgba(212, 184, 150, 0.35),
+          0 12px 32px -8px rgba(52, 120, 246, 0.50),
+          0 0 24px rgba(52, 120, 246, 0.35),
           inset 0 1px 0 rgba(255, 255, 255, 0.30) !important;
         transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
                     box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
@@ -4344,8 +4715,8 @@
         transform: translateY(-2px) !important;
         box-shadow:
           0 0 0 1px rgba(239, 224, 200, 0.60),
-          0 18px 40px -8px rgba(212, 184, 150, 0.65),
-          0 0 36px rgba(212, 184, 150, 0.50),
+          0 18px 40px -8px rgba(52, 120, 246, 0.65),
+          0 0 36px rgba(52, 120, 246, 0.50),
           inset 0 1px 0 rgba(255, 255, 255, 0.40) !important;
       }
 
@@ -4370,9 +4741,9 @@
         height: 1px;
         background: linear-gradient(90deg,
           transparent 0%,
-          rgba(212, 184, 150, 0.20) 15%,
+          rgba(52, 120, 246, 0.20) 15%,
           var(--neon-gold-glow) 50%,
-          rgba(212, 184, 150, 0.20) 85%,
+          rgba(52, 120, 246, 0.20) 85%,
           transparent 100%) !important;
         z-index: 5;
         pointer-events: none;
@@ -4387,12 +4758,12 @@
         color: #1a1208 !important;
         box-shadow:
           0 0 0 1px rgba(239, 224, 200, 0.30),
-          0 16px 32px -8px rgba(212, 184, 150, 0.45),
-          0 0 24px rgba(212, 184, 150, 0.35) !important;
+          0 16px 32px -8px rgba(52, 120, 246, 0.45),
+          0 0 24px rgba(52, 120, 246, 0.35) !important;
         text-shadow: none !important;
       }
       body .hp-part-divider h3 {
-        text-shadow: 0 0 24px rgba(212, 184, 150, 0.18);
+        text-shadow: 0 0 24px rgba(52, 120, 246, 0.18);
       }
 
       /* ─── compare 비교표 골드 림 ─── */
@@ -4413,16 +4784,16 @@
       /* ─── 폼 입력 필드 (agency form) 골드 포커스 글로우 ─── */
       body #scarcity .hp-agency-form input,
       body #scarcity .hp-agency-form textarea {
-        background: rgba(212, 184, 150, 0.04) !important;
-        border: 1px solid rgba(212, 184, 150, 0.16) !important;
+        background: rgba(52, 120, 246, 0.04) !important;
+        border: 1px solid rgba(52, 120, 246, 0.16) !important;
       }
       body #scarcity .hp-agency-form input:focus,
       body #scarcity .hp-agency-form textarea:focus {
         border-color: var(--neon-gold-core) !important;
-        background: rgba(212, 184, 150, 0.08) !important;
+        background: rgba(52, 120, 246, 0.08) !important;
         box-shadow:
-          0 0 0 3px rgba(212, 184, 150, 0.20),
-          0 0 24px rgba(212, 184, 150, 0.20) !important;
+          0 0 0 3px rgba(52, 120, 246, 0.20),
+          0 0 24px rgba(52, 120, 246, 0.20) !important;
       }
 
       /* ─── 회색·블루 잔재 완전 제거 ─── */
@@ -4441,8 +4812,8 @@
       body #faq [style*="rgba(52, 120, 246"],
       body #scarcity [style*="rgba(52, 120, 246"],
       body #limited [style*="rgba(52, 120, 246"] {
-        background: rgba(212, 184, 150, 0.10) !important;
-        border-color: rgba(212, 184, 150, 0.30) !important;
+        background: rgba(52, 120, 246, 0.10) !important;
+        border-color: rgba(52, 120, 246, 0.30) !important;
         color: var(--neon-gold-core) !important;
       }
 
@@ -4484,6 +4855,8 @@
         <li role="none">
           <a href="#contact" class="nav-cta" role="menuitem">바로 연결하기</a>
         </li>
+        <!-- HOLD: 로그인/결제 기능 일시 보류 (활성화 시 아래 블록 주석 해제) -->
+        <!--
         <li role="none" style="margin-left:0.5rem;position:relative;">
           <button id="nav-login-btn" onclick="openLoginModal()" style="background:linear-gradient(135deg,#3478F6,#5B9BF7);color:#fff;border:none;padding:0.5rem 1.2rem;border-radius:10px;font-size:0.85rem;font-weight:700;cursor:pointer;">로그인</button>
           <div id="nav-user-menu" style="display:none;align-items:center;gap:0.5rem;cursor:pointer;" onclick="document.getElementById('user-dropdown').style.display=document.getElementById('user-dropdown').style.display==='block'?'none':'block'">
@@ -4495,6 +4868,8 @@
             </div>
           </div>
         </li>
+        -->
+
       </ul>
       <button
         class="hamburger"
@@ -4518,22 +4893,18 @@
       <a href="#part-02" onclick="closeMobileMenu()">블로그 대행</a>
       <a href="#faq" onclick="closeMobileMenu()">자주 묻는 질문</a>
       <a href="#contact" class="nav-cta" onclick="closeMobileMenu()">바로 연결하기</a>
-      <a href="javascript:void(0)" id="mobile-login-btn" onclick="closeMobileMenu();openLoginModal()" style="color:#3478F6;font-weight:700;">로그인 / 회원가입</a>
+      <!-- HOLD: 로그인/회원가입 일시 보류 (활성화 시 아래 한 줄 주석 해제) -->
+      <!-- <a href="javascript:void(0)" id="mobile-login-btn" onclick="closeMobileMenu();openLoginModal()" style="color:#3478F6;font-weight:700;">로그인 / 회원가입</a> -->
     </div>
 
     <!-- HERO v2, 시안 B 디자인 (그라데이션 메쉬 + 플로팅 카드) -->
     <main id="main-content">
       <section id="hero" class="hero-v2">
-        <!-- 플로팅 카드 (시안 B 시그니처) -->
-        <div class="hp-hero-float hp-hero-float-1"><span class="dot"></span> 35개+ 병원 운영 중</div>
-        <div class="hp-hero-float hp-hero-float-2"><span class="dot"></span> 서비스 유지율 98%</div>
-        <div class="hp-hero-float hp-hero-float-3"><span class="dot"></span> 저품질 걱정 ZERO</div>
-
         <div class="hero-content" style="max-width: 1240px; width: 100%; padding: 0 24px; position: relative; z-index: 1; text-align: center;">
           <span class="hero-eyebrow">병원 전문 마케팅, 의료인이 만든 시스템</span>
 
           <h1 class="hero-title">
-            <span class="hero-line">원장님의 철학이 담긴 글이 쌓여</span><br /><span class="grad-highlight">초진으로 나타납니다.</span>
+            <span class="hero-line">원장님의 <span class="hl-mark grad-highlight">철학</span>이 담긴 글이 쌓여</span><br /><span class="hero-line"><span class="hl-mark grad-highlight">초진</span>으로 나타납니다.</span>
           </h1>
           <p class="hero-subline" style="max-width: 760px; width: 100%; word-break: keep-all;">
             <strong style="color: var(--hp-brand); font-weight: 800;">애(Ai) 실장</strong> — <strong style="color: var(--hp-ink); font-weight: 700;">진료 컨셉과 병원의 색깔을 학습해, 우리 병원만의 글을 자동으로 생성합니다.</strong><br />
@@ -4558,12 +4929,16 @@
               <span class="hp-counter-num">9년</span>
               <div class="hp-counter-label">병원 운영 노하우</div>
             </div>
+            <div class="hp-counter-item">
+              <span class="hp-counter-num">ZERO</span>
+              <div class="hp-counter-label">저품질 걱정</div>
+            </div>
           </div>
         </div>
       </section>
 
       <!-- 애(Ai)실장 (블로그 자동화 프로그램) -->
-      <section id="ai-manager" style="background: #e8f0fe; position: relative; overflow: hidden; padding: 120px 5% 100px;">
+      <section id="ai-manager" style="background: #f7f8fc; position: relative; overflow: hidden; padding: 120px 5% 100px;">
 
         <!-- 배경 효과 -->
         <div style="position: absolute; top: -30%; left: -15%; width: 60vw; height: 60vw; background: radial-gradient(circle, rgba(52, 120, 246, 0.05) 0%, transparent 55%); filter: blur(80px); z-index: 0;"></div>
@@ -4587,46 +4962,41 @@
               <!-- PAIN POINT 헤더 -->
               <div style="margin-bottom: 0.4rem; text-align: center;">
                 <span class="empathy-tag">PAIN POINT</span>
-                <h3 class="empathy-title" style="font-weight: 800; color: #1a1a2e; margin-bottom: 0.4rem;">원장님, 이런 상황 아닌가요?</h3>
+                <h3 class="empathy-title" style="font-weight: 800; color: #1a1a2e; margin-bottom: 0.4rem;">원장님, <span class="hl-mark">이런 상황</span> 아닌가요?</h3>
                 <p class="empathy-sub" style="color: #1E293B; line-height: 1.5; font-weight: 700; word-break: keep-all;">저희도 병원을 운영해봤기 때문에 압니다.</p>
               </div>
 
-              <!-- 공감 리스트, 전폭에서는 2열 그리드 -->
-              <div class="empathy-list empathy-list--grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.1rem;">
-                <!-- Card 1 -->
-                <div class="empathy-bar" style="background: #f0f2f5; border-radius: 16px; padding: 1.1rem 1.5rem; display: flex; align-items: center; gap: 1rem;">
-                  <span style="width: 40px; height: 40px; flex-shrink: 0; background: #fff; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem;">🧑‍💼</span>
-                  <p style="font-size: 1.01rem; font-weight: 700; color: #1a1a2e; line-height: 1.45; word-break: keep-all; flex: 1;">실장급 직원까지 고용하고 있는데, 광고비도 또 지출해야 하는 상황</p>
+              <!-- 공감 리스트 — apple-v2 pain-tile 톤 (centered grid) -->
+              <div class="empathy-list empathy-list--grid pain-tile-grid">
+                <div class="pain-tile">
+                  <div class="pain-tile__ic pain-tile__ic--indigo">🧑‍💼</div>
+                  <h4 class="pain-tile__title">광고비 이중 지출</h4>
+                  <p class="pain-tile__desc">실장급 직원까지 고용 중인데, 광고비도 또 지출해야 하는 상황</p>
                 </div>
-
-                <!-- Card 2 -->
-                <div class="empathy-bar" style="background: #f0f2f5; border-radius: 16px; padding: 1.1rem 1.5rem; display: flex; align-items: center; gap: 1rem;">
-                  <span style="width: 40px; height: 40px; flex-shrink: 0; background: #fff; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem;">🎯</span>
-                  <p style="font-size: 1.01rem; font-weight: 700; color: #1a1a2e; line-height: 1.45; word-break: keep-all; flex: 1;">더 이상 마케팅에 끌려다니지 않고 주도권을 갖고 싶을 때</p>
+                <div class="pain-tile">
+                  <div class="pain-tile__ic pain-tile__ic--amber">🎯</div>
+                  <h4 class="pain-tile__title">마케팅 주도권</h4>
+                  <p class="pain-tile__desc">더 이상 마케팅에 끌려다니지 않고 주도권을 갖고 싶을 때</p>
                 </div>
-
-                <!-- Card 3 -->
-                <div class="empathy-bar" style="background: #f0f2f5; border-radius: 16px; padding: 1.1rem 1.5rem; display: flex; align-items: center; gap: 1rem;">
-                  <span style="width: 40px; height: 40px; flex-shrink: 0; background: #fff; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem;">🤔</span>
-                  <p style="font-size: 1.01rem; font-weight: 700; color: #1a1a2e; line-height: 1.45; word-break: keep-all; flex: 1;">블로그 대행을 맡기면 우리 병원 글 같지가 않을 때</p>
+                <div class="pain-tile">
+                  <div class="pain-tile__ic pain-tile__ic--mint">🤔</div>
+                  <h4 class="pain-tile__title">병원 톤이 사라짐</h4>
+                  <p class="pain-tile__desc">블로그 대행을 맡기면 우리 병원 글 같지가 않을 때</p>
                 </div>
-
-                <!-- Card 5 -->
-                <div class="empathy-bar" style="background: #f0f2f5; border-radius: 16px; padding: 1.1rem 1.5rem; display: flex; align-items: center; gap: 1rem;">
-                  <span style="width: 40px; height: 40px; flex-shrink: 0; background: #fff; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem;">✨</span>
-                  <p style="font-size: 1.01rem; font-weight: 700; color: #1a1a2e; line-height: 1.45; word-break: keep-all; flex: 1;">내 진료 철학과 색깔을 형식적인 대행사 블로그 대신 직접 담고 싶을 때</p>
+                <div class="pain-tile">
+                  <div class="pain-tile__ic pain-tile__ic--rose">✨</div>
+                  <h4 class="pain-tile__title">진료 철학 표현</h4>
+                  <p class="pain-tile__desc">내 진료 철학과 색깔을 형식적인 대행사 글 대신 직접 담고 싶을 때</p>
                 </div>
-
-                <!-- Card 6 -->
-                <div class="empathy-bar" style="background: #f0f2f5; border-radius: 16px; padding: 1.1rem 1.5rem; display: flex; align-items: center; gap: 1rem;">
-                  <span style="width: 40px; height: 40px; flex-shrink: 0; background: #fff; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem;">📝</span>
-                  <p style="font-size: 1.01rem; font-weight: 700; color: #1a1a2e; line-height: 1.45; word-break: keep-all; flex: 1;">당장 뭘 써야 하는지, 콘텐츠 작성 기준이 명확하지 않을 때</p>
+                <div class="pain-tile">
+                  <div class="pain-tile__ic pain-tile__ic--violet">📝</div>
+                  <h4 class="pain-tile__title">콘텐츠 기준 부재</h4>
+                  <p class="pain-tile__desc">당장 뭘 써야 하는지, 콘텐츠 작성 기준이 명확하지 않을 때</p>
                 </div>
-
-                <!-- Card 7 -->
-                <div class="empathy-bar" style="background: #f0f2f5; border-radius: 16px; padding: 1.1rem 1.5rem; display: flex; align-items: center; gap: 1rem;">
-                  <span style="width: 40px; height: 40px; flex-shrink: 0; background: #fff; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem;">💸</span>
-                  <p style="font-size: 1.01rem; font-weight: 700; color: #1a1a2e; line-height: 1.45; word-break: keep-all; flex: 1;">매달 대행비 100만 원 넘게 나가는데, 초진 체감이 전혀 없을 때</p>
+                <div class="pain-tile">
+                  <div class="pain-tile__ic pain-tile__ic--sky">💸</div>
+                  <h4 class="pain-tile__title">초진 체감 없음</h4>
+                  <p class="pain-tile__desc">매달 대행비 100만 원 넘게 나가는데, 초진 체감이 전혀 없을 때</p>
                 </div>
               </div>
             </div>
@@ -4747,7 +5117,7 @@
       </section>
 
       <!-- [독립 섹션] 그래서 만들었습니다, 가로 한줄형 (v4) -->
-      <section id="why-ai-manager" style="padding: 8rem 5%; background: linear-gradient(180deg, #FAFBFF 0%, #ffffff 100%); position: relative; overflow: hidden;">
+      <section id="why-ai-manager" style="padding: 8rem 5%; background: #ffffff; position: relative; overflow: hidden;">
         <style>
           /* 데스크톱, 태블릿 한 줄 강제 (3단락 = 3줄), 모바일에서만 자연 줄바꿈 */
           #why-ai-manager .why-line {
@@ -4819,7 +5189,7 @@
 
           <div class="benefits-head">
             <span class="section-tag">WHY 애(Ai)실장</span>
-            <h2>애(Ai)실장 <span class="grad">차원이 다른 8가지</span></h2>
+            <h2>애(Ai)실장 <span class="grad hl-mark">차원이 다른 8가지</span></h2>
             <p>병원에서 블로그를 직접 운영하면서 필요했던 <strong>모든 기능</strong>을 담았습니다.</p>
           </div>
 
@@ -4877,7 +5247,7 @@
 
             <!-- 8. 의료법 리스크 최소화 -->
             <div class="hp-benefit-card">
-              <div class="hp-benefit-card__icon">⚖️</div>
+              <div class="hp-benefit-card__icon">🛡️</div>
               <h4>의료법 리스크 최소화</h4>
               <p>의료광고 심의 기준을 반영하여 법적 리스크를 줄여줍니다.</p>
             </div>
@@ -4895,7 +5265,7 @@
 
           <div class="features-head">
             <span class="section-tag">CORE FEATURES</span>
-            <h2>압도적인 차별점, <span class="grad">3가지</span></h2>
+            <h2>압도적인 차별점, <span class="grad hl-mark">3가지</span></h2>
             <p>애(Ai)실장은 단순한 자동화 툴이 아닙니다. <strong>최상위 LLM을 탑재한 병원 전용 마케팅 엔진</strong>입니다.</p>
           </div>
 
@@ -4918,6 +5288,10 @@
                   <li>발행 전 미리보기로 직접 검토 가능</li>
                   <li>최신 의료광고법 기준 자동 검수</li>
                 </ul>
+                <button type="button" class="hp-feat-preview-btn" data-feat-modal="feat-modal-1">
+                  📄 실제 원고 예시 보기
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+                </button>
               </div>
               <div class="hp-feat-visual">
                 <video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:contain;border-radius:16px;">
@@ -4981,39 +5355,48 @@
         </div>
       </section>
 
-      <!-- 블로그 복리 성장 스토리 (블루 밴드) -->
+      <!-- 블로그 복리 성장 스토리 (소프트 카드 + 컬러 그라데이션 타일) -->
       <section id="growth-story" class="growth-section">
         <div class="growth-inner">
           <div class="growth-head reveal">
             <span class="section-tag">GROWTH</span>
-            <h2>블로그는 <span class="grad">복리로 성장</span>합니다</h2>
+            <h2>블로그는 <span class="grad hl-mark">복리로 성장</span>합니다</h2>
             <p class="growth-lead">
               한 편의 글이 <strong>내일도, 다음 달에도, 1년 뒤에도</strong> 환자를 데려옵니다.<br />
               꾸준히 관리된 블로그는 <strong>시간이 지날수록 효과가 커집니다</strong>.
             </p>
           </div>
 
-          <div class="growth-grid reveal">
-            <div class="growth-card" data-step="1">
-              <div class="growth-card__num">1</div>
-              <div class="growth-card__title">기반 구축</div>
-              <p class="growth-card__desc">키워드 분석, SEO 세팅, 콘텐츠 발행 시작</p>
+          <!-- 외곽 화이트 카드 -->
+          <div class="growth-card-wrap reveal">
+            <div class="growth-card-wrap__tag-center">
+              <span class="growth-card-wrap__tag">4단계 복리 성장</span>
             </div>
-            <div class="growth-card" data-step="2">
-              <div class="growth-card__num">2</div>
-              <div class="growth-card__title">효과 체감</div>
-              <p class="growth-card__desc">"블로그 보고 왔습니다" 환자가 나타나기 시작</p>
+
+            <!-- 4 단계 카드 -->
+            <div class="growth-grid">
+              <div class="growth-card" data-step="1">
+                <div class="growth-card__num">01</div>
+                <div class="growth-card__title">기반 구축</div>
+                <p class="growth-card__desc">키워드 분석, SEO 세팅, 콘텐츠 발행 시작</p>
+              </div>
+              <div class="growth-card" data-step="2">
+                <div class="growth-card__num">02</div>
+                <div class="growth-card__title">효과 체감</div>
+                <p class="growth-card__desc">"블로그 보고 왔습니다" 환자가 나타나기 시작</p>
+              </div>
+              <div class="growth-card" data-step="3">
+                <div class="growth-card__num">03</div>
+                <div class="growth-card__title">임계점 돌파</div>
+                <p class="growth-card__desc">같은 노력으로 2~3배 노출 발생</p>
+              </div>
+              <div class="growth-card" data-step="4">
+                <div class="growth-card__num">04</div>
+                <div class="growth-card__title">자산화 완성</div>
+                <p class="growth-card__desc">24시간 일하는 영업사원이 됩니다</p>
+              </div>
             </div>
-            <div class="growth-card" data-step="3">
-              <div class="growth-card__num">3</div>
-              <div class="growth-card__title">임계점 돌파</div>
-              <p class="growth-card__desc">같은 노력으로 2~3배 노출 발생</p>
-            </div>
-            <div class="growth-card" data-step="4">
-              <div class="growth-card__num">4</div>
-              <div class="growth-card__title">자산화 완성</div>
-              <p class="growth-card__desc">블로그가 24시간 일하는 영업사원이 됩니다</p>
-            </div>
+
           </div>
 
           <div class="growth-insight reveal">
@@ -5030,7 +5413,7 @@
       </section>
 
       <!-- 간편 신청 폼 (2컬럼: 서비스 요약 + 폼) -->
-      <section id="contact" style="background: linear-gradient(180deg, #F8FAFC 0%, #EEF2FF 50%, #F4F0FF 100%); padding: 6rem 5%; position: relative; overflow: hidden;">
+      <section id="contact" style="background: #ffffff; padding: 6rem 5%; position: relative; overflow: hidden;">
         <!-- 강화된 mesh 그라데이션 블롭 (4개 레이어) -->
         <div class="contact-blob contact-blob-1"></div>
         <div class="contact-blob contact-blob-2"></div>
@@ -5045,7 +5428,7 @@
           <div style="text-align: center; margin-bottom: 2.5rem;">
             <span class="section-tag">START NOW</span>
             <h2 style="font-weight: 900; color: var(--hp-ink); letter-spacing: -0.02em; margin: 1rem 0 0;">
-              원장님도 함께하시겠습니까?
+              원장님도 <span class="grad-highlight hl-mark">함께하시겠습니까?</span>
             </h2>
           </div>
 
@@ -5089,7 +5472,7 @@
         <div class="hp-feat-inner">
           <div class="test-head" style="text-align:center; max-width: 720px; margin: 0 auto;">
             <span class="section-tag">REAL REVIEWS</span>
-            <h2>파트너 원장님들의 <span class="grad">실제 후기</span></h2>
+            <h2>파트너 원장님들의 <span class="grad hl-mark">실제 후기</span></h2>
             <p><strong>98%</strong>가 함께하고 있습니다.<br class="mo-br" />원장님들의 솔직한 이야기를 들어보세요.</p>
           </div>
         </div>
@@ -5512,7 +5895,7 @@
         <div class="section-inner">
           <div class="section-center reveal">
             <span class="section-tag">Why HighPlus</span>
-            <h2 class="section-title">혹시 이런 경험,<br class="mo-br" /><span class="grad-highlight">하고 계신 건 아닌가요?</span></h2>
+            <h2 class="section-title">혹시 이런 경험,<br class="mo-br" /><span class="hl-mark hl-mark--rose">하고 계신 건 아닌가요?</span></h2>
             <p class="section-desc">
               원장님만 겪는 문제가 아닙니다. 90%의 병원이 같은 상황입니다.
             </p>
@@ -5566,8 +5949,8 @@
 
       <!-- TRUST (신뢰 구간) -->
       <section id="trust" style="background: #1D1D1F; position: relative; overflow: hidden;">
-        <div style="position: absolute; top: -20%; left: -10%; width: 45vw; height: 45vw; background: radial-gradient(circle, rgba(212, 184, 150, 0.10) 0%, transparent 65%); filter: blur(90px); z-index: 0;"></div>
-        <div style="position: absolute; bottom: -10%; right: -10%; width: 40vw; height: 40vw; background: radial-gradient(circle, rgba(184, 134, 11, 0.08) 0%, transparent 60%); filter: blur(90px); z-index: 0;"></div>
+        <div style="position: absolute; top: -20%; left: -10%; width: 45vw; height: 45vw; background: radial-gradient(circle, rgba(52, 120, 246, 0.10) 0%, transparent 65%); filter: blur(90px); z-index: 0;"></div>
+        <div style="position: absolute; bottom: -10%; right: -10%; width: 40vw; height: 40vw; background: radial-gradient(circle, rgba(26, 79, 224, 0.08) 0%, transparent 60%); filter: blur(90px); z-index: 0;"></div>
         <div class="section-inner" style="position: relative; z-index: 1;">
           <div class="section-center reveal">
             <span class="section-tag">About HighPlus</span>
@@ -5586,12 +5969,12 @@
             
             <!-- Card 1 -->
             <div class="phil-card-wrapper reveal" style="display: flex; flex-direction: column; gap: 1rem; height: 100%;">
-              <div style="background: rgba(212, 184, 150, 0.12); border-radius: 16px; padding: 1.5rem; text-align: center; display: flex; align-items: center; justify-content: center; min-height: 100px; position: relative; border: 1px solid rgba(212, 184, 150, 0.28);">
-                <p style="color: #D4B896; font-weight: 700; font-size: 1rem; margin: 0; word-break: keep-all; line-height: 1.5;">환자 입장에서 한 번도<br>써본 적 없는 원고</p>
+              <div style="background: rgba(52, 120, 246, 0.12); border-radius: 16px; padding: 1.5rem; text-align: center; display: flex; align-items: center; justify-content: center; min-height: 100px; position: relative; border: 1px solid rgba(52, 120, 246, 0.28);">
+                <p style="color: #3478F6; font-weight: 700; font-size: 1rem; margin: 0; word-break: keep-all; line-height: 1.5;">환자 입장에서 한 번도<br>써본 적 없는 원고</p>
                 <!-- downward line -->
-                <div style="position: absolute; bottom: -1rem; left: 50%; width: 0; height: 1rem; border-left: 2px dashed rgba(212, 184, 150, 0.5);"></div>
+                <div style="position: absolute; bottom: -1rem; left: 50%; width: 0; height: 1rem; border-left: 2px dashed rgba(52, 120, 246, 0.5);"></div>
               </div>
-              <div style="background: #1D1D1F; border-radius: 20px; padding: 2.5rem 2rem; text-align: center; box-shadow: 0 10px 30px rgba(212, 184, 150, 0.12); flex-grow: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-start;">
+              <div style="background: #1D1D1F; border-radius: 20px; padding: 2.5rem 2rem; text-align: center; box-shadow: 0 10px 30px rgba(52, 120, 246, 0.12); flex-grow: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-start;">
                 <div class="hp-solution-step">Solution 01</div>
                 <span class="hp-icon-em hp-icon-em-lg" role="img" aria-label="의료 경험">🩺</span>
                 <h4 style="font-size: 1.4rem; font-weight: 800; color: #FFFFFF; margin-bottom: 1rem; word-break: keep-all; line-height: 1.4;">병원 운영 경험에서<br>출발한 마케팅</h4>
@@ -5601,11 +5984,11 @@
 
             <!-- Card 2 -->
             <div class="phil-card-wrapper reveal" style="display: flex; flex-direction: column; gap: 1rem; height: 100%;">
-              <div style="background: rgba(212, 184, 150, 0.12); border-radius: 16px; padding: 1.5rem; text-align: center; display: flex; align-items: center; justify-content: center; min-height: 100px; position: relative; border: 1px solid rgba(212, 184, 150, 0.28);">
-                <p style="color: #D4B896; font-weight: 700; font-size: 1rem; margin: 0; word-break: keep-all; line-height: 1.5;">기획자, 디자이너, 발행자가<br>따로 노는 분절된 마케팅</p>
-                <div style="position: absolute; bottom: -1rem; left: 50%; width: 0; height: 1rem; border-left: 2px dashed rgba(212, 184, 150, 0.5);"></div>
+              <div style="background: rgba(52, 120, 246, 0.12); border-radius: 16px; padding: 1.5rem; text-align: center; display: flex; align-items: center; justify-content: center; min-height: 100px; position: relative; border: 1px solid rgba(52, 120, 246, 0.28);">
+                <p style="color: #3478F6; font-weight: 700; font-size: 1rem; margin: 0; word-break: keep-all; line-height: 1.5;">기획자, 디자이너, 발행자가<br>따로 노는 분절된 마케팅</p>
+                <div style="position: absolute; bottom: -1rem; left: 50%; width: 0; height: 1rem; border-left: 2px dashed rgba(52, 120, 246, 0.5);"></div>
               </div>
-              <div style="background: #1D1D1F; border-radius: 20px; padding: 2.5rem 2rem; text-align: center; box-shadow: 0 10px 30px rgba(212, 184, 150, 0.12); flex-grow: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-start;">
+              <div style="background: #1D1D1F; border-radius: 20px; padding: 2.5rem 2rem; text-align: center; box-shadow: 0 10px 30px rgba(52, 120, 246, 0.12); flex-grow: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-start;">
                 <div class="hp-solution-step">Solution 02</div>
                 <span class="hp-icon-em hp-icon-em-lg" role="img" aria-label="실행력">⚡</span>
                 <h4 style="font-size: 1.4rem; font-weight: 800; color: #FFFFFF; margin-bottom: 1rem; word-break: keep-all; line-height: 1.4;">기획부터 발행까지<br>한 팀이 끝냅니다</h4>
@@ -5615,11 +5998,11 @@
 
             <!-- Card 3 -->
             <div class="phil-card-wrapper reveal" style="display: flex; flex-direction: column; gap: 1rem; height: 100%;">
-              <div style="background: rgba(212, 184, 150, 0.12); border-radius: 16px; padding: 1.5rem; text-align: center; display: flex; align-items: center; justify-content: center; min-height: 100px; position: relative; border: 1px solid rgba(212, 184, 150, 0.28);">
-                <p style="color: #D4B896; font-weight: 700; font-size: 1rem; margin: 0; word-break: keep-all; line-height: 1.5;">공장형으로 찍어내어<br>퀄리티가 떨어지는 블로그</p>
-                <div style="position: absolute; bottom: -1rem; left: 50%; width: 0; height: 1rem; border-left: 2px dashed rgba(212, 184, 150, 0.5);"></div>
+              <div style="background: rgba(52, 120, 246, 0.12); border-radius: 16px; padding: 1.5rem; text-align: center; display: flex; align-items: center; justify-content: center; min-height: 100px; position: relative; border: 1px solid rgba(52, 120, 246, 0.28);">
+                <p style="color: #3478F6; font-weight: 700; font-size: 1rem; margin: 0; word-break: keep-all; line-height: 1.5;">공장형으로 찍어내어<br>퀄리티가 떨어지는 블로그</p>
+                <div style="position: absolute; bottom: -1rem; left: 50%; width: 0; height: 1rem; border-left: 2px dashed rgba(52, 120, 246, 0.5);"></div>
               </div>
-              <div style="background: #1D1D1F; border-radius: 20px; padding: 2.5rem 2rem; text-align: center; box-shadow: 0 10px 30px rgba(212, 184, 150, 0.12); flex-grow: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-start;">
+              <div style="background: #1D1D1F; border-radius: 20px; padding: 2.5rem 2rem; text-align: center; box-shadow: 0 10px 30px rgba(52, 120, 246, 0.12); flex-grow: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-start;">
                 <div class="hp-solution-step">Solution 03</div>
                 <span class="hp-icon-em hp-icon-em-lg" role="img" aria-label="퀄리티">💎</span>
                 <h4 style="font-size: 1.4rem; font-weight: 800; color: #FFFFFF; margin-bottom: 1rem; word-break: keep-all; line-height: 1.4;">오직 퀄리티와<br>성과에만 집중</h4>
@@ -5663,11 +6046,11 @@
 
       <!-- 하이플러스 vs 일반 대행사 비교 -->
       <section id="compare" style="background: #000000; position: relative; overflow: hidden; padding: 6rem 5%;">
-        <div style="position: absolute; inset: 0; background: radial-gradient(ellipse at 30% 50%, rgba(212, 184, 150, 0.08) 0%, transparent 60%);"></div>
+        <div style="position: absolute; inset: 0; background: radial-gradient(ellipse at 30% 50%, rgba(52, 120, 246, 0.08) 0%, transparent 60%);"></div>
         <div class="section-inner" style="position: relative; z-index: 1; max-width: 1050px; margin: 0 auto;">
           <div class="section-center reveal" style="margin-bottom: 3rem;">
             <span class="section-tag">Compare</span>
-            <h2 class="section-title">똑같은 블로그, <span class="grad-highlight">전혀 다른 결과</span></h2>
+            <h2 class="section-title">똑같은 블로그, <span class="grad-highlight hl-mark">전혀 다른 결과</span></h2>
             <p class="section-desc" style="color: #A1A1A6;">
               단순 글 올리기가 아닌, 진짜 성과를 만드는 차이를 비교합니다.
             </p>
@@ -5677,16 +6060,16 @@
             <style>
               .vs-tbl { width: 100%; border-collapse: collapse; }
               .vs-tbl thead th { padding: 1.4rem 1.2rem; text-align: center; font-size: 1.1rem; font-weight: 800; }
-              .vs-tbl .th-left { background: linear-gradient(180deg, #EFE0C8 0%, #D4B896 50%, #8B6F4E 100%); color: #000; width: 40%; border-radius: 0; border-right: 1px solid rgba(0, 0, 0, 0.15); }
-              .vs-tbl .th-center { background: #1D1D1F; color: #A1A1A6; width: 20%; font-size: 0.9rem; font-weight: 700; letter-spacing: 1px; border-right: 1px solid rgba(212, 184, 150, 0.18); }
+              .vs-tbl .th-left { background: linear-gradient(180deg, #DBEAFE 0%, #3478F6 50%, #1A4FE0 100%); color: #000; width: 40%; border-radius: 0; border-right: 1px solid rgba(0, 0, 0, 0.15); }
+              .vs-tbl .th-center { background: #1D1D1F; color: #A1A1A6; width: 20%; font-size: 0.9rem; font-weight: 700; letter-spacing: 1px; border-right: 1px solid rgba(52, 120, 246, 0.18); }
               .vs-tbl .th-right { background: #262626; color: #A1A1A6; width: 40%; }
-              .vs-tbl tbody td { padding: 1.6rem 1.4rem; text-align: center; vertical-align: middle; font-size: 0.98rem; word-break: keep-all; border-bottom: 1px solid rgba(212, 184, 150, 0.10); transition: background var(--hp-dur-mid) var(--hp-ease); }
+              .vs-tbl tbody td { padding: 1.6rem 1.4rem; text-align: center; vertical-align: middle; font-size: 0.98rem; word-break: keep-all; border-bottom: 1px solid rgba(52, 120, 246, 0.10); transition: background var(--hp-dur-mid) var(--hp-ease); }
               .vs-tbl tbody tr:last-child td { border-bottom: none; }
-              .vs-tbl .td-left { color: #FFFFFF; font-weight: 700; background: #1D1D1F; border-right: 1px solid rgba(212, 184, 150, 0.10); font-size: 1.176rem; }
-              .vs-tbl .td-center { color: #8B6F4E; font-weight: 700; font-size: 0.85rem; background: #1D1D1F; border-right: 1px solid rgba(212, 184, 150, 0.10); }
+              .vs-tbl .td-left { color: #FFFFFF; font-weight: 700; background: #1D1D1F; border-right: 1px solid rgba(52, 120, 246, 0.10); font-size: 1.176rem; }
+              .vs-tbl .td-center { color: #1A4FE0; font-weight: 700; font-size: 0.85rem; background: #1D1D1F; border-right: 1px solid rgba(52, 120, 246, 0.10); }
               .vs-tbl .td-right { color: #A1A1A6; background: #1D1D1F; }
-              .vs-tbl tbody tr:hover .td-left { background: rgba(212, 184, 150, 0.08); }
-              .vs-tbl tbody tr:hover .td-center { background: rgba(212, 184, 150, 0.05); }
+              .vs-tbl tbody tr:hover .td-left { background: rgba(52, 120, 246, 0.08); }
+              .vs-tbl tbody tr:hover .td-center { background: rgba(52, 120, 246, 0.05); }
               .vs-tbl tbody tr:hover .td-right { background: #1c1c1c; }
               @media (max-width: 768px) {
                 .vs-tbl thead th { padding: 1rem 0.5rem; font-size: 0.92rem; }
@@ -5829,7 +6212,7 @@
 
       <!-- SCARCITY -->
       <section id="scarcity" style="position: relative; overflow: hidden; padding: 6rem 5%;">
-        <div style="position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 50%, rgba(212, 184, 150, 0.07) 0%, transparent 70%);"></div>
+        <div style="position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 50%, rgba(52, 120, 246, 0.07) 0%, transparent 70%);"></div>
         <div class="section-inner reveal" style="position: relative; z-index: 1; max-width: 1200px; margin: 0 auto;">
 
           <div class="hp-scarcity-grid">
@@ -5865,7 +6248,7 @@
 
               <div class="hp-agency-note">
                 상담은 우측 <strong>대행 서비스 상담 신청</strong> 폼을 이용해주세요.<br />
-                메일 문의는 <a href="mailto:highplus23@gmail.com" style="color: #D4B896; text-decoration: underline;">highplus23@gmail.com</a>
+                메일 문의는 <a href="mailto:highplus23@gmail.com" style="color: #3478F6; text-decoration: underline;">highplus23@gmail.com</a>
               </div>
             </div>
 
@@ -5945,7 +6328,7 @@
               1년 뒤에도 환자가 찾아올 수 있게 꾸준히 노출되는 글과 구조를 만드는 것, 그게 하이플러스 방식입니다.<br /><br />
               현재 슬롯이 마감된 경우, 대기 등록 후 순차적으로 안내드립니다.
             </p>
-            <a href="#contact" class="btn-primary" style="font-size: 1rem; padding: 1rem 2rem;">현재 가능 여부 확인하기</a>
+            <a href="http://pf.kakao.com/_xbgQuX" target="_blank" rel="noopener noreferrer" class="btn-primary" style="font-size: 1rem; padding: 1rem 2rem;">현재 가능 여부 확인하기</a>
           </div>
         </div>
       </section>
@@ -6420,9 +6803,109 @@
       </div>
     </div>
 
-    <!-- ═══ Firebase Auth + 토스 결제 스크립트 ═══ -->
-    <script src="js/firebase-auth.js" type="module"></script>
-    <script src="js/toss-payment.js"></script>
+    <!-- ═══ Firebase Auth + 토스 결제 스크립트 (HOLD: 일시 비활성화 — 활성화 시 아래 두 줄 주석 해제) ═══ -->
+    <!-- <script src="js/firebase-auth.js" type="module"></script> -->
+    <!-- <script src="js/toss-payment.js"></script> -->
+
+    <!-- ═══ FEATURE 미리보기 모달들 ═══ -->
+    <div class="hp-modal" id="feat-modal-1" role="dialog" aria-modal="true" aria-labelledby="feat-modal-1-title">
+      <div class="hp-modal__backdrop" data-close></div>
+      <div class="hp-modal__panel">
+        <button class="hp-modal__close" type="button" aria-label="닫기" data-close>✕</button>
+        <header class="hp-modal__header">
+          <span class="hp-modal__tag">실제 원고 예시</span>
+          <h3 class="hp-modal__title" id="feat-modal-1-title">강남신경외과 찾기 전에, 수술 없이 회복된 분들이 먼저 한 것</h3>
+          <p class="hp-modal__sub">한의원 · 신경외과 / 우리 병원 색깔로 작성됨</p>
+        </header>
+        <div class="hp-modal__body">
+          <p>안녕하세요? <strong>하이플러스한의원 홍길동원장</strong>입니다.</p>
+          <p>얼마 전, 한 40대 직장인 분이 진료실 문을 열고 들어오시며 이렇게 말씀하셨습니다.</p>
+          <p style="background: #f7f8fc; border-left: 3px solid var(--hp-brand); padding: 14px 18px; border-radius: 8px; font-style: italic; color: var(--hp-ink);">"강남에 신경외과가 많잖아요. 근데 거기서 검사해봤더니 수술까지는 아닌데, 그냥 쉬라고만 하더라고요. 어떻게 하면 좋을까요?"</p>
+          <p>멋쩍게 웃으시는 표정이 지금도 기억납니다. 통증은 분명히 있는데 명확한 답을 못 들으셨으니 얼마나 답답하셨을까 싶었습니다.</p>
+          <p>강남 지역에서 신경외과 관련 증상으로 고민하시는 분들이 상당히 많습니다. 저도 <strong>15년 동안 진료실에서 이런 분들을 꾸준히 만나왔습니다</strong>.</p>
+          <p>오늘 이 글에서는 세 가지를 이야기해드리려 합니다.</p>
+          <p><strong>하나</strong>, 신경외과를 찾게 만드는 대표 증상들, 실제로 어떤 상태인지<br>
+          <strong>둘</strong>, 수술 없이 관리 가능한 경우와 그렇지 않은 경우, 어떻게 구분하는지<br>
+          <strong>셋</strong>, 한의원에서 이런 증상을 어떻게 치료하고 관리하는지</p>
+          <p>강남신경외과를 검색하며 정보를 찾고 계신 분들께 조금이나마 도움이 되셨으면 합니다.</p>
+
+          <h4>신경외과를 가게 만드는 증상, 실제로는 무슨 일이 벌어지고 있는 건가</h4>
+          <p>신경외과를 찾는 분들의 주된 이유는 크게 두 가지입니다. 목이나 허리에서 시작된 통증이 팔이나 다리로 뻗어나가는 <strong>방사통</strong>, 그리고 <strong>저림 증상</strong>입니다.</p>
+          <p>많은 분들이 손이나 발이 저리면 혈액순환 문제라고 생각하십니다. 그런데 실제로 진료실에서 확인해보면, <strong>목 디스크나 허리 디스크로 신경이 눌린 경우</strong>가 생각보다 훨씬 많습니다.</p>
+          <p>목 디스크의 경우, 디스크가 신경을 압박하면 어깨와 팔을 따라 찌릿한 통증이 내려오거나, 손가락 끝이 잠자리에 들기 전에 유독 심하게 저립니다. 허리 디스크는 엉덩이부터 허벅지, 종아리, 발끝까지 이어지는 통증으로 오래 앉아있다 일어설 때 특히 심해집니다.</p>
+          <p>제 진료실을 찾아오시는 분들 중에는 이미 MRI까지 찍고 오시는 경우도 많습니다. 영상 소견을 보면서 저는 한 가지를 늘 강조합니다. <strong>영상에 보이는 디스크 상태가 전부가 아니라, 지금 이 분의 몸이 그 상태를 얼마나 버텨내고 있느냐가 더 중요하다</strong>고요. 같은 디스크 소견이라도 누군가는 멀쩡히 일상생활을 하고, 누군가는 앉지도 눕지도 못하는 이유가 거기 있습니다.</p>
+
+          <h4>수술 없이 나을 수 있는 경우, 한의원에서는 어떻게 판단하나</h4>
+          <p>가장 많이 받는 질문이 바로 이겁니다. <em>"저 수술 해야 하나요?"</em></p>
+          <p>결론부터 말씀드리면, <strong>신경 증상이 있더라도 배변·배뇨 장애가 없고, 근력이 급격히 떨어지지 않았다면 보존적 치료로 충분히 호전될 수 있는 경우가 많습니다</strong>.</p>
+          <p>물론 이건 반드시 개인의 상태에 따라 달라집니다. 같은 진단명이라도 증상의 기간, 강도, 생활 패턴이 모두 다르기 때문에 일괄적으로 단정 짓기는 어렵습니다.</p>
+          <p>저는 보존적 치료가 적합한지를 판단할 때, 통증의 성격과 위치, 언제 심해지는지를 꼼꼼히 확인합니다. 그리고 필요에 따라 목 질환이라면 <strong>스펄링 검사나 잭슨 압박 검사</strong>를, 허리 질환이라면 <strong>SLRT(하지직거상검사)</strong> 같은 이학적 검사를 진행하기도 합니다. 영상검사만으로는 보이지 않는 신경 자극 정도를 손과 눈으로 직접 확인하는 과정입니다.</p>
+          <p>15년 동안 이런 환자분들을 봐오면서 느끼는 건, <strong>결국 치료 타이밍이 중요하다</strong>는 점입니다. 통증이 시작된 지 얼마 안 됐을 때 제대로 관리하면 보존적 치료만으로도 충분히 회복되는 경우가 많습니다. 반면 참고 참다가 오시는 분들은 그만큼 치료 기간도 길어지는 경향이 있습니다.</p>
+
+          <h4>하이플러스한의원에서의 치료 과정</h4>
+          <p>처음 오시는 분들은 저와의 <strong>초진 상담</strong>으로 시작합니다. 증상이 언제부터 시작됐는지, 어떤 자세에서 심해지는지, 직업이나 생활 패턴이 어떤지를 먼저 파악합니다. 여기서 놓치는 부분이 없도록 꼼꼼히 듣는 게 저의 첫 번째 역할이라고 생각합니다.</p>
+          <p>문진을 마친 뒤에는 <strong>이학적 검사</strong>로 신경 눌림 여부와 근육 상태를 확인합니다. 그 결과를 바탕으로 실제 치료에 들어갑니다.</p>
+          <p><strong>침 치료</strong>는 긴장된 근육과 주변 조직을 이완시키는 데 집중합니다. 날카로운 통증이 심한 분들은 첫 침 치료 이후 꽤 빠르게 편안함을 느끼시기도 합니다. 이후 <strong>약침</strong>을 통해 염증이 있는 부위에 직접 작용할 수 있는 한약 성분을 주입해 회복을 돕습니다.</p>
+          <p><strong>추나 치료</strong>는 단순히 뼈를 맞추는 개념이 아닙니다. 틀어진 척추와 주변 구조물이 제자리를 찾아가도록 돕는 과정입니다. 저는 환자의 상태에 따라 강도를 조절하면서 진행하는데, 급성기에는 부드러운 방식으로, 안정기에는 좀 더 적극적인 방식으로 접근합니다.</p>
+          <p><strong>한약</strong>은 체력이 많이 떨어져 있거나, 통증이 반복되는 분들에게 특히 도움이 됩니다. 원내탕전으로 직접 조제하기도 하고, 경우에 따라 원외탕전 방식으로 처방하기도 합니다. 복약 방법과 용량도 꼼꼼히 안내해드립니다.</p>
+          <p><strong>체외충격파(ESWT)</strong>는 특히 만성적으로 굳어있는 근육이나 인대 조직에 자극을 주어 자연 회복을 촉진할 때 활용합니다.</p>
+          <p>치료가 어느 정도 진행되면, <strong>일상에서 어떻게 움직여야 하는지</strong>도 함께 이야기를 나눕니다. 어떤 자세를 피해야 하는지, 가벼운 스트레칭은 어떻게 하면 좋은지 같은 내용들입니다. 치료실을 나간 뒤의 생활도 치료의 일부라고 저는 생각합니다.</p>
+
+          <h4>이런 분들께 도움이 됩니다</h4>
+          <ul style="margin: 0 0 16px; padding-left: 20px; color: var(--hp-ink-2);">
+            <li style="margin-bottom: 6px;">아침에 일어날 때마다 목이 굳어있고, 어깨 쪽으로 통증이 내려오는 분</li>
+            <li style="margin-bottom: 6px;">오래 앉아서 일하다 보면 허리에서 다리까지 저림 증상이 오는 직장인</li>
+            <li style="margin-bottom: 6px;">MRI 결과는 받았는데 어떻게 관리해야 할지 방향을 잡지 못하신 분</li>
+            <li style="margin-bottom: 6px;">수술 권유를 받았지만 먼저 보존적 치료를 시도해보고 싶으신 분</li>
+            <li style="margin-bottom: 6px;">치료를 받아봤는데 금방 재발하는 게 반복되어 근본적인 원인이 궁금하신 분</li>
+            <li>일상생활은 가능하지만 앉거나 걸을 때 찌릿한 불편함이 계속되는 분</li>
+          </ul>
+
+          <h4>오늘 이야기를 정리하면 이렇습니다</h4>
+          <p>신경외과 계열 증상은 영상 소견뿐 아니라, <strong>몸이 그 상태를 얼마나 버티고 있는지를 함께 봐야 정확한 판단</strong>이 가능합니다.</p>
+          <p>수술 없이도 회복될 수 있는 경우가 많으며, <strong>치료 타이밍이 빠를수록 회복도 빨라집니다</strong>.</p>
+          <p>침, 약침, 추나, 한약을 유기적으로 연결한 치료 과정이 증상의 완화와 재발 방지 모두를 목표로 합니다.</p>
+          <p>강남신경외과를 검색하다 이 글까지 읽으신 분이라면, 아마 지금 꽤 오랫동안 불편하게 지내고 계신 분일 겁니다. <strong>그 불편함이 조금이라도 빨리 해소되길 바랍니다</strong>.</p>
+          <p>저는 하이플러스한의원 홍길동원장입니다. 궁금하신 점은 편하게 문의 주세요.</p>
+
+          <p style="color: var(--hp-ink-3); font-size: 13.5px; margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--hp-line);">※ 위 원고는 애(Ai)실장이 자동 생성한 예시이며, 환자 사례·이름은 모두 가상입니다. 발행 전 의료광고법 자동 검수를 거칩니다.</p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      (function() {
+        // 모달 열기 버튼
+        document.querySelectorAll('[data-feat-modal]').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const id = btn.getAttribute('data-feat-modal');
+            const modal = document.getElementById(id);
+            if (modal) {
+              modal.classList.add('is-open');
+              document.body.style.overflow = 'hidden';
+            }
+          });
+        });
+        // 모달 닫기 (backdrop / X / data-close)
+        document.querySelectorAll('.hp-modal').forEach(modal => {
+          modal.addEventListener('click', e => {
+            if (e.target.matches('[data-close]') || e.target.classList.contains('hp-modal__backdrop')) {
+              modal.classList.remove('is-open');
+              document.body.style.overflow = '';
+            }
+          });
+        });
+        // ESC 키로 닫기
+        document.addEventListener('keydown', e => {
+          if (e.key === 'Escape') {
+            document.querySelectorAll('.hp-modal.is-open').forEach(m => {
+              m.classList.remove('is-open');
+              document.body.style.overflow = '';
+            });
+          }
+        });
+      })();
+    </script>
 
   </body>
 </html>
