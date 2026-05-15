@@ -4,7 +4,15 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## 프로젝트 개요
 
-HighPlus Marketing 랜딩 페이지 — 병원 전문 마케팅 서비스 홈페이지. 빌드 시스템 없는 정적 HTML 사이트, Netlify 배포.
+HighPlus Marketing 랜딩 페이지 — 병원 전문 마케팅 서비스 홈페이지. 빌드 시스템 없는 정적 HTML 사이트.
+
+## 배포
+
+- **라이브 도메인**: `https://highplus.work` (Cloudflare Registrar)
+- **호스팅**: Cloudflare Pages 프로젝트 `highplus-marketing`
+- **GitHub 리포 (origin)**: `highplus23-source/highplus-marketing`
+- **자동 배포**: `main` 브랜치 push → Cloudflare Pages 자동 빌드 → highplus.work 반영 (1~2분)
+- preview: 다른 브랜치 push 시 `<branch>.highplus-marketing.pages.dev` 자동 생성
 
 ## 개발 환경
 
@@ -12,7 +20,7 @@ HighPlus Marketing 랜딩 페이지 — 병원 전문 마케팅 서비스 홈페
 python3 -m http.server 8080
 ```
 
-브라우저에서 `http://localhost:8080` 접속. 빌드/패키지 매니저 없음. 파일 직접 수정 후 git push → Netlify 자동 배포.
+브라우저에서 `http://localhost:8080` 접속. 빌드/패키지 매니저 없음. 파일 직접 수정 후 `git push origin main` → 자동 배포.
 
 ---
 
