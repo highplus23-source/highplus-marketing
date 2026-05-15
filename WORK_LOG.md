@@ -4,6 +4,25 @@
 
 ---
 
+## 2026-05-14 (목)
+
+### 완료한 작업
+
+- **히어로 섹션 정리**: 떠다니던 플로팅 카드 3개(35개+/98%/저품질 ZERO) 제거
+- **히어로 카운터 4번째 항목 추가**: `ZERO / 저품질 걱정` — 기존 35+/98%/9년 카드와 동일 디자인으로 통일
+- **로그인 + 토스페이먼츠 결제 HOLD 처리** (삭제 아닌 주석 처리 — 활성화 시 주석만 해제)
+  - [x] PC 네비 `로그인` 버튼 + 유저 드롭다운 (`index.html` L4487-4499)
+  - [x] 모바일 메뉴 `로그인 / 회원가입` 링크 (`index.html` L4521)
+  - [x] `js/firebase-auth.js`, `js/toss-payment.js` 스크립트 로드 (`index.html` L6424-6425)
+  - [x] `#login-modal`, `#payment-modal` HTML은 `display:none` 상태로 보존 (트리거가 다 막혀 노출 X)
+  - [x] `js/firebase-auth.js`, `js/toss-payment.js`, `payment-success.html`, `payment-fail.html` 파일 보존
+
+### 복귀 방법
+
+위 3곳의 `<!-- HOLD: ... -->` 주석만 풀면 원복.
+
+---
+
 ## 2026-04-13 (월) - 탱
 
 ### 완료한 작업

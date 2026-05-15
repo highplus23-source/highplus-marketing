@@ -71,7 +71,13 @@
       "Bash(npm install *)",
       "Bash(node .tmp-screenshot.mjs)",
       "PowerShell(Get-NetTCPConnection *)",
-      "Bash(netlify status *)"
+      "Bash(netlify status *)",
+      "Bash(xargs -r kill -9)",
+      "Bash(ps -p 34462 34469 34477 34508 -o pid,command)",
+      "Bash(lsof -nP -iTCP -sTCP:LISTEN)",
+      "Bash(brew install *)",
+      "Bash(lsof -ti:8080)",
+      "Bash(xargs kill)"
     ]
   }
 }
