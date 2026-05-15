@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>블로그 대행 시안 비교 대시보드 | HighPlus</title>
+    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.min.css" rel="stylesheet" />
+    <style>
+      *, *::before, *::after { box-sizing: border-box; }
+      html, body { margin: 0; padding: 0; height: 100%; font-family: 'Pretendard', sans-serif; background: #0b0d12; color: #e5e7eb; }
+      body { display: flex; flex-direction: column; overflow: hidden; }
+
+      /* ───────── HEADER ───────── */
+      .topbar {
+        flex-shrink: 0;
+        height: 60px;
+        background: #14171f;
+        border-bottom: 1px solid #232632;
+        display: flex;
+        align-items: center;
+        padding: 0 20px;
+        gap: 24px;
+        z-index: 20;
+      }
+      .brand {
+        display: flex; align-items: center; gap: 10px;
+        font-weight: 800; font-size: 0.95rem;
+        color: #e5e7eb;
+      }
+      .brand .dot {
+        width: 9px; height: 9px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #3478F6, #10B981);
+      }
+      .brand .sub { color: #6b7280; font-weight: 500; font-size: 0.8rem; }
+
+      .modes { display: flex; gap: 4px; background: #1e2230; padding: 4px; border-radius: 10px; margin-left: auto; }
+      .mode-btn {
+        background: transparent;
+        border: none;
+        color: #9ca3af;
+        font-size: 0.82rem;
+        font-weight: 600;
+        font-family: inherit;
+        padding: 7px 14px;
+        border-radius: 7px;
+        cursor: pointer;
+        transition: all 0.2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .mode-btn:hover { color: #fff; }
+      .mode-btn.active { background: #3478F6; color: #fff; box-shadow: 0 4px 12px rgba(52, 120, 246, 0.32); }
+      .mode-btn svg { width: 14px; height: 14px; }
+
+      .tabs {
+        display: flex; gap: 2px;
+        background: #1e2230;
+        padding: 4px;
+        border-radius: 10px;
+      }
+      .tab {
+        background: transparent;
+        border: none;
+        color: #9ca3af;
+        font-size: 0.85rem;
+        font-weight: 700;
+        font-family: inherit;
+        padding: 7px 16px;
+        border-radius: 7px;
+        cursor: pointer;
+        transition: all 0.2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .tab:hover { color: #fff; }
+      .tab.active { background: #2a2f3e; color: #fff; }
+      .tab .pill {
+        width: 8px; height: 8px; border-radius: 50%;
+      }
+      .tab[data-id="0"] .pill { background: #10b981; }
+      .tab[data-id="1"] .pill { background: #0e46ff; }
+      .tab[data-id="2"] .pill { background: #8b5cff; }
+      .tab[data-id="3"] .pill { background: #ff8a7a; }
+
+      .open-new {
+        display: inline-flex; align-items: center; gap: 6px;
+        background: transparent; border: 1px solid #2a2f3e;
+        color: #9ca3af; font-size: 0.8rem; font-weight: 600; font-family: inherit;
+        padding: 7px 12px; border-radius: 7px; cursor: pointer;
+        transition: all 0.2s;
+      }
+      .open-new:hover { color: #fff; border-color: #3478F6; }
+      .open-new svg { width: 13px; height: 13px; }
+
+      /* ───────── STAGE ───────── */
+      .stage {
+        flex: 1;
+        background: #0b0d12;
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* TAB MODE: one iframe full size */
+      .tab-pane {
+        position: absolute;
+        inset: 0;
+        display: none;
+      }
+      .tab-pane.active { display: block; }
+      .tab-pane iframe {
+        width: 100%; height: 100%;
+        border: none;
+        background: #fff;
+      }
+
+      /* COMPARE MODE: 4 iframes side-by-side (원본 + 시안 3개) */
+      .compare-grid {
+        display: none;
+        position: absolute;
+        inset: 0;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 10px;
+        padding: 10px;
+      }
+      body.mode-compare .compare-grid { display: grid; }
+      body.mode-compare .tab-pane { display: none !important; }
+
+      .compare-col {
+        background: #fff;
+        border-radius: 10px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        border: 1px solid #1f2330;
+      }
+      .compare-col-head {
+        flex-shrink: 0;
+        height: 36px;
+        background: #14171f;
+        border-bottom: 1px solid #232632;
+        display: flex;
+        align-items: center;
+        padding: 0 12px;
+        gap: 8px;
+        font-size: 0.78rem;
+        font-weight: 700;
+        color: #e5e7eb;
+      }
+      .compare-col-head .pill {
+        width: 8px; height: 8px; border-radius: 50%;
+      }
+      .compare-col-head .sub {
+        margin-left: auto;
+        font-weight: 500;
+        color: #6b7280;
+        font-size: 0.72rem;
+      }
+      .compare-col-head .ext-link {
+        color: #9ca3af; padding: 4px 6px;
+        border-radius: 5px;
+        transition: color 0.2s;
+        display: inline-flex; align-items: center;
+      }
+      .compare-col-head .ext-link:hover { color: #fff; }
+      .compare-col-head .ext-link svg { width: 12px; height: 12px; }
+      .compare-col[data-id="0"] .pill { background: #10b981; }
+      .compare-col[data-id="1"] .pill { background: #0e46ff; }
+      .compare-col[data-id="2"] .pill { background: #8b5cff; }
+      .compare-col[data-id="3"] .pill { background: #ff8a7a; }
+      .compare-col iframe {
+        flex: 1;
+        width: 100%;
+        border: none;
+        background: #fff;
+      }
+
+      /* ───────── LOADING ───────── */
+      .loader {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #0b0d12;
+        color: #6b7280;
+        font-size: 0.9rem;
+        z-index: 5;
+        opacity: 1;
+        pointer-events: none;
+        transition: opacity 0.4s;
+      }
+      .loader.fade { opacity: 0; }
+
+      /* ───────── RESPONSIVE ───────── */
+      @media (max-width: 1400px) {
+        body.mode-compare .compare-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; overflow-y: auto; }
+      }
+      @media (max-width: 900px) {
+        .topbar { flex-wrap: wrap; height: auto; padding: 10px 14px; gap: 10px; }
+        .modes, .tabs { margin-left: 0; }
+        body.mode-compare .compare-grid { grid-template-columns: 1fr; grid-template-rows: none; }
+        .compare-col { min-height: 100vh; }
+      }
+    </style>
+  </head>
+  <body class="mode-tab">
+    <header class="topbar">
+      <div class="brand">
+        <span class="dot"></span>
+        <span>HighPlus 시안 대시보드</span>
+        <span class="sub">/ 블로그 대행 서비스</span>
+      </div>
+
+      <div class="tabs" id="tabs">
+        <button class="tab active" data-id="0" onclick="selectTab(0)">
+          <span class="pill"></span>원본 · index.html
+        </button>
+        <button class="tab" data-id="1" onclick="selectTab(1)">
+          <span class="pill"></span>시안 1 · Editorial
+        </button>
+        <button class="tab" data-id="2" onclick="selectTab(2)">
+          <span class="pill"></span>시안 2 · Playful 3D
+        </button>
+        <button class="tab" data-id="3" onclick="selectTab(3)">
+          <span class="pill"></span>시안 3 · Soft Modern
+        </button>
+      </div>
+
+      <div class="modes">
+        <button class="mode-btn active" data-mode="tab" onclick="setMode('tab')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+          탭
+        </button>
+        <button class="mode-btn" data-mode="compare" onclick="setMode('compare')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="6" height="18" rx="1"/><rect x="11" y="3" width="6" height="18" rx="1"/><rect x="19" y="3" width="2" height="18" rx="1"/></svg>
+          나란히 비교
+        </button>
+      </div>
+
+      <a class="open-new" id="openNew" href="index.html#part-02" target="_blank" rel="noopener" title="현재 시안 새 탭으로 열기">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14L21 3"/><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg>
+          새 탭
+      </a>
+    </header>
+
+    <div class="stage" id="stage">
+      <div class="loader" id="loader">시안을 불러오는 중…</div>
+
+      <!-- TAB MODE -->
+      <div class="tab-pane active" data-id="0"><iframe src="index.html#part-02" loading="lazy" title="원본"></iframe></div>
+      <div class="tab-pane" data-id="1"><iframe src="agency-draft-1.html" loading="lazy" title="시안 1"></iframe></div>
+      <div class="tab-pane" data-id="2"><iframe src="agency-draft-2.html" loading="lazy" title="시안 2"></iframe></div>
+      <div class="tab-pane" data-id="3"><iframe src="agency-draft-3.html" loading="lazy" title="시안 3"></iframe></div>
+
+      <!-- COMPARE MODE -->
+      <div class="compare-grid" id="compareGrid">
+        <div class="compare-col" data-id="0">
+          <div class="compare-col-head">
+            <span class="pill"></span>원본 · index.html
+            <span class="sub">/ live baseline</span>
+            <a class="ext-link" href="index.html#part-02" target="_blank" rel="noopener" title="새 탭으로 열기">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14L21 3"/><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg>
+            </a>
+          </div>
+          <iframe src="index.html#part-02" loading="lazy" title="원본"></iframe>
+        </div>
+        <div class="compare-col" data-id="1">
+          <div class="compare-col-head">
+            <span class="pill"></span>시안 1 · Editorial Light
+            <span class="sub">/ blue accent</span>
+            <a class="ext-link" href="agency-draft-1.html" target="_blank" rel="noopener" title="새 탭으로 열기">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14L21 3"/><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg>
+            </a>
+          </div>
+          <iframe src="agency-draft-1.html" loading="lazy" title="시안 1"></iframe>
+        </div>
+        <div class="compare-col" data-id="2">
+          <div class="compare-col-head">
+            <span class="pill"></span>시안 2 · Playful 3D
+            <span class="sub">/ multi-color</span>
+            <a class="ext-link" href="agency-draft-2.html" target="_blank" rel="noopener" title="새 탭으로 열기">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14L21 3"/><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg>
+            </a>
+          </div>
+          <iframe src="agency-draft-2.html" loading="lazy" title="시안 2"></iframe>
+        </div>
+        <div class="compare-col" data-id="3">
+          <div class="compare-col-head">
+            <span class="pill"></span>시안 3 · Soft Modern
+            <span class="sub">/ coral + lavender</span>
+            <a class="ext-link" href="agency-draft-3.html" target="_blank" rel="noopener" title="새 탭으로 열기">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14L21 3"/><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg>
+            </a>
+          </div>
+          <iframe src="agency-draft-3.html" loading="lazy" title="시안 3"></iframe>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const tabPanes = document.querySelectorAll('.tab-pane');
+      const tabs = document.querySelectorAll('.tab');
+      const modeBtns = document.querySelectorAll('.mode-btn');
+      const openNew = document.getElementById('openNew');
+      const loader = document.getElementById('loader');
+
+      function selectTab(id) {
+        tabs.forEach(t => t.classList.toggle('active', +t.dataset.id === id));
+        tabPanes.forEach(p => p.classList.toggle('active', +p.dataset.id === id));
+        openNew.href = id === 0 ? 'index.html#part-02' : 'agency-draft-' + id + '.html';
+      }
+
+      function setMode(mode) {
+        modeBtns.forEach(b => b.classList.toggle('active', b.dataset.mode === mode));
+        document.body.classList.toggle('mode-compare', mode === 'compare');
+        document.body.classList.toggle('mode-tab', mode === 'tab');
+      }
+
+      // Hide loader after iframes start loading
+      window.addEventListener('load', () => {
+        setTimeout(() => loader.classList.add('fade'), 300);
+        setTimeout(() => (loader.style.display = 'none'), 800);
+      });
+
+      // Keyboard shortcuts: 0(원본) / 1·2·3(시안), T/C for mode
+      document.addEventListener('keydown', e => {
+        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+        if (e.key === '0') selectTab(0);
+        if (e.key === '1') selectTab(1);
+        if (e.key === '2') selectTab(2);
+        if (e.key === '3') selectTab(3);
+        if (e.key === 't' || e.key === 'T') setMode('tab');
+        if (e.key === 'c' || e.key === 'C') setMode('compare');
+      });
+    </script>
+  </body>
+</html>

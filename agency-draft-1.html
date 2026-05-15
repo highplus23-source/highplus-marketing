@@ -1,0 +1,1406 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>블로그 대행 시안 1 — Editorial Coral | HighPlus</title>
+    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.min.css" rel="stylesheet" />
+    <style>
+      :root {
+        /* ─ Section backgrounds (each section unique) ─ */
+        --bg-hero: #1a1a1a;
+        --bg-services: #141414;
+        --bg-pain: #f4ede2;
+        --bg-trust: #fdfaf5;
+        --bg-compare: #0a0a0a;
+        --bg-faq: #f0ebe2;
+        --bg-contact: #1f1d1c;
+        --bg-limited: #fff0eb;
+        --bg-footer: #111111;
+
+        --bg-card-dark: #232323;
+        --bg-card-dark-hover: #2c2c2c;
+        --bg-card-cream: #ffffff;
+
+        --coral: #ff6b45;
+        --coral-deep: #e85a35;
+        --coral-soft: rgba(255, 107, 69, 0.10);
+        --coral-tint: #ffe5dc;
+
+        --text-on-dark: #f7f7f7;
+        --text-on-dark-dim: #a4a4a4;
+        --text-on-dark-dim-2: #6f6f6f;
+        --text-on-light: #1a1a1a;
+        --text-on-light-dim: #5a5550;
+        --text-on-light-dim-2: #8a857e;
+
+        --line-dark: rgba(255, 255, 255, 0.08);
+        --line-light: rgba(26, 26, 26, 0.08);
+        --line-cream: rgba(26, 26, 26, 0.12);
+      }
+      *, *::before, *::after { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: var(--bg-hero);
+        color: var(--text-on-dark);
+        font-family: 'Pretendard', sans-serif;
+        font-size: 16px;
+        line-height: 1.7;
+        -webkit-font-smoothing: antialiased;
+        word-break: keep-all;
+      }
+      .wrap { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+      a { color: var(--coral); text-decoration: none; }
+      h1, h2, h3, h4 { margin: 0; letter-spacing: -0.025em; line-height: 1.22; }
+
+      /* ─────────── Section base ─────────── */
+      section { padding: 130px 0; position: relative; overflow: hidden; }
+      section[data-theme="dark"] { color: var(--text-on-dark); }
+      section[data-theme="light"] { color: var(--text-on-light); }
+
+      /* Eyebrow pill (label above section title) */
+      .eyebrow {
+        display: inline-flex; align-items: center; gap: 8px;
+        padding: 8px 18px;
+        border-radius: 999px;
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        margin-bottom: 22px;
+      }
+      section[data-theme="dark"] .eyebrow {
+        background: rgba(255, 255, 255, 0.06);
+        color: var(--text-on-dark-dim);
+        border: 1px solid var(--line-dark);
+      }
+      section[data-theme="light"] .eyebrow {
+        background: #ffffff;
+        color: var(--text-on-light-dim);
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+      }
+
+      h2.section-title {
+        font-size: clamp(2.2rem, 4.6vw, 3.1rem);
+        font-weight: 800;
+        margin-bottom: 18px;
+        letter-spacing: -0.03em;
+      }
+      h2.section-title .coral { color: var(--coral); }
+      .lead {
+        font-size: 1.02rem;
+        max-width: 640px;
+        line-height: 1.75;
+      }
+      section[data-theme="dark"] .lead { color: var(--text-on-dark-dim); }
+      section[data-theme="light"] .lead { color: var(--text-on-light-dim); }
+
+      .section-head { margin-bottom: 64px; }
+      .section-head.center { text-align: center; }
+      .section-head.center .lead { margin: 0 auto; }
+
+      /* Hero arrow-down indicator */
+      .arrow-down {
+        width: 56px; height: 56px;
+        border-radius: 50%;
+        background: var(--coral);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        animation: bob 2.4s ease-in-out infinite;
+        margin-top: 8px;
+      }
+      .arrow-down svg { width: 22px; height: 22px; stroke: #fff; stroke-width: 2.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+      .hero p.tagline { margin-bottom: 40px; }
+      .hero .arrow-down { margin-top: 0; }
+      @keyframes bob {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(8px); }
+      }
+
+      /* ─────────── Reusable patterns ─────────── */
+      .dot-grid {
+        background-image: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.08) 1px, transparent 0);
+        background-size: 28px 28px;
+      }
+      .dot-grid-light {
+        background-image: radial-gradient(circle at 1px 1px, rgba(26, 26, 26, 0.08) 1px, transparent 0);
+        background-size: 28px 28px;
+      }
+      .v-lines {
+        background-image: linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+        background-size: 80px 100%;
+      }
+
+      /* Decorative blob */
+      .blob {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(80px);
+        z-index: 0;
+        pointer-events: none;
+      }
+      section > .wrap { position: relative; z-index: 1; }
+
+      /* SVG icon base */
+      .ico { width: 38px; height: 38px; stroke: var(--coral); stroke-width: 1.8; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+
+      /* ─────────── Draft pill ─────────── */
+      .draft-pill {
+        position: fixed; top: 16px; right: 16px; z-index: 100;
+        padding: 8px 14px;
+        background: var(--coral);
+        color: #fff;
+        border-radius: 999px;
+        font-size: 0.74rem;
+        font-weight: 800;
+        letter-spacing: 0.05em;
+        box-shadow: 0 8px 24px rgba(255, 107, 69, 0.4);
+      }
+
+      /* ═════════════════════════════════════════════════
+         01 · HERO — dark + corner glows + grid
+         ═════════════════════════════════════════════════ */
+      .hero {
+        background: var(--bg-hero);
+        padding: 150px 0 130px;
+        text-align: center;
+        position: relative;
+      }
+      .hero::before {
+        content: '';
+        position: absolute; inset: 0;
+        background-image: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.05) 1px, transparent 0);
+        background-size: 36px 36px;
+        opacity: 0.6;
+      }
+      .hero .blob.a { width: 380px; height: 380px; background: rgba(255, 107, 69, 0.28); top: -100px; left: -100px; }
+      .hero .blob.b { width: 320px; height: 320px; background: rgba(255, 107, 69, 0.18); bottom: -120px; right: -80px; }
+
+      .hero .badge {
+        display: inline-flex; align-items: center; gap: 8px;
+        padding: 8px 18px;
+        background: rgba(255, 107, 69, 0.12);
+        color: var(--coral);
+        border: 1px solid rgba(255, 107, 69, 0.34);
+        border-radius: 999px;
+        font-size: 0.74rem;
+        font-weight: 800;
+        letter-spacing: 0.22em;
+        margin-bottom: 28px;
+      }
+      .hero .badge::before {
+        content: '';
+        width: 6px; height: 6px;
+        border-radius: 50%;
+        background: var(--coral);
+        box-shadow: 0 0 0 4px rgba(255, 107, 69, 0.18);
+      }
+      .hero .name {
+        font-size: 1.08rem;
+        color: var(--text-on-dark-dim);
+        margin-bottom: 30px;
+        letter-spacing: 0.06em;
+        font-weight: 600;
+      }
+      .hero h1 {
+        font-size: clamp(2.8rem, 6vw, 5rem);
+        font-weight: 800;
+        line-height: 1.08;
+        margin-bottom: 28px;
+        letter-spacing: -0.035em;
+      }
+      .hero h1 .coral { color: var(--coral); }
+      .hero p.tagline {
+        color: var(--text-on-dark-dim);
+        max-width: 620px;
+        margin: 0 auto 56px;
+        font-size: 1.05rem;
+        line-height: 1.75;
+      }
+
+      /* ═════════════════════════════════════════════════
+         02 · SERVICES — deeper dark + dot grid + bottom CTA overlap
+         ═════════════════════════════════════════════════ */
+      .services {
+        background: var(--bg-services);
+        padding: 130px 0;
+        position: relative;
+      }
+      .services::before {
+        content: '';
+        position: absolute; inset: 0;
+        background-image: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.04) 1px, transparent 0);
+        background-size: 32px 32px;
+      }
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 24px;
+      }
+      .service-card {
+        background: var(--bg-card-dark);
+        border-radius: 24px;
+        padding: 44px 28px 36px;
+        text-align: center;
+        transition: transform 0.3s, background 0.3s, box-shadow 0.3s;
+        position: relative;
+        overflow: hidden;
+      }
+      .service-card::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 50%;
+        transform: translateX(-50%);
+        width: 140px; height: 18px;
+        background: var(--bg-services);
+        border-radius: 0 0 100px 100px;
+      }
+      .service-card .corner-arrow {
+        position: absolute;
+        top: 20px; right: 20px;
+        width: 32px; height: 32px;
+        border-radius: 50%;
+        background: rgba(255, 107, 69, 0.12);
+        display: flex; align-items: center; justify-content: center;
+        opacity: 0;
+        transform: translate(6px, -6px);
+        transition: opacity 0.3s, transform 0.3s, background 0.3s;
+      }
+      .service-card .corner-arrow svg {
+        width: 14px; height: 14px;
+        stroke: var(--coral); stroke-width: 2.5; fill: none;
+        stroke-linecap: round; stroke-linejoin: round;
+        transform: rotate(-45deg);
+      }
+      .service-card:hover {
+        transform: translateY(-6px);
+        background: var(--bg-card-dark-hover);
+        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
+      }
+      .service-card:hover .corner-arrow {
+        opacity: 1;
+        transform: translate(0, 0);
+        background: var(--coral);
+      }
+      .service-card:hover .corner-arrow svg { stroke: #fff; }
+
+      .service-card .icon-wrap {
+        margin: 14px 0 28px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 72px; height: 72px;
+        background: rgba(255, 107, 69, 0.08);
+        border-radius: 20px;
+      }
+      .service-card h3 {
+        font-size: 1.1rem;
+        font-weight: 800;
+        line-height: 1.45;
+        color: var(--text-on-dark);
+        margin-bottom: 12px;
+      }
+      .service-card .num {
+        font-size: 0.7rem;
+        font-weight: 800;
+        color: var(--coral);
+        letter-spacing: 0.18em;
+        margin-bottom: 4px;
+      }
+      .service-card .desc {
+        font-size: 0.88rem;
+        color: var(--text-on-dark-dim);
+        line-height: 1.65;
+        margin: 0 0 22px;
+      }
+      .service-card .feat-list {
+        list-style: none;
+        padding: 22px 0 0;
+        margin: 0;
+        border-top: 1px solid var(--line-dark);
+        text-align: left;
+      }
+      .service-card .feat-list li {
+        font-size: 0.82rem;
+        color: var(--text-on-dark-dim);
+        padding: 5px 0 5px 22px;
+        position: relative;
+        line-height: 1.55;
+      }
+      .service-card .feat-list li::before {
+        content: '';
+        position: absolute;
+        left: 0; top: 0.65em;
+        width: 12px; height: 1.5px;
+        background: var(--coral);
+      }
+
+
+      /* ═════════════════════════════════════════════════
+         03 · PAIN POINT — warm sand cream
+         ═════════════════════════════════════════════════ */
+      .pain {
+        background: var(--bg-pain);
+        padding: 130px 0;
+        position: relative;
+      }
+      .pain::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0; height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(0,0,0,0.06), transparent);
+      }
+      .pain-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+        margin-bottom: 32px;
+      }
+      .pain-card {
+        background: var(--bg-card-cream);
+        border: 1px solid var(--line-cream);
+        border-radius: 24px;
+        padding: 38px 32px;
+        transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+        position: relative;
+      }
+      .pain-card:hover {
+        transform: translateY(-4px);
+        border-color: rgba(255, 107, 69, 0.35);
+        box-shadow: 0 24px 60px rgba(232, 90, 53, 0.10);
+      }
+      .pain-card .pain-ico {
+        width: 56px; height: 56px;
+        border-radius: 16px;
+        background: var(--coral-soft);
+        display: flex; align-items: center; justify-content: center;
+        margin-bottom: 24px;
+      }
+      .pain-card .pain-ico svg { width: 26px; height: 26px; stroke: var(--coral); stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+      .pain-card h3 {
+        font-size: 1.05rem;
+        font-weight: 800;
+        line-height: 1.5;
+        margin-bottom: 14px;
+        color: var(--text-on-light);
+      }
+      .pain-card p {
+        font-size: 0.92rem;
+        color: var(--text-on-light-dim);
+        line-height: 1.7;
+        margin: 0;
+      }
+      .pain-card p strong { color: var(--text-on-light); font-weight: 700; }
+
+      .pain-banner {
+        background: var(--text-on-light);
+        color: var(--text-on-dark);
+        border-radius: 28px;
+        padding: 48px 56px;
+        display: flex;
+        align-items: center;
+        gap: 28px;
+        position: relative;
+        overflow: hidden;
+      }
+      .pain-banner::before {
+        content: '';
+        position: absolute;
+        right: -10%; top: -50%;
+        width: 50%; height: 200%;
+        background: radial-gradient(circle, rgba(255, 107, 69, 0.22) 0%, transparent 60%);
+      }
+      .pain-banner > * { position: relative; }
+      .pain-banner .icon-wrap {
+        width: 64px; height: 64px;
+        border-radius: 18px;
+        background: var(--coral);
+        display: flex; align-items: center; justify-content: center;
+        flex-shrink: 0;
+      }
+      .pain-banner .icon-wrap svg { width: 30px; height: 30px; stroke: #fff; stroke-width: 2; fill: none; }
+      .pain-banner h3 { font-size: 1.55rem; font-weight: 800; margin-bottom: 8px; color: #fff; }
+      .pain-banner h3 .coral { color: var(--coral); }
+      .pain-banner p { color: var(--text-on-dark-dim); font-size: 0.98rem; line-height: 1.7; margin: 0; }
+
+      /* ═════════════════════════════════════════════════
+         04 · TRUST — off-white + circular process
+         ═════════════════════════════════════════════════ */
+      .trust {
+        background: var(--bg-trust);
+        padding: 130px 0;
+        position: relative;
+      }
+      .trust::before {
+        content: '';
+        position: absolute; inset: 0;
+        background-image: radial-gradient(circle at 1px 1px, rgba(26, 26, 26, 0.06) 1px, transparent 0);
+        background-size: 32px 32px;
+        opacity: 0.5;
+      }
+      .trust-flow {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+        position: relative;
+      }
+      .trust-flow::before {
+        content: '';
+        position: absolute;
+        top: 80px;
+        left: 16%; right: 16%;
+        height: 2px;
+        background-image: linear-gradient(to right, rgba(255, 107, 69, 0.4) 50%, transparent 50%);
+        background-size: 14px 2px;
+        background-repeat: repeat-x;
+        z-index: 0;
+      }
+      .trust-card { text-align: center; position: relative; z-index: 1; }
+      .trust-card .circle {
+        width: 160px;
+        height: 160px;
+        border-radius: 50%;
+        background: var(--bg-card-cream);
+        border: 2px solid var(--line-cream);
+        margin: 0 auto 24px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+      }
+      .trust-card:hover .circle {
+        border-color: var(--coral);
+        transform: translateY(-4px);
+        box-shadow: 0 18px 48px rgba(255, 107, 69, 0.12);
+      }
+      .trust-card .num-badge {
+        position: absolute;
+        top: -10px; right: 24px;
+        background: var(--coral);
+        color: #fff;
+        font-size: 0.85rem;
+        font-weight: 800;
+        padding: 4px 12px;
+        border-radius: 999px;
+        letter-spacing: 0.05em;
+      }
+      .trust-card .circle svg { width: 44px; height: 44px; stroke: var(--coral); stroke-width: 1.8; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+      .trust-card h4 {
+        font-size: 1.18rem;
+        font-weight: 800;
+        margin-bottom: 12px;
+        color: var(--text-on-light);
+      }
+      .trust-card .desc {
+        font-size: 0.9rem;
+        color: var(--text-on-light-dim);
+        line-height: 1.7;
+        max-width: 260px;
+        margin: 0 auto 14px;
+      }
+      .trust-card .problem {
+        font-size: 0.8rem;
+        color: var(--text-on-light-dim-2);
+        padding: 4px 12px;
+        background: rgba(26, 26, 26, 0.04);
+        display: inline-block;
+        border-radius: 999px;
+        font-style: italic;
+      }
+
+      .trust-banner {
+        margin-top: 72px;
+        padding: 36px 48px;
+        background: var(--text-on-light);
+        color: var(--text-on-dark);
+        border-radius: 24px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+        position: relative;
+        overflow: hidden;
+      }
+      .trust-banner::before {
+        content: '';
+        position: absolute;
+        left: -10%; top: -50%;
+        width: 40%; height: 200%;
+        background: radial-gradient(circle, rgba(255, 107, 69, 0.18) 0%, transparent 60%);
+      }
+      .trust-banner > * { position: relative; }
+      .trust-banner-item { display: flex; align-items: center; gap: 16px; }
+      .trust-banner-item .ico-w {
+        width: 52px; height: 52px;
+        border-radius: 14px;
+        background: rgba(255, 107, 69, 0.18);
+        display: flex; align-items: center; justify-content: center;
+        flex-shrink: 0;
+      }
+      .trust-banner-item .ico-w svg { width: 24px; height: 24px; stroke: var(--coral); stroke-width: 2; fill: none; }
+      .trust-banner-item .label { font-size: 1rem; font-weight: 800; color: #fff; margin-bottom: 3px; }
+      .trust-banner-item .sub { font-size: 0.82rem; color: var(--text-on-dark-dim); }
+
+      /* ═════════════════════════════════════════════════
+         05 · COMPARE — pure deep black + side glow
+         ═════════════════════════════════════════════════ */
+      .compare {
+        background: var(--bg-compare);
+        padding: 130px 0;
+        position: relative;
+      }
+      .compare .blob.a { width: 460px; height: 460px; background: rgba(255, 107, 69, 0.18); top: 10%; left: -200px; }
+      .compare .blob.b { width: 360px; height: 360px; background: rgba(255, 107, 69, 0.10); bottom: 5%; right: -150px; }
+
+      .compare-table {
+        background: var(--bg-card-dark);
+        border: 1px solid var(--line-dark);
+        border-radius: 24px;
+        overflow: hidden;
+        box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
+      }
+      .compare-table table { width: 100%; border-collapse: collapse; }
+      .compare-table thead th {
+        padding: 22px 20px;
+        font-size: 0.95rem;
+        font-weight: 800;
+        text-align: center;
+        letter-spacing: 0.03em;
+      }
+      .compare-table thead .th-hp {
+        background: var(--coral);
+        color: #fff;
+      }
+      .compare-table thead .th-vs {
+        background: var(--bg-compare);
+        color: var(--text-on-dark-dim-2);
+        font-size: 0.85rem;
+        width: 18%;
+      }
+      .compare-table thead .th-other { background: var(--bg-card-dark); color: var(--text-on-dark-dim); width: 38%; }
+      .compare-table tbody td {
+        padding: 22px 20px;
+        text-align: center;
+        font-size: 0.95rem;
+        border-bottom: 1px solid var(--line-dark);
+        transition: background 0.2s;
+      }
+      .compare-table tbody tr:last-child td { border-bottom: none; }
+      .compare-table .td-hp {
+        color: var(--text-on-dark);
+        font-weight: 700;
+        background: rgba(255, 107, 69, 0.06);
+        width: 44%;
+        position: relative;
+      }
+      .compare-table .td-hp::after {
+        content: '';
+        position: absolute;
+        left: 14px; top: 50%;
+        transform: translateY(-50%);
+        width: 6px; height: 6px;
+        border-radius: 50%;
+        background: var(--coral);
+        opacity: 0.7;
+      }
+      .compare-table .td-vs { color: var(--coral); font-weight: 700; font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
+      .compare-table .td-other { color: var(--text-on-dark-dim); }
+      .compare-table tbody tr:hover .td-hp { background: rgba(255, 107, 69, 0.14); }
+
+      /* ═════════════════════════════════════════════════
+         06 · FAQ — light beige + numbered Q
+         ═════════════════════════════════════════════════ */
+      .faq {
+        background: var(--bg-faq);
+        padding: 130px 0;
+        position: relative;
+      }
+      .faq-grid {
+        display: grid;
+        grid-template-columns: 1fr 1.7fr;
+        gap: 72px;
+      }
+      .faq-intro h2 {
+        font-size: 2.5rem; font-weight: 800; line-height: 1.2;
+        margin-bottom: 18px; color: var(--text-on-light);
+        letter-spacing: -0.03em;
+      }
+      .faq-intro h2 .coral { color: var(--coral); }
+      .faq-intro p { color: var(--text-on-light-dim); margin-bottom: 32px; }
+      .faq-cta {
+        display: inline-flex; align-items: center; gap: 10px;
+        padding: 16px 28px;
+        background: var(--coral);
+        color: #fff;
+        border-radius: 999px;
+        font-weight: 800;
+        font-size: 0.92rem;
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+      .faq-cta svg { width: 16px; height: 16px; stroke: #fff; stroke-width: 2.5; fill: none; }
+      .faq-cta:hover { transform: translateY(-2px); box-shadow: 0 14px 36px rgba(255, 107, 69, 0.32); }
+
+      .faq-list { display: flex; flex-direction: column; gap: 12px; }
+      .faq-item {
+        background: var(--bg-card-cream);
+        border: 1px solid var(--line-cream);
+        border-radius: 16px;
+        overflow: hidden;
+        transition: border-color 0.2s, box-shadow 0.2s;
+      }
+      .faq-item.open { border-color: rgba(255, 107, 69, 0.4); box-shadow: 0 10px 30px rgba(255, 107, 69, 0.10); }
+      .faq-q {
+        width: 100%; background: transparent; border: none; font-family: inherit;
+        text-align: left; padding: 20px 24px;
+        font-size: 1rem; font-weight: 700; color: var(--text-on-light);
+        cursor: pointer;
+        display: flex; justify-content: space-between; align-items: center; gap: 24px;
+      }
+      .faq-q .arrow {
+        flex-shrink: 0; width: 30px; height: 30px;
+        border-radius: 50%;
+        background: var(--coral-soft);
+        color: var(--coral);
+        display: flex; align-items: center; justify-content: center;
+        font-weight: 800;
+        transition: transform 0.3s, background 0.2s, color 0.2s;
+      }
+      .faq-item.open .faq-q .arrow {
+        transform: rotate(45deg);
+        background: var(--coral);
+        color: #fff;
+      }
+      .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.35s ease; }
+      .faq-item.open .faq-a { max-height: 420px; padding: 0 24px 22px; }
+      .faq-a p { color: var(--text-on-light-dim); font-size: 0.93rem; line-height: 1.75; margin: 0; }
+
+      /* ═════════════════════════════════════════════════
+         07 · SCARCITY — charcoal + price + form
+         ═════════════════════════════════════════════════ */
+      .scarcity {
+        background: var(--bg-contact);
+        padding: 130px 0;
+        position: relative;
+      }
+      .scarcity::before {
+        content: '';
+        position: absolute; inset: 0;
+        background-image: linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+        background-size: 80px 100%;
+      }
+      .scar-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+      }
+      .scar-card {
+        background: var(--bg-card-dark);
+        border: 1px solid var(--line-dark);
+        border-radius: 28px;
+        padding: 52px 44px;
+        position: relative;
+        overflow: hidden;
+      }
+      .scar-card--coral {
+        background: var(--coral);
+        border: none;
+      }
+      .scar-card--coral::before {
+        content: '';
+        position: absolute;
+        top: -30%; right: -10%;
+        width: 60%; height: 200%;
+        background: radial-gradient(circle, rgba(255,255,255,0.16) 0%, transparent 60%);
+      }
+      .scar-card > * { position: relative; }
+      .scar-card .tag {
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 0.2em;
+        color: var(--coral);
+        margin-bottom: 18px;
+        display: block;
+        text-transform: uppercase;
+      }
+      .scar-card--coral .tag { color: rgba(255,255,255,0.9); }
+      .scar-card h3 {
+        font-size: 1.7rem;
+        font-weight: 800;
+        line-height: 1.35;
+        margin-bottom: 16px;
+        color: var(--text-on-dark);
+      }
+      .scar-card--coral h3 { color: #fff; }
+      .scar-card .lead { font-size: 0.96rem; color: var(--text-on-dark-dim); margin-bottom: 32px; }
+      .scar-card--coral .lead { color: rgba(255,255,255,0.94); }
+      .scar-price {
+        padding: 22px 0;
+        border-top: 1px solid rgba(255,255,255,0.22);
+        border-bottom: 1px solid rgba(255,255,255,0.22);
+        margin-bottom: 28px;
+        display: flex;
+        align-items: baseline;
+        gap: 8px;
+      }
+      .scar-price .num { font-size: 2.4rem; font-weight: 800; color: #fff; }
+      .scar-price .unit { color: rgba(255,255,255,0.78); font-size: 1rem; }
+      .scar-group { margin-bottom: 26px; }
+      .scar-group .label {
+        font-size: 0.74rem;
+        font-weight: 800;
+        color: rgba(255,255,255,0.95);
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        margin-bottom: 12px;
+      }
+      .scar-group ul { list-style: none; padding: 0; margin: 0; }
+      .scar-group li {
+        font-size: 0.92rem;
+        color: rgba(255,255,255,0.94);
+        padding: 7px 0 7px 26px;
+        position: relative;
+      }
+      .scar-group li svg {
+        position: absolute;
+        left: 0; top: 0.6em;
+        width: 14px; height: 14px;
+        stroke: #fff; stroke-width: 3; fill: none; stroke-linecap: round; stroke-linejoin: round;
+      }
+      .scar-note {
+        font-size: 0.85rem;
+        color: rgba(255,255,255,0.86);
+        padding-top: 16px;
+        border-top: 1px dashed rgba(255,255,255,0.3);
+      }
+      .scar-card--coral a { color: #fff; text-decoration: underline; }
+
+      /* Form (right card) */
+      .form-row { display: flex; flex-direction: column; gap: 6px; margin-bottom: 18px; }
+      .form-row label { font-size: 0.85rem; font-weight: 700; color: var(--text-on-dark-dim); }
+      .form-row input, .form-row textarea {
+        padding: 14px 16px;
+        border: 1px solid var(--line-dark);
+        background: var(--bg-contact);
+        color: var(--text-on-dark);
+        border-radius: 12px;
+        font-size: 0.95rem;
+        font-family: inherit;
+        transition: border-color 0.2s;
+      }
+      .form-row input::placeholder, .form-row textarea::placeholder { color: var(--text-on-dark-dim-2); }
+      .form-row input:focus, .form-row textarea:focus { outline: none; border-color: var(--coral); }
+      .checks { display: flex; gap: 10px; flex-wrap: wrap; }
+      .check {
+        display: inline-flex; align-items: center; gap: 6px;
+        padding: 8px 14px;
+        background: var(--bg-contact);
+        border: 1px solid var(--line-dark);
+        border-radius: 999px;
+        font-size: 0.88rem; cursor: pointer;
+        color: var(--text-on-dark-dim);
+      }
+      .check input { accent-color: var(--coral); }
+      .submit-btn {
+        width: 100%;
+        padding: 18px;
+        background: var(--coral);
+        color: #fff;
+        border: none;
+        border-radius: 14px;
+        font-size: 1rem;
+        font-weight: 800;
+        cursor: pointer;
+        font-family: inherit;
+        transition: transform 0.2s, box-shadow 0.2s;
+        display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      }
+      .submit-btn svg { width: 16px; height: 16px; stroke: #fff; stroke-width: 2.5; fill: none; }
+      .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 14px 36px rgba(255, 107, 69, 0.32); }
+      .form-note { font-size: 0.78rem; color: var(--text-on-dark-dim-2); text-align: center; margin-top: 12px; }
+
+      /* ═════════════════════════════════════════════════
+         08 · LIMITED — coral-tinted panel
+         ═════════════════════════════════════════════════ */
+      .limited {
+        background: var(--bg-limited);
+        padding: 130px 0;
+        position: relative;
+      }
+      .limited::before {
+        content: '';
+        position: absolute; inset: 0;
+        background-image: radial-gradient(circle at 1px 1px, rgba(232, 90, 53, 0.10) 1px, transparent 0);
+        background-size: 24px 24px;
+        opacity: 0.6;
+      }
+      .limited-card {
+        text-align: center;
+        padding: 90px 48px;
+        background: var(--text-on-light);
+        color: var(--text-on-dark);
+        border-radius: 32px;
+        position: relative;
+        overflow: hidden;
+      }
+      .limited-card::before {
+        content: '';
+        position: absolute;
+        top: -50%; left: -10%;
+        width: 50%; height: 200%;
+        background: radial-gradient(circle, rgba(255, 107, 69, 0.32) 0%, transparent 60%);
+      }
+      .limited-card::after {
+        content: '';
+        position: absolute;
+        bottom: -50%; right: -10%;
+        width: 50%; height: 200%;
+        background: radial-gradient(circle, rgba(255, 107, 69, 0.20) 0%, transparent 60%);
+      }
+      .limited-card > * { position: relative; }
+      .limited-card .tag {
+        font-size: 0.74rem;
+        font-weight: 800;
+        letter-spacing: 0.22em;
+        color: var(--coral);
+        margin-bottom: 26px;
+        display: inline-block;
+        padding: 8px 18px;
+        background: rgba(255, 107, 69, 0.12);
+        border: 1px solid rgba(255, 107, 69, 0.34);
+        border-radius: 999px;
+      }
+      .limited-card h2 {
+        font-size: clamp(2rem, 4vw, 2.8rem);
+        font-weight: 800;
+        line-height: 1.2;
+        margin-bottom: 22px;
+        color: #fff;
+      }
+      .limited-card h2 .coral { color: var(--coral); }
+      .limited-card p { color: var(--text-on-dark-dim); font-size: 0.98rem; max-width: 620px; margin: 0 auto 32px; line-height: 1.8; }
+      .limited-card .cta {
+        display: inline-flex; align-items: center; gap: 10px;
+        padding: 18px 36px;
+        background: var(--coral);
+        color: #fff;
+        border-radius: 999px;
+        font-weight: 800;
+        font-size: 1rem;
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+      .limited-card .cta svg { width: 16px; height: 16px; stroke: #fff; stroke-width: 2.5; fill: none; }
+      .limited-card .cta:hover { transform: translateY(-2px); box-shadow: 0 18px 48px rgba(255, 107, 69, 0.4); }
+
+      /* ═════════════════════════════════════════════════
+         09 · FOOTER — pure black
+         ═════════════════════════════════════════════════ */
+      footer {
+        background: var(--bg-footer);
+        padding: 80px 0 36px;
+        color: var(--text-on-dark-dim);
+        font-size: 0.88rem;
+        border-top: 1px solid var(--line-dark);
+      }
+      footer .footer-grid { display: grid; grid-template-columns: 1.3fr 1fr 1fr 1.3fr; gap: 36px; margin-bottom: 48px; }
+      footer .brand-title { font-weight: 800; font-size: 1.2rem; color: var(--text-on-dark); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+      footer .brand-title::before { content: ''; width: 10px; height: 10px; border-radius: 50%; background: var(--coral); }
+      footer .brand-desc { font-size: 0.85rem; color: var(--text-on-dark-dim); margin: 0 0 20px; line-height: 1.7; }
+      footer .social { display: flex; gap: 10px; }
+      footer .social a {
+        width: 36px; height: 36px;
+        border-radius: 50%;
+        background: var(--bg-card-dark);
+        display: inline-flex; align-items: center; justify-content: center;
+        transition: background 0.2s, transform 0.2s;
+      }
+      footer .social a:hover { background: var(--coral); transform: translateY(-2px); }
+      footer .social svg { width: 15px; height: 15px; stroke: var(--text-on-dark-dim); stroke-width: 1.8; fill: none; }
+      footer .social a:hover svg { stroke: #fff; }
+      footer .col-title { color: var(--text-on-dark); font-weight: 800; font-size: 0.92rem; margin-bottom: 18px; letter-spacing: 0.05em; }
+      footer .col a { display: block; padding: 5px 0; color: var(--text-on-dark-dim); font-size: 0.86rem; transition: color 0.2s; }
+      footer .col a:hover { color: var(--coral); }
+      footer .biz dl { margin: 0; }
+      footer .biz dt { font-weight: 700; color: var(--text-on-dark-dim-2); font-size: 0.72rem; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 2px; }
+      footer .biz dd { margin: 0 0 10px; font-size: 0.86rem; color: var(--text-on-dark); }
+      footer .copy { text-align: center; padding-top: 28px; border-top: 1px solid var(--line-dark); font-size: 0.78rem; color: var(--text-on-dark-dim-2); }
+
+      /* ─────────── Responsive ─────────── */
+      @media (max-width: 1024px) {
+        .services-grid { grid-template-columns: repeat(2, 1fr); }
+        .pain-grid, .trust-flow, .trust-banner, .scar-grid, .faq-grid, footer .footer-grid { grid-template-columns: 1fr 1fr; }
+        .trust-flow::before { display: none; }
+      }
+      @media (max-width: 768px) {
+        section { padding: 90px 0; }
+        .services, .pain, .trust, .compare, .faq, .scarcity, .limited { padding: 90px 0; }
+        .hero { padding: 110px 0 90px; }
+        .services-grid, .pain-grid, .trust-flow, .trust-banner, .scar-grid, .faq-grid, footer .footer-grid { grid-template-columns: 1fr; }
+        .pain-banner { flex-direction: column; align-items: flex-start; padding: 36px 28px; }
+        .scar-card { padding: 36px 28px; }
+        .compare-table thead th, .compare-table tbody td { padding: 14px 10px; font-size: 0.85rem; }
+        .faq-intro h2 { font-size: 1.9rem; }
+        .trust-banner { padding: 28px; }
+        .faq-item.open .faq-a { padding: 0 24px 22px 24px; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="draft-pill">DRAFT 1 — EDITORIAL CORAL</div>
+
+    <!-- ─────────────── SVG ICON SPRITE ─────────────── -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+      <defs>
+        <symbol id="i-pencil" viewBox="0 0 24 24">
+          <path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/>
+          <path d="M15 5l4 4"/>
+        </symbol>
+        <symbol id="i-pin" viewBox="0 0 24 24">
+          <path d="M12 22s-7-7.5-7-13a7 7 0 1 1 14 0c0 5.5-7 13-7 13z"/>
+          <circle cx="12" cy="9" r="2.5"/>
+        </symbol>
+        <symbol id="i-play" viewBox="0 0 24 24">
+          <rect x="3" y="5" width="18" height="14" rx="3"/>
+          <path d="M10 9l5 3-5 3V9z"/>
+        </symbol>
+        <symbol id="i-chart" viewBox="0 0 24 24">
+          <path d="M3 3v18h18"/>
+          <path d="M7 14l3-3 3 3 5-6"/>
+          <circle cx="7" cy="14" r="1"/>
+          <circle cx="10" cy="11" r="1"/>
+          <circle cx="13" cy="14" r="1"/>
+          <circle cx="18" cy="8" r="1"/>
+        </symbol>
+        <symbol id="i-wallet" viewBox="0 0 24 24">
+          <path d="M3 7a2 2 0 0 1 2-2h13a2 2 0 0 1 2 2v3h-4a2.5 2.5 0 1 0 0 5h4v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z"/>
+          <circle cx="17" cy="12.5" r="0.6" fill="currentColor"/>
+        </symbol>
+        <symbol id="i-copy" viewBox="0 0 24 24">
+          <rect x="8" y="4" width="12" height="14" rx="2"/>
+          <path d="M16 8H4v12a2 2 0 0 0 2 2h10"/>
+        </symbol>
+        <symbol id="i-question" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="9"/>
+          <path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1 1-1 1.7v.5"/>
+          <circle cx="12" cy="17" r="0.6" fill="currentColor"/>
+        </symbol>
+        <symbol id="i-bolt" viewBox="0 0 24 24">
+          <path d="M13 2L4 14h7l-2 8 9-12h-7l2-8z"/>
+        </symbol>
+        <symbol id="i-stetho" viewBox="0 0 24 24">
+          <path d="M5 3v6a4 4 0 0 0 8 0V3"/>
+          <path d="M9 13v3a5 5 0 0 0 10 0v-2"/>
+          <circle cx="19" cy="11" r="2.5"/>
+        </symbol>
+        <symbol id="i-diamond" viewBox="0 0 24 24">
+          <path d="M6 3h12l4 6-10 12L2 9l4-6z"/>
+          <path d="M2 9h20"/>
+          <path d="M12 3l-3 6 3 12 3-12-3-6z"/>
+        </symbol>
+        <symbol id="i-hospital" viewBox="0 0 24 24">
+          <path d="M4 21V8l8-5 8 5v13"/>
+          <path d="M9 21v-6h6v6"/>
+          <path d="M12 8v4M10 10h4"/>
+        </symbol>
+        <symbol id="i-calendar" viewBox="0 0 24 24">
+          <rect x="3" y="5" width="18" height="16" rx="2"/>
+          <path d="M3 10h18"/>
+          <path d="M8 3v4M16 3v4"/>
+        </symbol>
+        <symbol id="i-team" viewBox="0 0 24 24">
+          <circle cx="9" cy="8" r="3"/>
+          <path d="M3 20a6 6 0 0 1 12 0"/>
+          <circle cx="17" cy="9" r="2.5"/>
+          <path d="M15 20a5 5 0 0 1 6.5-4.8"/>
+        </symbol>
+        <symbol id="i-phone" viewBox="0 0 24 24">
+          <path d="M22 17v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L7.9 9.7a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6A2 2 0 0 1 22 17z"/>
+        </symbol>
+        <symbol id="i-arrow" viewBox="0 0 24 24">
+          <path d="M5 12h14M13 5l7 7-7 7"/>
+        </symbol>
+        <symbol id="i-arrow-down" viewBox="0 0 24 24">
+          <path d="M12 5v14M5 12l7 7 7-7"/>
+        </symbol>
+        <symbol id="i-check" viewBox="0 0 24 24">
+          <path d="M4 12l5 5L20 6"/>
+        </symbol>
+        <symbol id="i-x" viewBox="0 0 24 24"><path d="M4 4l16 16M20 4L4 20"/></symbol>
+        <symbol id="i-ig" viewBox="0 0 24 24">
+          <rect x="3" y="3" width="18" height="18" rx="5"/>
+          <circle cx="12" cy="12" r="4"/>
+          <circle cx="17.5" cy="6.5" r="0.6" fill="currentColor"/>
+        </symbol>
+        <symbol id="i-fb" viewBox="0 0 24 24"><path d="M15 3h-2a4 4 0 0 0-4 4v3H6v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h2V3z"/></symbol>
+      </defs>
+    </svg>
+
+    <!-- ════════════ 01 · HERO ════════════ -->
+    <section class="hero" data-theme="dark">
+      <div class="blob a"></div>
+      <div class="blob b"></div>
+      <div class="wrap">
+        <span class="badge">PART 02 · AGENCY SERVICE</span>
+        <p class="name">블로그 대행 서비스</p>
+        <h1>직접 운영이 어려우시다면<br /><span class="coral">저희가 대신 해드립니다.</span></h1>
+        <p class="tagline">의학 블로그 발행 전담팀과 디자이너 팀이 키워드 설계부터 발행, 리포트까지 처음부터 끝까지 맡습니다.</p>
+        <div class="arrow-down" aria-hidden="true">
+          <svg><use href="#i-arrow-down"/></svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════ 02 · SERVICES ════════════ -->
+    <section class="services" data-theme="dark">
+      <div class="wrap">
+        <div class="section-head center">
+          <span class="eyebrow">Core Solution</span>
+          <h2 class="section-title">HighPlus가 <span class="coral">직접 실행</span>하는 것들</h2>
+          <p class="lead">블로그, 플레이스, 유튜브, 리포트 4가지 영역을 끝까지 책임집니다.</p>
+        </div>
+
+        <div class="services-grid">
+          <div class="service-card">
+            <div class="corner-arrow"><svg><use href="#i-arrow"/></svg></div>
+            <div class="icon-wrap"><svg class="ico"><use href="#i-pencil"/></svg></div>
+            <p class="num">01 · BRANDING</p>
+            <h3>브랜딩 기획<br />블로그</h3>
+            <p class="desc">초진 전환을 목표로 한 기획형 포스팅</p>
+            <ul class="feat-list">
+              <li>잠재 환자 검색 키워드 기반 설계</li>
+              <li>의학 블로그 발행 전담팀</li>
+              <li>전담 고정 IP 운영, 어뷰징 제로</li>
+            </ul>
+          </div>
+          <div class="service-card">
+            <div class="corner-arrow"><svg><use href="#i-arrow"/></svg></div>
+            <div class="icon-wrap"><svg class="ico"><use href="#i-pin"/></svg></div>
+            <p class="num">02 · PLACE</p>
+            <h3>네이버 플레이스<br />최적화</h3>
+            <p class="desc">지역 검색 최상단 노출, 정공법 세팅</p>
+            <ul class="feat-list">
+              <li>지역 + 진료과목 SEO 세팅</li>
+              <li>인근 병원 플레이스 분석</li>
+              <li>어뷰징 걱정 없는 순위 관리</li>
+            </ul>
+          </div>
+          <div class="service-card">
+            <div class="corner-arrow"><svg><use href="#i-arrow"/></svg></div>
+            <div class="icon-wrap"><svg class="ico"><use href="#i-play"/></svg></div>
+            <p class="num">03 · VIDEO</p>
+            <h3>유튜브<br />콘텐츠</h3>
+            <p class="desc">촬영 부담 없이 영상 콘텐츠 자체 제작</p>
+            <ul class="feat-list">
+              <li>원장님 페르소나 AI 영상</li>
+              <li>블로그 글의 숏츠 재가공</li>
+              <li>촬영 부담 없이 꾸준한 발행</li>
+            </ul>
+          </div>
+          <div class="service-card">
+            <div class="corner-arrow"><svg><use href="#i-arrow"/></svg></div>
+            <div class="icon-wrap"><svg class="ico"><use href="#i-chart"/></svg></div>
+            <p class="num">04 · REPORT</p>
+            <h3>업무진행<br />보고서</h3>
+            <p class="desc">매월 정기 리포트, 데이터 기반 전략</p>
+            <ul class="feat-list">
+              <li>블로그 유입·노출 통계 분석</li>
+              <li>지역 키워드 순위 변동 추적</li>
+              <li>다음 달 전략 방향 제안</li>
+              <li>환자 발송용 DM 제공</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ════════════ 03 · PAIN POINT ════════════ -->
+    <section class="pain" data-theme="light">
+      <div class="wrap">
+        <div class="section-head center">
+          <span class="eyebrow">Why HighPlus</span>
+          <h2 class="section-title">혹시 이런 경험,<br /><span class="coral">하고 계신 건 아닌가요?</span></h2>
+          <p class="lead">원장님만 겪는 문제가 아닙니다. 90%의 병원이 같은 상황입니다.</p>
+        </div>
+        <div class="pain-grid">
+          <div class="pain-card">
+            <div class="pain-ico"><svg><use href="#i-wallet"/></svg></div>
+            <h3>매달 돈은 나가는데, 뭘 하고 있는지 모르겠습니다</h3>
+            <p>보고서를 달라니까 순위 캡쳐만 보내주고 끝. <strong>"진행 중입니다"</strong>라는 답만 돌아옵니다.</p>
+          </div>
+          <div class="pain-card">
+            <div class="pain-ico"><svg><use href="#i-copy"/></svg></div>
+            <h3>복붙 느낌 가득, 이 글로 환자가 올까요?</h3>
+            <p>병원 이름만 바꿔서 다른 곳에도 쓰는 <strong>같은 원고</strong>. 의미 없는 글들이 쌓여 자산이 되지 못합니다.</p>
+          </div>
+          <div class="pain-card">
+            <div class="pain-ico"><svg><use href="#i-question"/></svg></div>
+            <h3>어떤 검색어를 노리는지, 한 번도 설명을 못 들었습니다</h3>
+            <p>전략이 뭔지, 어떤 환자를 타겟으로 잡았는지 공유가 없습니다. <strong>조회수는 안 올라갑니다.</strong></p>
+          </div>
+        </div>
+        <div class="pain-banner">
+          <div class="icon-wrap"><svg><use href="#i-bolt"/></svg></div>
+          <div>
+            <h3>그래서 <span class="coral">직접 실행</span>합니다.</h3>
+            <p>단순 순위보고만 하는 대행사가 아닙니다. 전략 수립부터 키워드 분석, 콘텐츠 제작, 플레이스 최적화, 유튜브까지 직접 실행하는 병원 전문 광고 실행사입니다.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════ 04 · TRUST ════════════ -->
+    <section class="trust" data-theme="light">
+      <div class="wrap">
+        <div class="section-head center">
+          <span class="eyebrow">About HighPlus</span>
+          <h2 class="section-title">실제 의료진이 직접 기획한<br /><span class="coral">3가지 운영 원칙</span></h2>
+          <p class="lead">9년 넘게 같은 돈을 내고, 같은 실망을 했습니다. 무엇이 진짜 필요한지 알기 때문에 만들었습니다.</p>
+        </div>
+        <div class="trust-flow">
+          <div class="trust-card">
+            <div class="circle">
+              <span class="num-badge">01</span>
+              <svg><use href="#i-stetho"/></svg>
+            </div>
+            <h4>병원 운영 경험에서<br />출발한 마케팅</h4>
+            <p class="desc">환자를 직접 겪어본 현역 의료인이 원장님의 마음으로 기획합니다.</p>
+            <span class="problem">vs. 한 번도 써본 적 없는 원고</span>
+          </div>
+          <div class="trust-card">
+            <div class="circle">
+              <span class="num-badge">02</span>
+              <svg><use href="#i-bolt"/></svg>
+            </div>
+            <h4>기획부터 발행까지<br />한 팀이 끝냅니다</h4>
+            <p class="desc">외부 하청 없이 전담 팀이 전략, 콘텐츠, 발행, 분석까지 일관되게 진행.</p>
+            <span class="problem">vs. 분절된 외주형 운영</span>
+          </div>
+          <div class="trust-card">
+            <div class="circle">
+              <span class="num-badge">03</span>
+              <svg><use href="#i-diamond"/></svg>
+            </div>
+            <h4>오직 퀄리티와<br />성과에만 집중</h4>
+            <p class="desc">35개 이상 파트너 병원 전담 관리. 압도적인 서비스 유지율 98%.</p>
+            <span class="problem">vs. 공장형 양산 블로그</span>
+          </div>
+        </div>
+
+        <div class="trust-banner">
+          <div class="trust-banner-item">
+            <div class="ico-w"><svg><use href="#i-hospital"/></svg></div>
+            <div>
+              <div class="label">1지역 1병원 독점</div>
+              <div class="sub">같은 지역 경쟁 병원은 받지 않습니다</div>
+            </div>
+          </div>
+          <div class="trust-banner-item">
+            <div class="ico-w"><svg><use href="#i-calendar"/></svg></div>
+            <div>
+              <div class="label">한 달 단위 계약</div>
+              <div class="sub">위약금 없이 언제든 해지 가능</div>
+            </div>
+          </div>
+          <div class="trust-banner-item">
+            <div class="ico-w"><svg><use href="#i-team"/></svg></div>
+            <div>
+              <div class="label">팀단위 운영</div>
+              <div class="sub">일관성 있는 원고의 톤앤매너</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════ 05 · COMPARE ════════════ -->
+    <section class="compare" data-theme="dark">
+      <div class="blob a"></div>
+      <div class="blob b"></div>
+      <div class="wrap" style="max-width: 1050px;">
+        <div class="section-head center">
+          <span class="eyebrow">Compare</span>
+          <h2 class="section-title">똑같은 블로그, <span class="coral">전혀 다른 결과</span></h2>
+          <p class="lead">단순 글 올리기가 아닌, 진짜 성과를 만드는 차이를 비교합니다.</p>
+        </div>
+        <div class="compare-table">
+          <table>
+            <thead>
+              <tr>
+                <th class="th-hp">HighPlus</th>
+                <th class="th-vs">vs</th>
+                <th class="th-other">일반 대행사</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td class="td-hp">의료인 감수 맞춤 원고 직접 작성</td><td class="td-vs">원고 작성</td><td class="td-other">복붙 템플릿, 병원명만 변경</td></tr>
+              <tr><td class="td-hp">매월 자동 발송 + 전략 제안</td><td class="td-vs">보고서</td><td class="td-other">요청해야 겨우, 또는 안 옴</td></tr>
+              <tr><td class="td-hp">전담 고정, 병원 히스토리 축적</td><td class="td-vs">담당자</td><td class="td-other">자주 바뀜, 재설명 반복</td></tr>
+              <tr><td class="td-hp">한 달 단위, 언제든 해지 가능</td><td class="td-vs">계약 방식</td><td class="td-other">6개월~1년 묶음 계약</td></tr>
+              <tr><td class="td-hp">9년 병원 운영 경험자</td><td class="td-vs">의료 이해도</td><td class="td-other">비의료인 외주 라이터</td></tr>
+              <tr><td class="td-hp">지역, 질환 맞춤 퍼널 기획</td><td class="td-vs">키워드 전략</td><td class="td-other">범용 키워드 양산형</td></tr>
+              <tr><td class="td-hp">블로그 자산은 100% 병원 귀속</td><td class="td-vs">자산화</td><td class="td-other">계약 끝나면 관리 중단</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════ 06 · FAQ ════════════ -->
+    <section class="faq" data-theme="light">
+      <div class="wrap">
+        <div class="faq-grid">
+          <div class="faq-intro">
+            <span class="eyebrow">Q&A</span>
+            <h2>자주 묻는 <span class="coral">질문</span></h2>
+            <p>도입을 고민 중이신 원장님들이 가장 많이 물어보시는 질문들을 정리했습니다.</p>
+            <a href="#contact" class="faq-cta">지금 시작하기 <svg><use href="#i-arrow"/></svg></a>
+          </div>
+          <div class="faq-list">
+            <div class="faq-item">
+              <button class="faq-q" onclick="toggleFaq(this)">병원 블로그 마케팅, 직접 하는 것과 대행사의 차이는?<span class="arrow">+</span></button>
+              <div class="faq-a"><p>직접 운영 시 진정성은 높지만 시간 비용이 큽니다. HighPlus는 9년 이상 병원을 운영한 현역 의료인이 직접 기획한 콘텐츠로, 원장님의 진심을 담으면서도 시간은 1/10로 줄여드립니다.</p></div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-q" onclick="toggleFaq(this)">네이버 플레이스 상위 노출은 어떤 방식인가요?<span class="arrow">+</span></button>
+              <div class="faq-a"><p>어뷰징이 아닌 검증된 운영 방식을 통해 지속 가능하고 안전한 노출을 만듭니다. 키워드 적합성과 체류 시간을 개선합니다.</p></div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-q" onclick="toggleFaq(this)">마케팅 대행사를 선택할 때 가장 중요한 기준은?<span class="arrow">+</span></button>
+              <div class="faq-a"><p>첫째, 의료 분야 이해도. 둘째, 실제 '내원 전환율'. 셋째, 투명한 성과 보고와 월 단위 유연한 계약.</p></div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-q" onclick="toggleFaq(this)">브랜딩 블로그가 정말 환자 유치에 직결되나요?<span class="arrow">+</span></button>
+              <div class="faq-a"><p>네, HighPlus 파트너 병원 기준 "블로그 보고 왔습니다"라는 초진 환자가 실제로 늘어나고 있습니다.</p></div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-q" onclick="toggleFaq(this)">계약 기간과 비용은 어떻게 되나요?<span class="arrow">+</span></button>
+              <div class="faq-a"><p>한 달 단위 계약을 원칙으로 합니다. 구체적인 비용은 발행 횟수·블로그 갯수·추가 서비스에 따라 달라지므로 무료 컨설팅을 요청하시면 맞춤 안내해 드립니다.</p></div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-q" onclick="toggleFaq(this)">애(Ai)실장과 광고 대행의 차이가 무엇인가요?<span class="arrow">+</span></button>
+              <div class="faq-a"><p>애(Ai)실장(월 250,000원)은 키워드 전략과 블로그 자동화 시스템 '솔루션'. 광고 대행(월 900,000원~)은 블로그·플레이스·유튜브 전반을 직접 운영하는 '통합 관리' 서비스입니다.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════ 07 · SCARCITY / CONTACT ════════════ -->
+    <section id="contact" class="scarcity" data-theme="dark">
+      <div class="wrap">
+        <div class="scar-grid">
+          <div class="scar-card scar-card--coral">
+            <span class="tag">FULL MANAGEMENT</span>
+            <h3>A부터 Z까지<br />저희가 책임집니다</h3>
+            <p class="lead">의학 블로그 발행 전담팀과 디자이너 팀이 블로그, 플레이스, 유튜브를 직접 운영해드립니다. 원장님은 진료에만 집중하세요.</p>
+            <div class="scar-price">
+              <span class="num">₩900,000~</span>
+              <span class="unit">/월</span>
+            </div>
+            <div class="scar-group">
+              <div class="label">기본 포함</div>
+              <ul>
+                <li><svg><use href="#i-check"/></svg>의학 블로그 발행 전담팀 (주 2회~, 최소 월 8회 이상)</li>
+                <li><svg><use href="#i-check"/></svg>월간 성과 보고서 + 다음 달 전략 제안</li>
+                <li><svg><use href="#i-check"/></svg>전담 매니저 고정 배치 (담당자 변경 없음)</li>
+              </ul>
+            </div>
+            <div class="scar-group">
+              <div class="label">추가 항목</div>
+              <ul>
+                <li><svg><use href="#i-check"/></svg>네이버 플레이스 (SEO 세팅, 어뷰징 제로)</li>
+                <li><svg><use href="#i-check"/></svg>유튜브 콘텐츠 제작 (AI 활용)</li>
+              </ul>
+            </div>
+            <p class="scar-note">메일 문의: <a href="mailto:highplus23@gmail.com">highplus23@gmail.com</a></p>
+          </div>
+
+          <div class="scar-card">
+            <span class="tag">AGENCY INQUIRY</span>
+            <h3>대행 서비스 상담 신청</h3>
+            <p class="lead">전담 매니저가 24시간 내에 연락드립니다.</p>
+            <form>
+              <div class="form-row"><label>성함 / 직책 *</label><input type="text" placeholder="홍길동 원장" required /></div>
+              <div class="form-row"><label>연락처 *</label><input type="tel" placeholder="010-0000-0000" required /></div>
+              <div class="form-row"><label>진료과목</label><input type="text" placeholder="예: 정형외과 / 치과 / 한의원" /></div>
+              <div class="form-row"><label>지역</label><input type="text" placeholder="예: 서울 강남구" /></div>
+              <div class="form-row">
+                <label>관심 서비스 (복수 선택 가능)</label>
+                <div class="checks">
+                  <label class="check"><input type="checkbox" />블로그</label>
+                  <label class="check"><input type="checkbox" />플레이스</label>
+                  <label class="check"><input type="checkbox" />유튜브</label>
+                </div>
+              </div>
+              <div class="form-row"><label>문의 내용</label><textarea rows="3" placeholder="원하시는 서비스 범위 또는 궁금한 점을 적어주세요"></textarea></div>
+              <button type="button" class="submit-btn">대행 상담 신청 <svg><use href="#i-arrow"/></svg></button>
+              <p class="form-note">제출 시 개인정보 수집 및 이용에 동의합니다.</p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════ 08 · LIMITED ════════════ -->
+    <section class="limited" data-theme="light">
+      <div class="wrap" style="max-width: 980px;">
+        <div class="limited-card">
+          <span class="tag">LIMITED</span>
+          <h2>지금 바로 시작하고 싶으셔도,<br /><span class="coral">어려울 수 있습니다.</span></h2>
+          <p>하이플러스는 아무 병원이나 받지 않습니다. 1지역 1병원 독점 원칙을 지키고, 저희가 제대로 케어할 수 있는 수 만큼만 계약합니다. 현재 슬롯이 마감된 경우, 대기 등록 후 순차적으로 안내드립니다.</p>
+          <a href="http://pf.kakao.com/_xbgQuX" target="_blank" rel="noopener" class="cta">현재 가능 여부 확인하기 <svg><use href="#i-arrow"/></svg></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════ 09 · FOOTER ════════════ -->
+    <footer>
+      <div class="wrap">
+        <div class="footer-grid">
+          <div>
+            <p class="brand-title">HighPlus</p>
+            <p class="brand-desc">병원 마케팅 전문 · 브랜딩 블로그 · 네이버 플레이스 최적화</p>
+            <div class="social">
+              <a href="#" aria-label="Facebook"><svg><use href="#i-fb"/></svg></a>
+              <a href="#" aria-label="X"><svg><use href="#i-x"/></svg></a>
+              <a href="#" aria-label="Instagram"><svg><use href="#i-ig"/></svg></a>
+              <a href="#" aria-label="YouTube"><svg><use href="#i-play"/></svg></a>
+            </div>
+          </div>
+          <div class="col">
+            <p class="col-title">Useful Links</p>
+            <a href="#">서비스 소개</a>
+            <a href="#">파트너 사례</a>
+            <a href="#">자주 묻는 질문</a>
+            <a href="#">이용약관</a>
+          </div>
+          <div class="col">
+            <p class="col-title">Support</p>
+            <a href="#">컨설팅 요청</a>
+            <a href="#">제휴 문의</a>
+            <a href="mailto:highplus23@gmail.com">이메일 문의</a>
+            <a href="#">개인정보처리방침</a>
+          </div>
+          <div class="biz">
+            <p class="col-title">Contact Information</p>
+            <dl>
+              <dt>주소</dt><dd>인천광역시 연수구 송도문화로 28번길, 28</dd>
+              <dt>이메일</dt><dd><a href="mailto:highplus23@gmail.com">highplus23@gmail.com</a></dd>
+              <dt>사업자등록번호</dt><dd>339-88-02845</dd>
+            </dl>
+          </div>
+        </div>
+        <p class="copy">© 2026 HighPlus Marketing. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script>
+      function toggleFaq(btn) {
+        btn.closest('.faq-item').classList.toggle('open');
+      }
+    </script>
+  </body>
+</html>
