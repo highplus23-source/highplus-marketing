@@ -9402,8 +9402,13 @@
       (function() {
         function bindForm(formId, submitBtnSelector) {
           var form = document.getElementById(formId);
-          if (!form) return;
+          if (!form) {
+            console.warn('[bindForm]', formId, 'not found');
+            return;
+          }
+          console.log('[bindForm] bound:', formId, '| action:', form.action, '| method:', form.method);
           form.addEventListener('submit', async function(e) {
+            console.log('[bindForm] submit fired:', formId);
             e.preventDefault();
             var btn = submitBtnSelector ? form.querySelector(submitBtnSelector) : form.querySelector('button[type="submit"]');
             var originalHtml = btn ? btn.innerHTML : '';
