@@ -7022,37 +7022,13 @@
       html body #ai-manager p[style*="color: #334155"] {
         font-weight: 700 !important;
       }
-      /* #contact (START NOW) 섹션 태그 — 흰 배경 #contact 위에 보이도록 명시 */
+      /* #contact (START NOW) 섹션 태그 — 원래 하늘색 디자인 복원
+         (이전 시도에서 cream-deep + 코랄 도트로 잘못 바꿨던 것 되돌림) */
+      /* 글로벌 .section-tag 룰 (hp-brand-tint 배경 + hp-brand-deep 텍스트 + 파란 dot glow) 그대로 사용
+         visibility/opacity만 명시해서 안 보이는 현상만 방지 */
       html body #contact .section-tag {
-        display: inline-flex !important;
-        align-items: center !important;
-        gap: 8px !important;
-        padding: 8px 16px !important;
-        background: var(--pt2-bg-deep) !important;
-        color: var(--pt2-ink) !important;
-        -webkit-text-fill-color: var(--pt2-ink) !important;
-        border: 1.5px solid var(--pt2-line) !important;
-        border-radius: 999px !important;
-        font-size: 0.78rem !important;
-        font-weight: 800 !important;
-        letter-spacing: 0.06em !important;
-        text-transform: uppercase !important;
-        margin-bottom: 24px !important;
         visibility: visible !important;
         opacity: 1 !important;
-        box-shadow: none !important;
-        text-shadow: none !important;
-      }
-      html body #contact .section-tag::before,
-      html body #contact .section-tag::after {
-        content: '' !important;
-        display: inline-block !important;
-        width: 9px !important;
-        height: 9px !important;
-        border-radius: 50% !important;
-        background: var(--pt2-coral) !important;
-        box-shadow: none !important;
-        margin: 0 !important;
       }
       /* 모든 PART 02 섹션 헤딩·태그·강조 text-shadow / filter 그림자 일괄 제거 */
       html body :is(#part-02, #services, #pain-point, #trust, #compare, #faq, #scarcity, #limited) :is(h1, h2, h3, h4, h5, h6),
