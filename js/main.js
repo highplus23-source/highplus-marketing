@@ -47,14 +47,9 @@ document.addEventListener('DOMContentLoaded', () => {
             pauseTemp(3500);
         }
 
-        // 호버 시 일시 정지
+        // 호버 시에도 멈추지 않고 계속 회전 (사용자 요청)
         const marquee = track.parentElement;
-        marquee.addEventListener('mouseenter', function() { isPaused = true; });
-        marquee.addEventListener('mouseleave', function() {
-            if (!resumeTimer || Date.now() > (resumeTimer._readyAt || 0)) {
-                isPaused = false;
-            }
-        });
+        // mouseenter/mouseleave 리스너 제거 — hover와 무관하게 자동 흐름 유지
 
         // 화살표 클릭 (1카드 분량 = 약 384px = card 360 + gap 24)
         const cardShift = 384;
