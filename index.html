@@ -7022,6 +7022,38 @@
       html body #ai-manager p[style*="color: #334155"] {
         font-weight: 700 !important;
       }
+      /* #contact (START NOW) 섹션 태그 — 흰 배경 #contact 위에 보이도록 명시 */
+      html body #contact .section-tag {
+        display: inline-flex !important;
+        align-items: center !important;
+        gap: 8px !important;
+        padding: 8px 16px !important;
+        background: var(--pt2-bg-deep) !important;
+        color: var(--pt2-ink) !important;
+        -webkit-text-fill-color: var(--pt2-ink) !important;
+        border: 1.5px solid var(--pt2-line) !important;
+        border-radius: 999px !important;
+        font-size: 0.78rem !important;
+        font-weight: 800 !important;
+        letter-spacing: 0.06em !important;
+        text-transform: uppercase !important;
+        margin-bottom: 24px !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+      }
+      html body #contact .section-tag::before,
+      html body #contact .section-tag::after {
+        content: '' !important;
+        display: inline-block !important;
+        width: 9px !important;
+        height: 9px !important;
+        border-radius: 50% !important;
+        background: var(--pt2-coral) !important;
+        box-shadow: none !important;
+        margin: 0 !important;
+      }
       /* 모든 PART 02 섹션 헤딩·태그·강조 text-shadow / filter 그림자 일괄 제거 */
       html body :is(#part-02, #services, #pain-point, #trust, #compare, #faq, #scarcity, #limited) :is(h1, h2, h3, h4, h5, h6),
       html body :is(#part-02, #services, #pain-point, #trust, #compare, #faq, #scarcity, #limited) :is(h1, h2, h3, h4, h5, h6) *,
@@ -8297,7 +8329,7 @@
 
             <!-- 문의 폼 -->
             <div class="contact-form-wrap" style="background: #ffffff; border: 1px solid rgba(0, 0, 0, 0.06); border-radius: 24px; padding: 2.5rem; box-shadow: 0 20px 48px -16px rgba(52, 120, 246, 0.18), 0 4px 16px rgba(0, 0, 0, 0.04); width: 100%;">
-              <form id="quickForm">
+              <form id="quickForm" action="https://api.web3forms.com/submit" method="POST">
                 <input type="hidden" name="access_key" value="231adf68-dd19-4943-9415-a481c8086a85">
                 <input type="hidden" name="subject" value="하이플러스 홈페이지 문의">
                 <input type="hidden" name="from_name" value="HighPlus 홈페이지">
@@ -9366,42 +9398,48 @@
       })();
     </script>
     <script>
-      // ─── 대행 서비스 상담 신청 폼 (#agencyForm) Web3Forms 핸들러 ───
+      // ─── Web3Forms 폼 핸들러 (#quickForm + #agencyForm 공통) ───
       (function() {
-        var form = document.getElementById('agencyForm');
-        if (!form) return;
-        form.addEventListener('submit', async function(e) {
-          e.preventDefault();
-          var btn = form.querySelector('.hp-agency-submit');
-          var originalHtml = btn ? btn.innerHTML : '';
-          if (btn) { btn.disabled = true; btn.innerHTML = '전송 중...'; }
-          try {
-            var data = new FormData(form);
-            var res = await fetch(form.action, {
-              method: 'POST',
-              body: data,
-              headers: { 'Accept': 'application/json' }
-            });
-            if (res.ok) {
-              form.reset();
-              var successModal = document.getElementById('hp-success-modal');
-              if (successModal) {
-                successModal.classList.add('is-open');
-                document.body.style.overflow = 'hidden';
-              } else {
-                alert('대행 상담 신청이 완료되었습니다.\n전담 매니저가 24시간 내에 연락드리겠습니다.');
-              }
-            } else {
+        function bindForm(formId, submitBtnSelector) {
+          var form = document.getElementById(formId);
+          if (!form) return;
+          form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            var btn = submitBtnSelector ? form.querySelector(submitBtnSelector) : form.querySelector('button[type="submit"]');
+            var originalHtml = btn ? btn.innerHTML : '';
+            if (btn) { btn.disabled = true; btn.innerHTML = '전송 중...'; }
+            try {
+              var data = new FormData(form);
+              var res = await fetch(form.action, {
+                method: 'POST',
+                body: data,
+                headers: { 'Accept': 'application/json' }
+              });
               var json = {};
               try { json = await res.json(); } catch (_) {}
-              alert('전송에 실패했습니다. 다시 시도해 주세요.' + (json.message ? '\n' + json.message : ''));
+              if (res.ok && json.success !== false) {
+                form.reset();
+                var successModal = document.getElementById('hp-success-modal');
+                if (successModal) {
+                  successModal.classList.add('is-open');
+                  document.body.style.overflow = 'hidden';
+                } else {
+                  alert('상담 신청이 완료되었습니다.\n24시간 내에 연락드리겠습니다.');
+                }
+              } else {
+                console.error('[Web3Forms] error', res.status, json);
+                alert('전송에 실패했습니다 (status: ' + res.status + ').\n' + (json.message || '잠시 후 다시 시도해 주세요.'));
+              }
+            } catch (err) {
+              console.error('[Web3Forms] network error', err);
+              alert('네트워크 오류로 전송에 실패했습니다.\n잠시 후 다시 시도해 주세요.');
+            } finally {
+              if (btn) { btn.disabled = false; btn.innerHTML = originalHtml; }
             }
-          } catch (err) {
-            alert('네트워크 오류로 전송에 실패했습니다.\n잠시 후 다시 시도해 주세요.');
-          } finally {
-            if (btn) { btn.disabled = false; btn.innerHTML = originalHtml; }
-          }
-        });
+          });
+        }
+        bindForm('quickForm');
+        bindForm('agencyForm', '.hp-agency-submit');
       })();
     </script>
     <script src="js/main.js?v=20260331"></script>
