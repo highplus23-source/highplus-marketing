@@ -1569,9 +1569,18 @@
       .hp-benefit-grid .hp-benefit-card:nth-child(8n+7) .hp-benefit-card__icon { background: linear-gradient(135deg,#f97316,#ea580c); box-shadow: 0 12px 22px -10px rgba(249,115,22,0.45); }
       .hp-benefit-grid .hp-benefit-card:nth-child(8n)   .hp-benefit-card__icon { background: var(--hp-grad-rose); box-shadow: 0 12px 22px -10px rgba(244,63,94,0.45); }
       .hp-benefit-card h4 {
-        font-size: 17px; font-weight: 800; color: var(--hp-ink);
+        font-size: 18.7px; font-weight: 800; color: var(--hp-ink);
         margin: 0 0 10px; letter-spacing: -0.02em;
       }
+      /* 카드 제목 컬러 — 각 아이콘 배경과 동일 톤으로 강조 (8n nth-child 매칭) */
+      .hp-benefit-grid .hp-benefit-card:nth-child(8n+1) h4 { color: #d97706; }
+      .hp-benefit-grid .hp-benefit-card:nth-child(8n+2) h4 { color: #e11d48; }
+      .hp-benefit-grid .hp-benefit-card:nth-child(8n+3) h4 { color: #1A4FE0; }
+      .hp-benefit-grid .hp-benefit-card:nth-child(8n+4) h4 { color: #7c3aed; }
+      .hp-benefit-grid .hp-benefit-card:nth-child(8n+5) h4 { color: #059669; }
+      .hp-benefit-grid .hp-benefit-card:nth-child(8n+6) h4 { color: #0284c7; }
+      .hp-benefit-grid .hp-benefit-card:nth-child(8n+7) h4 { color: #ea580c; }
+      .hp-benefit-grid .hp-benefit-card:nth-child(8n)   h4 { color: #e11d48; }
       .hp-benefit-card p {
         font-size: 14.85px; color: var(--hp-ink-2);
         margin: 0; line-height: 1.6; word-break: keep-all;
@@ -1629,9 +1638,16 @@
       #ai-manager .pain-tile__ic--violet { background: var(--hp-grad-violet); box-shadow: 0 12px 24px -10px rgba(139,92,246,0.45); }
       #ai-manager .pain-tile__ic--sky    { background: linear-gradient(135deg,#0ea5e9,#38bdf8); box-shadow: 0 12px 24px -10px rgba(14,165,233,0.45); }
       #ai-manager .pain-tile__title {
-        font-size: 17px; line-height: 1.4; font-weight: 800; color: var(--hp-ink);
+        font-size: 18.7px; line-height: 1.4; font-weight: 800; color: var(--hp-ink);
         margin: 0; letter-spacing: -0.012em; word-break: keep-all;
       }
+      /* 각 아이콘 배경 톤의 deep 컬러로 제목 매칭 (adjacent sibling) */
+      #ai-manager .pain-tile .pain-tile__ic--indigo + .pain-tile__title { color: #1A4FE0; }
+      #ai-manager .pain-tile .pain-tile__ic--amber  + .pain-tile__title { color: #d97706; }
+      #ai-manager .pain-tile .pain-tile__ic--mint   + .pain-tile__title { color: #059669; }
+      #ai-manager .pain-tile .pain-tile__ic--rose   + .pain-tile__title { color: #e11d48; }
+      #ai-manager .pain-tile .pain-tile__ic--violet + .pain-tile__title { color: #7c3aed; }
+      #ai-manager .pain-tile .pain-tile__ic--sky    + .pain-tile__title { color: #0284c7; }
       #ai-manager .pain-tile__desc {
         font-size: 14.85px; color: var(--hp-ink-2); margin: 8px 0 0;
         line-height: 1.55; word-break: keep-all; font-weight: 700;
@@ -8074,7 +8090,11 @@
 
             <!-- 2. 보통 2~3분 이내 -->
             <div class="hp-benefit-card">
-              <div class="hp-benefit-card__icon">⚡</div>
+              <div class="hp-benefit-card__icon" role="img" aria-label="번개">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="#ffffff" aria-hidden="true">
+                  <path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/>
+                </svg>
+              </div>
               <h4>보통 2~3분 이내</h4>
               <p>SEO 알고리즘이 선호하는 구조로 작성되어, 저품질 블로그로 분류될 가능성이 매우 낮습니다.</p>
             </div>
