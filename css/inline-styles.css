@@ -1324,7 +1324,7 @@
         background: #f7f8fc;
         position: relative;
       }
-      #ai-benefits .benefits-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
+      #ai-benefits .benefits-inner { max-width: 1400px; margin: 0 auto; position: relative; z-index: 1; }
       #ai-benefits .hp-benefit-card {
         background: #ffffff;
         box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
