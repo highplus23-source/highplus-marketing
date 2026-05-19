@@ -7153,8 +7153,11 @@
         flex-direction: column !important;
         justify-content: center !important;
       }
+      html body #scarcity .hp-agency-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+      }
       html body #scarcity .hp-agency-card:hover {
-        transform: none !important;
+        transform: translateY(-4px) !important;
       }
       /* 블롭 A — 우상단 연한 핑크 (톤다운, 거의 안 보일 정도) */
       html body #scarcity .hp-agency-card::before {
