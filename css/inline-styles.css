@@ -1356,7 +1356,7 @@
         -webkit-text-fill-color: transparent;
       }
       .hp-benefit-grid {
-        display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+        display: grid; grid-template-columns: repeat(4, 1fr); gap: 44px 16px;
       }
       .hp-benefit-card {
         padding: 30px 24px; border-radius: var(--hp-radius-lg);
