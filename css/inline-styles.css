@@ -1361,6 +1361,7 @@
       .hp-benefit-card {
         padding: 30px 24px; border-radius: var(--hp-radius-lg);
         background: #fff; border: 1px solid var(--hp-line);
+        text-align: center;
         transition: transform var(--hp-dur-mid) var(--hp-ease), border-color var(--hp-dur-mid) var(--hp-ease), box-shadow var(--hp-dur-mid) var(--hp-ease);
       }
       .hp-benefit-card:hover {
@@ -1372,7 +1373,7 @@
         background: var(--hp-grad);
         color: #fff;
         display: flex; align-items: center; justify-content: center;
-        font-size: 24px; margin-bottom: 18px;
+        font-size: 24px; margin: 0 auto 18px;
         box-shadow: 0 12px 22px -10px rgba(52, 120, 246, 0.45);
       }
       /* apple-v2 다색 액센트 — 8 cards × 4 colors rotate */
