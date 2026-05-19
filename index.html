@@ -142,7 +142,111 @@
         "@type": "Country",
         "name": "KR"
       },
-      "serviceType": ["병원 브랜딩 블로그", "네이버 플레이스 최적화", "의료 마케팅 컨설팅"]
+      "serviceType": ["병원 브랜딩 블로그", "네이버 플레이스 최적화", "의료 마케팅 컨설팅"],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "reviewCount": "26",
+        "bestRating": "5",
+        "worstRating": "1"
+      },
+      "review": [
+        {
+          "@type": "Review",
+          "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+          "author": { "@type": "Person", "name": "강○우 원장님 (제주)" },
+          "reviewBody": "블로그 노출이 꾸준히 늘고 있고, 실제로 블로그를 보고 찾아왔다는 환자분들이 많아졌습니다. 초진 환자 유입에 도움이 되어 만족스럽게 운영하고 있습니다."
+        },
+        {
+          "@type": "Review",
+          "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+          "author": { "@type": "Person", "name": "허○이 원장님 (서울 구로)" },
+          "reviewBody": "체계적인 분석과 정성이 담긴 블로그를 통해 한의원에 도약을 이끌어주는 마케팅업체! 추천합니다."
+        },
+        {
+          "@type": "Review",
+          "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+          "author": { "@type": "Person", "name": "김○언 원장님 (서울 강남)" },
+          "reviewBody": "양산형 광고 포스팅과 다르게 대표가 직접 작성한 느낌을 주고 퀄리티가 좋습니다. 키워드 순위까지 잘 잡아주셔서 노출과 조회수 모두 크게 증가했고, 의도한 질환군 환자들이 직접 내원해주시는 게 가장 큰 매력입니다."
+        },
+        {
+          "@type": "Review",
+          "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+          "author": { "@type": "Person", "name": "진○우 원장님 (인천 남동)" },
+          "reviewBody": "단순 홍보가 아니라 데이터를 기반으로 객관적으로 분석해 주는 점이 계속 계약을 유지하는 이유입니다. 지금까지 의뢰했던 업체 중 가장 성실하게 운영 및 피드백을 해줘서 좋아요."
+        },
+        {
+          "@type": "Review",
+          "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+          "author": { "@type": "Person", "name": "권○우 원장님 (인천 부평)" },
+          "reviewBody": "월말 보고시스템을 보면 글의 방향과 반응에 대한 궁금증이 해소됩니다. 신뢰가 가는 글들 덕분에 병원 문의가 늘고 초진 숫자도 따라 늘었습니다."
+        }
+      ]
+    }
+    </script>
+
+    <!-- JSON-LD Structured Data: Service — 애(Ai)실장 -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "애(Ai)실장 — 블로그 자동화 솔루션",
+      "url": "https://highplus.work/#ai-manager",
+      "provider": {
+        "@type": "Organization",
+        "name": "HighPlus",
+        "url": "https://highplus.work/"
+      },
+      "areaServed": { "@type": "Country", "name": "KR" },
+      "serviceType": "병원 블로그 자동화 솔루션",
+      "description": "키워드 전략과 블로그 최적화 자동화 시스템. 월 원고 22건(기본 20건 + 보장 2건) + 이미지 추출 50회 포함.",
+      "offers": {
+        "@type": "Offer",
+        "price": "250000",
+        "priceCurrency": "KRW",
+        "priceSpecification": {
+          "@type": "UnitPriceSpecification",
+          "price": "250000",
+          "priceCurrency": "KRW",
+          "referenceQuantity": { "@type": "QuantitativeValue", "value": "1", "unitCode": "MON" },
+          "valueAddedTaxIncluded": false
+        },
+        "availability": "https://schema.org/InStock",
+        "url": "https://highplus.work/#ai-manager"
+      }
+    }
+    </script>
+
+    <!-- JSON-LD Structured Data: Service — 광고 대행 (통합 관리) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "병원 마케팅 광고 대행 — 통합 관리",
+      "url": "https://highplus.work/#part-02",
+      "provider": {
+        "@type": "Organization",
+        "name": "HighPlus",
+        "url": "https://highplus.work/"
+      },
+      "areaServed": { "@type": "Country", "name": "KR" },
+      "serviceType": "병원 통합 마케팅 운영 대행",
+      "description": "블로그, 네이버 플레이스, 유튜브, DM 등 마케팅 전반을 직접 운영하는 통합 관리 서비스. 한 달 단위 계약.",
+      "offers": {
+        "@type": "Offer",
+        "price": "900000",
+        "priceCurrency": "KRW",
+        "priceSpecification": {
+          "@type": "UnitPriceSpecification",
+          "price": "900000",
+          "priceCurrency": "KRW",
+          "referenceQuantity": { "@type": "QuantitativeValue", "value": "1", "unitCode": "MON" },
+          "valueAddedTaxIncluded": false,
+          "description": "기본가 900,000원/월부터 (VAT 별도)"
+        },
+        "availability": "https://schema.org/InStock",
+        "url": "https://highplus.work/#part-02"
+      }
     }
     </script>
 
@@ -191,6 +295,10 @@
     {
       "@context": "https://schema.org",
       "@type": "FAQPage",
+      "speakable": {
+        "@type": "SpeakableSpecification",
+        "cssSelector": [".faq-a-inner", ".hero-line"]
+      },
       "mainEntity": [
         {
           "@type": "Question",
