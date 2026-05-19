@@ -1,0 +1,28 @@
+{
+  "name": "HighPlus — 병원 마케팅 전문",
+  "short_name": "HighPlus",
+  "description": "병원을 직접 운영해 본 현역 의료인이 만든 병원 전문 마케팅 시스템. 브랜딩 블로그, 네이버 플레이스 최적화로 실제 내원 환자를 늘려드립니다.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f5f8fc",
+  "theme_color": "#3478F6",
+  "lang": "ko-KR",
+  "dir": "ltr",
+  "categories": ["business", "marketing", "medical"],
+  "icons": [
+    {
+      "src": "/img/favicon-512.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any"
+    },
+    {
+      "src": "/img/favicon-512.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "maskable"
+    }
+  ]
+}

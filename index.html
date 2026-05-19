@@ -77,11 +77,42 @@
     <meta name="twitter:description" content="병원을 직접 운영해 본 사람들이 만든 병원 전문 마케팅 시스템. 실제 내원 환자 증가를 만들어드립니다." />
     <meta name="twitter:image" content="https://highplus.work/img/og-image.jpg" />
 
-    <meta name="robots" content="index, follow" />
+    <!-- Crawler Hints (snippet/image preview 풀 허용) -->
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
     <meta name="Yeti" content="index, follow" />
     <meta name="NaverBot" content="index, follow" />
     <meta name="naver-site-verification" content="4b6ad7b5f4987cb84d28c915198e003f3fb9e1a1" />
+
+    <!-- Author / Language / Geo -->
+    <meta name="author" content="HighPlus" />
+    <meta name="publisher" content="HighPlus" />
+    <meta http-equiv="Content-Language" content="ko" />
+    <meta name="geo.region" content="KR-28" />
+    <meta name="geo.placename" content="인천광역시 연수구" />
+
+    <!-- Theme color / Brand -->
+    <meta name="theme-color" content="#3478F6" />
+    <meta name="msapplication-TileColor" content="#3478F6" />
+    <meta name="application-name" content="HighPlus" />
+
+    <!-- Mobile / iOS PWA -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="HighPlus" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+    <!-- OG / Twitter 보강 -->
+    <meta property="og:image:secure_url" content="https://highplus.work/img/og-image.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta name="twitter:image:alt" content="HighPlus — 병원 마케팅 전문" />
+
+    <!-- Canonical / Alternate Language -->
     <link rel="canonical" href="https://highplus.work/" />
+    <link rel="alternate" hreflang="ko-KR" href="https://highplus.work/" />
+    <link rel="alternate" hreflang="x-default" href="https://highplus.work/" />
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.webmanifest" />
 
     <!-- Favicon -->
     <link rel="icon" type="image/jpeg" sizes="512x512" href="/img/favicon-512.jpg" />
@@ -258,6 +289,84 @@
     }
     </script>
 
+    <!-- JSON-LD Structured Data: Person — 강태은 대표 (E-E-A-T 신뢰도 시그널) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "강태은",
+      "jobTitle": "대표",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "HighPlus",
+        "url": "https://highplus.work/"
+      },
+      "knowsAbout": [
+        "병원 마케팅",
+        "병원 브랜딩 블로그",
+        "네이버 플레이스 최적화",
+        "의료 마케팅 퍼널 설계"
+      ],
+      "email": "highplus23@gmail.com",
+      "telephone": "+82-10-2622-3398",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "KR",
+        "addressRegion": "인천광역시",
+        "addressLocality": "연수구"
+      }
+    }
+    </script>
+
+    <!-- JSON-LD Structured Data: HowTo — 애(Ai)실장 시작 가이드 -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "애(Ai)실장 블로그 자동화 시작 방법",
+      "description": "HighPlus의 애(Ai)실장 블로그 자동화 솔루션을 신청하는 단계별 가이드",
+      "inLanguage": "ko",
+      "totalTime": "PT10M",
+      "estimatedCost": {
+        "@type": "MonetaryAmount",
+        "currency": "KRW",
+        "value": "250000"
+      },
+      "supply": [],
+      "tool": [],
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "무료 컨설팅 신청",
+          "text": "홈페이지 하단 신청 폼에 병원명·연락처·진료과를 입력해 무료 컨설팅을 신청합니다.",
+          "url": "https://highplus.work/#contact"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "맞춤 키워드 전략 수립",
+          "text": "병원 진료과·지역·타깃 환자군에 맞는 핵심 키워드와 블로그 발행 계획을 함께 설계합니다.",
+          "url": "https://highplus.work/#ai-manager"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "월 구독 시작 (₩250,000 VAT 별도)",
+          "text": "월 ₩250,000(VAT 별도)로 구독을 시작하면 키워드 자동화 시스템을 통해 월 22건의 원고와 이미지 50회 추출을 받습니다.",
+          "url": "https://highplus.work/#ai-manager"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 4,
+          "name": "월말 성과 리포트 확인",
+          "text": "매달 노출·조회수·내원 전환 데이터를 받아 다음 달 전략을 함께 점검합니다.",
+          "url": "https://highplus.work/#testimonials"
+        }
+      ]
+    }
+    </script>
+
     <!-- JSON-LD Structured Data: BreadcrumbList -->
     <script type="application/ld+json">
     {
@@ -359,6 +468,13 @@
       ]
     }
     </script>
+
+    <!-- DNS Prefetch (외부 API/CDN 사전 해석) -->
+    <link rel="dns-prefetch" href="https://api.web3forms.com" />
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+    <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+    <link rel="dns-prefetch" href="https://pf.kakao.com" />
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

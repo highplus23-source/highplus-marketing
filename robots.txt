@@ -1,4 +1,84 @@
+# ===========================================
+# HighPlus — robots.txt
+# https://highplus.work/
+# ===========================================
+
+# 모든 검색엔진 — 기본 전체 허용
 User-agent: *
 Allow: /
 
+# Google
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /img/
+
+# Bing
+User-agent: Bingbot
+Allow: /
+
+# Naver
+User-agent: Yeti
+Allow: /
+
+User-agent: NaverBot
+Allow: /
+
+# Daum / Kakao
+User-agent: Daumoa
+Allow: /
+
+# ===========================================
+# LLM / AI Crawlers — 명시적 허용
+# (콘텐츠가 ChatGPT/Claude/Perplexity 등에서 인용되길 원함)
+# ===========================================
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+# ===========================================
+# Sitemap
+# ===========================================
 Sitemap: https://highplus.work/sitemap.xml
