@@ -2174,9 +2174,9 @@
         margin: 0 0 12px; letter-spacing: -0.018em;
       }
       #growth-story .growth-card__desc {
-        font-size: 15.5px; color: var(--hp-ink-2);
+        font-size: 16.3px; color: var(--hp-ink-2);
         margin: 0; line-height: 1.6;
-        font-weight: 600; word-break: keep-all; letter-spacing: -0.015em;
+        font-weight: 700; word-break: keep-all; letter-spacing: -0.015em;
         white-space: nowrap;
       }
 
