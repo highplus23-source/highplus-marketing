@@ -2037,7 +2037,7 @@
       }
       /* 외곽 화이트 카드 (이미지 reference 스타일) */
       #growth-story .growth-inner {
-        position: relative; max-width: 1400px; margin: 0 auto; padding: 0 24px;
+        position: relative; max-width: 1520px; margin: 0 auto; padding: 0 24px;
       }
       #growth-story .growth-card-wrap {
         margin-top: 48px;
@@ -2070,7 +2070,7 @@
         box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
       }
       #growth-story .growth-inner {
-        position: relative; max-width: 1400px; margin: 0 auto; padding: 0 24px;
+        position: relative; max-width: 1520px; margin: 0 auto; padding: 0 24px;
       }
       #growth-story .growth-head { text-align: center; max-width: 720px; margin: 0 auto; }
       #growth-story .growth-head h2 {
@@ -2103,7 +2103,7 @@
         background: #ffffff;
         border: 1px solid var(--hp-line);
         border-radius: 24px;
-        padding: 36px 30px 34px;
+        padding: 32px 22px 30px;
         min-height: 260px;
         text-align: left;
         display: flex; flex-direction: column;
@@ -2174,9 +2174,10 @@
         margin: 0 0 12px; letter-spacing: -0.018em;
       }
       #growth-story .growth-card__desc {
-        font-size: 15.5px; color: var(--hp-ink-2);
+        font-size: 13.5px; color: var(--hp-ink-2);
         margin: 0; line-height: 1.6;
-        font-weight: 600; word-break: keep-all; letter-spacing: -0.012em;
+        font-weight: 600; word-break: keep-all; letter-spacing: -0.018em;
+        white-space: nowrap;
       }
 
       /* 결과 패널만 유지 (단계별 기간 패널은 카드 안으로 이동했으니 제거) */
