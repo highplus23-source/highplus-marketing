@@ -2245,6 +2245,79 @@
         -webkit-text-fill-color: transparent;
       }
 
+      /* ─────────────────────────────────────────
+         GROWTH — Timeline 시안 (시안 A)
+         가로 타임라인 + 점 + 번호 + 그라데이션 라인
+         ───────────────────────────────────────── */
+      #growth-story .growth-grid--timeline {
+        row-gap: 12px;
+      }
+      #growth-story .growth-track {
+        grid-column: 1 / -1;
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0 20px;
+        align-items: center;
+        margin-bottom: 12px;
+        height: 56px;
+      }
+      #growth-story .growth-track__line {
+        position: absolute;
+        top: 14px;
+        left: 12.5%;
+        right: 12.5%;
+        height: 2px;
+        background: linear-gradient(90deg,
+          #f59e0b 0%,
+          #10b981 33%,
+          #3478F6 66%,
+          #7c3aed 100%);
+        z-index: 0;
+        border-radius: 2px;
+      }
+      #growth-story .growth-step {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+      }
+      #growth-story .growth-step__dot {
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: #ffffff;
+        border: 3px solid;
+        transition: transform 0.3s var(--hp-ease);
+      }
+      #growth-story .growth-step--1 .growth-step__dot { border-color: #f59e0b; box-shadow: 0 0 0 4px rgba(245,158,11,0.12), 0 4px 12px -2px rgba(245,158,11,0.4); }
+      #growth-story .growth-step--2 .growth-step__dot { border-color: #10b981; box-shadow: 0 0 0 4px rgba(16,185,129,0.12), 0 4px 12px -2px rgba(16,185,129,0.4); }
+      #growth-story .growth-step--3 .growth-step__dot { border-color: #3478F6; box-shadow: 0 0 0 4px rgba(52,120,246,0.12), 0 4px 12px -2px rgba(52,120,246,0.4); }
+      #growth-story .growth-step--4 .growth-step__dot { border-color: #7c3aed; box-shadow: 0 0 0 4px rgba(124,58,237,0.12), 0 4px 12px -2px rgba(124,58,237,0.4); }
+      #growth-story .growth-step__num {
+        font-size: 13px;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        color: var(--hp-ink);
+        font-family: 'Bebas Neue', 'Pretendard', sans-serif;
+      }
+      #growth-story .growth-grid--timeline .growth-card {
+        padding: 26px 22px 22px;
+        min-height: auto;
+      }
+      #growth-story .growth-grid--timeline .growth-card::before {
+        display: none !important;
+      }
+      #growth-story .growth-grid--timeline .growth-card:hover .growth-step__dot {
+        transform: scale(1.15);
+      }
+      /* 모바일에선 타임라인 숨김 (2열 grid로 변경되어 라인 정렬 안 됨) */
+      @media (max-width: 768px) {
+        #growth-story .growth-track { display: none; }
+      }
+
       @media (max-width: 768px) {
         #growth-story.growth-section { padding: 64px 0; }
         #growth-story .growth-card-wrap { padding: 24px 18px; border-radius: 24px; }
