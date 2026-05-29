@@ -956,6 +956,65 @@
     }
 
     /* ─────────────────────────────────────────
+       SUCCESS MODAL
+    ───────────────────────────────────────── */
+    .ag-modal {
+      position: fixed; inset: 0; z-index: 9999;
+      display: none; align-items: center; justify-content: center;
+      padding: 24px;
+    }
+    .ag-modal.is-open { display: flex; }
+    .ag-modal__backdrop {
+      position: absolute; inset: 0;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(8px);
+    }
+    .ag-modal__panel {
+      position: relative; z-index: 1;
+      background: var(--bg-primary);
+      border: 1px solid var(--gold-border);
+      border-radius: 20px;
+      padding: 52px 44px 44px;
+      max-width: 420px; width: 100%;
+      text-align: center;
+      animation: agModalUp 0.35s cubic-bezier(0.16,1,0.3,1);
+    }
+    @keyframes agModalUp {
+      from { opacity:0; transform:translateY(20px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+    .ag-modal__icon {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      background: rgba(201,169,106,0.12);
+      border: 1px solid rgba(201,169,106,0.3);
+      display: inline-flex; align-items: center; justify-content: center;
+      margin-bottom: 24px;
+    }
+    .ag-modal__icon svg { color: var(--gold); }
+    .ag-modal__title {
+      font-size: 1.5rem; font-weight: 800;
+      color: var(--cream); letter-spacing: -0.02em;
+      margin: 0 0 12px;
+    }
+    .ag-modal__desc {
+      font-size: 1rem; font-weight: 600;
+      color: var(--cream-body); line-height: 1.7;
+      margin: 0 0 32px;
+    }
+    .ag-modal__btn {
+      display: inline-block;
+      background: var(--gold);
+      color: #1a1000;
+      font-size: 1rem; font-weight: 800;
+      padding: 14px 40px;
+      border-radius: 100px;
+      border: none; cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .ag-modal__btn:hover { background: var(--gold-hover); transform: translateY(-2px); }
+
+    /* ─────────────────────────────────────────
        RESPONSIVE
     ───────────────────────────────────────── */
     @media (max-width: 768px) {
@@ -1503,6 +1562,21 @@
 
 
 <!-- ═══════════════════════════════════════════
+     SUCCESS MODAL
+════════════════════════════════════════════ -->
+<div class="ag-modal" id="ag-success-modal">
+  <div class="ag-modal__backdrop" onclick="document.getElementById('ag-success-modal').classList.remove('is-open')"></div>
+  <div class="ag-modal__panel">
+    <div class="ag-modal__icon">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+    </div>
+    <h3 class="ag-modal__title">상담 신청이 완료되었습니다</h3>
+    <p class="ag-modal__desc">전담 매니저가 <strong style="color:var(--gold);">24시간 내</strong>에 연락드립니다.<br>소중한 문의 감사합니다.</p>
+    <button class="ag-modal__btn" onclick="document.getElementById('ag-success-modal').classList.remove('is-open')">확인</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
      JAVASCRIPT
 ════════════════════════════════════════════ -->
 <script>
@@ -1542,9 +1616,10 @@
     .then(res => res.json())
     .then(data => {
       if (data.success) {
-        btn.textContent = '신청이 완료되었습니다 ✓';
-        btn.style.background = 'rgba(201,169,110,0.35)';
         form.reset();
+        btn.textContent = '대행 상담 신청 →';
+        btn.disabled = false;
+        document.getElementById('ag-success-modal').classList.add('is-open');
       } else {
         btn.textContent = '전송 실패 — 다시 시도해주세요';
         btn.disabled = false;
