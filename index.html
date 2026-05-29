@@ -2294,7 +2294,7 @@
         id="agency-iframe"
         src="page-agency.html"
         scrolling="no"
-        style="width:100%;border:none;display:block;overflow:hidden;min-height:8500px;"
+        style="width:100%;border:none;display:block;overflow:hidden;"
         title="블로그 대행 서비스"
       ></iframe>
       <script>
@@ -2304,14 +2304,25 @@
             try {
               var h = iframe.contentDocument.documentElement.scrollHeight
                    || iframe.contentDocument.body.scrollHeight;
-              if (h > 200) iframe.style.height = h + 'px';
+              if (h > 200) {
+                iframe.style.minHeight = '0';
+                iframe.style.height = h + 'px';
+              }
             } catch(e) {}
           }
+          // Run immediately (iframe may already be loaded)
+          resize();
           iframe.addEventListener('load', function() {
             resize();
             setTimeout(resize, 500);
             setTimeout(resize, 1500);
             setTimeout(resize, 3000);
+          });
+          // Fallback: also run after the outer page fully loads
+          window.addEventListener('load', function() {
+            resize();
+            setTimeout(resize, 500);
+            setTimeout(resize, 1500);
           });
         })();
       </script>
