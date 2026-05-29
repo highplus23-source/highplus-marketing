@@ -7734,3 +7734,192 @@
         box-shadow: none !important;
       }
       /* /PART 02 시안 2 에메랄드 */
+
+/* ══════════════════════════════════════════════════════════════
+   PART 02 전체 구간 (pain-point/trust/compare/faq/scarcity/limited)
+   pt2-draft2 :root 변수를 에메랄드 팔레트로 일괄 재정의
+   → 같은 :root 선언 중 마지막이 이기므로 전체 섹션 자동 적용
+   Palette: #0F3D34  #134E43  #F7F6F1  #E6F0E9  #C8A96A
+══════════════════════════════════════════════════════════════ */
+:root {
+  /* 배경 */
+  --pt2-bg:           #134E43;
+  --pt2-bg-deep:      #0F3D34;
+  --pt2-white:        rgba(255,255,255,0.07);
+  --pt2-cream:        #134E43;
+
+  /* 구분선 */
+  --pt2-line:         rgba(200,169,106,0.16);
+  --pt2-line-strong:  rgba(200,169,106,0.32);
+  --pt2-line-2:       rgba(200,169,106,0.26);
+
+  /* 텍스트 */
+  --pt2-ink:          #F7F6F1;
+  --pt2-ink-2:        #E6F0E9;
+  --pt2-ink-3:        rgba(230,240,233,0.60);
+
+  /* 골드 강조 (모든 액센트 컬러 → 골드 통일) */
+  --pt2-coral:        #C8A96A;
+  --pt2-coral-soft:   rgba(15,61,52,0.38);
+  --pt2-coral-deep:   #C8A96A;
+  --pt2-mint:         #C8A96A;
+  --pt2-mint-soft:    rgba(10,43,34,0.38);
+  --pt2-mint-deep:    #C8A96A;
+  --pt2-mint-c:       #C8A96A;
+  --pt2-purple:       #C8A96A;
+  --pt2-purple-soft:  rgba(19,78,67,0.32);
+  --pt2-purple-deep:  #C8A96A;
+  --pt2-lav-c:        #C8A96A;
+  --pt2-lav-soft:     rgba(19,78,67,0.32);
+  --pt2-lav-deep:     #C8A96A;
+  --pt2-sun:          #C8A96A;
+  --pt2-sun-soft:     rgba(8,25,20,0.32);
+  --pt2-sun-deep:     #C8A96A;
+  --pt2-pink:         #C8A96A;
+  --pt2-pink-soft:    rgba(15,61,52,0.28);
+  --pt2-pink-deep:    #C8A96A;
+  --pt2-pink-c:       #C8A96A;
+  --pt2-sky:          #C8A96A;
+  --pt2-sky-soft:     rgba(10,43,34,0.28);
+  --pt2-sky-deep:     #C8A96A;
+  --pt2-blue:         #C8A96A;
+  --pt2-blue-soft:    rgba(10,43,34,0.28);
+  --pt2-blue-deep:    #C8A96A;
+}
+
+/* ── trust 섹션: 인라인 스타일로 박힌 다크 배경 카드들 덮어쓰기 ── */
+html body #trust [style*="background: rgba(124, 131, 255"],
+html body #trust [style*="background: #1a1a2e"],
+html body #trust [style*="background:#1a1a2e"] {
+  background: rgba(19,78,67,0.35) !important;
+  border-color: rgba(200,169,106,0.30) !important;
+}
+html body #trust [style*="color: #7c83ff"],
+html body #trust [style*="color:#7c83ff"] {
+  color: #C8A96A !important;
+}
+html body #trust [style*="color: #aab1c6"],
+html body #trust [style*="color:#aab1c6"],
+html body #trust [style*="color: #ffffff"],
+html body #trust p,
+html body #trust .section-desc {
+  color: #E6F0E9 !important;
+  -webkit-text-fill-color: #E6F0E9 !important;
+}
+html body #trust h4[style],
+html body #trust h4 {
+  color: #F7F6F1 !important;
+  -webkit-text-fill-color: #F7F6F1 !important;
+}
+
+/* ── compare / faq / scarcity / limited 인라인 배경 덮어쓰기 ── */
+html body #compare > div[style*="radial-gradient"],
+html body #scarcity > div[style*="radial-gradient"] {
+  display: none !important;
+}
+
+/* ── pain-card / pain-highlight 에메랄드 톤 ── */
+html body #pain-point .pain-card {
+  background: rgba(19,78,67,0.35) !important;
+  border-color: rgba(200,169,106,0.20) !important;
+}
+html body #pain-point .pain-highlight {
+  background: rgba(10,43,34,0.60) !important;
+  border: 1.5px solid rgba(200,169,106,0.35) !important;
+}
+html body #pain-point .pain-card h3,
+html body #pain-point .pain-highlight h3 {
+  color: #F7F6F1 !important;
+  -webkit-text-fill-color: #F7F6F1 !important;
+}
+
+/* ── neon-card (trust 하단 배너) ── */
+html body #trust .neon-card {
+  background: rgba(10,43,34,0.70) !important;
+  border: 1px solid rgba(200,169,106,0.25) !important;
+}
+html body #trust .neon-card p[style*="color: #ffffff"],
+html body #trust .neon-card p {
+  color: #F7F6F1 !important;
+  -webkit-text-fill-color: #F7F6F1 !important;
+}
+html body #trust .neon-card p[style*="color: #aab1c6"] {
+  color: #E6F0E9 !important;
+  -webkit-text-fill-color: #E6F0E9 !important;
+}
+
+/* ── compare 표 (vs-tbl) 에메랄드 톤 ── */
+html body #compare .vs-tbl .th-left {
+  background: linear-gradient(180deg, rgba(200,169,106,0.55) 0%, #C8A96A 50%, #A88B50 100%) !important;
+  color: #0F3D34 !important;
+}
+html body #compare .vs-tbl .th-center,
+html body #compare .vs-tbl .th-right {
+  background: rgba(10,43,34,0.70) !important;
+  color: #E6F0E9 !important;
+  border-color: rgba(200,169,106,0.18) !important;
+}
+html body #compare .vs-tbl tbody td {
+  border-color: rgba(200,169,106,0.12) !important;
+}
+html body #compare .vs-tbl .td-left {
+  background: rgba(19,78,67,0.30) !important;
+  color: #F7F6F1 !important;
+  font-size: 1rem !important;
+  border-color: rgba(200,169,106,0.15) !important;
+}
+html body #compare .vs-tbl .td-center {
+  background: rgba(10,43,34,0.50) !important;
+  color: #C8A96A !important;
+  border-color: rgba(200,169,106,0.15) !important;
+}
+html body #compare .vs-tbl .td-right {
+  background: rgba(10,43,34,0.40) !important;
+  color: #E6F0E9 !important;
+}
+
+/* ── faq 아코디언 ── */
+html body #faq .faq-item,
+html body #faq .faq-q {
+  background: rgba(19,78,67,0.30) !important;
+  border-color: rgba(200,169,106,0.20) !important;
+  color: #F7F6F1 !important;
+  -webkit-text-fill-color: #F7F6F1 !important;
+}
+html body #faq .faq-a-inner {
+  color: #E6F0E9 !important;
+  -webkit-text-fill-color: #E6F0E9 !important;
+}
+html body #faq .faq-intro h2,
+html body #faq .faq-intro p {
+  color: #F7F6F1 !important;
+  -webkit-text-fill-color: #F7F6F1 !important;
+}
+
+/* ── scarcity 에이전시 카드 ── */
+html body #scarcity .hp-agency-card,
+html body #scarcity .hp-agency-form-card {
+  background: rgba(10,43,34,0.60) !important;
+  border-color: rgba(200,169,106,0.25) !important;
+}
+html body #scarcity .hp-agency-card h3,
+html body #scarcity .hp-agency-form-card h3 {
+  color: #F7F6F1 !important;
+  -webkit-text-fill-color: #F7F6F1 !important;
+}
+html body #scarcity .hp-agency-tag {
+  background: rgba(200,169,106,0.18) !important;
+  color: #C8A96A !important;
+  border-color: rgba(200,169,106,0.30) !important;
+}
+html body #scarcity .hp-agency-price .num {
+  color: #C8A96A !important;
+  -webkit-text-fill-color: #C8A96A !important;
+}
+
+/* ── limited 섹션 카드 ── */
+html body #limited .hp-scarcity-card {
+  background: rgba(10,43,34,0.65) !important;
+  border: 1.5px solid rgba(200,169,106,0.30) !important;
+}
+/* /전체 에메랄드 일괄 적용 */
