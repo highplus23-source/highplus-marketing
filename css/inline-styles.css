@@ -2177,7 +2177,6 @@
         font-size: 16.3px; color: var(--hp-ink-2);
         margin: 0; line-height: 1.6;
         font-weight: 700; word-break: keep-all; letter-spacing: -0.015em;
-        white-space: nowrap;
       }
 
       /* 결과 패널만 유지 (단계별 기간 패널은 카드 안으로 이동했으니 제거) */
