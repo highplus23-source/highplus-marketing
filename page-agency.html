@@ -1342,6 +1342,16 @@
     if (!isOpen) item.classList.add('open');
   }
 
+  // 부모 페이지에 실제 높이 전달 (iframe 자동 크기 조정)
+  function notifyHeight() {
+    var h = document.documentElement.scrollHeight || document.body.scrollHeight;
+    if (h > 200) window.parent.postMessage({ type: 'agencyIframeHeight', height: h }, '*');
+  }
+  document.addEventListener('DOMContentLoaded', notifyHeight);
+  window.addEventListener('load', notifyHeight);
+  window.addEventListener('resize', notifyHeight);
+  notifyHeight();
+
   function handleFormSubmit(e) {
     e.preventDefault();
     const form = e.target;

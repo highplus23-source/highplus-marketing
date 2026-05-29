@@ -2294,35 +2294,18 @@
         id="agency-iframe"
         src="page-agency.html"
         scrolling="no"
-        style="width:100%;border:none;display:block;overflow:hidden;"
+        style="width:100%;border:none;display:block;overflow:hidden;min-height:7600px;"
         title="블로그 대행 서비스"
       ></iframe>
       <script>
         (function() {
           var iframe = document.getElementById('agency-iframe');
-          function resize() {
-            try {
-              var h = iframe.contentDocument.documentElement.scrollHeight
-                   || iframe.contentDocument.body.scrollHeight;
-              if (h > 200) {
-                iframe.style.minHeight = '0';
-                iframe.style.height = h + 'px';
-              }
-            } catch(e) {}
-          }
-          // Run immediately (iframe may already be loaded)
-          resize();
-          iframe.addEventListener('load', function() {
-            resize();
-            setTimeout(resize, 500);
-            setTimeout(resize, 1500);
-            setTimeout(resize, 3000);
-          });
-          // Fallback: also run after the outer page fully loads
-          window.addEventListener('load', function() {
-            resize();
-            setTimeout(resize, 500);
-            setTimeout(resize, 1500);
+          // PostMessage: page-agency.html이 실제 높이를 전달하면 정확히 맞춤
+          window.addEventListener('message', function(e) {
+            if (e.data && e.data.type === 'agencyIframeHeight' && e.data.height > 200) {
+              iframe.style.minHeight = '0';
+              iframe.style.height = e.data.height + 'px';
+            }
           });
         })();
       </script>
