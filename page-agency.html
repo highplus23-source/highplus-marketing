@@ -1495,7 +1495,10 @@
               </div>
               <div class="form-group">
                 <label for="f-phone">연락처</label>
-                <input type="tel" id="f-phone" name="phone" placeholder="010-0000-0000" required />
+                <input type="tel" id="f-phone" name="phone" placeholder="010-0000-0000" required
+                  pattern="^01[0-9]-?\d{3,4}-?\d{4}$"
+                  title="올바른 연락처 형식으로 입력해주세요. 예: 010-1234-5678"
+                  maxlength="13" />
               </div>
               <div class="form-group">
                 <label for="f-specialty">진료과목</label>
@@ -1603,10 +1606,31 @@
   setTimeout(notifyHeight, 600);
   setTimeout(notifyHeight, 1500);
 
+  // 연락처 자동 하이픈 포맷
+  document.addEventListener('DOMContentLoaded', function() {
+    var phoneInput = document.getElementById('f-phone');
+    if (phoneInput) {
+      phoneInput.addEventListener('input', function(e) {
+        var v = e.target.value.replace(/[^0-9]/g, '');
+        if (v.length < 4) e.target.value = v;
+        else if (v.length < 8) e.target.value = v.slice(0,3) + '-' + v.slice(3);
+        else e.target.value = v.slice(0,3) + '-' + v.slice(3,7) + '-' + v.slice(7,11);
+      });
+    }
+  });
+
   function handleFormSubmit(e) {
     e.preventDefault();
     const form = e.target;
     const btn = form.querySelector('.form-submit-btn');
+
+    // 연락처 검증
+    var phone = form.querySelector('#f-phone').value.replace(/[^0-9]/g, '');
+    if (!/^01[0-9]\d{7,8}$/.test(phone)) {
+      alert('올바른 연락처를 입력해주세요.\n예: 010-1234-5678');
+      form.querySelector('#f-phone').focus();
+      return;
+    }
 
     // FormData 먼저 캡처
     const formData = new FormData(form);
