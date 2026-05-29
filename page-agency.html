@@ -242,64 +242,113 @@
     }
     .services-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 28px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      align-items: start;
     }
-    .service-card {
-      background: var(--card-bg);
-      border: 1px solid var(--gold-border);
-      border-radius: 12px;
+    .sv-card {
+      position: relative;
+      background: rgba(0,0,0,0.22);
+      border: 1px solid rgba(200,169,106,0.25);
+      border-radius: 16px;
       display: flex;
-      gap: 0;
-      overflow: hidden;
+      flex-direction: column;
       transition: border-color 0.25s, transform 0.25s;
     }
-    .service-card:hover {
+    .sv-card:hover {
       border-color: var(--gold-hover);
       transform: translateY(-4px);
     }
-    .service-card .card-num-col {
+    /* 폰 형태 귀 */
+    .sv-card::before,
+    .sv-card::after {
+      content: '';
+      position: absolute;
+      top: -9px;
+      width: 26px;
+      height: 9px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(200,169,106,0.22);
+      border-bottom: none;
+      border-radius: 5px 5px 0 0;
+    }
+    .sv-card::before { left: 18%; }
+    .sv-card::after  { right: 18%; }
+
+    .sv-phone-area {
+      padding: 36px 24px 28px;
+      text-align: center;
+      border-bottom: 1px solid rgba(200,169,106,0.15);
+      background: rgba(0,0,0,0.12);
+      border-radius: 16px 16px 0 0;
+    }
+    .sv-icon-box {
+      width: 76px;
+      height: 76px;
+      background: rgba(200,169,106,0.12);
+      border: 1px solid rgba(200,169,106,0.28);
+      border-radius: 20px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+    }
+    .sv-icon-box svg { width: 34px; height: 34px; }
+
+    .sv-body {
+      padding: 24px 24px 28px;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      padding: 36px 20px 36px 28px;
-      gap: 0;
-    }
-    .service-card .card-num {
-      font-size: 3.5rem;
-      font-weight: 900;
-      color: var(--gold);
-      letter-spacing: -0.04em;
-      line-height: 1;
-    }
-    .card-vline {
-      width: 1px;
-      background: rgba(201,169,110,0.25);
-      flex-shrink: 0;
-      margin: 24px 0;
-    }
-    .service-card .card-content {
-      padding: 32px 28px 32px 24px;
       flex: 1;
     }
-    .service-card .card-title {
-      font-size: 1.15rem;
+    .sv-num-label {
+      font-size: 0.75rem;
       font-weight: 800;
-      color: var(--cream);
-      letter-spacing: -0.02em;
+      letter-spacing: 0.14em;
+      color: var(--gold);
       margin-bottom: 10px;
     }
-    .service-card .card-tagline {
-      font-size: 0.88rem;
-      font-weight: 700;
-      color: var(--gold);
-      margin-bottom: 12px;
+    .sv-title {
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: var(--cream);
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+      margin-bottom: 10px;
     }
-    .service-card .card-body {
-      font-size: 0.96rem;
+    .sv-desc {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--cream-body);
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+    .sv-divider {
+      border: none;
+      border-top: 1px solid rgba(200,169,106,0.18);
+      margin: 0 0 18px;
+    }
+    .sv-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+    .sv-list li {
+      display: flex;
+      gap: 10px;
+      font-size: 0.9rem;
       font-weight: 600;
       color: var(--cream-body);
-      line-height: 1.7;
+      line-height: 1.5;
+    }
+    .sv-list li::before {
+      content: '—';
+      color: var(--gold);
+      flex-shrink: 0;
+      font-weight: 700;
     }
 
     /* ─────────────────────────────────────────
@@ -850,8 +899,7 @@
       .solution-banner { padding: 36px 28px; }
       .limited-card { padding: 48px 28px; }
       .form-grid { grid-template-columns: 1fr; }
-      .service-card { flex-direction: row; }
-      .service-card .card-num { font-size: 2.5rem; }
+      .sv-card { grid-column: span 1; }
     }
 
     @media (max-width: 480px) {
@@ -892,53 +940,71 @@
 
     <div class="services-grid">
 
-      <!-- Card 01 -->
-      <div class="service-card">
-        <div class="card-num-col">
-          <span class="card-num">01</span>
+      <!-- Card 01 — BRANDING -->
+      <div class="sv-card">
+        <div class="sv-phone-area">
+          <div class="sv-icon-box">
+            <svg viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M22 4H26C27.1 4 28 4.9 28 6V28C28 29.1 27.1 30 26 30H8C6.9 30 6 29.1 6 28V6C6 4.9 6.9 4 8 4H12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              <rect x="12" y="2" width="10" height="5" rx="2" stroke="currentColor" stroke-width="1.8"/>
+              <line x1="11" y1="14" x2="23" y2="14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              <line x1="11" y1="19" x2="23" y2="19" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              <line x1="11" y1="24" x2="18" y2="24" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </div>
         </div>
-        <div class="card-vline"></div>
-        <div class="card-content">
-          <div class="card-tagline">"환자가 읽고, '여기 가야겠다'고 결심하는 글을 만듭니다."</div>
-          <div class="card-title">브랜딩 기획 블로그</div>
-          <p class="card-body">원장님의 진료 철학과 전문성을 콘텐츠로 설계합니다. 단순 정보글이 아닌, 초진 전환을 목표로 한 기획형 포스팅입니다.</p>
-          <ul class="gold-list">
-            <li>잠재 환자가 검색하는 키워드 기반 설계</li>
+        <div class="sv-body">
+          <p class="sv-num-label">01 · BRANDING</p>
+          <h3 class="sv-title">브랜딩 기획<br>블로그</h3>
+          <p class="sv-desc">초진 전환을 목표로 한 기획형 포스팅</p>
+          <hr class="sv-divider">
+          <ul class="sv-list">
+            <li>잠재 환자 검색 키워드 기반 설계</li>
             <li>의학 블로그 발행 전담팀</li>
-            <li>전담 고정 IP 운영, 어뷰징 제로</li>
+            <li>전담 고정 IP 운영 어뷰징 제로</li>
           </ul>
         </div>
       </div>
 
-      <!-- Card 02 -->
-      <div class="service-card">
-        <div class="card-num-col">
-          <span class="card-num">02</span>
+      <!-- Card 02 — PLACE -->
+      <div class="sv-card">
+        <div class="sv-phone-area">
+          <div class="sv-icon-box">
+            <svg viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M17 3C12.03 3 8 7.03 8 12C8 18.5 17 31 17 31C17 31 26 18.5 26 12C26 7.03 21.97 3 17 3Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+              <circle cx="17" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+            </svg>
+          </div>
         </div>
-        <div class="card-vline"></div>
-        <div class="card-content">
-          <div class="card-tagline">"검색 → 클릭 → 전화, 이 흐름을 만들어드립니다."</div>
-          <div class="card-title">네이버 플레이스 최적화</div>
-          <p class="card-body">지역명 검색 시 최상단 노출을 목표로, 어뷰징 없는 정공법으로 세팅합니다.</p>
-          <ul class="gold-list">
+        <div class="sv-body">
+          <p class="sv-num-label">02 · PLACE</p>
+          <h3 class="sv-title">네이버 플레이스<br>최적화</h3>
+          <p class="sv-desc">지역 검색 최상단 노출, 정공법 세팅</p>
+          <hr class="sv-divider">
+          <ul class="sv-list">
             <li>지역 + 진료과목 SEO 세팅</li>
             <li>인근 병원 플레이스 분석</li>
-            <li>어뷰징 걱정없는 플레이스 순위 관리</li>
+            <li>어뷰징 걱정없는 순위 관리</li>
           </ul>
         </div>
       </div>
 
-      <!-- Card 03 -->
-      <div class="service-card">
-        <div class="card-num-col">
-          <span class="card-num">03</span>
+      <!-- Card 03 — VIDEO -->
+      <div class="sv-card">
+        <div class="sv-phone-area">
+          <div class="sv-icon-box">
+            <svg viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="8" width="22" height="18" rx="3" stroke="currentColor" stroke-width="1.8"/>
+              <path d="M25 13.5L31 10V24L25 20.5V13.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+            </svg>
+          </div>
         </div>
-        <div class="card-vline"></div>
-        <div class="card-content">
-          <div class="card-tagline">"촬영 부담 없이, 원내 영상 콘텐츠를 채워드립니다."</div>
-          <div class="card-title">유튜브 콘텐츠</div>
-          <p class="card-body">대기실 TV, 플레이스, SNS에 활용할 수 있는 영상을 하이플러스가 자체 제작합니다.</p>
-          <ul class="gold-list">
+        <div class="sv-body">
+          <p class="sv-num-label">03 · VIDEO</p>
+          <h3 class="sv-title">유튜브<br>콘텐츠</h3>
+          <p class="sv-desc">촬영 부담 없이 영상 콘텐츠 자체 제작</p>
+          <hr class="sv-divider">
+          <ul class="sv-list">
             <li>원장님 페르소나 AI 영상</li>
             <li>블로그 글을 숏츠로 재가공</li>
             <li>촬영 부담 없이 꾸준히 발행</li>
@@ -946,21 +1012,27 @@
         </div>
       </div>
 
-      <!-- Card 04 -->
-      <div class="service-card">
-        <div class="card-num-col">
-          <span class="card-num">04</span>
+      <!-- Card 04 — REPORT -->
+      <div class="sv-card">
+        <div class="sv-phone-area">
+          <div class="sv-icon-box">
+            <svg viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <polyline points="4,26 11,18 16,22 22,13 30,8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="30" cy="8" r="2.5" fill="currentColor"/>
+              <line x1="4" y1="30" x2="30" y2="30" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </div>
         </div>
-        <div class="card-vline"></div>
-        <div class="card-content">
-          <div class="card-tagline">"뭘 했고, 어떤 성과가 났는지, 숫자로 보여드립니다."</div>
-          <div class="card-title">업무진행 보고서</div>
-          <p class="card-body">매월 정기 리포트로 성과와 다음 달 전략을 공유합니다. 감이 아닌 데이터로 방향을 잡습니다.</p>
-          <ul class="gold-list">
-            <li>블로그 유입, 노출 통계 분석</li>
+        <div class="sv-body">
+          <p class="sv-num-label">04 · REPORT</p>
+          <h3 class="sv-title">업무진행<br>보고서</h3>
+          <p class="sv-desc">매월 정기 리포트, 데이터 기반 전략</p>
+          <hr class="sv-divider">
+          <ul class="sv-list">
+            <li>블로그 유입·노출 통계 분석</li>
             <li>지역 키워드 순위 변동 추적</li>
             <li>다음 달 전략 방향 제안</li>
-            <li>DM 제공</li>
+            <li>환자 발송용 DM 제공</li>
           </ul>
         </div>
       </div>
