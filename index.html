@@ -1932,7 +1932,10 @@
                 </div>
                 <div class="form-group">
                   <label>연락처 *</label>
-                  <input type="tel" name="phone" placeholder="010-0000-0000" required aria-required="true" pattern="[0-9\-]+" />
+                  <input type="tel" name="phone" placeholder="010-0000-0000" required aria-required="true"
+                    pattern="^01[0-9]-?\d{3,4}-?\d{4}$"
+                    title="올바른 연락처 형식으로 입력해주세요. 예: 010-1234-5678"
+                    maxlength="13" />
                 </div>
                 <div class="form-group">
                   <label>병원명</label>
@@ -2432,6 +2435,16 @@
     <script>
       // ─── Web3Forms 폼 핸들러 (#quickForm + #agencyForm 공통) ───
       (function() {
+        // 연락처 자동 하이픈 포맷 (모든 tel 인풋 대상)
+        document.querySelectorAll('input[type="tel"][name="phone"]').forEach(function(inp) {
+          inp.addEventListener('input', function(e) {
+            var v = e.target.value.replace(/[^0-9]/g, '');
+            if (v.length < 4) e.target.value = v;
+            else if (v.length < 8) e.target.value = v.slice(0,3) + '-' + v.slice(3);
+            else e.target.value = v.slice(0,3) + '-' + v.slice(3,7) + '-' + v.slice(7,11);
+          });
+        });
+
         function bindForm(formId, submitBtnSelector) {
           var form = document.getElementById(formId);
           if (!form) {
@@ -2442,6 +2455,18 @@
           form.addEventListener('submit', async function(e) {
             console.log('[bindForm] submit fired:', formId);
             e.preventDefault();
+
+            // 연락처 검증
+            var phoneInp = form.querySelector('input[type="tel"][name="phone"]');
+            if (phoneInp) {
+              var phone = phoneInp.value.replace(/[^0-9]/g, '');
+              if (!/^01[0-9]\d{7,8}$/.test(phone)) {
+                alert('올바른 연락처를 입력해주세요.\n예: 010-1234-5678');
+                phoneInp.focus();
+                return;
+              }
+            }
+
             var btn = submitBtnSelector ? form.querySelector(submitBtnSelector) : form.querySelector('button[type="submit"]');
             var originalHtml = btn ? btn.innerHTML : '';
             if (btn) { btn.disabled = true; btn.innerHTML = '전송 중...'; }
