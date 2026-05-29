@@ -640,7 +640,7 @@
     ───────────────────────────────────────── */
     #faq {
       background: var(--bg-secondary);
-      padding: 72px 5%;
+      padding: 80px 6%;
     }
     #faq > .container {
       max-width: 1600px;
@@ -648,21 +648,26 @@
     }
     .faq-layout {
       display: grid;
-      grid-template-columns: 340px 1fr;
-      gap: 80px;
+      grid-template-columns: 360px 1fr;
+      gap: 100px;
       align-items: start;
     }
     .faq-left {
       position: sticky;
       top: 40px;
-      min-width: 0;
-      overflow: hidden;
     }
     .faq-left .section-h2 {
-      font-size: 2.4rem;
+      font-size: 2.6rem;
       white-space: nowrap;
+      margin-top: 12px;
     }
-    .faq-left .section-desc { margin-top: 16px; white-space: nowrap; }
+    .faq-left .section-desc {
+      margin-top: 20px;
+      font-size: 1rem;
+      line-height: 1.8;
+      white-space: normal;
+      max-width: 300px;
+    }
     .faq-cta { margin-top: 36px; }
 
     .faq-list {
