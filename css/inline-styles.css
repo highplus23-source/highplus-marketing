@@ -7512,3 +7512,230 @@
                 .vs-tbl .td-left { font-size: 0.984rem; }
                 .vs-tbl .td-center { font-size: 0.75rem; }
               }
+
+      /* ═════════════════════════════════════════════════════════════
+         PART 02 DARK LUXURY — Override pt2-draft2 "Playful Pastel"
+         Palette · Quite clear: #174D38  #4D1717  #F2F2F2  #CBCBCB
+                 · Chili spice: #CD1C18  #FFA896  #9B1313  #38000A
+         Concept: Starbucks poster — dark forest green + deep wine
+         ───────────────────────────────────────────────────────────── */
+
+      /* ── Step 1: CSS variable overrides at element scope ──
+         All var(--pt2-xxx) calls inside these elements resolve to
+         our new dark-luxury values, without fighting every selector. */
+      html body #part-02 {
+        --pt2-bg-deep:     #0C1B12;
+        --pt2-ink:         #F2F2F2;
+        --pt2-ink-2:       #CBCBCB;
+        --pt2-ink-3:       rgba(242,242,242,0.55);
+        --pt2-purple-deep: #FFA896;
+        --pt2-lav-deep:    #FFA896;
+        --pt2-sun-soft:    rgba(23,77,56,0.18);
+        --pt2-mint-soft:   rgba(56,0,10,0.18);
+        --pt2-pink-soft:   rgba(205,28,24,0.08);
+        --pt2-coral:       #FFA896;
+        --pt2-mint:        #174D38;
+      }
+      html body #services {
+        --pt2-bg:           #0C1B12;
+        --pt2-bg-deep:      #080F09;
+        --pt2-white:        rgba(255,255,255,0.05);
+        --pt2-ink:          #F2F2F2;
+        --pt2-ink-2:        #CBCBCB;
+        --pt2-ink-3:        rgba(242,242,242,0.45);
+        --pt2-line:         rgba(255,168,150,0.10);
+        --pt2-line-strong:  rgba(255,168,150,0.32);
+        --pt2-line-2:       rgba(255,168,150,0.20);
+        --pt2-mint-deep:    #FFA896;
+        --pt2-coral-soft:   rgba(23,77,56,0.28);
+        --pt2-mint-soft:    rgba(77,23,23,0.32);
+        --pt2-purple-soft:  rgba(13,43,31,0.32);
+        --pt2-sun-soft:     rgba(56,0,10,0.32);
+        --pt2-coral-deep:   #FFA896;
+        --pt2-coral:        #FFA896;
+        --pt2-mint:         #FFA896;
+        --pt2-purple:       #FFA896;
+        --pt2-sun:          #FFA896;
+        --pt2-purple-deep:  #FFA896;
+        --pt2-sun-deep:     #FFA896;
+      }
+
+      /* ── Step 2: hard-coded overrides (values not driven by variables) ── */
+
+      /* #part-02 background — dark forest → deep wine */
+      body #part-02.hp-part-divider {
+        background: linear-gradient(160deg, #0C1B12 0%, #1A0606 100%) !important;
+      }
+      body #part-02.hp-part-divider:hover {
+        background: linear-gradient(160deg, #12231A 0%, #220A0A 100%) !important;
+      }
+
+      /* badge — text color via variable; reset container styles pt2 sets */
+      html body #part-02 .hp-part-badge,
+      html body .hp-part-divider .hp-part-badge {
+        color: #FFA896 !important;
+      }
+
+      /* service-name pill — dark forest green */
+      body #part-02 .hp-part-service-name,
+      body .hp-part-divider .hp-part-service-name {
+        background: rgba(23,77,56,0.30) !important;
+        border: 1px solid rgba(255,168,150,0.22) !important;
+        color: #FFA896 !important;
+        box-shadow: 0 8px 24px rgba(23,77,56,0.20) !important;
+        text-shadow: none !important;
+      }
+      /* service-name dots — left salmon, right forest green (via variables already) */
+
+      /* .grad / .gold-emph — salmon */
+      html body #part-02 h3 .grad,
+      html body #part-02 .hp-part-divider__inner h3 .grad,
+      html body #part-02 .gold-emph,
+      html body .hp-part-divider p .gold-emph {
+        color: #FFA896 !important;
+        -webkit-text-fill-color: #FFA896 !important;
+        background: transparent !important;
+        background-image: none !important;
+      }
+
+      /* down-arrow — re-show, style as dark ring + salmon icon */
+      html body #part-02 .hp-part-divider__arrow,
+      html body .hp-part-divider .hp-part-divider__arrow {
+        display: inline-flex !important;
+        background: rgba(255,255,255,0.06) !important;
+        border: 1.5px solid rgba(255,168,150,0.25) !important;
+        color: #FFA896 !important;
+      }
+
+      /* #services section background */
+      body #services {
+        background: #0C1B12 !important;
+      }
+
+      /* section-tag — dark pill, salmon dots */
+      body #services .section-tag {
+        background: rgba(255,255,255,0.06) !important;
+        border-color: rgba(255,168,150,0.22) !important;
+        color: #F2F2F2 !important;
+      }
+      body #services .section-tag::before,
+      body #services .section-tag::after {
+        background: #FFA896 !important;
+      }
+
+      /* section-title .grad-highlight — salmon-to-red gradient */
+      html body #services .section-title .grad-highlight,
+      html body #services .section-center .section-title .grad-highlight,
+      html body #services .section-center h2 .grad-highlight {
+        background: linear-gradient(135deg,#FFA896 0%,#CD1C18 100%) !important;
+        background-image: linear-gradient(135deg,#FFA896 0%,#CD1C18 100%) !important;
+        -webkit-background-clip: text !important;
+        background-clip: text !important;
+        color: transparent !important;
+        -webkit-text-fill-color: transparent !important;
+      }
+
+      /* section-desc */
+      html body #services .section-center .section-desc,
+      html body #services .section-center p,
+      html body #services .section-desc {
+        color: #CBCBCB !important;
+        -webkit-text-fill-color: #CBCBCB !important;
+      }
+
+      /* service cards */
+      body #services .service-card {
+        background: rgba(255,255,255,0.04) !important;
+        border-color: rgba(255,168,150,0.10) !important;
+      }
+      body #services .service-card:hover {
+        background: rgba(255,255,255,0.06) !important;
+        border-color: rgba(255,168,150,0.32) !important;
+        box-shadow: 0 24px 60px rgba(205,28,24,0.18) !important;
+      }
+      body #services .service-card:hover h3 {
+        color: #F2F2F2 !important;
+      }
+
+      /* service-num — salmon text on dark pill */
+      html body #services .service-card .service-num,
+      html body #services .service-card:nth-child(1) .service-num,
+      html body #services .service-card:nth-child(2) .service-num,
+      html body #services .service-card:nth-child(3) .service-num,
+      html body #services .service-card:nth-child(4) .service-num {
+        color: #FFA896 !important;
+        -webkit-text-fill-color: #FFA896 !important;
+      }
+
+      /* icon boxes — dark luxury backgrounds */
+      body #services .service-card:nth-child(1) .service-icon {
+        background: rgba(23,77,56,0.35) !important;
+        box-shadow: 0 8px 20px rgba(23,77,56,0.35) !important;
+        color: #F2F2F2 !important;
+      }
+      body #services .service-card:nth-child(2) .service-icon {
+        background: rgba(77,23,23,0.40) !important;
+        box-shadow: 0 8px 20px rgba(77,23,23,0.35) !important;
+        color: #F2F2F2 !important;
+      }
+      body #services .service-card:nth-child(3) .service-icon {
+        background: rgba(13,43,31,0.40) !important;
+        box-shadow: 0 8px 20px rgba(13,43,31,0.35) !important;
+        color: #F2F2F2 !important;
+      }
+      body #services .service-card:nth-child(4) .service-icon {
+        background: rgba(56,0,10,0.40) !important;
+        box-shadow: 0 8px 20px rgba(56,0,10,0.35) !important;
+        color: #F2F2F2 !important;
+      }
+
+      /* SVG icons — 32px, no rotate animation */
+      body #services .service-card .service-icon svg {
+        width: 32px !important;
+        height: 32px !important;
+      }
+      body #services .service-card:hover .service-icon svg,
+      body #services .service-card:nth-child(2):hover .service-icon svg,
+      body #services .service-card:nth-child(4):hover .service-icon svg {
+        transform: none !important;
+      }
+
+      /* card headings — cream */
+      body #services .service-card h3 {
+        color: #F2F2F2 !important;
+        -webkit-text-fill-color: #F2F2F2 !important;
+      }
+
+      /* service-card__lead — salmon, all cards */
+      html body #services .service-card .service-card__lead,
+      html body #services .service-card:hover .service-card__lead,
+      html body #services .service-card:nth-child(2) .service-card__lead,
+      html body #services .service-card:nth-child(2):hover .service-card__lead,
+      html body #services .service-card:nth-child(3) .service-card__lead,
+      html body #services .service-card:nth-child(3):hover .service-card__lead,
+      html body #services .service-card:nth-child(4) .service-card__lead,
+      html body #services .service-card:nth-child(4):hover .service-card__lead {
+        color: #FFA896 !important;
+        -webkit-text-fill-color: #FFA896 !important;
+      }
+
+      /* desc paragraph — light gray */
+      html body #services .service-card > p:not(.service-card__lead),
+      html body #services .service-card:hover > p:not(.service-card__lead) {
+        color: #CBCBCB !important;
+        -webkit-text-fill-color: #CBCBCB !important;
+      }
+
+      /* list items + bullets */
+      body #services .service-card .service-list li,
+      body #services .service-card:hover .service-list li {
+        color: #CBCBCB !important;
+      }
+      body #services .service-card .service-list li::before,
+      body #services .service-card:nth-child(2) .service-list li::before,
+      body #services .service-card:nth-child(3) .service-list li::before,
+      body #services .service-card:nth-child(4) .service-list li::before {
+        background: #FFA896 !important;
+        box-shadow: none !important;
+      }
+      /* /PART 02 DARK LUXURY */
