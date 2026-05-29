@@ -2306,6 +2306,10 @@
           // PostMessage: page-agency.html에서 정확한 높이 전달
           window.addEventListener('message', function(e) {
             if (e.data && e.data.type === 'agencyIframeHeight') setH(e.data.height);
+          if (e.data && e.data.type === 'agencyScrollTop') {
+            var iframeEl = document.getElementById('agency-iframe');
+            if (iframeEl) iframeEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
           });
           // 직접 접근 폴백 (body.offsetHeight = 실제 콘텐츠 높이)
           function tryDirect() {

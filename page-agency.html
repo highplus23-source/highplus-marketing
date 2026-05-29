@@ -1620,6 +1620,7 @@
         btn.textContent = '대행 상담 신청 →';
         btn.disabled = false;
         document.getElementById('ag-success-modal').classList.add('is-open');
+        window.parent.postMessage({ type: 'agencyScrollTop' }, '*');
       } else {
         btn.textContent = '전송 실패 — 다시 시도해주세요';
         btn.disabled = false;
