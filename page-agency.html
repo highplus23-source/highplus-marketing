@@ -1017,6 +1017,42 @@
     /* ─────────────────────────────────────────
        RESPONSIVE
     ───────────────────────────────────────── */
+    /* 한글 단어 단위 줄바꿈 (모든 본문/카드에 적용) */
+    .pain-card .pain-body,
+    .pain-card .pain-title,
+    .sv-desc, .sv-list li,
+    .trust-sol-body, .trust-problem-pill,
+    .section-desc, .section-h2,
+    .limited-card .section-p,
+    .solution-banner .banner-p,
+    .faq-item button, .faq-answer {
+      word-break: keep-all;
+      overflow-wrap: break-word;
+    }
+
+    /* 중간 화면 (1280px 이하): 4컬럼 → 2컬럼, nowrap 해제 */
+    @media (max-width: 1280px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .faq-layout { grid-template-columns: 1fr 1fr; gap: 60px; }
+      .faq-left .section-desc { white-space: normal; }
+      .solution-banner .banner-h3,
+      .solution-banner .banner-p { white-space: normal; }
+      #trust .section-header .section-desc { white-space: normal; }
+      .limited-card .section-p { white-space: normal; }
+    }
+
+    /* 태블릿 (1024px 이하): 그리드 단일 컬럼, 대형 텍스트 축소 */
+    @media (max-width: 1024px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .pain-grid { grid-template-columns: 1fr; }
+      .trust-grid { grid-template-columns: 1fr; }
+      .faq-layout { grid-template-columns: 1fr; gap: 48px; }
+      .faq-left { position: static; }
+      .faq-left .section-h2 { white-space: normal; }
+      #compare .section-header .section-h2 { white-space: normal !important; }
+      .limited-card .section-h2 { font-size: clamp(2rem, 5vw, 3.2rem); }
+    }
+
     @media (max-width: 768px) {
       .services-grid { grid-template-columns: 1fr; }
       .pain-grid { grid-template-columns: 1fr; }
@@ -1026,9 +1062,15 @@
       .faq-layout { grid-template-columns: 1fr; gap: 48px; }
       .faq-left { position: static; }
       .solution-banner { padding: 36px 28px; }
-      .limited-card { padding: 48px 28px; }
+      .limited-card { padding: 0; }
       .form-grid { grid-template-columns: 1fr; }
       .sv-card { grid-column: span 1; }
+      /* 강제 br 무효화 (좁은 화면에서 어색한 줄바꿈 방지) */
+      .pain-card .pain-title br,
+      .pain-card .pain-body br,
+      .trust-sol-body br,
+      #trust .section-header .section-desc br,
+      .limited-card .section-p br { display: none; }
     }
 
     @media (max-width: 480px) {
