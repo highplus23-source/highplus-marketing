@@ -1611,9 +1611,8 @@
     // FormData 먼저 캡처
     const formData = new FormData(form);
 
-    // 즉시 팝업 띄우고 폼 리셋
-    document.getElementById('ag-success-modal').classList.add('is-open');
-    window.parent.postMessage({ type: 'agencyScrollTop' }, '*');
+    // 부모 페이지의 성공 모달 띄우기 (스크롤 X)
+    window.parent.postMessage({ type: 'agencyShowSuccess' }, '*');
     form.reset();
 
     // 데이터는 백그라운드에서 전송 (실패해도 사용자에게 안 보임)
