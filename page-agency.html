@@ -648,8 +648,8 @@
     }
     .faq-layout {
       display: grid;
-      grid-template-columns: max-content 1fr;
-      gap: 72px;
+      grid-template-columns: 1fr 2fr;
+      gap: 80px;
       align-items: start;
     }
     .faq-left {
@@ -665,14 +665,11 @@
       margin-top: 16px;
       font-size: 0.97rem;
       line-height: 1.75;
+      max-width: none;
       white-space: nowrap;
       color: var(--cream-body);
     }
     .faq-cta { margin-top: 32px; }
-
-    .faq-right {
-      max-width: 780px;
-    }
     .faq-list {
       display: flex;
       flex-direction: column;
