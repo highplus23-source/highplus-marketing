@@ -2497,6 +2497,7 @@
               var json = {};
               try { json = await res.json(); } catch (_) {}
               if (res.ok && json.success !== false) {
+                if (window.hpTrack) hpTrack('Lead', 'generate_lead', { form_id: formId });
                 form.reset();
                 var successModal = document.getElementById('hp-success-modal');
                 if (successModal) {
@@ -2520,6 +2521,67 @@
         bindForm('quickForm');
         bindForm('agencyForm', '.hp-agency-submit');
       })();
+    </script>
+    <!-- ===== 행동 추적 (메타 픽셀 + GA4 공통) ===== -->
+    <script>
+    (function () {
+      // 메타 픽셀과 GA4에 동시에 표준 이벤트 전송
+      window.hpTrack = function (metaEvent, gaEvent, params) {
+        params = params || {};
+        try { if (window.fbq) fbq('track', metaEvent, params); } catch (e) {}
+        try { if (window.gtag) gtag('event', gaEvent, params); } catch (e) {}
+      };
+
+      document.addEventListener('DOMContentLoaded', function () {
+        // ① 폼 입력 시작 (이탈 측정용) — 폼당 첫 입력 1회만
+        //    이탈률 = InitiateCheckout(시작) 수 − Lead(제출완료) 수
+        document.querySelectorAll('form#quickForm, form#agencyForm').forEach(function (form) {
+          form.addEventListener('input', function () {
+            hpTrack('InitiateCheckout', 'form_start', { form_id: form.id });
+          }, { once: true });
+        });
+
+        // ② 카톡 / 바로연결 클릭 = 상담 의향
+        document.querySelectorAll('a[href*="pf.kakao.com"], a[href*="open.kakao.com"]').forEach(function (a) {
+          a.addEventListener('click', function () {
+            hpTrack('Contact', 'contact_click', { method: 'kakao' });
+          });
+        });
+
+        // ③ 블로그 대행 섹션(iframe) 도달 — iframe 내부는 추적 불가하여 노출만 기록
+        var agency = document.getElementById('agency-iframe');
+        if (agency && 'IntersectionObserver' in window) {
+          var seen = false;
+          new IntersectionObserver(function (entries, obs) {
+            entries.forEach(function (en) {
+              if (en.isIntersecting && !seen) {
+                seen = true;
+                try { if (window.fbq) fbq('trackCustom', 'ViewAgencyForm'); } catch (e) {}
+                try { if (window.gtag) gtag('event', 'view_agency_form'); } catch (e) {}
+                obs.disconnect();
+              }
+            });
+          }, { threshold: 0.4 }).observe(agency);
+        }
+
+        // ④ 스크롤 깊이 (25/50/75/100%) — 각 1회, GA4 분석 + 메타 커스텀
+        var marks = [25, 50, 75, 100];
+        var fired = {};
+        window.addEventListener('scroll', function () {
+          var st = window.pageYOffset || document.documentElement.scrollTop;
+          var docH = document.documentElement.scrollHeight - window.innerHeight;
+          if (docH <= 0) return;
+          var pct = Math.round((st / docH) * 100);
+          marks.forEach(function (m) {
+            if (pct >= m && !fired[m]) {
+              fired[m] = true;
+              try { if (window.fbq) fbq('trackCustom', 'ScrollDepth', { percent: m }); } catch (e) {}
+              try { if (window.gtag) gtag('event', 'scroll_depth', { percent: m }); } catch (e) {}
+            }
+          });
+        }, { passive: true });
+      });
+    })();
     </script>
     <script src="js/main.js?v=20260331"></script>
     <script>
