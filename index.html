@@ -1543,7 +1543,7 @@
                   </li>
                 </ul>
 
-                <a href="#contact" class="hp-price-card__cta">
+                <a href="https://aisiljang.com" target="_blank" rel="noopener noreferrer" class="hp-price-card__cta" onclick="if(window.hpTrack)hpTrack('Lead','generate_lead',{cta:'aisiljang_pricecard'})">
                   애(Ai)실장 시작하기
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
                 </a>
@@ -1605,7 +1605,7 @@
                   <span><strong>기본 플랜 5가지 혜택</strong> 모두 포함</span>
                 </div>
 
-                <a href="#contact" class="hp-price-card__cta">
+                <a href="http://pf.kakao.com/_xbgQuX" target="_blank" rel="noopener noreferrer" class="hp-price-card__cta">
                   프리미엄 상담 신청
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
                 </a>
@@ -1937,34 +1937,18 @@
 
           <div style="max-width: 560px; margin: 0 auto;">
 
-            <!-- 문의 폼 -->
-            <div class="contact-form-wrap" style="background: #ffffff; border: 1px solid rgba(0, 0, 0, 0.06); border-radius: 24px; padding: 2.5rem; box-shadow: 0 20px 48px -16px rgba(52, 120, 246, 0.18), 0 4px 16px rgba(0, 0, 0, 0.04); width: 100%;">
-              <form id="quickForm" action="https://api.web3forms.com/submit" method="POST">
-                <input type="hidden" name="access_key" value="231adf68-dd19-4943-9415-a481c8086a85">
-                <input type="hidden" name="subject" value="하이플러스 홈페이지 문의">
-                <input type="hidden" name="from_name" value="HighPlus 홈페이지">
-                <div class="form-group">
-                  <label>성함 / 직책 *</label>
-                  <input type="text" name="name" placeholder="홍길동 대표" required aria-required="true" />
-                </div>
-                <div class="form-group">
-                  <label>연락처 *</label>
-                  <input type="tel" name="phone" placeholder="010-0000-0000" required aria-required="true"
-                    pattern="^01[0-9]-?\d{3,4}-?\d{4}$"
-                    title="올바른 연락처 형식으로 입력해주세요. 예: 010-1234-5678"
-                    maxlength="13" />
-                </div>
-                <div class="form-group">
-                  <label>병원명</label>
-                  <input type="text" name="hospital" placeholder="병원명 기재" />
-                </div>
-                <div class="form-group">
-                  <label>지역을 알려주세요</label>
-                  <input type="text" name="concern" placeholder="예: 서울 강남구 양재동" />
-                </div>
-                <button type="submit" class="form-submit" style="background: linear-gradient(135deg, #1A4FE0 0%, #3478F6 50%, #7C5BF5 100%); box-shadow: 0 12px 32px -8px rgba(52, 120, 246, 0.45), 0 0 0 1px rgba(52, 120, 246, 0.18) inset;">첫 원고 무료 발행하기</button>
-                <p class="form-note" style="text-align: center;">제출 시 개인정보 수집 및 이용에 동의합니다.</p>
-              </form>
+            <!-- 애(Ai)실장 회원가입 직접 연결 (정보 중복 입력 제거) -->
+            <div class="contact-form-wrap" style="background: #ffffff; border: 1px solid rgba(0, 0, 0, 0.06); border-radius: 24px; padding: 2.5rem; box-shadow: 0 20px 48px -16px rgba(52, 120, 246, 0.18), 0 4px 16px rgba(0, 0, 0, 0.04); width: 100%; text-align: center;">
+              <p style="color: var(--text-secondary); font-size: 1rem; line-height: 1.65; margin: 0 0 1.5rem;">
+                버튼을 누르면 <strong>애(Ai)실장 회원가입 페이지</strong>로 이동합니다.<br>
+                가입 후 첫 원고를 무료로 발행해 보세요.
+              </p>
+              <a href="https://aisiljang.com" target="_blank" rel="noopener noreferrer" class="form-submit"
+                onclick="if(window.hpTrack)hpTrack('Lead','generate_lead',{cta:'aisiljang_signup'})"
+                style="text-decoration: none; box-sizing: border-box; background: linear-gradient(135deg, #1A4FE0 0%, #3478F6 50%, #7C5BF5 100%); box-shadow: 0 12px 32px -8px rgba(52, 120, 246, 0.45), 0 0 0 1px rgba(52, 120, 246, 0.18) inset;">
+                첫 원고 무료 발행하기
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+              </a>
             </div>
 
           </div>
@@ -2518,7 +2502,6 @@
             }
           });
         }
-        bindForm('quickForm');
         bindForm('agencyForm', '.hp-agency-submit');
       })();
     </script>
