@@ -1707,39 +1707,6 @@
         50% { transform: scale(1.03); box-shadow: 0 0 12px 4px rgba(220, 38, 38, 0.25); }
       }
 
-      /* ─── START NOW 다이렉트 CTA ─── */
-      @keyframes ctaGlowPulse {
-        0%, 100% { box-shadow: 0 14px 40px -8px rgba(52,120,246,0.55), 0 0 0 0 rgba(124,91,245,0.45); }
-        50%      { box-shadow: 0 20px 54px -6px rgba(124,91,245,0.65), 0 0 0 14px rgba(52,120,246,0); }
-      }
-      @keyframes ctaFloat {
-        0%, 100% { transform: translateY(0); }
-        50%      { transform: translateY(-7px); }
-      }
-      @keyframes ctaSiren {
-        0%, 100% { transform: scale(1); opacity: 1; }
-        50%      { transform: scale(1.12); opacity: 0.75; }
-      }
-      .cta-go {
-        display: flex; align-items: center; justify-content: center; gap: 0.55rem;
-        width: 100%; box-sizing: border-box;
-        padding: 1.4rem 1.5rem;
-        border-radius: 16px;
-        background: linear-gradient(135deg, #1A4FE0 0%, #3478F6 45%, #7C5BF5 100%);
-        color: #fff; text-decoration: none;
-        font-size: clamp(1.35rem, 5vw, 1.7rem); font-weight: 900; letter-spacing: -0.02em;
-        animation: ctaGlowPulse 2.4s ease-in-out infinite;
-        transition: transform .18s ease;
-      }
-      .cta-go:hover { transform: translateY(-3px) scale(1.012); }
-      .cta-go .go-badge { font-style: italic; font-size: 1.12em; text-shadow: 0 2px 8px rgba(0,0,0,0.25); }
-      .cta-go svg { transition: transform .18s ease; }
-      .cta-go:hover svg { transform: translateX(5px); }
-      .cta-mock { animation: ctaFloat 5s ease-in-out infinite; }
-      @media (prefers-reduced-motion: reduce) {
-        .cta-go, .cta-mock { animation: none; }
-      }
-
       .reception-row {
         display: flex;
         align-items: center;

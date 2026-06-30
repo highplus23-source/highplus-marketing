@@ -613,50 +613,42 @@
       </section>
 
       <!-- 간편 신청 폼 (2컬럼: 서비스 요약 + 폼) -->
-      <section id="contact" style="background: radial-gradient(120% 110% at 50% 0%, #15294f 0%, #0b1733 55%, #060e22 100%); padding: 4.5rem 5% 5rem; position: relative; overflow: hidden;">
-        <!-- 상단 블루 글로우 -->
-        <div style="position: absolute; top: -20%; left: 50%; transform: translateX(-50%); width: 130%; height: 65%; background: radial-gradient(ellipse at center, rgba(52,120,246,0.22) 0%, transparent 65%); pointer-events: none; z-index: 0;"></div>
+      <section id="contact" style="background: #ffffff; padding: 6rem 5%; position: relative; overflow: hidden;">
+        <!-- 강화된 mesh 그라데이션 블롭 (4개 레이어) -->
+        <div class="contact-blob contact-blob-1"></div>
+        <div class="contact-blob contact-blob-2"></div>
+        <div class="contact-blob contact-blob-3"></div>
+        <div class="contact-blob contact-blob-4"></div>
 
-        <div class="section-inner reveal" style="position: relative; z-index: 1; max-width: 600px; margin: 0 auto; width: 100%;">
+        <!-- 도트 그리드 텍스처 -->
+        <div class="contact-grid-pattern"></div>
 
-          <!-- 1) 긴급 배너 -->
-          <div style="background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02)); border: 1px solid rgba(255,138,101,0.40); border-radius: 18px; padding: 1.3rem 1.4rem; text-align: center; margin-bottom: 1.1rem; box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);">
-            <div style="font-size: 1.7rem; line-height: 1; margin-bottom: 0.45rem; animation: ctaSiren 1.4s ease-in-out infinite;">🚨</div>
-            <p style="margin: 0; color: #fff; font-weight: 800; font-size: clamp(1.15rem, 3.8vw, 1.45rem); line-height: 1.4; letter-spacing: -0.02em;">지금 안 하면 경쟁 병원이 먼저 시작합니다<br><span style="color: #FF8A65;">초진 환자, 지금이 선점 타이밍</span></p>
+        <div class="section-inner reveal" style="position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; width: 100%;">
+
+          <div style="text-align: center; margin-bottom: 2.5rem;">
+            <span class="section-tag">START NOW</span>
+            <h2 style="font-weight: 900; color: var(--hp-ink); letter-spacing: -0.02em; margin: 1rem 0 0;">
+              원장님도 <span class="grad-highlight hl-mark">함께하시겠습니까?</span>
+            </h2>
           </div>
 
-          <!-- 2) 베네핏 카드 -->
-          <div style="background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.015)); border: 1px solid rgba(255,255,255,0.10); border-radius: 18px; padding: 1.7rem 1.4rem 1.9rem; text-align: center; margin-bottom: 1.5rem;">
-            <div style="font-size: 1.6rem; line-height: 1; margin-bottom: 0.5rem;">👀</div>
-            <p style="margin: 0 0 1.4rem; color: #fff; font-weight: 800; font-size: clamp(1.2rem, 4vw, 1.55rem); line-height: 1.4; letter-spacing: -0.02em;">우리 병원에 <span style="color: #5B9BF7;">딱! 맞는</span><br><span style="background: linear-gradient(135deg,#5B9BF7,#9F8BFF); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">블로그 원고 3회 무료!</span></p>
+          <div style="max-width: 560px; margin: 0 auto;">
 
-            <!-- 미니 원고 미리보기 카드 -->
-            <div class="cta-mock" style="background: #fff; border-radius: 14px; padding: 1rem 1.1rem; text-align: left; box-shadow: 0 18px 44px -12px rgba(0,0,0,0.55); max-width: 360px; margin: 0 auto;">
-              <div style="display: flex; align-items: center; gap: 0.4rem; margin-bottom: 0.7rem;">
-                <span style="width: 9px; height: 9px; border-radius: 50%; background: #FF5F57;"></span>
-                <span style="width: 9px; height: 9px; border-radius: 50%; background: #FEBC2E;"></span>
-                <span style="width: 9px; height: 9px; border-radius: 50%; background: #28C840;"></span>
-                <span style="margin-left: auto; font-size: 0.68rem; font-weight: 800; color: #3478F6; background: #eaf1ff; padding: 0.2rem 0.55rem; border-radius: 100px;">AI 생성 ✓</span>
-              </div>
-              <h4 style="margin: 0 0 0.6rem; font-size: 1rem; font-weight: 800; color: #1a1a2e; letter-spacing: -0.02em; line-height: 1.35;">강남 허리디스크, 수술 없이 좋아질 수 있을까요?</h4>
-              <div style="display: flex; gap: 0.35rem; flex-wrap: wrap; margin-bottom: 0.8rem;">
-                <span style="font-size: 0.7rem; font-weight: 700; color: #3478F6; background: #eaf1ff; padding: 0.2rem 0.55rem; border-radius: 100px;">의료법 안전</span>
-                <span style="font-size: 0.7rem; font-weight: 700; color: #3478F6; background: #eaf1ff; padding: 0.2rem 0.55rem; border-radius: 100px;">병원 톤 반영</span>
-                <span style="font-size: 0.7rem; font-weight: 700; color: #3478F6; background: #eaf1ff; padding: 0.2rem 0.55rem; border-radius: 100px;">SEO 최적화</span>
-              </div>
-              <div style="height: 7px; background: #eef1f6; border-radius: 100px; margin-bottom: 0.45rem;"></div>
-              <div style="height: 7px; background: #eef1f6; border-radius: 100px; width: 92%; margin-bottom: 0.45rem;"></div>
-              <div style="height: 7px; background: #eef1f6; border-radius: 100px; width: 72%;"></div>
+            <!-- 애(Ai)실장 회원가입 직접 연결 (정보 중복 입력 제거) -->
+            <div class="contact-form-wrap" style="background: #ffffff; border: 2px solid #3478F6; border-radius: 24px; padding: 2.5rem; box-shadow: 0 20px 48px -16px rgba(52, 120, 246, 0.35), 0 0 0 5px rgba(52, 120, 246, 0.10); width: 100%; text-align: center;">
+              <p style="color: var(--text-secondary); font-size: 1rem; line-height: 1.65; margin: 0 0 1.5rem;">
+                지금 바로 <strong>블로그 원고 3회</strong>를 무료로 드립니다.<br>
+                직접 사용해보시고, 우리 병원에 맞춰서 자동화하세요.
+              </p>
+              <a href="https://aisiljang.com" target="_blank" rel="noopener noreferrer" class="form-submit"
+                onclick="if(window.hpTrack)hpTrack('Lead','generate_lead',{cta:'aisiljang_signup'})"
+                style="text-decoration: none; box-sizing: border-box; background: linear-gradient(135deg, #1A4FE0 0%, #3478F6 50%, #7C5BF5 100%); box-shadow: 0 12px 32px -8px rgba(52, 120, 246, 0.45), 0 0 0 1px rgba(52, 120, 246, 0.18) inset;">
+                첫 원고 무료 발행하기
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+              </a>
             </div>
-          </div>
 
-          <!-- 3) 거대 CTA 버튼 -->
-          <a href="https://aisiljang.com" target="_blank" rel="noopener noreferrer" class="cta-go"
-            onclick="if(window.hpTrack)hpTrack('Lead','generate_lead',{cta:'aisiljang_signup'})">
-            지금 무료로 시작하기 <span class="go-badge">GO!</span>
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-          </a>
-          <p style="text-align: center; color: rgba(255,255,255,0.55); font-size: 0.82rem; margin: 0.9rem 0 0; letter-spacing: -0.01em;">신용카드 없이 1분 가입 · 위약금 없음</p>
+          </div>
 
         </div>
 
