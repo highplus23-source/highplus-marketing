@@ -848,6 +848,7 @@
         transition: transform .2s, box-shadow .2s; cursor: pointer;
       }
       .hp-float-btn svg { width: 28px; height: 28px; }
+      .hp-float-btn img { width: 30px; height: 30px; object-fit: contain; border-radius: 7px; }
       .hp-float-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 26px rgba(0, 0, 0, 0.26); }
       .hp-float-btn--blue { background: linear-gradient(135deg, #3478F6, #5B9BF7); }
       .hp-float-btn--green { background: linear-gradient(135deg, #0E7C5A, #12A36F); }
@@ -856,4 +857,5 @@
         .hp-float-nav { right: 9px; gap: 8px; }
         .hp-float-btn { width: 56px; height: 56px; font-size: 10px; border-radius: 14px; gap: 3px; }
         .hp-float-btn svg { width: 20px; height: 20px; }
+        .hp-float-btn img { width: 22px; height: 22px; border-radius: 5px; }
       }
