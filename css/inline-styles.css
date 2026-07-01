@@ -416,13 +416,13 @@
         50% { transform: translateY(-12px); }
       }
 
-      /* ─── #contact 배경 완전 흰색 (블롭/도트 패턴 비활성) ─── */
+      /* ─── #contact 다크 CTA 배경 (블롭/도트 패턴 비활성) ─── */
       #contact .contact-blob,
       #contact .contact-grid-pattern {
         display: none !important;
       }
       #contact {
-        background: #ffffff !important;
+        background: radial-gradient(120% 110% at 50% 0%, #15294f 0%, #0b1733 55%, #060e22 100%) !important;
       }
 
       /* ─── #contact 풍부한 배경 레이어 (현재 비활성) ─── */
